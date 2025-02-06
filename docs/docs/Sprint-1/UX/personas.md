@@ -10,7 +10,7 @@
 
 <sub>Figura 2 - Persona Melissa Grey</sub>
 
-<img src = "../docs/docs/Sprint-1/UX/assets/Persona.png" >
+<img src = "../UX/assets/Persona.png" >
 
 <sup>Fonte: Autoria própria</sup>
 
