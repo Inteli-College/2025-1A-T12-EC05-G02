@@ -46,3 +46,9 @@ A proposta do projeto X foca na automação da separação de medicamentos para 
 | **Escopo de Aplicação** | Maioria foca em dispensação automática ou fracionamento de doses. | Voltado especificamente para a montagem da “Fita de Medicamentos” na farmácia hospitalar. |
 | **Testes e Validação** | Algumas soluções já são amplamente utilizadas em hospitais de grande porte. | Testes piloto na UTI do HC/Unicamp para validar a eficiência em um ambiente controlado. |
 | **Custo-Benefício** | Investimentos elevados e dependência de fornecedores estrangeiros. | Busca um modelo escalável e mais acessível, reduzindo desperdícios e aumentando a produtividade da equipe hospitalar. |
+
+# 4. Benefícios Esperados com a Solução (Conclusão)
+
+Dessa forma, pode-se concluir que a implementação da solução trará melhorias significativas para o processo de separação e dispensação de medicamentos no hospital. A principal vantagem está na redução de erros, garantindo que os medicamentos corretos sejam selecionados e entregues, aumentando a segurança do paciente. Além disso, a eficiência operacional será aprimorada, reduzindo em até 40% o tempo necessário para a separação da “Fita de medicamentos”, o que otimiza a rotina da equipe de farmácia.
+
+Outro benefício essencial é o rastreamento e controle aprimorado, permitindo o monitoramento em tempo real do estoque e das operações, garantindo maior precisão na gestão de medicamentos. Essa automação também contribuirá para a redução de custos, minimizando desperdícios e otimizando o uso dos recursos humanos, tornando o processo mais econômico. Por fim, a solução impactará diretamente a qualidade assistencial, proporcionando um atendimento mais ágil e seguro, com maior confiabilidade na dispensação dos medicamentos para os pacientes internados.
