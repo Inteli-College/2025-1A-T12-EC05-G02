@@ -99,7 +99,7 @@
     4. Mantém o paciente sob observação e comunica a equipe sobre o ocorrido.
 
 - **Pensamentos:** 
-    1. “Vixe! Um paciente apresentou reação, será que médico esqueceu de verificar as alergias?” 
+    1. “Vixe! Um paciente apresentou reação, será que o médico esqueceu de verificar as alergias?” 
     2. “Que bom que tudo deu certo!”
 
 - **Dores:**
@@ -129,4 +129,7 @@
 - **Emoções:** Alívio
 
 - **Oportunidades:** 
-    1. O sistema criar um relatório automático com base nos registros dos medicamentos sepados pelo braço robótico.
+    1. O sistema criar um relatório automático com base nos registros dos medicamentos separados pelo braço robótico.
+
+
+&emsp; A jornada do usuário da Melissa Grey dastaca como a introdução de um braço robótico na separação de medicamentos pode otimizar o fluxo de trabalho, reduzir erros e melhorar a rotina de trabalho da equipe de enfermagem. Ao longo de sua rotina, Melissa enfrenta muitos desafios como a falta de informações na troca de plantões, reações alérgicas inesperadas e, principalmente, a alta demanda hospitalar. No entanto, a automação da separação de medicamentos contribui para um processo mais eficiente, garantindo mais segurança para os pacientes e facilitando o trabalho dos profissionais de saúde.
