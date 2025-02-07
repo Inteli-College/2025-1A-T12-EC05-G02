@@ -61,4 +61,4 @@
 
 **Por que a persona da Melissa Grey?**
 
-&emsp; Melissa Grey, enfermeira hospitalar no Hospital das Clínicas da Unicamp, tem 39 anos e atua na medicação dos pacientes. Nesse sentido, sua escolha como persona foi fundamentada na representatividade dos enfermeiros e técnicos de enfermagem que utilizaram a solução. Dessa maneira, essa decisão enfatiza a importância de compreender e aprimorar os processos específicos dessa área, tornando a conferência e a aplicação de medicamentos mais eficientes e garantindo maior segurança na administração das doses
+&emsp; Melissa Grey, enfermeira hospitalar no Hospital das Clínicas da Unicamp, tem 39 anos e atua na medicação dos pacientes. Nesse sentido, sua escolha como persona foi baseada na representatividade dos enfermeiros e técnicos de enfermagem que entre suas tarefas durante o plantão incluem a aplicação de medicamentos aos pacientes, ou seja, que utilizarão a presente solução do braço robótico.
