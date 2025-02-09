@@ -128,6 +128,9 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+
+    // Static Directories -> Include static assets (images mainly)
+    staticDirectories: ['static'],
 };
 
 export default config;
