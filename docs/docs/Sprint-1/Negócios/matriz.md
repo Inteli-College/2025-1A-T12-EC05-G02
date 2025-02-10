@@ -6,7 +6,13 @@
 
 ### Matriz de Riscos
 
+<div align="center">
+  <sub>Figura 1 - Matriz de Riscos</sub>
 
+  <img src="" alt="Matriz de Riscos" border="0">
+
+  <sup>Fonte: Material produzido pelos autores (2025).</sup>
+</div>
 
 &emsp;Nota-se através das figuras X e Y, a identificação dos riscos e oportunidades eminentes do projeto X, facilitando a tomada de decisões estratégicas e o planejamento de ações. A natureza iterativa dessa gestão garante que esses gráficos sejam constantemente atualizados, refletindo as alterações na avaliação dos impactos e probabilidades dos riscos.
 
@@ -18,8 +24,15 @@
 
 ### Matriz de Oportunidades
 
+<div align="center">
+  <sub>Figura 2 - Matriz de Oportunidades</sub>
 
-&emsp;Na matriz de oportunidades apresentada, destaca-se o "Fácil integração com softwares externos" como uma oportunidade de muito alto impacto e alta probabilidade. Esta condição pode abrir portas para colaborações valiosas, acesso a recursos avançados e entrada em mercados novos ou pouco explorados. Ainda, o tópico "Grupo de desenvolvimento engajado", posicionado como de médio impacto e alta probabilidade representa otimização na produtividade e qualidade do desenvolvimento do trabalho, contribuindo para a eficiência do projeto. A exploração dessas oportunidades pode potencializar os resultados do desenvolvimento, de forma a otimizar o aproveitamento de recursos e maximizar o proveito sobre o projeto.
+  <img src="" alt="Matriz de Riscos" border="0">
+
+  <sup>Fonte: Material produzido pelos autores (2025).</sup>
+</div>
+
+&emsp;Na matriz de oportunidades apresentada, destaca-se o "Fácil integração com softwares externos" como uma oportunidade de muito alto impacto e alta probabilidade. Esta condição pode abrir portas para colaborações valiosas, acesso a recursos avançados e entrada em mercados novos ou pouco explorados. Ainda, o tópico "Grupo de desenvolvimento engajado", posicionado como de médio impacto e alta probabilidade representa otimização na produtividade e qualidade do desenvolvimento do trabalho, contribuindo para a eficiência do projeto. Ademais, podemos destacar a oportunidade "Experiências em Web Dev", de nosso time de desenvolvedores, como grande aliada no processo de desenvolvimento da aplicação X. A exploração dessas oportunidades pode potencializar os resultados do desenvolvimento, de forma a otimizar o aproveitamento de recursos e maximizar o proveito sobre o projeto.
 
 ---
 
@@ -29,10 +42,10 @@
 
 | \#  | Plano de ações:                                                                                                                                                                                                                                                                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | Dependência de softwares externos: Garantir a implementação da metodologia Scrum para melhorar a divisão de tarefas e a realização de Dailies produtivas e documentadas na plataforma de comunicação Slack para monitorar o progresso e redistribuir carga de trabalho se necessário. |
-| 2   | Dificuldade na integração com o sistema utilizado na farmácia: Estabelecer parcerias com fontes de dados confiáveis e implementar processos de validação de dados. Desenvolver um plano de contingência para adquirir dados alternativos se necessário.                               |
-| 3   | Instabilidade na conexão com WiFi : Garantir o comprometimento da equipe desenvolvedora em realizar os autoestudos fornecidos pelos professores do Inteli e participar das instruções sobre análise de dados. Validar dúvidas com os instrutores de computação.                                    |
-| 4   | Entendimento incorreto das dores do cliente: Reforçar a gestão de projetos com um kanban atualizado e revisar periodicamente os cronogramas para garantir que os prazos sejam realistas e alcançáveis.                                                                                            |
-| 5   | Descumprimento de prazos: Realizar entre a equipe auditorias regulares de conformidade sobre a legislação LGPD com todos os membros envolvidos no manuseio de dados. Participar das instruções do Inteli a respeito de LGPD.                                                             |
-| 6   | Dificuldade de escalabilidade: Incrementar a revisão e o teste dos modelos preditivos com a ajuda de especialistas em dados. Ajustar os modelos conforme o *feedback* operacional e análise de resultados.                                                                               |
-| 7   | Interface pouco intuitiva: Planejar a infraestrutura para escalar de acordo com a demanda, utilizando soluções em nuvem flexíveis e escaláveis.                                                                                                                                            |
+| 1   | **Dependência de softwares externos:** Para mitigar a dependência dos softwares externos utilizados na farmácia, utiliza-se uma *middleware* (camada intermediária) para armazenar os dados a serem trabalhados, para casos de desconexão com o software terceiro. |
+| 2   | **Dificuldade na integração com o sistema utilizado na farmácia:** Desenvolver uma documentação detalhada para evitar erros na aquisição de dados, além do tratamento dos dados recebidos para formatação adequada aos softwares externos. Ademais, buscamos o desenvolvimento de uma API facilmente configurável, para possíveis casos de troca de sistema externo e/ou diferenças entre versões.                               |
+| 3   | **Instabilidade na conexão com Wi-Fi:** Garantir o funcionamento do robô separador para que funcione, independentemente do status da conexão Wi-Fi e manter últimos dados recebidos da API salvos localmente.                                    |
+| 4   | **Falha no hardware:** Utilização de pontos de checagem na movimentação do robô para garantir que, uma vez que o robô não atingir o desempenho esperado, garantir que nenhum medicamento seja selecionado de maneira errônea e interromper sua atuação e enviar relatório de erro para futuras implementações.                                                                                            |
+| 5   | **Descumprimento de prazos:** Reforçar a gestão de projetos com um Kanban atualizado e revisar periodicamente os cronogramas para garantir que os prazos sejam alcançáveis, além de monitorar a distribuição de trabalho entre os membros da equipe de desenvolvimento.                                                             |
+| 6   | **Dificuldade de escalabilidade:** Garantir a independência dos serviços presentes na solução, elaborar extensa e detalhada documentação do funcionamento das funcionalidades de nossa aplicação Web e controle do hardware.                                                                                 |
+| 7   | **Interface pouco intuitiva:** Realização de testes de usabilidade com público-alvo para adequar a disposição de recursos e ajustas funcionalidades para melhor seus objetivos.                                                                                                                                            |
