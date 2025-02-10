@@ -2,7 +2,7 @@
 
 ## Introdução
 
-&emsp; A Jornada do Usuário é uma representação visual do caminho que um usuário percorre ao interagir com um produto, serviço ou sistema. Nesse sentido, ela descreve as etapas, as emoções, as ações e os pontos de contato que o usuário experimenta ao longo de sua interação. Dessa maneira, a jornada do usuário é uma ferramenta valiosa para identificar oportunidades de melhoria, pontos de atrito e necessidades não atendidas, permitindo que a equipe de design e desenvolvimento crie soluções mais eficazes e centradas no usuário (Kalbach, 2016).
+&emsp; A Jornada do Usuário é uma representação visual do caminho que um usuário percorre ao interagir com um produto, serviço ou sistema. Nesse sentido, ela descreve as etapas, as emoções, as ações e os pontos de contato que o usuário experimenta ao longo de sua interação. Dessa maneira, a jornada do usuário é uma ferramenta valiosa para identificar oportunidades de melhoria, pontos de atrito e necessidades não atendidas, permitindo que a equipe de design e desenvolvimento crie soluções mais eficazes e centradas no usuário [(Kalbach, 2016)](https://brasil.uxdesign.cc/05-coisas-que-voc%C3%AA-deveria-saber-para-n%C3%A3o-errar-na-jornada-84599fa58dd4).
 
 ## Roberto Dias, Técnico de Farmácia
 
