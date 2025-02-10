@@ -2,15 +2,153 @@
 
 ## Introdução
 
-&emsp; A Jornada do Usuário é uma representação visual do caminho que um usuário percorre ao interagir com um produto, serviço ou sistema. Nesse sentido,ela descreve as etapas, as emoções, as ações e os pontos de contato que o usuário experimenta ao longo de sua interação. Dessa maneira, a jornada do usuário é uma ferramenta valiosa para identificar oportunidades de melhoria, pontos de atrito e necessidades não atendidas, permitindo que a equipe de design e desenvolvimento crie soluções mais eficazes e centradas no usuário (Kalbach, 2016).
+&emsp; A Jornada do Usuário é uma representação visual do caminho que um usuário percorre ao interagir com um produto, serviço ou sistema. Nesse sentido, ela descreve as etapas, as emoções, as ações e os pontos de contato que o usuário experimenta ao longo de sua interação. Dessa maneira, a jornada do usuário é uma ferramenta valiosa para identificar oportunidades de melhoria, pontos de atrito e necessidades não atendidas, permitindo que a equipe de design e desenvolvimento crie soluções mais eficazes e centradas no usuário (Kalbach, 2016).
 
-## Lara Oliveira, Farmacêutica
+## Roberto Dias, Técnico de Farmácia
 
-&emsp; A jornada de usário da persona farmacêutica Lara Oliveira foi planejada considerando suas atividades, desde o momento da procura de uma solução para os desafios encontrados na farmácia do Hospital das Clínicas da Unicamp, passando pelo momento de escolha e implementação da solução robótica, até o uso rotineiro da solução e a análise do impacto daquela solução no hospital.
+&emsp; Na elaboração da jornada de Roberto Dias, a Pharmatech optou pelo momento pós-implementação do braço robótico. Não logo após. Porém, tempos depois, quando o auxílio robótico já se tornou comum na vida do técnico. A partir disso, foi possível compreender a necessidade, por exemplo, de um sensor para identificar se as caixas estão vazias antes que o robô as use para separar medicamentos. Caso contrário, Roberto terá que verificar todas as vezes se o número de prescrições é igual o número de caixas usadas pelo robô. Abaixo, apresenta-se a jornada completa e recomenda-se especial atenção às oportunidades.
 
 <div align="center" width="100%">
 
-<sub>Figura 1 - Jornada do usuário: Farmacêutica Lara Oliveira</sub>
+<sub>Figura 1 - Jornada do usuário: Técnico Roberto Dias</sub>
+
+<img src = "/img/UX/Roberto Dias - Jornada.svg" />
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
+### Etapas da jornada de usuário de Roberto Dias
+
+**1. Verificação**
+
+- **Objetivo:** Verificar se o robô exibiu algum aviso
+
+- **Ações:** 
+    1. Verificar se a esteira está lotada
+    2. Verificar se a plataforma indicou falta de algum medicamento
+    3. Verificar se o número de caixas é igual o número de prescrições
+
+
+- **Pensamentos:** 
+    1. “Seria bom se o aviso de que a esteira está lotada fosse mais claro”
+    2. “Como saber qual caixa apresentou erro?”
+
+- **Dores:**
+    1. Avisos são dados apenas na plataforma, sem sinalizalização visual ou sonora
+
+- **Emoções:** Ansioso
+
+- **Pontos de contato:**
+    - Computador
+    - Robô
+
+- **Oportunidades:** 
+    1. Implementar um buzzer no robô ou na esteira
+    2. Verificar se a caixa está vazia
+
+
+**2. Ajuste**
+
+- **Objetivo:** Corrigir os erros feitos pelo robô 
+
+- **Ações:** 
+    1. Liberar espaço na esteira
+    2. Sinalizar fita de medicamentos incompletas
+
+
+- **Pensamentos:** 
+    1. “Até que não foram muitos erros”
+    2. “Os erros são difíceis de encontrar”
+
+- **Dores:**
+    1. Avisos são dados apenas na plataforma, sem sinalizalização visual ou sonora
+
+- **Emoções:** Normal
+
+- **Pontos de contato:**
+    - Computador
+    - Robô
+
+- **Oportunidades:** 
+    1. Treinamento para identificação de erros durante o processo de empacotamento
+
+
+**3. Empacotamento**
+
+- **Objetivo:** Empacotar todos as fitas de medicamentos 
+
+- **Ações:** 
+    1. Se posicionar na frente da esteira
+    2. Retirar da impressora cada pedido
+    3. Verificar inconsistência entre a fita e a prescrição
+    4. Empacotar
+
+
+- **Pensamentos:** 
+    1. “Agora parece que está tudo certo!”
+    2. “Tudo ficou bem mais fácil mesmo”
+
+- **Dores:**
+    1. Possibilidade de inconsistência entre prescrição e fita de medicamentos 
+
+- **Emoções:** Feliz
+
+- **Pontos de contato:**
+    - Robô
+
+
+**4. Conserto**
+
+- **Objetivo:** Corrigir inconsistências nas fitas de medicamento 
+
+- **Ações:** 
+    1. Acessar manualmente a plataforma 
+    2. Ajustar erros de separação pelo robô
+
+
+- **Pensamentos:** 
+    1. “Últimos ajustes...”
+    2. “Esse processo nunca foi tão rápido!”
+
+- **Emoções:** Feliz
+
+- **Pontos de contato:**
+    - Computador
+
+- **Oportunidades:** 
+    1. Permitir alteração manual de fita de medicamentos antes de processar a rastreabilidade
+
+
+**5. Finalização**
+
+- **Objetivo:** Deixar os pedidos no local designado para serem recebidos pelo (a)enfermeiro (a) 
+
+- **Ações:** 
+    1. Levar cada pacote para o local designado
+    2. Reorganizar as caixas
+
+
+- **Pensamentos:** 
+    1. “Fim, com 48 minutos de sobra!”
+    2. “Já já vou para minha pesquisa"
+
+- **Dores:**
+    1. Reorganizar as caixas
+
+- **Emoções:** Feliz
+
+- **Pontos de contato:**
+    - Robô
+
+
+## Lara Oliveira, Farmacêutica
+
+&emsp; A jornada de usuário da persona farmacêutica Lara Oliveira foi planejada considerando suas atividades, desde o momento da procura de uma solução para os desafios encontrados na farmácia do Hospital das Clínicas da Unicamp, passando pelo momento de escolha e implementação da solução robótica, até o uso rotineiro da solução e a análise do impacto daquela solução no hospital.
+
+<div align="center" width="100%">
+
+<sub>Figura 2 - Jornada do usuário: Farmacêutica Lara Oliveira</sub>
 
 <img src = "/img/UX/Lara Oliveira - Farmacêutica - Jornada do usuário.png" />
 
@@ -37,9 +175,7 @@
     1. Estoque da farmácia desorganizado
     2. Processo de separação feito de forma manual e ineficaz
 
-- **Emoções:** 
-  
-  😠 Frustrado
+- **Emoções:** Frustrado
 
 - **Pontos de contato:**
     - Computador
@@ -65,9 +201,7 @@
     1. Escassez de soluções eficientes para os desafios
     2. Alto custo ou dificuldade de implementação
 
-- **Emoções:**
-
-    🤔 Pensativo
+- **Emoções:** Pensativo
 
 - **Pontos de contato:**
   - Computador
@@ -94,9 +228,7 @@
     1. Medo de ter escolhido a solução errada
     2. Apreensiva sobre os resultados da solução
 
-- **Emoções:**
-
-    😊 Esperançoso
+- **Emoções:** Esperançoso
 
 - **Pontos de contato:**
   - Computador
@@ -122,9 +254,7 @@
 - **Dores:**
     1. Apesar das suas observações, ainda não sabe se a solução robótica realmente melhorou a eficiência
 
-- **Emoções:**
-
-    😁 Feliz
+- **Emoções:** Feliz
 
 - **Pontos de contato:**
   - Computador
@@ -150,9 +280,7 @@
     1. Preocupações com a manutenção do sistema
     2. Risco de dependência do sistema robótico
 
-- **Emoções:**
-
-    😮 Surpreso
+- **Emoções:** Surpreso
 
 - **Oportunidades:** 
     1. Possibilidade de expandir a atuação de soluções automatizadas na farmácia
@@ -167,7 +295,7 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 2 - Jornada do usuário Melissa Grey</sub>
+<sub>Figura 3 - Jornada do usuário: Enfermeira Melissa Grey</sub>
 
 ![Jornada do usuário Melissa Grey](/img/UX/User-Journey-Map.jpg)
 
@@ -291,4 +419,4 @@
     1. O sistema criar um relatório automático com base nos registros dos medicamentos separados pelo braço robótico.
 
 
-&emsp; A jornada do usuário da Melissa Grey dastaca como a introdução de um braço robótico na separação de medicamentos pode otimizar o fluxo de trabalho, reduzir erros e melhorar a rotina de trabalho da equipe de enfermagem. Ao longo de sua rotina, Melissa enfrenta muitos desafios como a falta de informações na troca de plantões, reações alérgicas inesperadas e, principalmente, a alta demanda hospitalar. No entanto, a automação da separação de medicamentos contribui para um processo mais ágil para a equipe hospitalar e seguro para os pacientes.
+&emsp; A jornada do usuário da Melissa Grey destaca como a introdução de um braço robótico na separação de medicamentos pode otimizar o fluxo de trabalho, reduzir erros e melhorar a rotina de trabalho da equipe de enfermagem. Ao longo de sua rotina, Melissa enfrenta muitos desafios como a falta de informações na troca de plantões, reações alérgicas inesperadas e, principalmente, a alta demanda hospitalar. No entanto, a automação da separação de medicamentos contribui para um processo mais ágil para a equipe hospitalar e seguro para os pacientes.

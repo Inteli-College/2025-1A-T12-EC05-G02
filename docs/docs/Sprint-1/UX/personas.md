@@ -40,7 +40,7 @@
 - Reorganização dos remédios devolvidos pelas enfermeiras, pois voltam de forma desorganizada;
 - Conferência de erro de separação dos seus colegas.
 
-**Necessidade:**
+**Necessidades:**
 
 - Um sistema que atribua e separe os remédios corretos aos respectivos pacientes com base na fita médica recebida.
 
