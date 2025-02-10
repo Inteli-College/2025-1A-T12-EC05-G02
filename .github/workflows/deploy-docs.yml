@@ -1,0 +1,36 @@
+name: Deploy Docusaurus Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    # É importante garantir que seu workflow tenha permissão para
+    # escrever no repositório (fazer push), para publicar no GH Pages.
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      # - name: Mudar Diretorio
+      #   run: cd docs
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Gerar build do Docusaurus
+        run: npm run build
+
+      - name: Fazer deploy no GitHub Pages
+        run: npx docusaurus deploy
