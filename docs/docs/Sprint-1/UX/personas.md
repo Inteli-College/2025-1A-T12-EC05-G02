@@ -71,7 +71,7 @@
 
 **Sobre:**
 
-&emsp;&emsp;Lara é farmacêutica no Hospital das Clínicas da Unicamp, ela se formou em Farmácia na própria Unicamp há 5 anos e desde então trabalha no mesmo hospital. Sempre foi muito meticulosa e atenta a suas tarefas, pois durante a faculdade ouviu muitos casos de pacientes que tiveram problemas relacionados a medicamentos fora da validade, pacientes alérgicos a medicamentos específicos e furtos de medicamentos psicotrópicos.
+&emsp;&emsp;Lara é farmacêutica no Hospital de Clínicas da Unicamp, ela se formou em Farmácia na própria Unicamp há 5 anos e desde então trabalha no mesmo hospital. Sempre foi muito meticulosa e atenta a suas tarefas, pois durante a faculdade ouviu muitos casos de pacientes que tiveram problemas relacionados a medicamentos fora da validade, pacientes alérgicos a medicamentos específicos e furtos de medicamentos psicotrópicos.
 
 **Tarefas:**
 
@@ -112,7 +112,7 @@
 
 <sub>Figura 3 - Persona: Enfermeira Melissa Grey</sub>
 
-![Persona Melissa Grey](../../../static/img/UX/Persona.png)
+![Persona Melissa Grey](/img/UX/Persona.png)
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -130,7 +130,7 @@
 
 **Sobre:**
 
-&emsp; Melissa Grey é uma enfermeira hospitalar com mais de 10  anos de experiência, atuando no setor público, sendo sete anos no Hospital das Clínicas da Unicamp, a qual trabalha em regime de plantão. Nesse sentido, sente a necessidade de processos mais eficientes no ambiente do hospital, bem como a redução dos erros na administração de doses.
+&emsp; Melissa Grey é uma enfermeira hospitalar com mais de 10  anos de experiência, atuando no setor público, sendo sete anos no Hospital de Clínicas da Unicamp, a qual trabalha em regime de plantão. Nesse sentido, sente a necessidade de processos mais eficientes no ambiente do hospital, bem como a redução dos erros na administração de doses.
 
 **Tarefas:**
 
@@ -161,7 +161,7 @@
 
 **Por que a persona da Melissa Grey?**
 
-&emsp; Melissa Grey, enfermeira hospitalar no Hospital das Clínicas da Unicamp, tem 39 anos e atua na medicação dos pacientes. Nesse sentido, sua escolha como persona foi baseada na representatividade dos enfermeiros e técnicos de enfermagem que entre suas tarefas durante o plantão incluem a aplicação de medicamentos aos pacientes, ou seja, que serão afetados pela separação de fitas de medicamento pelo robô.
+&emsp; Melissa Grey, enfermeira hospitalar no Hospital de Clínicas da Unicamp, tem 39 anos e atua na medicação dos pacientes. Nesse sentido, sua escolha como persona foi baseada na representatividade dos enfermeiros e técnicos de enfermagem que entre suas tarefas durante o plantão incluem a aplicação de medicamentos aos pacientes, ou seja, que serão afetados pela separação de fitas de medicamento pelo robô.
 
 ## Referências
 

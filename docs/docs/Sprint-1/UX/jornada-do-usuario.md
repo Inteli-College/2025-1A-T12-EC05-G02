@@ -144,7 +144,7 @@
 
 ## Lara Oliveira, Farmacêutica
 
-&emsp; A jornada de usuário da persona farmacêutica Lara Oliveira foi planejada considerando suas atividades, desde o momento da procura de uma solução para os desafios encontrados na farmácia do Hospital das Clínicas da Unicamp, passando pelo momento de escolha e implementação da solução robótica, até o uso rotineiro da solução e a análise do impacto daquela solução no hospital.
+&emsp; A jornada de usuário da persona farmacêutica Lara Oliveira foi planejada considerando suas atividades, desde o momento da procura de uma solução para os desafios encontrados na farmácia do Hospital de Clínicas da Unicamp, passando pelo momento de escolha e implementação da solução robótica, até o uso rotineiro da solução e a análise do impacto daquela solução no hospital.
 
 <div align="center" width="100%">
 
@@ -285,7 +285,7 @@
 - **Oportunidades:** 
     1. Possibilidade de expandir a atuação de soluções automatizadas na farmácia
 
-&emsp;&emsp;A jornada do usuário da farmacêutica Lara Oliveira exemplifica diversas situações na implementação e uso da solução robótica dentro da farmácia do Hospital das Clínicas da Unicamp, além de demonstrar todas suas ações, pensamentos, dores, emoções, pontos de contato e oportunidades durante cada etapa do processo.
+&emsp;&emsp;A jornada do usuário da farmacêutica Lara Oliveira exemplifica diversas situações na implementação e uso da solução robótica dentro da farmácia do Hospital de Clínicas da Unicamp, além de demonstrar todas suas ações, pensamentos, dores, emoções, pontos de contato e oportunidades durante cada etapa do processo.
 
 ---
 
