@@ -6,13 +6,11 @@
 
 ### Matriz de Riscos
 
-<div align="center">
-  <sub>Figura 1 - Matriz de Riscos</sub>
+<p style={{textAlign: 'center'}}>Figura 2 - Matriz de Riscos</p>
 
-  <img src="" alt="Matriz de Riscos" border="0">
+![Matriz de Riscos](../../../static/img/negocios/matriz_riscos.png)
 
-  <sup>Fonte: Material produzido pelos autores (2025).</sup>
-</div>
+<p style={{textAlign: 'center'}}>Fonte: Elaboração própria (2025)</p>
 
 &emsp;Nota-se através das figuras X e Y, a identificação dos riscos e oportunidades eminentes do projeto X, facilitando a tomada de decisões estratégicas e o planejamento de ações. A natureza iterativa dessa gestão garante que esses gráficos sejam constantemente atualizados, refletindo as alterações na avaliação dos impactos e probabilidades dos riscos.
 
@@ -24,13 +22,11 @@
 
 ### Matriz de Oportunidades
 
-<div align="center">
-  <sub>Figura 2 - Matriz de Oportunidades</sub>
+<p style={{textAlign: 'center'}}>Figura 2 - Matriz de Oportunidades</p>
 
-  <img src="" alt="Matriz de Riscos" border="0">
+![Matriz de Oportunidade](../../../static/img/negocios/matriz_oport.png)
 
-  <sup>Fonte: Material produzido pelos autores (2025).</sup>
-</div>
+<p style={{textAlign: 'center'}}>Fonte: Elaboração própria (2025)</p>
 
 &emsp;Na matriz de oportunidades apresentada, destaca-se o "Fácil integração com softwares externos" como uma oportunidade de muito alto impacto e alta probabilidade. Esta condição pode abrir portas para colaborações valiosas, acesso a recursos avançados e entrada em mercados novos ou pouco explorados. Ainda, o tópico "Grupo de desenvolvimento engajado", posicionado como de médio impacto e alta probabilidade representa otimização na produtividade e qualidade do desenvolvimento do trabalho, contribuindo para a eficiência do projeto. Ademais, podemos destacar a oportunidade "Experiências em Web Dev", de nosso time de desenvolvedores, como grande aliada no processo de desenvolvimento da aplicação X. A exploração dessas oportunidades pode potencializar os resultados do desenvolvimento, de forma a otimizar o aproveitamento de recursos e maximizar o proveito sobre o projeto.
 
