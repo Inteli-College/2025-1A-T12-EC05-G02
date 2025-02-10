@@ -8,26 +8,41 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
-    # É importante garantir que seu workflow tenha permissão para
-    # escrever no repositório (fazer push), para publicar no GH Pages.
     permissions:
       contents: write
     
+    env:
+      GIT_USER: ${{ github.actor }}
+
     steps:
-      - name: Checkout do código
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Configurar Node
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 21
+          node-version: 16
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: docs/node_modules
+          key: ${{ runner.os }}-docs-${{ hashFiles('docs/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-docs-
 
       - name: Instalar dependências
-        run: cd docs && npm install
+        working-directory: docs
+        run: npm ci
 
-      - name: Gerar build do Docusaurus
-        run: cd docs && npm run build
+      # (Opcional) Testes
+      # - name: Test
+      #   working-directory: docs
+      #   run: npm test
 
-      - name: Fazer deploy no GitHub Pages
-        run: cd docs && npx docusaurus deploy
+      - name: Build Docusaurus
+        working-directory: docs
+        run: npm run build
+
+      - name: Deploy
+        working-directory: docs
+        run: npx docusaurus deploy

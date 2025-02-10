@@ -13,6 +13,7 @@ const config = {
   title: 'FarmaTech',
   tagline: 'FarmaTech Documentation',
   favicon: 'img/favicon.ico',
+  trailingSlash: false,
 
   // Set the production url of your site here
   url: 'https://Inteli-College.github.io',
