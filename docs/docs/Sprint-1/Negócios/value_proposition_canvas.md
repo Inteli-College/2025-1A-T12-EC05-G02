@@ -35,15 +35,19 @@ slug: /sprint-1/Negócios/value_proposition_canvas
 
 #### Tarefas do Cliente:
 
-&emsp; **Separar os medicamentos do paciente:**
-&emsp; **Manter o controle dos medicamentos:**
+&emsp; **Separar os medicamentos do paciente:** Assegurar que cada paciente receba a medicação correta, na dosagem apropriada e no momento exato, evitando riscos de administração incorreta que possam comprometer a segurança do paciente.
+
+&emsp; **Manter o controle dos medicamentos:** Garantir a atualização constante do estoque com registros detalhados do uso de cada medicamento, prevenindo tanto o desperdício quanto a falta de insumos essenciais.
 
 #### Ganhos:
 
-&emsp; **Redução de custos:** 
-&emsp; **Maior eficiência operacional:**
-&emsp; **Controle mais preciso de estoque:**
-&emsp; **Aumento da produtividade:**
+&emsp; **Redução de custos:** Diminuição significativa da necessidade de intervenção manual, resultando em menor demanda por mão de obra e otimização do uso de medicamentos, reduzindo desperdícios.
+
+&emsp; **Maior eficiência operacional:** Automação integrada dos processos de separação e montagem da "Fita de Medicamentos", reduzindo o tempo operacional em até 40% e aumentando a produtividade da equipe.
+
+&emsp; **Controle mais preciso de estoque:** Implementação de um sistema de rastreamento em tempo real que integra com o sistema de gestão hospitalar, garantindo acurácia e controle rigoroso sobre o inventário de medicamentos.
+
+&emsp; **Aumento da produtividade:** Liberação da equipe de farmácia para atividades mais analíticas e estratégicas, promovendo um ambiente de trabalho mais eficiente e focado em tarefas de maior valor agregado.
 
 
 ## Proposta de Valor
@@ -52,18 +56,26 @@ slug: /sprint-1/Negócios/value_proposition_canvas
 
 #### Produtos e Serviços:
 
-&emsp; **Sistema de automação para separação de medicamentos:**
-&emsp; **Plataforma para visualização do processo:**
-&emsp; **Modular para integrações em outros sistemas:**
+&emsp; **Sistema de automação para separação de medicamentos:** Integração de manipuladores robóticos de alta precisão e sensores inteligentes para garantir a correta identificação, separação e dosagem dos medicamentos.
+
+&emsp; **Plataforma para visualização do processo:** Interface intuitiva e amigável que permite o monitoramento em tempo real, possibilitando ajustes rápidos e eficientes, bem como o rastreamento completo de cada medicamento.
+
+&emsp; **Modular para integrações em outros sistemas:** Ferramentas modulares para comunicação direta com o sistema de gestão hospitalar, permitindo a atualização automática de prescrições médicas e o controle de estoque de forma integrada.
 
 #### Criadores de Ganhos:
 
-&emsp; **Redução do tempo de separação:**
-&emsp; **Aumento da segurança do paciente:**
-&emsp; **Relatórios de desempenho e rastreamento:**
+&emsp; **Redução do tempo de separação:** Otimização dos fluxos de trabalho através da automação, reduzindo o tempo de separação de medicamentos em até 40%, aumentando a agilidade no atendimento aos pacientes.
+
+&emsp; **Aumento da segurança do paciente:** Implementação de tecnologias que minimizam os riscos de erros humanos na separação e administração de medicamentos, garantindo maior segurança e confiabilidade no processo.
+
+&emsp; **Relatórios de desempenho e rastreamento:** Geração de relatórios detalhados que permitem o monitoramento contínuo da eficiência do processo, com dados sobre o uso de medicamentos, tempo de processamento e incidência de erros.
 
 #### Alívio de Dores:
 
-&emsp; **Braço Robotico para a separação dos medicamentos:** 
-&emsp; **Integração com o sistema de gestão hospitalar:** 
-&emsp; **Controle de gasto por paciente:** 
+&emsp; **Braço Robotico para a separação dos medicamentos:** Reduz drasticamente a ocorrência de erros humanos, garantindo maior precisão e rapidez na separação dos medicamentos, além de melhorar a consistência do processo.
+
+&emsp; **Integração com o sistema de gestão hospitalar:** Simplifica o controle de estoque e facilita a atualização de prescrições médicas, proporcionando um fluxo de informações mais eficiente e preciso.
+
+&emsp; **Controle de gasto por paciente:** Assegura transparência nas cobranças com registros detalhados do consumo de medicamentos por paciente, evitando erros financeiros e contribuindo para uma gestão de custos mais eficaz.
+
+&emsp; Com isso, o Canvas da Proposta de Valor apresenta uma visão abrangente dos segmentos de clientes, dos ganhos e dores, dos trabalhos do cliente, da proposta de valor, dos criadores de ganhos, dos analgésicos e dos produtos e serviços oferecidos pela solução proposta.
