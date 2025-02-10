@@ -23,14 +23,11 @@ jobs:
         with:
           node-version: 16
 
-      - name: Mudar Diretorio
-        run: cd docs
-
       - name: Instalar dependências
-        run: npm install
+        run: cd docs && npm install
 
       - name: Gerar build do Docusaurus
-        run: npm run build
+        run: cd docs && npm run build
 
       - name: Fazer deploy no GitHub Pages
-        run: npx docusaurus deploy
+        run: cd docs && npx docusaurus deploy
