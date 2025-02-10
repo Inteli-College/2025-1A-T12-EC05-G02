@@ -10,7 +10,7 @@
 
 <sub>Figura 2 - Jornada do usuário Melissa Grey</sub>
 
-![Jornada do usuário Melissa Grey](../../../static/img/User-Journey-Map.jpg)
+![Jornada do usuário Melissa Grey](../../../static/img/UX/User-Journey-Map.jpg)
 
 <sup>Fonte: Autoria própria </sup>
 
