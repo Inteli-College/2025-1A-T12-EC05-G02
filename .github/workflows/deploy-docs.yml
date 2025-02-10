@@ -23,8 +23,8 @@ jobs:
         with:
           node-version: 16
 
-      # - name: Mudar Diretorio
-      #   run: cd docs
+      - name: Mudar Diretorio
+        run: cd docs
 
       - name: Instalar dependências
         run: npm install
