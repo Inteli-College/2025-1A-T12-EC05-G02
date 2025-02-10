@@ -1,11 +1,62 @@
-# Persona
+# Personas
+
+&emsp;&emsp;Um dos processos que auxilia na geração de valor de uma solução é a criação de personas. Personas são personagens fictícios, fruto das observações dos usuários potenciais e reais de uma solução que possuem verossimilhança com esses tais (Belisiario, 2023). Ao criar personas, a equipe se permite capturar as necessidades e os desejos de seus usuários, de modo a criar, para eles, soluções realmente úteis.
+
+&emsp;&emsp;Para este projeto, a equipe criou três personas: Roberto Dias, Lara Oliveira e Melissa Grey, representando as ocupações mais pertinentes à função de separação que o robô será responsável. Essas personas são apresentadas a seguir.
+
+## Roberto Dias, Técnico de Fármacia
+
+&emsp;&emsp; A persona de Roberto Dias representa o técnico de farmácia do Hospital de Clínicas da Unicamp (HC). Ele é nossa persona principal, pois é a pessoa que realiza a separação das fitas de medicamentos no hospital, a qual passará a ser auxiliada pelo PharmaBot. Ele foi criado com base nas interações que o grupo teve com a equipe do HC.
+
+<div align="center" width="100%">
+<sub>Figura 1 - Persona: Técnico de Farmácia Roberto Dias</sub>
+<img src = "/img/UX/roberto-dias-persona.png" />
+<sup>Fonte: Autoria própria</sup>
+</div>
+
+**Detalhes:**
+
+- **Nome:** Roberto Dias
+- **Idade:** 43 anos
+- **Ocupação:** Técnico de Farmácia
+- **Localização:** Campinas, SP
+- **Status:** Solteiro
+
+**Sobre:**
+
+&emsp;&emsp;Roberto trabalha na farmácia do Hospital de Clinícas da Unicamp há 9 anos. Em seus turnos, apenas uma vez um remédio foi trocado: um comprimido de dipirona de 100mg por um de 500mg. Desde então, Roberto leva o dobro do tempo de seus colegas para separar as fitas médicas. Entretanto, seu tempo para se dedicar as suas pesquisas pessoais na área se tornou escasso.
+
+**Tarefas:**
+
+- Separar os remédios da fita de medicamentos;
+- Checar a validade dos remédios e selá-los;
+- Re-organizar os remédios devolvidos pelas enfermeiras;
+- Auxiliar os farmacêuticos em seu trabalho diário;
+- Atribuir remédios concedidos aos pacientes corretos no sistema.
+
+**Dores:**
+
+- Excesso de tempo gasto na separação de remédios;
+- Reorganização dos remédios devolvidos pelas enfermeiras, pois voltam de forma desorganizada;
+- Conferência de erro de separação dos seus colegas.
+
+**Necessidades:**
+
+- Um sistema que atribua e separe os remédios corretos aos respectivos pacientes com base na fita médica recebida.
+
+**Impactos com a solução:**
+
+- Muito mais tempo para auxiliar os farmacêuticos e realizar pesquisas acerca de novos remédios;
+- Mais confiança na distribuição de remédios para enfermeiras;
+- Maior animação ao exercer seu trabalho.
+
 
 ## Lara Oliveira, Farmacêutica
 
-&emsp;&emsp;A persona Lara Oliveira é uma farmacêutica no Hospital das Clínicas da Unicamp, a persona foi construída com base nas atividades e responsabilidades de uma farmacêutica na farmácia de um hospital, considerando que ela será uma das responsáveis por utilizar a solução robótica após a implementação.
+&emsp;&emsp;A persona Lara Oliveira é uma farmacêutica no HC da Unicamp, a persona foi construída com base nas atividades e responsabilidades de uma farmacêutica na farmácia de um hospital, considerando que ela será uma das responsáveis por utilizar a solução robótica após a implementação.
 
 <div align="center" width="100%">
-<sub>Figura 1 - Persona: Farmacêutica Lara Oliveira</sub>
+<sub>Figura 2 - Persona: Farmacêutica Lara Oliveira</sub>
 <img src = "/img/UX/Lara Oliveira - Farmacêutica - Persona.png" />
 <sup>Fonte: Autoria própria</sup>
 </div>
@@ -20,7 +71,7 @@
 
 **Sobre:**
 
-&emsp;&emsp;Lara é farmacêutica no Hospital das Clínicas da Unicamp, ela se formou em Farmácia na própria Unicamp há 5 anos e desde então trabalha no mesmo hospital. Sempre foi muito meticulosa e atenta a suas tarefas, pois durante a faculdade ouviu muitos casos de pacientes que tiveram problemas relacionados a medicamentos fora da validade, pacientes alérgicos a medicamentos específicos e furtos de medicamentos psicotrópicos.
+&emsp;&emsp;Lara é farmacêutica no Hospital de Clínicas da Unicamp, ela se formou em Farmácia na própria Unicamp há 5 anos e desde então trabalha no mesmo hospital. Sempre foi muito meticulosa e atenta a suas tarefas, pois durante a faculdade ouviu muitos casos de pacientes que tiveram problemas relacionados a medicamentos fora da validade, pacientes alérgicos a medicamentos específicos e furtos de medicamentos psicotrópicos.
 
 **Tarefas:**
 
@@ -59,9 +110,9 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 2 - Persona Melissa Grey</sub>
+<sub>Figura 3 - Persona: Enfermeira Melissa Grey</sub>
 
-![Persona Melissa Grey](../../../static/img/UX/Persona.png)
+![Persona Melissa Grey](/img/UX/Persona.png)
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -79,7 +130,7 @@
 
 **Sobre:**
 
-&emsp; Melissa Grey é uma enfermeira hospitalar com mais de 10  anos de experiência, atuando no setor público, sendo sete anos no Hospital das Clínicas da Unicamp, a qual trabalha em regime de plantão. Nesse sentido, sente a necessidade de processos mais eficientes no ambiente do hospital, bem como a redução dos erros na administração de doses.
+&emsp; Melissa Grey é uma enfermeira hospitalar com mais de 10  anos de experiência, atuando no setor público, sendo sete anos no Hospital de Clínicas da Unicamp, a qual trabalha em regime de plantão. Nesse sentido, sente a necessidade de processos mais eficientes no ambiente do hospital, bem como a redução dos erros na administração de doses.
 
 **Tarefas:**
 
@@ -110,4 +161,8 @@
 
 **Por que a persona da Melissa Grey?**
 
-&emsp; Melissa Grey, enfermeira hospitalar no Hospital das Clínicas da Unicamp, tem 39 anos e atua na medicação dos pacientes. Nesse sentido, sua escolha como persona foi baseada na representatividade dos enfermeiros e técnicos de enfermagem que entre suas tarefas durante o plantão incluem a aplicação de medicamentos aos pacientes, ou seja, que utilizarão a presente solução do braço robótico.
+&emsp; Melissa Grey, enfermeira hospitalar no Hospital de Clínicas da Unicamp, tem 39 anos e atua na medicação dos pacientes. Nesse sentido, sua escolha como persona foi baseada na representatividade dos enfermeiros e técnicos de enfermagem que entre suas tarefas durante o plantão incluem a aplicação de medicamentos aos pacientes, ou seja, que serão afetados pela separação de fitas de medicamento pelo robô.
+
+## Referências
+
+BELISIARIO, G. UX Baseado em Fatos: Personas. Disponível em: [Link](https://brasil.uxdesign.cc/ux-baseado-em-fatos-personas-f78e71f09a84). 
