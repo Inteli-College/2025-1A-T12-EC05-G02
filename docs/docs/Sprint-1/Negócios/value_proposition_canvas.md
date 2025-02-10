@@ -14,7 +14,7 @@ slug: /sprint-1/Negócios/value_proposition_canvas
 
 <p style={{textAlign: 'center'}}>Figura 1 - Value Proposition Canvas (Canvas da Proposta de Valor)</p>
 
-![Value Proposition Canvas](../../../static/img/sprint-1/value_canvas_prop.jpg)
+![Value Proposition Canvas](../../../static/img/negocios/value_canvas_prop.jpg)
 
 <p style={{textAlign: 'center'}}>Fonte: Elaboração própria (2025)</p>
 
