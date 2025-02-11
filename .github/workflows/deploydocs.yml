@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # Allows pushing to gh-pages
+  contents: write
   pages: write
   id-token: write
 
@@ -42,9 +42,9 @@ jobs:
         run: npm run build
 
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3  # Updated to v3
         with:
-          path: docs/build  # This is where Docusaurus outputs static files
+          path: docs/build
 
   deploy:
     environment:
