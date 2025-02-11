@@ -10,7 +10,9 @@
 
 <div align="center" width="100%">
 <sub>Figura 1 - Persona: Técnico de Farmácia Roberto Dias</sub>
-<img src = "/img/UX/roberto-dias-persona.png" />
+
+![Persona Roberto Dias](/img/UX/roberto-dias-persona.png)
+
 <sup>Fonte: Autoria própria</sup>
 </div>
 
@@ -57,7 +59,9 @@
 
 <div align="center" width="100%">
 <sub>Figura 2 - Persona: Farmacêutica Lara Oliveira</sub>
-<img src = "/img/UX/Lara Oliveira - Farmacêutica - Persona.png" />
+
+![Persona Lara Oliveira](/img/UX/lara-oliveira-farmacêutica-persona.png)
+
 <sup>Fonte: Autoria própria</sup>
 </div>
 
