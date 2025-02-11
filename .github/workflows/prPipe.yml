@@ -30,3 +30,8 @@ jobs:
       - name: Build Docusaurus
         working-directory: docs
         run: npm run build
+      
+      - name: Run Docusaurus
+        working-directory: docs
+        run: npx docusaurus start  
+    
