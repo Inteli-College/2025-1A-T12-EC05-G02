@@ -33,12 +33,12 @@ Atualmente, diversos hospitais e empresas estão implementando soluções automa
 
 * **6. Unibox – Dispensário Automático de Medicamentos e Insumos**: Desenvolvido pelo Grupo UniHealth, o Unibox é um dispensário automático que controla unitariamente os produtos de acordo com a prescrição médica. O sistema oferece rastreabilidade, segurança e transparência para gestores hospitalares e pacientes, integrando-se totalmente ao software UnilogWF. Entre seus diferenciais estão a dispensação unitária, controle de temperatura, acesso por biometria e a capacidade de armazenar diversos tipos de insumos hospitalares.
 
-## 3.3 Diferenças entre os sistemas existentes e a proposta do projeto X
+## 3.3 Diferenças entre os sistemas existentes e a proposta da PharmaTech
 
-A proposta do projeto X foca na automação da separação de medicamentos para otimizar a eficiência e segurança no Hospital de Clínicas da Unicamp. O projeto busca desenvolver um sistema automatizado de separação e montagem da “Fita de Medicamentos”, integrando manipuladores robóticos, sensores inteligentes e um sistema digital de controle.
+A proposta do PharmaTech foca na automação da separação de medicamentos para otimizar a eficiência e segurança no Hospital de Clínicas da Unicamp. O projeto busca desenvolver um sistema automatizado de separação e montagem da “Fita de Medicamentos”, integrando manipuladores robóticos, sensores inteligentes e um sistema digital de controle.
 
 #### **Principais diferenças entre o TAPI - UNICAMP e outras soluções existentes**
-| **Critério** | **Soluções Existentes** | **Projeto X** |
+| **Critério** | **Soluções Existentes** | **PharmaTech** |
 |-------------|-----------------------|--------------------|
 | **Automação** | Variável. Alguns sistemas, como o BD Rowa, automatizam a dispensação, enquanto outros são semiautomatizados. | Foco total na automação da montagem da "Fita de Medicamentos" com robôs e sensores inteligentes. |
 | **Integração com Sistemas Hospitalares** | Algumas soluções possuem integração limitada com prontuários eletrônicos e sistemas de gestão de medicamentos. | Integração total com o sistema de gestão do hospital para buscar prescrições digitais e atualizar o estoque em tempo real. |
