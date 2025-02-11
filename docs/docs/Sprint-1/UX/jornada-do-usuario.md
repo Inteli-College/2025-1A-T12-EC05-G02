@@ -12,7 +12,7 @@
 
 <sub>Figura 1 - Jornada do usuário: Técnico Roberto Dias</sub>
 
-![Jornada de Usuário - Roberto Dias](/img/UX/roberto-dias-jornada.svg)
+<img src = "/img/UX/Roberto Dias - Jornada.svg" />
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -150,7 +150,7 @@
 
 <sub>Figura 2 - Jornada do usuário: Farmacêutica Lara Oliveira</sub>
 
-![Jornada do Usuário - Lara Oliveira](/img/UX/lara-oliveira-journey.svg)
+<img src = "/img/UX/Lara Oliveira - Farmacêutica - Jornada do usuário.png" />
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -297,9 +297,11 @@
 
 <sub>Figura 3 - Jornada do usuário: Enfermeira Melissa Grey</sub>
 
-![Jornada do usuário Melissa Grey](/img/UX/melissa-grey-journey.svg)
+![Jornada do usuário Melissa Grey](/img/UX/User-Journey-Map.jpg)
 
 <sup>Fonte: Autoria própria </sup>
+
+<sup> [Link da imagem](https://www.figma.com/design/SCx7di2PpOWX5wA33AR4Do/Personas?node-id=0-1&t=pfqqtjVnvypbkFJu-1)</sup>
 
 </div>
 
