@@ -17,7 +17,7 @@ slug: /sprint-1/Negócios/matriz_riscos_oport
 
 <p style={{textAlign: 'center'}}>Fonte: Elaboração própria (2025)</p>
 
-&emsp;Nota-se através das figuras X e Y, a identificação dos riscos e oportunidades eminentes do projeto X, facilitando a tomada de decisões estratégicas e o planejamento de ações. A natureza iterativa dessa gestão garante que esses gráficos sejam constantemente atualizados, refletindo as alterações na avaliação dos impactos e probabilidades dos riscos.
+&emsp;Nota-se através das figuras 1 e 2, a identificação dos riscos e oportunidades eminentes do projeto PharmaBot, facilitando a tomada de decisões estratégicas e o planejamento de ações. A natureza iterativa dessa gestão garante que esses gráficos sejam constantemente atualizados, refletindo as alterações na avaliação dos impactos e probabilidades dos riscos.
 
 &emsp;Além das figuras supracitadas, a tabela Z apresenta um plano de ação abrangendo os riscos identificados nesta seção, de maneira a traçar estratégias para inibir ou mitigar os riscos considerados para o desenvolvimento do projeto.
 
@@ -33,7 +33,7 @@ slug: /sprint-1/Negócios/matriz_riscos_oport
 
 <p style={{textAlign: 'center'}}>Fonte: Elaboração própria (2025)</p>
 
-&emsp;Na matriz de oportunidades apresentada, destaca-se o "Fácil integração com softwares externos" como uma oportunidade de muito alto impacto e alta probabilidade. Esta condição pode abrir portas para colaborações valiosas, acesso a recursos avançados e entrada em mercados novos ou pouco explorados. Ainda, o tópico "Grupo de desenvolvimento engajado", posicionado como de médio impacto e alta probabilidade representa otimização na produtividade e qualidade do desenvolvimento do trabalho, contribuindo para a eficiência do projeto. Ademais, podemos destacar a oportunidade "Experiências em Web Dev", de nosso time de desenvolvedores, como grande aliada no processo de desenvolvimento da aplicação X. A exploração dessas oportunidades pode potencializar os resultados do desenvolvimento, de forma a otimizar o aproveitamento de recursos e maximizar o proveito sobre o projeto.
+&emsp;Na matriz de oportunidades apresentada, destaca-se o "Fácil integração com softwares externos" como uma oportunidade de muito alto impacto e alta probabilidade. Esta condição pode abrir portas para colaborações valiosas, acesso a recursos avançados e entrada em mercados novos ou pouco explorados. Ainda, o tópico "Grupo de desenvolvimento engajado", posicionado como de médio impacto e alta probabilidade representa otimização na produtividade e qualidade do desenvolvimento do trabalho, contribuindo para a eficiência do projeto. Ademais, podemos destacar a oportunidade "Experiências em Web Dev", de nosso time de desenvolvedores, como grande aliada no processo de desenvolvimento da aplicação PharmaBot. A exploração dessas oportunidades pode potencializar os resultados do desenvolvimento, de forma a otimizar o aproveitamento de recursos e maximizar o proveito sobre o projeto.
 
 ---
 
