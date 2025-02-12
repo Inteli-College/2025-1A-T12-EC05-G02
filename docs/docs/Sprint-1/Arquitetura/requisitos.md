@@ -7,7 +7,7 @@ slug: /sprint-1/Arquitetura/requisitos
 
 ## Introdução
 
-&emsp; Segundo Sommerville, Sawyer (1997), Pressman e Maxim (2021), a Engenharia de Requisitos se trata da elicitação de funcionalidades e restrições que uma solução deve atender, refletindo as necessidades e expectativas de stakeholders. Esses requisitos são divididos em funcionais, que especificam as ações que sistema ou dispositivo deve realizar, e não funcionais, que determinam suas limitações de escopo, como desempenho, design, segurança e usabilidade. Requisitos são conceitos essenciais para o desenvolvimento de tecnologias e devem ser analisados com cuidado, conciliando as necessidades dos clientes e as limitações técnicas, de forma a se desenvolver sistemas de qualidade, confiáveis e eficientes.
+&emsp; Segundo [Sommerville, Sawyer (1997)](/docs/Sprint-1/referencias.md), [Pressman e Maxim (2021)](/docs/Sprint-1/referencias.md), a Engenharia de Requisitos se trata da elicitação de funcionalidades e restrições que uma solução deve atender, refletindo as necessidades e expectativas de stakeholders. Esses requisitos são divididos em funcionais, que especificam as ações que sistema ou dispositivo deve realizar, e não funcionais, que determinam suas limitações de escopo, como desempenho, design, segurança e usabilidade. Requisitos são conceitos essenciais para o desenvolvimento de tecnologias e devem ser analisados com cuidado, conciliando as necessidades dos clientes e as limitações técnicas, de forma a se desenvolver sistemas de qualidade, confiáveis e eficientes.
 
 &emsp; A seguir, são apresentados os requisitos funcionais, que visam atender às expectativas dos usuários e garantir a qualidade e eficiência da solução proposta.
 
