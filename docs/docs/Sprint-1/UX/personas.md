@@ -1,6 +1,11 @@
+---
+sidebar_position: 2
+slug: /sprint-1/UX/personas
+---
+
 # Personas
 
-&emsp;&emsp;Um dos processos que auxilia na geração de valor de uma solução é a criação de personas. Personas são personagens fictícios, fruto das observações dos usuários potenciais e reais de uma solução que possuem verossimilhança com esses tais (Belisiario, 2023). Ao criar personas, a equipe se permite capturar as necessidades e os desejos de seus usuários, de modo a criar, para eles, soluções realmente úteis.
+&emsp;&emsp;Um dos processos que auxilia na geração de valor de uma solução é a criação de personas. Personas são personagens fictícios, fruto das observações dos usuários potenciais e reais de uma solução que possuem verossimilhança com esses tais ([Belisiario, 2023](https://brasil.uxdesign.cc/ux-baseado-em-fatos-personas-f78e71f09a84)). Ao criar personas, a equipe se permite capturar as necessidades e os desejos de seus usuários, de modo a criar, para eles, soluções realmente úteis.
 
 &emsp;&emsp;Para este projeto, a equipe criou três personas: Roberto Dias, Lara Oliveira e Melissa Grey, representando as ocupações mais pertinentes à função de separação que o robô será responsável. Essas personas são apresentadas a seguir.
 
@@ -166,7 +171,3 @@
 **Por que a persona da Melissa Grey?**
 
 &emsp; Melissa Grey, enfermeira hospitalar no Hospital de Clínicas da Unicamp, tem 39 anos e atua na medicação dos pacientes. Nesse sentido, sua escolha como persona foi baseada na representatividade dos enfermeiros e técnicos de enfermagem que entre suas tarefas durante o plantão incluem a aplicação de medicamentos aos pacientes, ou seja, que serão afetados pela separação de fitas de medicamento pelo robô.
-
-## Referências
-
-BELISIARIO, G. UX Baseado em Fatos: Personas. Disponível em: [Link](https://brasil.uxdesign.cc/ux-baseado-em-fatos-personas-f78e71f09a84). 
