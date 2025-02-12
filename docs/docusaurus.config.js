@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'FarmaTech',
-  tagline: 'FarmaTech Documentation',
+  title: 'PharmaTech',
+  tagline: 'PharmaTech Documentation',
   favicon: 'img/favicon.ico',
   trailingSlash: false,
 
@@ -64,40 +64,40 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Farmatech',
+        title: 'PharmaTech',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
         },
         items: [
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'tutorialSidebar',
+          //   position: 'left',
+          //   label: 'Tutorial',
+          // },
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/Inteli-College/2025-1A-T12-EC05-G02',
             label: 'GitHub',
             position: 'right',
           },
         ],
       },
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
-      },
+      // footer: {
+      //   style: 'dark',
+      //   links: [
+      //     {
+      //       title: 'More',
+      //       items: [
+      //         {
+      //           label: 'GitHub',
+      //           href: 'https://github.com/facebook/docusaurus',
+      //         },
+      //       ],
+      //     },
+      //   ],
+      //   copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      // },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,

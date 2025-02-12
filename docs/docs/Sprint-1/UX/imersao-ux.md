@@ -1,17 +1,17 @@
 ---
 sidebar_position: 1
-slug: /sprint-1/UX/imersao_ux
+slug: /sprint-1/UX/imersao-ux
 ---
+ # Introdução
+&emsp; A experiência do usuário (UX) é um aspecto fundamental no desenvolvimento de produtos e serviços, pois influencia diretamente a satisfação e a fidelização dos clientes. A imersão em UX é um processo de pesquisa e análise que visa compreender as necessidades, expectativas e comportamentos dos usuários, a fim de criar soluções centradas no usuário.
 
-# Imersão UX
+ ## 1. Introdução
+&emsp; A Fita de Medicamentos é um processo essencial nas farmácias hospitalares, responsável por organizar e preparar os medicamentos necessários para a administração aos pacientes internados. Atualmente, essa montagem é feita de forma manual, exigindo atenção minuciosa de farmacêuticos e técnicos de farmácia para evitar erros. No entanto, esse método é suscetível a falhas, como separação incorreta, duplicação de medicamentos e atrasos, comprometendo tanto a segurança do paciente quanto a eficiência operacional do hospital.
 
-## 1. Introdução
-A Fita de Medicamentos é um processo essencial nas farmácias hospitalares, responsável por organizar e preparar os medicamentos necessários para a administração aos pacientes internados. Atualmente, essa montagem é feita de forma manual, exigindo atenção minuciosa de farmacêuticos e técnicos de farmácia para evitar erros. No entanto, esse método é suscetível a falhas, como separação incorreta, duplicação de medicamentos e atrasos, comprometendo tanto a segurança do paciente quanto a eficiência operacional do hospital.
-
-Para solucionar esses desafios, este projeto propõe o desenvolvimento de um sistema automatizado de separação e montagem da Fita de Medicamentos, integrando nosso robô, sensores inteligentes e um sistema digital de controle. Com essa automação, buscamos reduzir o tempo de montagem em até 40%, minimizar erros, melhorar o rastreamento de estoque em tempo real e otimizar a produtividade da equipe hospitalar. Essa inovação tem o potencial de transformar a gestão de medicamentos nos hospitais, garantindo maior eficiência e segurança para todos os envolvidos.
+&emsp; Para solucionar esses desafios, este projeto propõe o desenvolvimento de um sistema automatizado de separação e montagem da Fita de Medicamentos, integrando nosso robô, sensores inteligentes e um sistema digital de controle. Com essa automação, buscamos reduzir o tempo de montagem em até 40%, minimizar erros, melhorar o rastreamento de estoque em tempo real e otimizar a produtividade da equipe hospitalar. Essa inovação tem o potencial de transformar a gestão de medicamentos nos hospitais, garantindo maior eficiência e segurança para todos os envolvidos.
 
 ## 2. Contextualização do Problema
-Atualmente, a montagem da Fita de Medicamentos é realizada de forma totalmente manual pelos farmacêuticos e técnicos de farmácia dentro do hospital. Esse processo começa com a análise das prescrições médicas, seguida pela busca e separação dos medicamentos no estoque hospitalar. Cada medicamento precisa ser conferido individualmente para garantir que o paciente receba a dosagem correta no momento adequado. Além disso, é necessário verificar a validade dos medicamentos, evitando a administração de itens vencidos. O processo pode ser complementado pela bipagem (escaneamento de QR Codes ou códigos de barras), mas isso ainda depende de conferência humana, tornando-o sujeito a falhas.
+&emsp; Atualmente, a montagem da Fita de Medicamentos é realizada de forma totalmente manual pelos farmacêuticos e técnicos de farmácia dentro do hospital. Esse processo começa com a análise das prescrições médicas, seguida pela busca e separação dos medicamentos no estoque hospitalar. Cada medicamento precisa ser conferido individualmente para garantir que o paciente receba a dosagem correta no momento adequado. Além disso, é necessário verificar a validade dos medicamentos, evitando a administração de itens vencidos. O processo pode ser complementado pela bipagem (escaneamento de QR Codes ou códigos de barras), mas isso ainda depende de conferência humana, tornando-o sujeito a falhas.
 Os principais desafios desse fluxo incluem tempo elevado de montagem, que pode comprometer a agilidade na administração dos medicamentos, e erros na separação, como trocas ou duplicações, que representam riscos diretos à saúde do paciente. Além disso, a necessidade de mão de obra especializada eleva os custos operacionais e reduz a eficiência geral do sistema hospitalar. A falta de rastreabilidade digital precisa também dificulta o monitoramento do estoque, podendo levar ao desperdício de medicamentos ou à escassez de itens essenciais no momento crítico. Esses gargalos evidenciam a necessidade de uma solução tecnológica para otimizar esse processo, tornando-o mais seguro e eficiente.
 
 ## 3. Benchmarking
@@ -25,7 +25,7 @@ Os principais desafios desse fluxo incluem tempo elevado de montagem, que pode c
 * **Integração com sistemas hospitalares:** A integração de sistemas de automação com os registros eletrônicos de saúde e outros sistemas hospitalares permite uma gestão unificada dos medicamentos. Isso facilita o acompanhamento das prescrições, controle de estoque e rastreabilidade dos medicamentos dispensados.
 
 ### 3.2 Soluções semelhantes ao nosso projeto
-Atualmente, diversos hospitais e empresas estão implementando soluções automatizadas para a dispensação de medicamentos, visando aumentar a eficiência e a segurança no processo de distribuição. A seguir, apresentamos uma documentação detalhada sobre algumas dessas soluções:
+&emsp; Atualmente, diversos hospitais e empresas estão implementando soluções automatizadas para a dispensação de medicamentos, visando aumentar a eficiência e a segurança no processo de distribuição. A seguir, apresentamos uma documentação detalhada sobre algumas dessas soluções:
 
 * **1. Hospital Alemão Oswaldo Cruz (BD Rowa)**: O Hospital Alemão Oswaldo Cruz adotou o sistema BD Rowa, um robô que utiliza inteligência artificial para auxiliar na dispensação de medicamentos. Essa tecnologia permite a automação do armazenamento e da distribuição de medicamentos, garantindo maior precisão e eficiência no processo. O sistema é capaz de gerenciar o estoque de forma otimizada, reduzindo erros humanos e melhorando a segurança do paciente.
 
@@ -41,9 +41,9 @@ Atualmente, diversos hospitais e empresas estão implementando soluções automa
 
 ### 3.3 Diferenças entre os sistemas existentes e a proposta da PharmaTech
 
-A proposta do PharmaTech foca na automação da separação de medicamentos para otimizar a eficiência e segurança no Hospital de Clínicas da Unicamp. O projeto busca desenvolver um sistema automatizado de separação e montagem da “Fita de Medicamentos”, integrando manipuladores robóticos, sensores inteligentes e um sistema digital de controle.
+&emsp; A proposta do PharmaTech foca na automação da separação de medicamentos para otimizar a eficiência e segurança no Hospital de Clínicas da Unicamp. O projeto busca desenvolver um sistema automatizado de separação e montagem da “Fita de Medicamentos”, integrando manipuladores robóticos, sensores inteligentes e um sistema digital de controle.
 
-#### **Principais diferenças entre o TAPI - UNICAMP e outras soluções existentes**
+##### **Principais diferenças entre o TAPI - UNICAMP e outras soluções existentes**
 | **Critério** | **Soluções Existentes** | **PharmaTech** |
 |-------------|-----------------------|--------------------|
 | **Automação** | Variável. Alguns sistemas, como o BD Rowa, automatizam a dispensação, enquanto outros são semiautomatizados. | Foco total na automação da montagem da "Fita de Medicamentos" com robôs e sensores inteligentes. |
@@ -55,6 +55,6 @@ A proposta do PharmaTech foca na automação da separação de medicamentos para
 
 ## 4. Benefícios Esperados com a Solução (Conclusão)
 
-Dessa forma, pode-se concluir que a implementação da solução trará melhorias significativas para o processo de separação e dispensação de medicamentos no hospital. A principal vantagem está na redução de erros, garantindo que os medicamentos corretos sejam selecionados e entregues, aumentando a segurança do paciente. Além disso, a eficiência operacional será aprimorada, reduzindo em até 40% o tempo necessário para a separação da “Fita de medicamentos”, o que otimiza a rotina da equipe de farmácia.
+&emsp; Dessa forma, pode-se concluir que a implementação da solução trará melhorias significativas para o processo de separação e dispensação de medicamentos no hospital. A principal vantagem está na redução de erros, garantindo que os medicamentos corretos sejam selecionados e entregues, aumentando a segurança do paciente. Além disso, a eficiência operacional será aprimorada, reduzindo em até 40% o tempo necessário para a separação da “Fita de medicamentos”, o que otimiza a rotina da equipe de farmácia.
 
-Outro benefício essencial é o rastreamento e controle aprimorado, permitindo o monitoramento em tempo real do estoque e das operações, garantindo maior precisão na gestão de medicamentos. Essa automação também contribuirá para a redução de custos, minimizando desperdícios e otimizando o uso dos recursos humanos, tornando o processo mais econômico. Por fim, a solução impactará diretamente a qualidade assistencial, proporcionando um atendimento mais ágil e seguro, com maior confiabilidade na dispensação dos medicamentos para os pacientes internados.
+&emsp; Outro benefício essencial é o rastreamento e controle aprimorado, permitindo o monitoramento em tempo real do estoque e das operações, garantindo maior precisão na gestão de medicamentos. Essa automação também contribuirá para a redução de custos, minimizando desperdícios e otimizando o uso dos recursos humanos, tornando o processo mais econômico. Por fim, a solução impactará diretamente a qualidade assistencial, proporcionando um atendimento mais ágil e seguro, com maior confiabilidade na dispensação dos medicamentos para os pacientes internados.
