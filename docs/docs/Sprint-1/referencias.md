@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 slug: /sprint-1/referencias
+description: A seguir, são listadas as referências utilizadas na elaboração do projeto, na sprint 1.
 ---
 # Referências
 
