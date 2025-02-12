@@ -121,7 +121,7 @@ slug: /sprint-1/UX/personas
 
 <sub>Figura 3 - Persona: Enfermeira Melissa Grey</sub>
 
-![Persona Melissa Grey](/img/UX/Persona.png)
+![Persona Melissa Grey](/img/UX/Persona-melissa.png)
 
 <sup>Fonte: Autoria própria </sup>
 
