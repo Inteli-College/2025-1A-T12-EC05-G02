@@ -51,7 +51,16 @@ Neste projeto, utiliza-se o **Magician Dobot** um braço robótico fixo, projeta
 
 Para garantir a precisão e rastreabilidade dos medicamentos, o robô conta com dois sensores principais:
 - **Sensor leitor de códigos (bipagem do medicamento)**: Verifica informações dos medicamentos capturados, garantindo que estejam corretos antes de serem alocados na fita.
-- **Sensor infravermelho**: Confirma se o objeto foi devidamente capturado pelo braço robótico antes de continuar o processo.  
+- **Sensor infravermelho**: Confirma se o objeto foi devidamente capturado pelo braço robótico antes de continuar o processo. 
+
+
+<p style={{textAlign: 'center'}}>Figura 1 - Diagrama de Blocos da Arquitetura</p>
+
+![Block Diagram](\img\arquitetura\download.jpg)
+
+<p style={{textAlign: 'center'}}>Fonte: Loja do Jangão. Disponível em: https://www.lojadojangao.com.br/us/products/dobot-magician-lite-robotic-arm/.(2025)</p>
+
+
 
 O nosso robô recebe **comandos do microcontrolador ESP32**, que atua como intermediário entre a **camada *cloud*** e os **atuadores físicos**, garantindo a execução correta das tarefas conforme as prescrições médicas registradas no sistema.
 
