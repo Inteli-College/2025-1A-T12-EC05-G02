@@ -5,7 +5,7 @@ slug: /sprint-1/Arquitetura/arquitetura
 
 # Diagrama de Blocos
 
-&emsp; Define-se como uma arquitetura de software as técnicas e padrões utilizados. Desta forma, a arquitetura tem como objetivo servir de *roadmap* para o desenvolvimento de uma aplicação, e leva em consideração as regras de negócios e quaisquer restrições tecnológicas aplicadas ao projeto [(RED HAT, 2023)](/docs/Sprint-1/referencias.md). A solução Pharmabot foi arquitetada em distintas camadas referentes ao nível te atuação dos componentes e tecnologias envolvidas na solução. A separação por camadas de aplicação permite uma organização mais clara e modular do código-fonte, o que facilita manutenções e futuras implementações no código. É importante destacar que, as funcionalidades e disposição geral da arquitetura são baseados nos requisitos funcionais e não-funcionais disponibilizados no arquivo de [requisitos](/Sprint-1/Arquitetura/requisitos.md). Abaixo se encontra o diagrama de blocos da arquitetura elaborada, viabilizando fácil entendimento sobre o sistema a ser desenvolvido.
+&emsp; Define-se como uma arquitetura de software as técnicas e padrões utilizados. Desta forma, a arquitetura tem como objetivo servir de *roadmap* para o desenvolvimento de uma aplicação, e leva em consideração as regras de negócios e quaisquer restrições tecnológicas aplicadas ao projeto [(RED HAT, 2023)](/docs/Sprint-1/referencias.md). A solução Pharmabot foi arquitetada em distintas camadas referentes ao nível de atuação dos componentes e tecnologias envolvidas na solução. A separação por camadas de aplicação permite uma organização mais clara e modular do código-fonte, o que facilita manutenções e futuras implementações no código. É importante destacar que, as funcionalidades e disposição geral da arquitetura são baseados nos requisitos funcionais e não-funcionais disponibilizados no arquivo de [requisitos](/Sprint-1/Arquitetura/requisitos.md). Abaixo se encontra o diagrama de blocos da arquitetura elaborada, viabilizando fácil entendimento sobre o sistema a ser desenvolvido.
 
 <p style={{textAlign: 'center'}}>Figura 1 - Diagrama de Blocos da Arquitetura</p>
 
@@ -35,9 +35,7 @@ slug: /sprint-1/Arquitetura/arquitetura
 
 &emsp; O back-end, também conhecido como o lado do servidor,  gerencia a funcionalidade geral de uma aplicação. Nesse sentido, quando o usuário interage com o front-end, a interação envia uma solicitação para o back-end. Em seguida, o  back-end processa a solicitação e retorna uma resposta, além de gerenciar a base de dados e se comunicar com a API do robô. Assim, segue as principais funcionalidades do back-end:
 
-- **API:** Recebe as solicitações advindas do front-end, como a autenticação dos usuários e o pedido das fitas de medicamentos, processa esses pedidos e retorna uma resposta. Além disso, é responsável por interagir com o banco de dados e pela comunicação com a API do robô.
-    
-- **Cadastro, Consulta e Validação de Dados:** O sistema permite que os dados de medicamentos, usuários e pedidos sejam cadastrados e validados, garantindo que apenas informações corretas sejam buscadas e  enviadas para o banco de dados.  
+- **API:** Recebe as solicitações do front-end, como a autenticação de usuários e os pedidos das fitas de medicamentos, processa essas requisições e retorna uma resposta. Assim, o sistema permite o cadastro e a validação dos dados de medicamentos, usuários e pedidos, garantindo que apenas informações corretas sejam armazenadas e recuperadas do banco de dados. Além disso, a API também é responsável por comunicar-se com a API do robô.
     
 - **Banco de dados:** Armazena as informações necessárias para o funcionamento do sistema, como os usuários cadastrados, histórico de pedidos das fitas de medicamentos e registros das saídas dos medicamentos.
 
