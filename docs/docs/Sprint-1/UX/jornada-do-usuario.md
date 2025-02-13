@@ -1,4 +1,9 @@
-# Jornada do usuário
+---
+sidebar_position: 3
+slug: /sprint-1/UX/jornadas
+---
+
+# Jornadas de Usuário
 
 ## Introdução
 
