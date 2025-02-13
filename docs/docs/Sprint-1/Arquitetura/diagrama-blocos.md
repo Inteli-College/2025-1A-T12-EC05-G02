@@ -9,7 +9,7 @@ slug: /sprint-1/Arquitetura/arquitetura
 
 <p style={{textAlign: 'center'}}>Figura 1 - Diagrama de Blocos da Arquitetura</p>
 
-![Block Diagram](../../../static/img/arquitetura/block-diagram.png)
+![Block Diagram](/img/arquitetura/block-diagram.png)
 
 <p style={{textAlign: 'center'}}>Fonte: Elaboração própria (2025)</p>
 
@@ -56,7 +56,11 @@ Para garantir a precisão e rastreabilidade dos medicamentos, o robô conta com 
 
 <p style={{textAlign: 'center'}}>Figura 1 - Diagrama de Blocos da Arquitetura</p>
 
-![Block Diagram](\img\arquitetura\download.jpg)
+<div align="center">
+
+![Block Diagram](/img/arquitetura/dobot-magician.jpg)
+
+</div>
 
 <p style={{textAlign: 'center'}}>Fonte: Loja do Jangão. Disponível em: https://www.lojadojangao.com.br/us/products/dobot-magician-lite-robotic-arm/.(2025)</p>
 
