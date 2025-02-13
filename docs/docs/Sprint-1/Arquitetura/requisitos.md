@@ -86,7 +86,7 @@ slug: /sprint-1/Arquitetura/requisitos
 | **RNF04** | O sistema deve ser acessível a usuários com deficiência visual, garantindo compatibilidade com leitores de tela. | Média | Usabilidade (Acessibilidade) |
 | **RNF05** | O sistema deve permitir recuperação de dados e continuidade da operação em caso de falha. | Média | Confiabilidade (Recuperabilidade) |
 | **RNF06** | O sistema deve integrar-se com o sistema de gestão hospitalar utilizando APIs para garantir a interoperabilidade. | Alta | Compatibilidade (Interoperabilidade) |
-| **RNF07** | O sistema deve registrar logs detalhados de todas as operações realizadas, garantindo rastreabilidade para auditoria e segurança. | Alta | Segurança (Responsabilidade) |
+| **RNF07** | O sistema deve registrar logs detalhados de todas as operações realizadas pelo robô, garantindo rastreabilidade para auditoria e segurança. | Alta | Segurança (Responsabilidade) |
 | **RNF08** | O sistema deve permitir fácil manutenção e atualização modular para ajustes futuros. | Média | Manutenibilidade (Modificabilidade) |
 | **RNF09** | A interface do sistema deve seguir padrões de design responsivo para adaptação a diferentes dispositivos, incluindo tablets utilizados no hospital. | Baixa | Portabilidade (Adaptabilidade) |
 | **RNF10** | O sistema deve permitir instalação e operação em diferentes ambientes hospitalares sem necessidade de grandes ajustes. | Baixa | Portabilidade (Instalabilidade) |
