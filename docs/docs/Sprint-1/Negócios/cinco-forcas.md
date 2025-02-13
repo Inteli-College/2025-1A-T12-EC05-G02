@@ -5,7 +5,7 @@ slug: /sprint-1/Negócios/cinco-forcas
 
 # As 5 Forças de Porter
 
-&emsp; Um dos aspectos essenciais para traçar uma estratégia competitiva adequada é, segundo Porter (1947, p.2-3), compreender as fontes da rivalidade - e, portanto, os determinantes do potencial de lucro final - de uma indústria. Em seu livro, Estratégia Competitiva, Porter (1947, p. 5) define uma ferramenta baseada em cinco forças para realizar a análise estrutural de uma indústria. Esses cinco aspectos são: Ameaça de Novos Entrantes, Poder de Negociação dos compradores, Ameaça de Produtos ou Serviços Substitutos, Poder de Negociação dos Forncedores e Rivalidade entre os atuais concorrentes; e eles podem variar de intensas à relativamente moderadas. 
+&emsp; Um dos aspectos necessários para traçar uma estratégia competitiva adequada é, segundo Porter (1947, p.2-3), compreender as fontes da rivalidade - e, portanto, os determinantes do potencial de lucro final - de uma indústria. Em seu livro, Estratégia Competitiva, Porter (1947, p. 5) define uma ferramenta baseada em cinco forças para realizar a análise estrutural de uma indústria. Esses cinco aspectos são: Ameaça de Novos Entrantes, Poder de Negociação dos compradores, Ameaça de Produtos ou Serviços Substitutos, Poder de Negociação dos Forncedores e Rivalidade entre os atuais concorrentes; e eles podem variar de intensas à relativamente moderadas. 
 
 &emsp; Para este projeto, analisar a indústria dos hospitais no mercado do estado de São Paulo permitirá, à PharmaTech, compreender melhor seu parceiro (Hospital de Clínicas da Unicamp) e como ajudá-lo. Apesar de indiretamente relacionada com o projeto do PharmaBot, esta análise é um diferencial da equipe para com o HC. Isso porque, visa fortalecer os laços de parceria por meio da profunda compreensão da posição de mercado do hospital na sua indústria. Ademais, trata-se de uma chance dos alunos praticarem suas capacidades analíticas acerca do entendimento de negócios (pilar educacional do <i>PBL</i> ou "ensino por projetos"). 
 
@@ -52,7 +52,7 @@ slug: /sprint-1/Negócios/cinco-forcas
 - "O produto dos fornecedores é um insumo importante para o negócio do comprador".
 
 &emsp; Apesar de serem fornecidos por diversos setores, sabe-se que o mercado de equipamentos tecnológicos compõem uma parte significativa do investimento dos hospitais. Este é altamente dominado. Isso ocorre porque as economias de escala do setor de equipamentos hospitalares exercem forte pressão neste mercado e grande parte dos competidores são do mercado internacional, como a Stryker Corporation.
-Ademais, a diferenciação dos produtos de cada empresa tornam os custos de mudança muito altas, sendo este exemplo citado pelo próprio Porter em seu Estratégia Competitiva (1948, p.10). Por fim, dado a complexidade oriunda dos casos tratados pelos hospitais, os fornecedores se tornam parte essencial no negócio do hospitais. Portanto, esta é uma força alta
+Ademais, a diferenciação dos produtos de cada empresa tornam os custos de mudança muito altas, sendo este exemplo citado pelo próprio Porter em seu Estratégia Competitiva (1948, p.10). Por fim, dado a complexidade oriunda dos casos tratados pelos hospitais, os fornecedores se tornam parte imperiosa no negócio do hospitais. Portanto, esta é uma força alta
 
 ## Rivalidade entre os atuais concorrentes [MODERADA]
 
