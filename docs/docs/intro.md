@@ -35,7 +35,29 @@ slug: /
 - [Matheus Jorge](https://www.linkedin.com/in/matheusjorgerosa/)
 - [Lucas Santos](https://www.linkedin.com/in/lucas-nepomuceno-ismart/)
 
-## Apresentaçãoes 
-
-# Sprint 1
+# Apresentaçãoes 
+## Sprint 1
 link: [Link da apresentação](https://www.canva.com/design/DAGe61Ti2jY/8LlHrnHwNO6Wccc_JHGuew/edit?utm_content=DAGe61Ti2jY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+# Configuração do Ambiente para Execução
+Este guia fornece as instruções para configurar o ambiente e executar o projeto corretamente.
+
+1️.Clonar o Repositório
+Para obter o código-fonte do projeto, clone o repositório do GitHub:
+
+* git clone https://github.com/Inteli-College/2025-1A-T12-EC05-G02.git
+* cd 2025-1A-T12-EC05-G02
+
+2️. Criar e Acessar a Branch de Desenvolvimento
+* git checkout -b main
+
+3️. Instalar o Docusaurus (se ainda não estiver instalado)
+* npx create-docusaurus@latest my-docs classic
+* cd my-docs
+* npm install
+
+4️. Rodar o Docusaurus Localmente
+* npm run start
+
+A documentação estará disponível em http://localhost:3000/.
+
