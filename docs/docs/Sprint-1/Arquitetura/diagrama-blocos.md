@@ -45,7 +45,7 @@ slug: /sprint-1/Arquitetura/arquitetura
 
 ### Robô
 
-Neste projeto, utiliza-se o **Magician Dobot** um braço robótico fixo, projetado para tarefas de automação de precisão. Sua estrutura consiste em uma base estável, que fixa o robô em uma superfície, e um braço articulado, capaz de se movimentar em diferentes eixos para manipular objetos. Ele é **atuador físico principal** da solução, responsável pela manipulação dos medicamentos para a montagem da **Fita de Medicamentos**. Integrado à arquitetura do projeto, o robô utiliza um **braço robótico com bico sugador**, permitindo a **captação precisa de medicamentos** a partir das informações recebidas do sistema.  
+Neste projeto, utiliza-se o *Magician Dobot* um braço robótico fixo, projetado para tarefas de automação de precisão. Sua estrutura consiste em uma base estável, que fixa o robô em uma superfície, e um braço articulado, capaz de se movimentar em diferentes eixos para manipular objetos. Ele é atuador físico principal da solução, responsável pela manipulação dos medicamentos para a montagem da Fita de Medicamentos. Integrado à arquitetura do projeto, o robô utiliza um braço robótico com bico sugador, permitindo a captação precisa de medicamentos a partir das informações recebidas do sistema.  
 
 Para garantir a precisão e rastreabilidade dos medicamentos, o robô conta com dois sensores principais:
 - **Sensor leitor de códigos (bipagem do medicamento)**: Verifica informações dos medicamentos capturados, garantindo que estejam corretos antes de serem alocados na fita.
@@ -64,13 +64,18 @@ Para garantir a precisão e rastreabilidade dos medicamentos, o robô conta com 
 
 
 
-O nosso robô recebe **comandos do microcontrolador ESP32**, que atua como intermediário entre a **camada *cloud*** e os **atuadores físicos**, garantindo a execução correta das tarefas conforme as prescrições médicas registradas no sistema.
+O nosso robô recebe comandos do microcontrolador ESP32, que atua como intermediário entre a camada *cloud* e os atuadores físicos, garantindo a execução correta das tarefas conforme as prescrições médicas registradas no sistema.
 
 ### Microcontrolador
 
-O **ESP32** é um **microcontrolador de alto desempenho** com conectividade e amplamente utilizado em aplicações embarcadas para automação, IoT e controle de dispositivos, devido à sua eficiência energética, capacidade de processamento e múltiplas interfaces de comunicação. Por isso, no projeto, desempenha um papel essencial na comunicação entre o **robô** e o **sistema digital na nuvem**. Ele funciona como um controlador central que:
-1. **Recebe comandos da API do robô** e os traduz para ações mecânicas no Magician Dobot.
-2. **Gerencia a máquina de estado do robô**, garantindo que cada comando seja executado corretamente e na ordem adequada.
-3. **Consulta e transmite informações sobre o status do robô** para o sistema, permitindo monitoramento em tempo real.  
+O ESP32 é um microcontrolador de alto desempenho com conectividade e amplamente utilizado em aplicações embarcadas para automação, IoT e controle de dispositivos, devido à sua eficiência energética, capacidade de processamento e múltiplas interfaces de comunicação. 
 
-Através dessa integração, o ESP32 atua como a ponte entre a **inteligência digital (back-end e front-end)** e a **execução física (robô Magician Dobot)**, permitindo um fluxo eficiente e confiável na separação dos medicamentos. 
+No projeto, ele desempenha um papel essencial como intermediário entre a API do sistema e o robô Magician Dobot, garantindo que os comandos sejam executados corretamente. Ele funciona como um controlador central que:
+
+1. Recebe comandos da API do robô, que foram previamente enviados pelo sistema, e os traduz para ações mecânicas no Magician Dobot.
+
+2. Gerencia a máquina de estado do robô, garantindo que cada comando seja processado na ordem correta e evitando conflitos na execução.
+
+3. Consulta e transmite informações sobre o status do robô para a API, permitindo o monitoramento do sistema em tempo real.
+
+A API do robô, hospedada no próprio ESP32, é responsável por receber os comandos enviados pela API do sistema e repassá-los ao microcontrolador, que então os converte em instruções para o Magician Dobot. Dessa forma, o ESP32 atua como a ponte entre o back-end e front-end e a execução física (robô), garantindo um fluxo de comunicação eficiente e confiável na separação dos medicamentos.
