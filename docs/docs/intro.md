@@ -34,3 +34,8 @@ slug: /
 - [Felipe Simão](https://www.linkedin.com/in/felipefmsimao/)
 - [Matheus Jorge](https://www.linkedin.com/in/matheusjorgerosa/)
 - [Lucas Santos](https://www.linkedin.com/in/lucas-nepomuceno-ismart/)
+
+## Apresentaçãoes 
+
+# Sprint 1
+link: [Link da apresentação](https://www.canva.com/design/DAGe61Ti2jY/8LlHrnHwNO6Wccc_JHGuew/edit?utm_content=DAGe61Ti2jY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
