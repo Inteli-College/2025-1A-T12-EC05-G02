@@ -61,3 +61,45 @@ Teste de Aceitação | O técnico aperta em "Parar". <br/> T04A: A fita de medic
 <div style={{textAlign: 'center'}}>
 <sub>Fonte: Autoria Própria (2025).</sub>
 </div>
+
+## Farmacêutica: Lara Oliveira
+
+<div style={{textAlign: 'center'}}>
+<sup>Tabela 3 - User Story 003</sup>
+</div>
+
+Identificação | US003
+--- | ---
+User Story | 
+Critérios de aceite 1 |
+Teste de Aceitação | <br/>T01A: <br/>T01B: Errado, precisa ser corrigido
+Critério de aceite 2 |
+Teste de Aceitação | <br/> T02A: <br/> T02B: Errado, precisa ser corrigido
+Critério de aceite 3 | 
+Teste de Aceitação | <br/> T03A: <br/> Errado, precisa ser corrigido
+Critério de aceite 4 | 
+Teste de Aceitação | <br/> <br/> Errado, precisa ser corrigido
+Critério de aceite 5 | 
+Teste de Aceitação |  <br/> T05A: <br/> T05B:Errado, precisa ser corrigido
+
+<div style={{textAlign: 'center'}}>
+<sub>Fonte: Autoria Própria (2025).</sub>
+</div>
+
+<br />
+
+<div style={{textAlign: 'center'}}>
+<sup>Tabela 4 - User Story 004</sup>
+</div>
+
+Identificação | US004
+--- | ---
+User Story | Eu, enquanto farmacêutica, quero ter acesso a informações do estoque em tempo real, como a quantidade disponível de cada medicamento, assim como quero um registro de todas as entradas e saídas de medicamentos, feito de forma automatizada
+Critérios de aceite 1 | O site exibe uma página que mostra uma tabela com dados do estoque de medicamentos em tempo real
+Teste de Aceitação | A farmacêutica se loga na plataforma e vai até a página de estoque. <br/>T01A: a página de estoque mostra uma tabela com todos os medicamentos cadastrados no estoque, as informações do medicamento mostradas incluem nome, data de validade, lote e data de entrada <br/>T01B: a página de estoque não mostra a tabela com medicamentos, ou os dados estão incompletos, incorretos ou desatualizados. Errado, precisa ser corrigido
+Critério de aceite 2 | Existe uma barra de pesquisa para pesquisar medicamentos específicos
+Teste de Aceitação | Consigo pesquisar medicamentos específicos pelo nome ou lote <br/> T02A: É possível encontrar e clicar na barra de pesquisa, mostrando o resultado da pesquisa na tabela após digitar o nome ou lote de algum medicamento <br/> T02B: Não é possível encontrar a barra de pesquisa ou a pesquisa retorna resultados errados/incompletos. Errado, precisa ser corrigido
+Critério de aceite 3 | A farmacêutica deseja registrar manualmente o registro de saída de um kit de medicamentos
+Teste de Aceitação | A farmacêutica faz o registro da quantidade e dos medicamentos que foram retirados do estoque manualmente <br/> T03A: o registro é enviado ao banco de dados e as informações do estoque de medicamentos são atualizadas <br/> T03B: o registro não é enviado ao banco de dados, ou é enviado com informações incorretas/incompletas. Errado, precisa ser corrigido
+Critério de aceite 4 | A farmacêutica deseja registrar manualmente a chegada de uma nova leva de medicamentos no estoque
+Teste de Aceitação | A farmacêutica faz o registro da quantidade e dos medicamentos que chegaram no estoque <br/> T04A: o registro é enviado ao banco de dados e as informações do estoque de medicamentos são atualizadas <br/> T04B: o registro não é enviado ao banco de dados, ou é enviado com informações incorretas/incompletas. Errado, precisa ser corrigido
