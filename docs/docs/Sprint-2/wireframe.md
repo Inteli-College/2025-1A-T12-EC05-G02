@@ -97,21 +97,29 @@ A **Tela de Informações do Sistema (FAQ)** foi desenvolvida para fornecer supo
 
 A **Tela de Configuração do Sistema** permite ajustes técnicos fundamentais para o funcionamento correto do robô e da separação de medicamentos. Nessa interface, os usuários podem visualizar as coordenadas de cada medicamento no **bin**, além de configurar e ajustar manualmente essas posições conforme necessário. Também há um botão para salvar as configurações feitas. Essa funcionalidade garante que a movimentação do robô ocorra com precisão e de acordo com a organização dos medicamentos armazenados.
 
-A **Tela de Registro de Log (Registro de Atividades do Sistema)** garante total transparência e rastreabilidade sobre as ações realizadas no sistema. Essa interface contém uma **tabela que exibe registros detalhados**, incluindo a **data e hora da ação**, o **ID do usuário responsável**, a **ação realizada** e possíveis **detalhes adicionais**. Também há filtros para buscar registros por usuário, tipo de ação e período, além da opção de exportar os logs em **CSV/JSON** para auditoria e análise externa. Essa funcionalidade é essencial para controle de segurança e análise de desempenho do sistema.
+<div align="center" width="100%">
 
-A **Tela de Logs do Sistema** apresenta registros técnicos e eventos críticos que ocorreram durante o funcionamento da aplicação. Ela exibe falhas do robô, erros de comunicação com os dispositivos e o status das operações executadas. Além disso, há uma opção para visualizar detalhes técnicos e realizar diagnósticos sobre possíveis problemas. Essa tela é voltada para desenvolvedores e administradores do sistema, permitindo que eles monitorem falhas e implementem correções rapidamente.
+<sub>Figura 1 - Jornada do usuário: Técnico Roberto Dias</sub>
 
----
+![Jornada de Usuário - Roberto Dias](/img/UX/roberto-dias-jornada.svg)
 
-## 3️⃣ Conclusão  
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
+A **Tela de Registro de Log (Registro de Atividades do Sistema)** garante total transparência e rastreabilidade sobre as ações realizadas no sistema. Essa interface contém uma **tabela que exibe registros detalhados**, incluindo a **data e hora da ação**, o **ID do usuário responsável**, a **ação realizada** e possíveis **detalhes adicionais**. Também há filtros para buscar registros, além da opção de exportar os logs em **CSV/JSON** para auditoria e análise externa. Essa funcionalidade é essencial para controle de segurança e análise de desempenho do sistema.
+
+<div align="center" width="100%">
+
+<sub>Figura 1 - Jornada do usuário: Técnico Roberto Dias</sub>
+
+![Jornada de Usuário - Roberto Dias](/img/UX/roberto-dias-jornada.svg)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
 A criação dos **wireframes no Figma** permitiu estruturar **toda a experiência do usuário**, garantindo que o sistema seja funcional, intuitivo e bem planejado antes do desenvolvimento.
-
-### **Principais Benefícios:**  
-✅ Permite validação rápida do fluxo de navegação.  
-✅ Alinha expectativas entre equipe técnica e hospital.  
-✅ Ajuda a prever possíveis problemas antes da implementação.  
-✅ Facilita o trabalho dos desenvolvedores, que já terão uma base visual clara.  
-
-🚀 **Com essa estrutura bem definida, a próxima etapa do projeto será a implementação das telas e a integração com os sistemas necessários.**  
+ 
 
 
