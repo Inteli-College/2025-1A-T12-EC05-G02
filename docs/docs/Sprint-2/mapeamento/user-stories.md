@@ -26,7 +26,7 @@ Identificação | US001
 --- | ---
 User Story | Eu, enquanto técnico de farmácia, quero ter um acesso pessoal na plataforma para que eu acesse apenas as páginas que me competem.
 Critérios de aceite 1 | Existe uma página de login que possibilita inserir email e senha.
-Teste de Aceitação | O técnico abre a plataforma. <br/>T01A: aparece uma página de login em que é possível inserir dois inputs: email e senha.  <br/>T01B: não aparece uma página de login ou a página de login não contém os campos de email e senha. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico abre a plataforma. <br/>T01A: Aparece uma página de login em que é possível inserir dois inputs: email e senha.  <br/>T01B: Não aparece uma página de login ou a página de login não contém os campos de email e senha. Errado, precisa ser corrigido
 Critério de aceite 2 | Há um _pop-up_ que orienta o usuário em caso de esquecimento de senha.
 Teste de Aceitação | O técnico aperta em "Esqueci a senha". <br/> T02A: Aparece um _pop-up_ escrito "Comunique a administração". <br/> T02B: Não aparece um _pop-up_ ou a informação contida nele está incorreta. Errado, precisa ser corrigido
 Critério de aceite 3 | A página de login redireciona o usuário para outra página.
@@ -50,12 +50,12 @@ Identificação | US002
 --- | ---
 User Story | Eu, enquanto técnico de farmácia, quero poder parar o robô via software a qualquer momento para que eu possa fazer alterações manuais nas fitas.
 Critérios de aceite 1 | A página inicial exibe o estado do robô.
-Teste de Aceitação | O técnico se loga na plataforma. <br/>T01A: a página inicial exibe "Ativo", "Inativo" ou "Desligado" a depender do estado do robô  <br/>T01B: a página inicial não exibe qualquer estado ou exibe um estado inconsistente com a realidade. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico se loga na plataforma. <br/>T01A: A página inicial exibe "Ativo", "Inativo" ou "Desligado" a depender do estado do robô  <br/>T01B: A página inicial não exibe qualquer estado ou exibe um estado inconsistente com a realidade. Errado, precisa ser corrigido
 Critério de aceite 2 | Existe um botão para parar o robô.
-Teste de Aceitação | O robô está separando remédios. <br/> T02A: o estado do robô exibe "Ativo" e existe um botão ativo escrito "Parar". <br/> T02B: O botão "Parar" está inativo quando o estado está ativo ou está ativo quando o robô está em outros estados. Errado, precisa ser corrigido
+Teste de Aceitação | O robô está separando remédios. <br/> T02A: O estado do robô exibe "Ativo" e existe um botão ativo escrito "Parar". <br/> T02B: O botão "Parar" está inativo quando o estado está ativo ou está ativo quando o robô está em outros estados. Errado, precisa ser corrigido
 Critério de aceite 3 | O botão para o robô.
-Teste de Aceitação | O técnico aperta em "Parar". <br/> T03A: o estado muda para "Inativo" e o robô para de separar fitas. <br/> T03B: O estado não muda ou o robô não para de separar. Errado, precisa ser corrigido
-Critério de aceite 4 | A atual estado de separação da fita de medicamentos fica salvo quando o robô é parado
+Teste de Aceitação | O técnico aperta em "Parar". <br/> T03A: O estado muda para "Inativo" e o robô para de separar fitas. <br/> T03B: O estado não muda ou o robô não para de separar. Errado, precisa ser corrigido
+Critério de aceite 4 | O estado atual de separação da fita de medicamentos fica salvo quando o robô é parado
 Teste de Aceitação | O técnico aperta em "Parar". <br/> T04A: A fita de medicamentos atual é posta em estado de espera. <br/> T04B: A fita de medicamentos não é salva, a fita de medicamentos não fica em espera. Errado, precisa ser corrigido
 
 <div style={{textAlign: 'center'}}>
@@ -72,11 +72,11 @@ Identificação | US003
 --- | ---
 User Story | Eu, enquanto técnico de farmácia, quero ver a fita que está atualmente em separação pelo robô para que eu possa ter uma melhor compreensão do processo.
 Critérios de aceite 1 | A página inicial exibe a prescrição completa que está sendo separada
-Teste de Aceitação | O técnico se loga na plataforma. <br/>T01A: a página inicial a prescrição completa  <br/>T01B: a página inicial não exibe qualquer prescrição ou a prescrição está incompleta. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico se loga na plataforma. <br/>T01A: A página inicial exibe a prescrição completa que está sendo preparada.  <br/>T01B: A página inicial não exibe qualquer prescrição ou a prescrição está incompleta. Errado, precisa ser corrigido
 Critério de aceite 2 | A prescrição atual corresponde a fita sendo separada
-Teste de Aceitação | O robô está separando os remédios. <br/> T02A: o robô está separando os remédios da prescrição exibida na página inicial. <br/> T02B: o robô não está separando os remédios da prescrição atual. Errado, precisa ser corrigido
+Teste de Aceitação | O robô está separando os remédios. <br/> T02A: O robô está separando os remédios da prescrição exibida na página inicial. <br/> T02B: O robô não está separando os remédios da prescrição atual. Errado, precisa ser corrigido
 Critério de aceite 3 | A prescrição atual sinaliza visualmente qual remédio está sendo separado
-Teste de Aceitação | O robô está separando os remédios. <br/> T03A: a página exibe o remédio que o robô está separando. <br/> T03B: A página não sinaliza qual remédio está sendo separado ou o remédio que está sendo exibido não corresponde com a atualidade. Errado, precisa ser corrigido
+Teste de Aceitação | O robô está separando os remédios. <br/> T03A: A página exibe o remédio que o robô está separando. <br/> T03B: A página não sinaliza qual remédio está sendo separado ou o remédio que está sendo exibido não corresponde com a atualidade. Errado, precisa ser corrigido
 
 <div style={{textAlign: 'center'}}>
 <sub>Fonte: Autoria Própria (2025).</sub>
@@ -92,7 +92,7 @@ Identificação | US004
 --- | ---
 User Story | Eu, enquanto técnico de farmácia, quero filtrar as últimas fitas separadas para que eu possa checar as separações.
 Critérios de aceite 1 | Todas as prescrições são guardadas na plataforma
-Teste de Aceitação | O técnico navega até o histórico sem filtrar. <br/>T01A: é possível verificar todos os últimos pedidos guardados na plataforma. <br/>T01B: o histórico não exibe nenhum dados ou exibe dados inconsistentes com as últimas prescrições enviadas. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico navega até o histórico sem filtrar. <br/>T01A: É possível verificar todos os últimos pedidos guardados na plataforma. <br/>T01B: O histórico não exibe nenhum dados ou exibe dados inconsistentes com as últimas prescrições enviadas. Errado, precisa ser corrigido
 Critério de aceite 2 | É possível filtrar as prescrições com base em remédio contido
 Teste de Aceitação | O técnico seleciona um remédio no filtro de histórico. <br/> T02A: Apenas as prescrições que contém aquele remédio aparecem. <br/> T02B: Nenhuma prescrição aparece ou prescrições que não contém aquele remédio também aparecem. Errado, precisa ser corrigido
 Critério de aceite 3 | As prescrições estão ordenadas por data
@@ -120,11 +120,11 @@ Identificação | US005
 --- | ---
 User Story | Eu, enquanto técnico de farmácia, quero poder retomar a operação do robô para que ele continue a separação
 Critérios de aceite 1 | A página inicial exibe o estado do robô.
-Teste de Aceitação | O técnico se loga na plataforma. <br/>T01A: a página inicial exibe "Ativo", "Inativo" ou "Desligado" a depender do estado do robô  <br/>T01B: a página inicial não exibe qualquer estado ou exibe um estado inconsistente com a realidade. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico se loga na plataforma. <br/>T01A: A página inicial exibe "Ativo", "Inativo" ou "Desligado" a depender do estado do robô  <br/>T01B: A página inicial não exibe qualquer estado ou exibe um estado inconsistente com a realidade. Errado, precisa ser corrigido
 Critério de aceite 2 | Existe um botão para retomar o robô.
-Teste de Aceitação | O robô está parado. <br/> T02A: o estado do robô exibe "Inativo" e existe um botão ativo escrito "Retomar". <br/> T02B: O botão "Retomar" está inativo quando o estado está inativo ou está ativo quando o robô está em outros estados. Errado, precisa ser corrigido
+Teste de Aceitação | O robô está parado. <br/> T02A: O estado do robô exibe "Inativo" e existe um botão ativo escrito "Retomar". <br/> T02B: O botão "Retomar" está inativo quando o estado está inativo ou está ativo quando o robô está em outros estados. Errado, precisa ser corrigido
 Critério de aceite 3 | O botão retoma a operação do robô.
-Teste de Aceitação | O técnico aperta em "Retomar". <br/> T03A: o estado muda para "Ativo" e o robô volta a separar a fita em espera. <br/> T03B: O estado não muda, o robô não volta a separar ou não volta a separar a fita de medicamentos em espera. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico aperta em "Retomar". <br/> T03A: O estado muda para "Ativo" e o robô volta a separar a fita em espera. <br/> T03B: O estado não muda, o robô não volta a separar ou não volta a separar a fita de medicamentos em espera. Errado, precisa ser corrigido
 
 <div style={{textAlign: 'center'}}>
 <sub>Fonte: Autoria Própria (2025).</sub>
@@ -140,9 +140,9 @@ Identificação | US006
 --- | ---
 User Story | Eu, enquanto técnico de farmácia, quero ver as fitas que ainda serão separadas para que eu possa ter maior controle da operação
 Critérios de aceite 1 | A página aceita diversas requisições
-Teste de Aceitação | O farmacêutico tria um medicamento e envia para a plataforma. <br/>T01A: a página recebe e guarda corretamente a requisição do farmacêutico <br/>T01B: a página não recebe a requisição do farmacêutico ou a requisição está incompleta. Errado, precisa ser corrigido
+Teste de Aceitação | O farmacêutico tria um medicamento e envia para a plataforma. <br/>T01A: A página recebe e guarda corretamente a requisição do farmacêutico <br/>T01B: A página não recebe a requisição do farmacêutico ou a requisição está incompleta. Errado, precisa ser corrigido
 Critério de aceite 2 | A fila de fita de medicamentos a serem separados aparecem na tela inicial
-Teste de Aceitação | O técnico entra na página inicial. <br/> T02A: A página inicial exibe as requisições de separação enviadas pelo farmacêutico que ainda não foram separadas. <br/> T02B: a página não exibe as requisições de separação enviadas pelo farmacêutico ou as prescrições exibidas já foram separadas. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico entra na página inicial. <br/> T02A: A página inicial exibe as requisições de separação enviadas pelo farmacêutico que ainda não foram separadas. <br/> T02B: A página não exibe as requisições de separação enviadas pelo farmacêutico ou as prescrições exibidas já foram separadas. Errado, precisa ser corrigido
 
 <div style={{textAlign: 'center'}}>
 <sub>Fonte: Autoria Própria (2025).</sub>
@@ -158,17 +158,15 @@ Identificação | US007
 --- | ---
 User Story | Eu, enquanto técnico de farmácia, quero poder configurar as _bins_ de cada remédio para que eu possa adaptar o sistema quando necessário
 Critérios de aceite 1 | Existe uma página de configuração
-Teste de Aceitação | O técnico navega até a página de configuração. <br/>T01A: a página exibe a localização atual do robô e permite que o farmacêutico responda itens de uma lista para o envio de uma nova localização de remédio <br/>T01B: a página não exibe a localização atual do robô ou não permite que o farmacêutico insira novas localizações. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico navega até a página de configuração. <br/>T01A: A página exibe a localização atual do robô e permite que o farmacêutico responda itens de uma lista para o envio de uma nova localização de remédio <br/>T01B: A página não exibe a localização atual do robô ou não permite que o farmacêutico insira novas localizações. Errado, precisa ser corrigido
 Critério de aceite 2 | Os itens para determinar uma localização podem ser preenchidos manualmente
-Teste de Aceitação | O técnico navega até a página de configuração. <br/> T02A: na seção "Enviar Novas Localizações" é possível enviar o nome do remédio e as coordenadas x, y, z dos _bins_. <br/> T02B: Os itens "nome do remédio", "x", "y", "z" não constam ou não podem ser preenchidos pelo usuário. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico navega até a página de configuração. <br/> T02A: Na seção "Enviar Novas Localizações" é possível enviar o nome do remédio e as coordenadas x, y, z dos _bins_. <br/> T02B: Os itens "nome do remédio", "x", "y", "z" não constam ou não podem ser preenchidos pelo usuário. Errado, precisa ser corrigido
 Critério de aceite 3 | O preenchimento manual das localizações tem restrições de segurança
-Teste de Aceitação | O técnico tenta enviar uma coordernada contendo uma letra. <br/> T03A: O sistema exibe um aviso indicando erro no preenchimento do formulário. <br/> T03B: a localização é enviada para o microcontrolador ou não é enviada, mas nenhum aviso é exibido. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico tenta enviar uma coordernada contendo uma letra. <br/> T03A: O sistema exibe um aviso indicando erro no preenchimento do formulário. <br/> T03B: A localização é enviada para o microcontrolador ou não é enviada, mas nenhum aviso é exibido. Errado, precisa ser corrigido
 Critério de aceite 4 | É possível enviar mais de uma localização
-Teste de Aceitação | O técnico preenche uma localização. <br/> T04A: Aparece um botão indicando a possibilidade de criar mais um item na lista que quando clicado exibe um novo formulário. <br/> T04B: não aparece um botçao para adicionar item na lista ou quando clicado ele não exibe um novo formulário. Errado, precisa ser corrigido
-Critério de aceite 5 | É possível enviar mais de uma localização
-Teste de Aceitação | O técnico preenche uma localização. <br/> T05A: Aparece um botão indicando a possibilidade de criar mais um item na lista que quando clicado exibe um novo formulário. <br/> T05B: não aparece um botçao para adicionar item na lista ou quando clicado ele não exibe um novo formulário. Errado, precisa ser corrigido
-Critério de aceite 6 | O robô recebe uma lista contendo as localizações x,y,z de cada remédio
-Teste de Aceitação | O técnico envia as localizações de cada remédio clicando em "Enviar" na página de configuração. <br/> T06A: O microcontrolador recebe as novas localizações, guarda-as e substitui as localizações de um mesmo remédio pelas novas. <br/> T06B: O microcontrolador não recebe as novas localizações ou não substitui as antigas localizações de remédios com novas localizações. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico preenche uma localização. <br/> T04A: Aparece um botão indicando a possibilidade de criar mais um item na lista que quando clicado exibe um novo formulário. <br/> T04B: Não aparece um botão para adicionar item na lista ou quando clicado ele não exibe um novo formulário. Errado, precisa ser corrigido
+Critério de aceite 5 | O robô recebe uma lista contendo as localizações x,y,z de cada remédio
+Teste de Aceitação | O técnico envia as localizações de cada remédio clicando em "Enviar" na página de configuração. <br/> T05A: O microcontrolador recebe as novas localizações, guarda-as e substitui as localizações de um mesmo remédio pelas novas. <br/> T05B: O microcontrolador não recebe as novas localizações ou não substitui as antigas localizações de remédios com novas localizações. Errado, precisa ser corrigido
 
 <div style={{textAlign: 'center'}}>
 <sub>Fonte: Autoria Própria (2025).</sub>
@@ -186,13 +184,13 @@ User Story | Eu, enquanto técnico de farmácia, quero que o robô emita um som 
 Critérios de aceite 1 | O robô tenta procurar o remédio com localização conhecida
 Teste de Aceitação | O robô inicia a separação de um remédio. <br/>T01A: O braço robótico vai até a localização correspondente ao remédio no seu sistema <br/>T01B: O braço robótico não vai até a localização correspondente ao remédio no seu sistema. Errado, precisa ser corrigido
 Critério de aceite 2 | O robô emite um som após um minuto de tentativa
-Teste de Aceitação | Por um minuto, o sensor de infravermelho não reconheceu que o robô pegou um remédio. <br/> T02A: O _buzzer_ na _protoboard_ emite um som. <br/> T02B: O _buzzer_ na _protoboard_ não emite som. Errado, precisa ser corrigido
+Teste de Aceitação | Por um minuto, o sensor de infravermelho não reconheceu que o robô pegou um remédio. <br/> T02A: O _buzzer_ na _protoboard_ emite um som curto. <br/> T02B: O _buzzer_ na _protoboard_ não emite som ou o som é longo. Errado, precisa ser corrigido
 Critério de aceite 3 | O robô tenta por mais um minuto após emitir o som
 Teste de Aceitação | O _buzzer_ emitiu um som por não encontrar um remédio de localização conhecida. <br/> T03A: O robô continua tentando encontrar o remédio na localização requisitada durante um minuto <br/> T03B: O robô não continua tentando encontrar o remédio ou não para de procurá-lo após um minuto. Errado, precisa ser corrigido
 Critério de aceite 4 | O robô emite um som se não conhecer a localização de um remédio
-Teste de Aceitação | O robô tenta separar um remédio com localização desconhecida. <br/> T04A: O _buzzer_ na _protoboard_ emite um som. <br/> T04B: O _buzzer_ na _protoboard_ não emite som. Errado, precisa ser corrigido
+Teste de Aceitação | O robô tenta separar um remédio com localização desconhecida. <br/> T04A: O _buzzer_ na _protoboard_ emite um som longo. <br/> T04B: O _buzzer_ na _protoboard_ não emite som ou o som é curto. Errado, precisa ser corrigido
 Critério de aceite 5 | O robô passa para o próximo item
-Teste de Aceitação | O robô não encontrou um item durante dois minutos ou não conhece sua localização. <br/> T05A: O robô começa a separar para o próximo remédio da lista. <br/> T05B: O robô não começa a separar o próximo item da lista. Errado, precisa ser corrigido
+Teste de Aceitação | O robô não encontrou um item durante dois minutos ou não conhece sua localização. <br/> T05A: O robô começa a separar o próximo remédio da lista. <br/> T05B: O robô não começa a separar o próximo item da lista. Errado, precisa ser corrigido
 
 <div style={{textAlign: 'center'}}>
 <sub>Fonte: Autoria Própria (2025).</sub>
