@@ -17,9 +17,9 @@
 
 <div align="center" width="100%">
 
-<sub>Figura x - remover o usuario ja cadastrado/sub>
+<sub>Figura 1 - Tela do administrador</sub>
 
-![Tela do administrador](C:\Users\Inteli\Desktop\Tela de remover.png)
+![Tela do administrador](/img/UX/TelaADM.png)
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -27,9 +27,9 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 1 - Tela do administrador</sub>
+<sub>Figura 2 - Remover o usuario ja cadastrado </sub>
 
-![Tela do administrador](/img/UX/TelaADM.png)
+![Remover o usuario ja cadastrado](/img/UX/TelaRemover.png)
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -39,7 +39,7 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 2 - Tela de cadastro</sub>
+<sub>Figura 3 - Tela de cadastro</sub>
 
 ![Tela de cadastro](/img/UX/TelaCadastro.png)
 
@@ -51,7 +51,7 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 3 - Tela de login</sub>
+<sub>Figura 4 - Tela de login</sub>
 
 ![Tela de Login](/img/UX/TelaLogin.png)
 
@@ -63,7 +63,7 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 4 - Tela inicial</sub>
+<sub>Figura 5 - Tela inicial</sub>
 
 ![Tela Inicial](/img/UX/TelaInicial.png)
 
@@ -75,7 +75,7 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 5 - Tela de dashboard</sub>
+<sub>Figura 6 - Tela de dashboard</sub>
 
 ![Tela de Dashboard](/img/UX/TelaDashboard.png)
 
@@ -87,7 +87,7 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 6 - Tela de histórico de medicamentos retirados</sub>
+<sub>Figura 7 - Tela de histórico de medicamentos retirados</sub>
 
 ![Tela de Histórico de Medicamentos Retirados](/img/UX/TelaHistorico.png)
 
@@ -99,7 +99,7 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 7 - Tela de perguntas frequentes</sub>
+<sub>Figura 8 - Tela de perguntas frequentes</sub>
 
 ![Tela de perguntas frequentes](/img/UX/TelaPerguntas.png)
 
@@ -112,7 +112,7 @@
 <div align="center" width="100%">
 
 
-<sub>Figura 8 - Tela de configuração do sistema</sub>
+<sub>Figura 9 - Tela de configuração do sistema</sub>
 
 ![Tela de configuração do sistema](/img/UX/TelaConfiguracao.png)
 
@@ -124,7 +124,7 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 9 - Tela de registro de log</sub>
+<sub>Figura 10 - Tela de registro de log</sub>
 
 ![Tela de registro de log](/img/UX/TelaLog.png)
 
