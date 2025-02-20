@@ -40,12 +40,12 @@ device.suck(False)
 return_home(device, positions)
 
 # Inputs de configuração da rotina do robô
-for i in positions:
-    print(i)
-text_input = input('Quais bins deseja buscar? ')
+print('Selecione uma das bins abaixo:')
+for bin in positions['bins']:
+    print(bin)
+text_input = input('Qual(is) bin(s) deseja buscar? ')
 bins = text_input.split(', ')
 num_input = input('Quantos medicamentos deseja pegar para cada medicamento (respectivamente)? ')
-print(f'number {num_input}')
 list_numbers = num_input.split(', ')
 
 print(list_numbers, type(list_numbers))
@@ -55,8 +55,7 @@ i = 0
 for number in list_numbers:
     print(f'number: {number}')
     quantity = list_numbers[i]
-    print(f'quantity {quantity}')
+    print(f'Quantidade de remédios na {bins[i]}: {quantity}')
     if bins:
         move_to_bin(device, positions, bins[i], r, quantity)
     i += 1
-    print(i)
