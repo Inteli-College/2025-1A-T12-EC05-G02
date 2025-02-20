@@ -5,7 +5,7 @@ import pydobot.message
 import json
 import pydobot
 from serial.tools import list_ports
-from robot import move_to_bin, return_home
+from robot_functions import move_to_bin, return_home
 
 class InteliDobot(pydobot.Dobot):
     def __init__(self, port=None, verbose=False):
@@ -42,16 +42,21 @@ return_home(device, positions)
 # Inputs de configuração da rotina do robô
 for i in positions:
     print(i)
-text = input('Quais bins deseja buscar? ')
-bins = text.split(', ')
-number = input('Quantos medicamentos deseja pegar para cada medicamento (respectivamente)? ')
-print(f'number {number}')
-quantity = number.split(', ')
+text_input = input('Quais bins deseja buscar? ')
+bins = text_input.split(', ')
+num_input = input('Quantos medicamentos deseja pegar para cada medicamento (respectivamente)? ')
+print(f'number {num_input}')
+list_numbers = num_input.split(', ')
 
-print(quantity, type(quantity))
+print(list_numbers, type(list_numbers))
 
-# 
-for i in quantity:
+i = 0
+
+for number in list_numbers:
+    print(f'number: {number}')
+    quantity = list_numbers[i]
+    print(f'quantity {quantity}')
     if bins:
-        for bin in bins:
-            move_to_bin(device, positions, bin, r, int(i))
+        move_to_bin(device, positions, bins[i], r, quantity)
+    i += 1
+    print(i)
