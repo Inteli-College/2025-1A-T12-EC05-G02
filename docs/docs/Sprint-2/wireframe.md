@@ -13,7 +13,17 @@
 
 ## Telas desenvolvidas: 
 
-&emsp; A **tela do administrador** foi desenvolvida para permitir o gerenciamento eficiente do sistema por administradores. Nessa interface, os administradores podem cadastrar novos usuários, remover usuários existentes e acessar o **Log do Sistema**, que contém o histórico detalhado das ações realizadas.
+&emsp; A **tela do administrador** foi desenvolvida para permitir o gerenciamento eficiente do sistema por administradores. Nessa interface, os administradores podem cadastrar novos usuários, remover usuários, permitindo colaboração e ajustes rápidos durante a fase de planejamento existentes e acessar o **Log do Sistema**, que contém o histórico detalhado das ações realizadas. Ao clicar no botão romover, pergunta-se se realmente deja excluir mesmo o usuário antes de realizar a operação.
+
+<div align="center" width="100%">
+
+<sub>Figura x - remover o usuario ja cadastrado/sub>
+
+![Tela do administrador](C:\Users\Inteli\Desktop\Tela de remover.png)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
 
 <div align="center" width="100%">
 
