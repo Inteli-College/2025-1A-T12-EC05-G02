@@ -28,7 +28,7 @@ User Story | Eu, enquanto técnico de farmácia, quero ter um acesso pessoal na 
 Critérios de aceite 1 | Existe uma página de login que possibilita inserir email e senha.
 Teste de Aceitação | O técnico abre a plataforma. <br/>T01A: aparece uma página de login em que é possível inserir dois inputs: email e senha.  <br/>T01B: não aparece uma página de login ou a página de login não contém os campos de email e senha. Errado, precisa ser corrigido
 Critério de aceite 2 | Há um _pop-up_ que orienta o usuário em caso de esquecimento de senha.
-Teste de Aceitação | O técnico aperta em "Esqueci a senha". <br/> T02A: Aparece um _pop-up_ escrito "Contate a administração". <br/> T02B: Não aparece um _pop-up_ ou a informação contida nele está incorreta. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico aperta em "Esqueci a senha". <br/> T02A: Aparece um _pop-up_ escrito "Comunique a administração". <br/> T02B: Não aparece um _pop-up_ ou a informação contida nele está incorreta. Errado, precisa ser corrigido
 Critério de aceite 3 | A página de login redireciona o usuário para outra página.
 Teste de Aceitação | O técnico insere seu email e senha cadastrados e clica em "Entrar". <br/> T03A: O usuário é redirecionado para outra página. <br/> T03B: O usuário não é redirecionado para outra página. Errado, precisa ser corrigido
 Critério de aceite 4 | O usuário é redirecionado para sua página pessoal.
@@ -101,12 +101,10 @@ Critério de aceite 4 | As prescrições contém uma identificação
 Teste de Aceitação | O técnico navega até histórico. <br/> T04A: As prescrições contém um id que é a primeira coluna do histórico <br/> T04B: As prescrições não exibem o id ou este id não é a primeira coluna. Errado, precisa ser corrigido
 Critério de aceite 5 | É possível filtrar por período
 Teste de Aceitação | O técnico navega até histórico e seleciona filtro por período. <br/> T05A: As prescrições podem ser filtradas por uma data personalizada <br/> T05B: As presções não podem ser filtradas por período ou a data não é personalizável. Errado, precisa ser corrigido
-Critério de aceite 6 | É possível filtrar por período
-Teste de Aceitação | O técnico navega até histórico e seleciona filtro por período. <br/> T06A: As prescrições podem ser filtradas por uma data personalizada <br/> T06B: As presções não podem ser filtradas por período ou a data não é personalizável. Errado, precisa ser corrigido
 Critério de aceite 6 | Os itens do histórico são interativos
 Teste de Aceitação | O técnico seleciona um item do histórico. <br/> T06A: Um _pop-up_ aparece, contendo: data e hora recebida, data e hora separada, itens requisitados e itens separados. <br/> T06B: Não é possível selecionar um item, o _pop-up_ não aparece ou as informações estão incompletas. Errado, precisa ser corrigido
 Critério de aceite 7 | O histórico contém paginação
-Teste de Aceitação | O técnico navega até o histórico. <br/> T06A: As prescrições estão separadas em páginas, limitando os resultados exibidos por página padronizadamente. <br/> T06B: As prescrições não estão separadas por página ou um número limite padrão de itens não está estabelecido. Errado, precisa ser corrigido
+Teste de Aceitação | O técnico navega até o histórico. <br/> T07A: As prescrições estão separadas em páginas, limitando os resultados exibidos por página padronizadamente. <br/> T07B: As prescrições não estão separadas por página ou um número limite padrão de itens não está estabelecido. Errado, precisa ser corrigido
 
 <div style={{textAlign: 'center'}}>
 <sub>Fonte: Autoria Própria (2025).</sub>
@@ -141,10 +139,10 @@ Teste de Aceitação | O técnico aperta em "Retomar". <br/> T03A: o estado muda
 Identificação | US006
 --- | ---
 User Story | Eu, enquanto técnico de farmácia, quero ver as fitas que ainda serão separadas para que eu possa ter maior controle da operação
-Critérios de aceite 1 | A página aceita diversas requsições
-Teste de Aceitação | O farmacêutico tria um medicamento e envia para a plataforma. <br/>T01A: a página recebe e guarda corretamente a requisição do farmacêutico <br/>T01B: a página não recebe a requisição do farmacêutico ou está requisição está incompleta. Errado, precisa ser corrigido
-Critério de aceite 2 | Existe uma página que exibe as fitas a serem separadas
-Teste de Aceitação | O robô está parado. <br/> T02A:  a página exibe as requisições de separação enviadas pelo farmacêutico que ainda não foram separadas. <br/> T02B: a página não exibe as requisições de separação enviadas pelo farmacêutico ou as prescrições exibidas já foram separadas. Errado, precisa ser corrigido
+Critérios de aceite 1 | A página aceita diversas requisições
+Teste de Aceitação | O farmacêutico tria um medicamento e envia para a plataforma. <br/>T01A: a página recebe e guarda corretamente a requisição do farmacêutico <br/>T01B: a página não recebe a requisição do farmacêutico ou a requisição está incompleta. Errado, precisa ser corrigido
+Critério de aceite 2 | A fila de fita de medicamentos a serem separados aparecem na tela inicial
+Teste de Aceitação | O técnico entra na página inicial. <br/> T02A: A página inicial exibe as requisições de separação enviadas pelo farmacêutico que ainda não foram separadas. <br/> T02B: a página não exibe as requisições de separação enviadas pelo farmacêutico ou as prescrições exibidas já foram separadas. Errado, precisa ser corrigido
 
 <div style={{textAlign: 'center'}}>
 <sub>Fonte: Autoria Própria (2025).</sub>
