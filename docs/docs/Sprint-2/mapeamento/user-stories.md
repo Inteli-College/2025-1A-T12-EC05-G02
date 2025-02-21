@@ -65,34 +65,10 @@ Teste de Aceitação | O técnico aperta em "Parar". <br/> T04A: A fita de medic
 ## Farmacêutica: Lara Oliveira
 
 <div style={{textAlign: 'center'}}>
-<sup>Tabela 3 - User Story 003</sup>
+<sup>Tabela 10 - User Story 010</sup>
 </div>
 
-Identificação | US003
---- | ---
-User Story | 
-Critérios de aceite 1 |
-Teste de Aceitação | <br/>T01A: <br/>T01B: Errado, precisa ser corrigido
-Critério de aceite 2 |
-Teste de Aceitação | <br/> T02A: <br/> T02B: Errado, precisa ser corrigido
-Critério de aceite 3 | 
-Teste de Aceitação | <br/> T03A: <br/> Errado, precisa ser corrigido
-Critério de aceite 4 | 
-Teste de Aceitação | <br/> <br/> Errado, precisa ser corrigido
-Critério de aceite 5 | 
-Teste de Aceitação |  <br/> T05A: <br/> T05B:Errado, precisa ser corrigido
-
-<div style={{textAlign: 'center'}}>
-<sub>Fonte: Autoria Própria (2025).</sub>
-</div>
-
-<br />
-
-<div style={{textAlign: 'center'}}>
-<sup>Tabela 4 - User Story 004</sup>
-</div>
-
-Identificação | US004
+Identificação | US010
 --- | ---
 User Story | Eu, enquanto farmacêutica, quero ter acesso a informações do estoque em tempo real, como a quantidade disponível de cada medicamento, assim como quero um registro de todas as entradas e saídas de medicamentos, feito de forma automatizada
 Critérios de aceite 1 | O site exibe uma página que mostra uma tabela com dados do estoque de medicamentos em tempo real
@@ -103,3 +79,66 @@ Critério de aceite 3 | A farmacêutica deseja registrar manualmente o registro 
 Teste de Aceitação | A farmacêutica faz o registro da quantidade e dos medicamentos que foram retirados do estoque manualmente <br/> T03A: o registro é enviado ao banco de dados e as informações do estoque de medicamentos são atualizadas <br/> T03B: o registro não é enviado ao banco de dados, ou é enviado com informações incorretas/incompletas. Errado, precisa ser corrigido
 Critério de aceite 4 | A farmacêutica deseja registrar manualmente a chegada de uma nova leva de medicamentos no estoque
 Teste de Aceitação | A farmacêutica faz o registro da quantidade e dos medicamentos que chegaram no estoque <br/> T04A: o registro é enviado ao banco de dados e as informações do estoque de medicamentos são atualizadas <br/> T04B: o registro não é enviado ao banco de dados, ou é enviado com informações incorretas/incompletas. Errado, precisa ser corrigido
+
+<div style={{textAlign: 'center'}}>
+<sub>Fonte: Autoria Própria (2025).</sub>
+</div>
+
+<br />
+
+<div style={{textAlign: 'center'}}>
+<sup>Tabela 11 - User Story 011</sup>
+</div>
+
+Identificação | US011
+--- | ---
+User Story | Eu, enquanto farmacêutica, quero checar informações sobre o processo de bipagem automática, assim como desejo ter conhecimento sobre qualquer ocorrido fora do comum no processo de separação, como falta de medicamentos ou outros problema no processo de separação
+Critérios de aceite 1 | Através da página inicial, é possível ver os kits em que a separação e bipagem já foram concluidas
+Teste de Aceitação | A farmacêutica abre a página inicial, visando verificar as informações do sistema <br/>T01A: A página inicial exibe todas as informações relacionadas ao estado atual do robô e a fila de pedidos <br/>T01B: A página inicial não exibe as informações, ou exibe informações incompletas ou desatualizadas. Errado, precisa ser corrigido
+Critério de aceite 2 | Ao analisar a lista de kits com medicamentos separados e bipados, é possível saber quais kits precisam passar pelo processo de triagem
+Teste de Aceitação | A farmacêutica checa no sistema a lista de kits concluídos <br/> T02A: A página mostra em tempo real a lista de kits que já foram separados e bipados<br/> T02B: A página não mostra os kits que já foram separados ou bipados, ou mostra as informações desatualizadas ou erradas. Errado, precisa ser corrigido
+Critério de aceite 3 | A farmacêutica faz a triagem manual dos kits, com a lista fornecida pelo sistema
+Teste de Aceitação | A farmacêutica faz a triagem, pegando cada medicamento do kit e verificando se ele condiz com a receita <br/> T03A: A triagem é concluída com sucesso, garantindo que o kit foi montado corretamente <br/> T03B: A triagem não é concluída, ou, após a triagem, a farmacêutica chega a conclusão que o kit foi montado de forma incorreta. Errado, precisa ser corrigido
+Critério de aceite 4 | O processo de triagem é concluído, e agora os kits estão prontos para envio aos pacientes
+Teste de Aceitação | A farmacêutica libera o kit de medicamentos para envio aos pacientes <br/>T04A: O kit é liberado para uso dos pacientes <br/> T04B: O kit não é liberado, por uma variedade de motivos, como kit incompleto, medicamentos fora da validade e etc. Errado, precisa ser corrigido
+
+<div style={{textAlign: 'center'}}>
+<sub>Fonte: Autoria Própria (2025).</sub>
+</div>
+
+<br />
+
+<div style={{textAlign: 'center'}}>
+<sup>Tabela 12 - User Story 012</sup>
+</div>
+
+Identificação | US012
+--- | ---
+User Story | Eu, como farmacêutica, recebi medicamentos que foram retirados da farmácia, porém não foram utilizados, logo devem ser devolvidos e contabilizados no estoque.
+Critérios de aceite 1 | Através da página de estoque, é possível abrir uma requisição de retorno de medicamentos ao estoque
+Teste de Aceitação | A página de estoque exibe a opção de registrar a devolução de medicamentos ao estoque <br/>T01A: A página de estoque permite que você encontre a opção de devolver medicamentos <br/>T01B: A página de estoque não exibe todas as funcionalidades, ou não permite o acesso. Errado, precisa ser corrigido
+Critério de aceite 2 | A farmacêutica, registra os medicamentos que estão sendo devolvidos, e envia o registro.
+Teste de Aceitação | Existe uma página para envio dos dados dos medicamentos devolvidos <br/> T02A: O registro de devolução de medicamentos foi enviado e cadastrado com sucesso <br/> T02B: A página não permite o registro da devolução de medicamentos. Errado, precisa ser corrigido
+Critério de aceite 3 | Os medicamentos são cadastrados como devoluções, são armazenados no estoque, e o sistema volta a contabilizar-los.
+Teste de Aceitação | O sistema cadastra a devolução e registra os medicamentos no estoque <br/> T03A: O banco de dados do estoque é atualizado, e os medicamentos são marcados como devolução <br/> T03B: O banco de dados não é atualizado, ou os medicamentos não são marcados como devolução. Errado, precisa ser corrigido
+
+<div style={{textAlign: 'center'}}>
+<sub>Fonte: Autoria Própria (2025).</sub>
+</div>
+
+<br />
+
+<div style={{textAlign: 'center'}}>
+<sup>Tabela 13 - User Story 013</sup>
+</div>
+
+Identificação | US013
+--- | ---
+User Story | Eu, como farmacêutica, desejo fazer pedidos de reposição do estoque, e desejo um relatório de todos os medicamentos do estoque, com informações como nome, lote, validade, quantidade disponível e data do último pedido
+Critérios de aceite 1 | Através da página de estoque, é possível registrar a entrada de uma nova leva de medicamentos
+Teste de Aceitação | A farmacêutica abre a página de estoque <br/>T01A: A página de estoque exibe as informações do estoque e as funcionalidades disponíveis <br/>T01B: A página de estoque não exibe as informações, ou não permite utilizar as funcionalidades da página. Errado, precisa ser corrigido
+Critério de aceite 2 | A farmacêutica preenche os dados dos medicamentos que chegaram no estoque.
+Teste de Aceitação | O sistema permite o preenchimento das informações sobre a nova leva de medicamentos <br/> T02A: A página mostra o formulário de preenchimento das informações <br/> T02B: A página não permite preencher as informações, ou não envia o registro. Errado, precisa ser corrigido
+Critério de aceite 3 | A farmacêutica registra a nova leva de medicamentos e checa a adição deles ao banco de dados do estoque
+Teste de Aceitação | O sistema confirma o registro dos medicamentos e atualiza tanto o banco de dados quanto a página de estoque com os medicamentos e quantidades atualizadas <br/> T03A: A farmacêutica consegue visualizar na página de estoque as alterações no banco de dados após o registro da nova leva de medicamentos <br/> T03B: Não é possível visualizar os novos medicamentos cadastrados, ou a página está desatualizada. Errado, precisa ser corrigido
+
