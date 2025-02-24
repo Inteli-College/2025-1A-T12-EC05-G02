@@ -44,8 +44,6 @@
    - **Endpoint:** `/usuarios/{id}`  
    - **Descrição:** Remove um usuário do sistema.
 
-<br>
-
 ## Estoque
 
 1. **Criar um Remédio Novo**
@@ -85,8 +83,6 @@
    - **Método:** DELETE  
    - **Endpoint:** `/estoque/{id}`  
    - **Descrição:** Remove um medicamento do estoque.
-
-<br>
 
 ## Gerenciamento da Fila de Medicamentos
 
@@ -158,7 +154,6 @@
      }
      ```
 
-<br>
 
 ## Logs do Sistema
 
