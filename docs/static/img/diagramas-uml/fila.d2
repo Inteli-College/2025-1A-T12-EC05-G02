@@ -1,0 +1,42 @@
+Arquitetura da API (Fila): {
+    shape: sequence_diagram
+    adm: Administrador (Usuário com permissões)
+    usuario: Usuário
+    front: Front-end
+    back: API do Sistema
+    db: Banco de Dados
+    robo: API do Dobot
+
+    Fila de medicamentos: {
+        Adicionar pedido na fila: {
+            back->db: Tenta adicionar um pedido na fila de medicamentos
+            db->back: Resposta
+            back->front: Resposta
+        }
+
+        Listar pedidos na fila: {
+            usuario->front: Tenta acessar a fila de medicamentos
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->usuario: Retorna a lista de pedidos
+        }
+        Excluir um pedido na fila {
+            usuario->front: Tenta excluir um pedido na fila de medicamentos
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->usuario: Retorna sucesso ou falha
+        }
+        Modificar a ordem da fila: {
+            usuario->front: Tenta modificar a fila de medicamentos
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->usuario: Retorna sucesso ou falha
+        }
+    }
+}  

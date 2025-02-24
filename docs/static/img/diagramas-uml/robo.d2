@@ -1,0 +1,25 @@
+Arquitetura da API (Robô): {
+    shape: sequence_diagram
+    adm: Administrador (Usuário com permissões)
+    usuario: Usuário
+    front: Front-end
+    back: API do Sistema
+    db: Banco de Dados
+    robo: API do Dobot
+
+    Operações com o Dobot: {
+        Configurar os bins: {
+            usuario->front: Tenta configurar os bins do Dobot
+            front->back: Requisição
+            back->robo: Envia um pedido para o Dobot
+            robo->back: Resposta
+            back->front: Resposta
+            front->usuario: Retorna sucesso ou falha
+        }
+
+        Logs do Dobot: {
+            robo->back: Envia logs para a API
+            back->db: Registro dos logs
+        }
+    }
+}  

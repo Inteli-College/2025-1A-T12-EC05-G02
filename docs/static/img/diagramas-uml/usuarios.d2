@@ -1,0 +1,57 @@
+Arquitetura da API (Usuários): {
+    shape: sequence_diagram
+    adm: Administrador (Usuário com permissões)
+    usuario: Usuário
+    front: Front-end
+    back: API do Sistema
+    db: Banco de Dados
+    robo: API do Dobot
+
+    Procedimentos com o Administrador e Usuário: {
+
+        Login de um Administrador: {
+            adm->front: Tenta logar na plataforma
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->adm: Retorna sucesso ou falha
+        }
+
+        Cadastro de um Usuário: {
+            adm->front: Tenta cadastrar um usuário
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->adm: Retorna sucesso ou falha
+        }
+
+        Atualizar dados de um usuário: {
+            adm->front: Tenta atualizar os dados do usuário
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->adm: Retorna sucesso ou falha
+        }
+
+        Excluir um usuário: {
+            adm->front: Tenta excluir um usuário
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->adm: Retorna sucesso ou falha
+        }
+
+        Login de um Usuário: {
+            usuario->front: Tenta logar na plataforma
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->usuario: Retorna sucesso ou falha
+        }
+    }
+}  
