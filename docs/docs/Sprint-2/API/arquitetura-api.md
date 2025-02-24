@@ -1,8 +1,6 @@
 # Arquitetura da API
 &emsp;A seção a seguir aborda os Diagramas de Sequência UML dos procedimentos da API do sistema que será utilizado para controlar o processo da triagem e separação.
-&emsp;O primeiro diagrama demonstra todas as etapas realizadas com o 
 
-## Diagramas de Sequência
 ### Diagrama de Sequência dos Usuários
 &emsp;O primeiro diagrama descreve as interações entre os usuários e o sistema, incluindo processos como autenticação, cadastro, atualização de dados e permissões.
 
