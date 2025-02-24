@@ -103,7 +103,7 @@
 
 <sub>Figura 8 - Tela de cadastro de novos medicamentos</sub>
 
-![Tela de cadastro de novos medicamentos](/docs/static/img/UX/TelaCadastroMedicamento.png)
+![Tela de cadastro de novos medicamentos](/img/UX/TelaCadastroMedicamento.png)
 
 <sup>Fonte: Autoria própria </sup>
 
