@@ -103,7 +103,7 @@
 
 <sub>Figura 8 - Tela de cadastro de novos medicamentos</sub>
 
-![Tela de cadastro de novos medicamentos](/img/UX/TelaCadastroMedicamento.png)
+![Tela de cadastro de novos medicamentos](/docs/static/img/UX/TelaCadastroMedicamento.png)
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -114,7 +114,6 @@
 <div align="center" width="100%">
 
 <sub>Figura 9 - Tela de perguntas frequentes</sub>
-
 ![Tela de perguntas frequentes](/img/UX/TelaPerguntas.png)
 
 <sup>Fonte: Autoria própria </sup>
