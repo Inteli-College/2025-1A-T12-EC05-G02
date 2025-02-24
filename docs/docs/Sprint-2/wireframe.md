@@ -89,9 +89,21 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 7 - Tela de histórico de medicamentos retirados</sub>
+<sub>Figura 7 - Tela de histórico</sub>
 
 ![Tela de Histórico de Medicamentos Retirados](/img/UX/TelaHistorico.png)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
+&emsp; Além da tela de visualização dos medicamentos retirados, existe a tela para adicionar uma novo medicamento ao banco de dados da aplicação. Nesse sentido, nessa tela contém os campos do nome e ID do medicamento, o bin que o armazena e a quantidade.
+
+<div align="center" width="100%">
+
+<sub>Figura 8 - Tela de cadastro de novos medicamentos</sub>
+
+![Tela de cadastro de novos medicamentos](/img/UX/TelaCadastroMedicamento.png)
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -101,7 +113,7 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 8 - Tela de perguntas frequentes</sub>
+<sub>Figura 9 - Tela de perguntas frequentes</sub>
 
 ![Tela de perguntas frequentes](/img/UX/TelaPerguntas.png)
 
@@ -114,9 +126,22 @@
 <div align="center" width="100%">
 
 
-<sub>Figura 9 - Tela de configuração do sistema</sub>
+<sub>Figura 10 - Tela de configuração do sistema</sub>
 
 ![Tela de configuração do sistema](/img/UX/TelaConfiguracao.png)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
+&emsp; Na tela dos bins é possível visualizar uma lista dos bins cadastrados e suas respectivas coordenadas, dessa maneira, permitindo maior controle do desenvolvimento do braço robótico.
+
+<div align="center" width="100%">
+
+
+<sub>Figura 11 - Tela dos bins</sub>
+
+![Tela dos bins](/img/UX/TelaBins.png)
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -126,7 +151,7 @@
 
 <div align="center" width="100%">
 
-<sub>Figura 10 - Tela de registro de log</sub>
+<sub>Figura 12 - Tela de registro de log</sub>
 
 ![Tela de registro de log](/img/UX/TelaLog.png)
 
