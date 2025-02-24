@@ -84,76 +84,77 @@
    - **Endpoint:** `/estoque/{id}`  
    - **Descrição:** Remove um medicamento do estoque.
 
+Aqui está a documentação ajustada para usar endpoints em vez de eventos, mantendo a lógica do WebSocket:  
+
+---
+
 ## Gerenciamento da Fila de Medicamentos
 
-1. **Conectar ao WebSocket**
-   - **Método:** WebSocket  
-   - **Endpoint:** `ws://api.exemplo.com/fila`  
-   - **Descrição:** O cliente se conecta para receber atualizações da fila em tempo real.
+**1. Conectar ao WebSocket**
+- **Método:** WebSocket  
+- **Endpoint:** `ws://api.exemplo.com/fila`  
+- **Descrição:** O cliente se conecta para receber e enviar dados da fila em tempo real.
 
-2. **Receber Atualizações da Fila**
-   - **Método:** WebSocket  
-   - **Evento:** `fila_atualizada`  
-   - **Descrição:** O servidor envia a lista de pedidos sempre que houver mudanças.  
-   - **Formato da Resposta (JSON):**  
-     ```json
-     {
-       "evento": "fila_atualizada",
-       "dados": [
-         {
-           "id_pedido": 123,
-           "medicamento": "Paracetamol",
-           "quantidade": 10,
-           "status": "aguardando"
-         }
-       ]
-     }
-     ```
+---
 
-3. **Adicionar Pedido à Fila**
-   - **Método:** WebSocket  
-   - **Evento:** `adicionar_pedido`  
-   - **Descrição:** Enviar um novo pedido para a fila.  
-   - **Corpo da Requisição (JSON):**  
-     ```json
-     {
-       "evento": "adicionar_pedido",
-       "dados": {
-         "medicamento": "Amoxicilina",
-         "quantidade": 3
-       }
-     }
-     ```
+**2. Receber Atualizações da Fila**
+- **Método:** WebSocket  
+- **Endpoint:** `/fila/atualizada`  
+- **Descrição:** O servidor envia a lista de pedidos sempre que houver mudanças.  
+- **Formato da Resposta (JSON):**  
+  ```json
+  {
+    "dados": [
+      {
+        "id_pedido": 123,
+        "medicamento": "Paracetamol",
+        "quantidade": 10,
+        "status": "aguardando"
+      }
+    ]
+  }
+  ```
 
-4. **Atualizar Status do Pedido**
-   - **Método:** WebSocket  
-   - **Evento:** `atualizar_pedido`  
-   - **Descrição:** Atualiza o status de um pedido específico na fila.  
-   - **Corpo da Requisição (JSON):**  
-     ```json
-     {
-       "evento": "atualizar_pedido",
-       "dados": {
-         "id_pedido": 123,
-         "status": "finalizado"
-       }
-     }
-     ```
+---
 
-5. **Remover Pedido da Fila**
-   - **Método:** WebSocket  
-   - **Evento:** `remover_pedido`  
-   - **Descrição:** Remove um pedido da fila (por exemplo, cancelamento ou erro).  
-   - **Corpo da Requisição (JSON):**  
-     ```json
-     {
-       "evento": "remover_pedido",
-       "dados": {
-         "id_pedido": 124
-       }
-     }
-     ```
+**3. Adicionar Pedido à Fila**
+- **Método:** WebSocket  
+- **Endpoint:** `/fila/adicionar`  
+- **Descrição:** Enviar um novo pedido para a fila.  
+- **Corpo da Requisição (JSON):**  
+  ```json
+  {
+    "medicamento": "Amoxicilina",
+    "quantidade": 3
+  }
+  ```
 
+---
+
+**4. Atualizar Status do Pedido**
+- **Método:** WebSocket  
+- **Endpoint:** `/fila/atualizar`  
+- **Descrição:** Atualiza o status de um pedido específico na fila.  
+- **Corpo da Requisição (JSON):**  
+  ```json
+  {
+    "id_pedido": 123,
+    "status": "finalizado"
+  }
+  ```
+
+---
+
+**5. Remover Pedido da Fila**
+- **Método:** WebSocket  
+- **Endpoint:** `/fila/remover`  
+- **Descrição:** Remove um pedido da fila (por exemplo, cancelamento ou erro).  
+- **Corpo da Requisição (JSON):**  
+  ```json
+  {
+    "id_pedido": 124
+  }
+  ```
 
 ## Logs do Sistema
 
