@@ -19,7 +19,7 @@ def move_to_bin(device, positions, bin_num, r, iter):
         device.movel_to(
             positions['bins'][bin_num]['pos_x'],
             positions['bins'][bin_num]['pos_y'],
-            15,
+            18,
             r,
             wait=True
         )
