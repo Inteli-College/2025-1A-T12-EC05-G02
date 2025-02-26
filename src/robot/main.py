@@ -7,7 +7,7 @@ import pydobot
 from rich.console import Console
 from rich.panel import Panel
 from robot_functions import move_to_bin, return_home
-from cli.cli_functions import terminal_start, welcome_screen, return_to_menu
+from cli.cli_functions import terminal_start, welcome_screen, return_to_menu, available_ports, test_port
 
 console = Console()  # Instância do console
 
@@ -32,6 +32,7 @@ def get_pos(file_name):
 
 # Carregar as posições do arquivo positions.json
 positions = get_pos('positions.json')
+
 
 while True:
     welcome_screen()
@@ -87,6 +88,7 @@ while True:
                     f"Coordenada Y: {positions['bins'][remedio]['pos_y']}\n"
                     f"Coordenada Z: {positions['bins'][remedio]['pos_z']}",
                     title=f"Bin: {remedio}",
+                    
                     border_style="magenta"
                 )
             )
@@ -95,10 +97,11 @@ while True:
             break
     
     elif action == "ports":
-        ports = result["ports"]
-        console.print("[bold]Portas Disponíveis:[/bold]")
-        for available_port in ports:
-            console.print(f"    [blue]{available_port}[/blue]\n")
+        test_port(pydobot)
+        # ports = result["ports"]
+        # console.print("[bold]Portas Disponíveis:[/bold]")
+        # for available_port in ports:
+        #     console.print(f"    [blue]{available_port}[/blue]\n")
 
         if not (loop := return_to_menu()):
             break

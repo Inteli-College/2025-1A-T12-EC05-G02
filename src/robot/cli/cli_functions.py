@@ -1,9 +1,12 @@
 import inquirer
+import sys
+import os
 from rich.console import Console
 from rich.panel import Panel
 from yaspin import yaspin
 from serial.tools import list_ports
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 console = Console()
 
 def welcome_screen():
@@ -34,6 +37,22 @@ def main_menu():
     answer = inquirer.prompt(questions)["action"]
     return answer
 
+def test_port(pydobot):
+    ports = available_ports()  
+    if not ports:
+        console.print("[bold orange]Nenhuma porta serial encontrada. Conecte o Dobot e tente novamente.[/bold orange]")
+        return
+    
+    for port in ports:
+        console.print("[orange]Testando portas de comunicação...[/orange]")
+        try:
+            device = pydobot.Dobot(port=port, verbose=False)
+            device.close()
+            console.print(f"[green]Sua porta {port} está pronta para uso![/green]")
+            return port
+        except Exception as e:
+            console.print("[bold red] Não foi possível conectar na porta[/bold red]")
+
 def remedy_collection():  
     # Seleção das bins
     questions = [
@@ -61,7 +80,7 @@ def remedy_collection():
         bin_quantities[bin] = int(quantity)
     
     # Seleção da porta disponível
-    port = chosen_port()
+    port = test_port(pydobot)
     print(bin_quantities, type(bin_quantities))
     return {"port": port, "bins": bin_quantities}
 
@@ -69,20 +88,6 @@ def available_ports():
     serial_ports = list_ports.comports()
     available_ports = [x.device for x in serial_ports]
     return available_ports if available_ports else ["Nenhuma porta disponível"]
-
-def chosen_port():
-    # Seleção da porta disponível
-    ports = available_ports()  
-    question = [
-        inquirer.List(
-            "port",
-            message="Selecione uma porta disponível",
-            choices=ports,
-            carousel=True
-        )
-    ]
-    port = inquirer.prompt(question)["port"]
-    return port
 
 def return_to_menu():
     """Pergunta se o usuário deseja retornar ao menu principal."""
@@ -102,6 +107,8 @@ def return_to_menu():
         console.print("[bold red]Encerrando o terminal.[/bold red]")
         return False
 
+
+
 def terminal_start():
     action = main_menu()
     console.print("\n[bold yellow]→ Opção escolhida:[/bold yellow]", action, "\n")
@@ -115,13 +122,13 @@ def terminal_start():
 
     elif "Retornar para home" in action:
         # Seleção da porta disponível
-        port = chosen_port()
+        port = test_port(pydobot)
         loading_effect("Retornando para home...\n")
         return {"action": "home", "port": port}
 
     elif "Visualização da posição atual" in action:
         loading_effect("Obtendo posição atual do PharmaBot...\n")
-        port = chosen_port()
+        port = test_port(pydobot)
         return {"action": "current_pos", "port": port}
 
     elif "Checagem das posições das bins" in action:
@@ -136,6 +143,3 @@ def terminal_start():
     elif "Sair" in action:
         console.print("[bold red]Encerrando o terminal.[/bold red]")
         return {"action": "exit"}
-
-if __name__ == "__main__":
-    result = terminal_start()
