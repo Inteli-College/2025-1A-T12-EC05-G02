@@ -1,9 +1,14 @@
 # Este arquivo concentra as funções de movimentação do robô Dobot Magician Lite.
 
+from rich.console import Console
+from rich.panel import Panel
+
+console = Console()
+
 # Cria função de movimentação às bins especificadas
-def move_to_bin(device, positions, bin_num, r, iter):
-    if bin_num not in positions['bins']:
-        raise ValueError(f"Bin '{bin_num}' não encontrada!")
+def move_to_bin(device, positions, drug, r, iter):
+    if drug not in positions['bins']:
+        raise ValueError(f"{drug} não encontrada!")
 
     counter = 0
 
@@ -12,37 +17,54 @@ def move_to_bin(device, positions, bin_num, r, iter):
         
         # Move o sugador para as posições da bin especificada
         device.movej_to(
-            positions['bins'][bin_num]['pos_x'],
-            positions['bins'][bin_num]['pos_y'],
-            positions['bins'][bin_num]['pos_z'],
+            positions['bins'][drug]['pos_x'],
+            positions['bins'][drug]['pos_y'],
+            positions['bins'][drug]['pos_z'],
             r,
             wait=True
         )
 
-        print(f'Movimento para {bin_num}')
-
+        console.print(
+            Panel(
+                f"[bold yellow]Movimento para {drug}[/bold yellow]")
+            )
         device.movel_to(
-            positions['bins'][bin_num]['pos_x'],
-            positions['bins'][bin_num]['pos_y'],
+            positions['bins'][drug]['pos_x'],
+            positions['bins'][drug]['pos_y'],
             18,
             r,
             wait=True
         )
 
         # Ativa a sucção do bico sugador
+        console.print(
+            Panel(
+                "[bold yellow]Ativando bico sugador[/bold yellow]")   
+        )
         device.suck(True)
 
         device.movel_to(
-            positions['bins'][bin_num]['pos_x'],
-            positions['bins'][bin_num]['pos_y'],
+            positions['bins'][drug]['pos_x'],
+            positions['bins'][drug]['pos_y'],
             120,
             r,
             wait=True
         )
 
         # Move o sugador para a posição de referência home
+        console.print(
+            Panel(
+                "[bold yellow]Retornando para ponto de referência[/bold yellow]\n"
+            )
+        )
+        
         return_home(device, positions)
-
+        
+        console.print(
+            Panel(
+                "[bold yellow]Movimento para o dispenser[/bold yellow]\n")
+            )
+        
         device.movej_to(
             positions['presets']['dispenser']['pos_x'],
             positions['presets']['dispenser']['pos_y'],
@@ -52,9 +74,18 @@ def move_to_bin(device, positions, bin_num, r, iter):
         )
         
         # Desativa a sucção do bico sugador
+        console.print(Panel(
+                f"[bold green]{drug} liberado![/bold green]\n"
+            )
+        )
         device.suck(False)
 
         # Retorna o sugador para a posição de referência home
+        console.print(
+            Panel(
+                "[bold yellow]Retornando para posição de referência[/bold yellow]\n"
+            )
+        )
         return_home(device, positions)
 
         # Adiciona unidade ao iterador
@@ -70,3 +101,7 @@ def return_home(device, positions: dict):
         0,
         wait=True
     )
+
+def get_current_position(device):
+    pos = device.pose()
+    return {"x": pos[0], "y": pos[1], "z": pos[2]}

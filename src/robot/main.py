@@ -4,16 +4,23 @@ import pydobot.enums.ControlValues
 import pydobot.message
 import json
 import pydobot
-from serial.tools import list_ports
+from rich.console import Console
+from rich.panel import Panel
 from robot_functions import move_to_bin, return_home
+from cli.cli_functions import terminal_start, welcome_screen, return_to_menu
+
+console = Console()  # Instância do console
 
 class InteliDobot(pydobot.Dobot):
     def __init__(self, port=None, verbose=False):
         super().__init__(port=port, verbose=verbose)
+    
     def movej_to(self, x, y, z, r, wait=True):
         super()._set_ptp_cmd(x, y, z, r, mode=pydobot.enums.PTPMode.MOVJ_XYZ, wait=wait)
+    
     def movel_to(self, x, y, z, r, wait=True):
         super()._set_ptp_cmd(x, y, z, r, mode=pydobot.enums.PTPMode.MOVL_XYZ, wait=wait)
+    
     def SetSpeed(self, speed, acceleration):
         super().speed(speed,acceleration)
 
@@ -22,40 +29,80 @@ file_name = 'positions.json'
 def get_pos(file_name):
     with open(file_name, 'r') as file:
         return json.load(file)
-    
+
 # Carregar as posições do arquivo positions.json
 positions = get_pos('positions.json')
-available_ports = list_ports.comports()
-print(f'available ports: {[x.device for x in available_ports]}')
-port = available_ports[0].device
 
-# Cria instância da classe InteliDobot para utilização dos métodos move_to
-device = InteliDobot(port=port, verbose=False)
+while True:
+    welcome_screen()
+    result = terminal_start()
 
-# Loga a posição atual do robô e o retorna à home
-(x, y, z, r, j1, j2, j3, j4) = device.pose()
-print(f'x:{x} y:{y} z:{z} j1:{j1} j2:{j2} j3:{j3} j4:{j4}')
+    if 'port' in result:
+        port = result['port']
+        device = InteliDobot(port=port, verbose=False)
 
-device.suck(False)
-return_home(device, positions)
+    action = result['action']
 
-# Inputs de configuração da rotina do robô
-print('Selecione uma das bins abaixo:')
-for bin in positions['bins']:
-    print(bin)
-text_input = input('Qual(is) bin(s) deseja buscar? ')
-bins = text_input.split(', ')
-num_input = input('Quantos medicamentos deseja pegar para cada medicamento (respectivamente)? ')
-list_numbers = num_input.split(', ')
+    if action == "collect":
+        port = result['port']
+        bins = result['bins']
+        device.suck(False)
+        return_home(device, positions)
+        
+        for bin in bins:
+            move_to_bin(device, positions, bin, 0, bins[bin])
 
-print(list_numbers, type(list_numbers))
+        if not (loop := return_to_menu()):
+            break
+    
+    elif action == "home":
+        port = result['port']
+        return_home(device, positions)
+        console.print("[green]Robô retornou para a posição inicial com sucesso![/green]")
+        if not (loop := return_to_menu()):
+            break
 
-i = 0
+    elif action == "current_pos":
+        port = result['port']
+        (x, y, z, r, j1, j2, j3, j4) = device.pose()
+        console.print(
+            Panel(
+                f"Posição atual do robô:\n"
+                f"x: {x}\ny: {y}\nz: {z}\nj1: {j1}\nj2: {j2}\nj3: {j3}\nj4: {j4}",
+                title="Posição Atual",
+                border_style="blue"
+            )
+        )
 
-for number in list_numbers:
-    print(f'number: {number}')
-    quantity = list_numbers[i]
-    print(f'Quantidade de remédios na {bins[i]}: {quantity}')
-    if bins:
-        move_to_bin(device, positions, bins[i], r, quantity)
-    i += 1
+        if not (loop := return_to_menu()):
+            break
+    
+    elif action == "check_bins":
+        console.print("[bold]Coordenadas das Bins:[/bold]")
+        for remedio in positions["bins"]:
+            console.print(
+                Panel(
+                    f"Remédio: {remedio}\n"
+                    f"Coordenada X: {positions['bins'][remedio]['pos_x']}\n"
+                    f"Coordenada Y: {positions['bins'][remedio]['pos_y']}\n"
+                    f"Coordenada Z: {positions['bins'][remedio]['pos_z']}",
+                    title=f"Bin: {remedio}",
+                    border_style="magenta"
+                )
+            )
+            
+        if not (loop := return_to_menu()):
+            break
+    
+    elif action == "ports":
+        ports = result["ports"]
+        console.print("[bold]Portas Disponíveis:[/bold]")
+        for available_port in ports:
+            console.print(f"    [blue]{available_port}[/blue]\n")
+
+        if not (loop := return_to_menu()):
+            break
+
+    elif action == "exit":
+        console.print("[red]Saindo do programa...[/red]")
+        break
