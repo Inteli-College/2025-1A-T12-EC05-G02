@@ -10,21 +10,28 @@ Arquitetura da API (Robô): {
     Operações com o Dobot: {
         Configurar os bins: {
             usuario->front: Tenta configurar os bins do Dobot
-            front->back: Requisição
-            back->robo: Envia um pedido para o Dobot
-            robo->back: Resposta
-            back->front: Resposta
+            back<->robo: Conexão Websocket para enviar dados sobre os bins
+            back<->front: Conexão Websocket para atualizar a fila de medicamentos em tempo real
             front->usuario: Retorna sucesso ou falha
         }
 
         Status do Dobot: {
+            usuario->front: Tenta obter o status do Dobot
+            back<->robo: Conexão Websocket para enviar dados sobre o status do Dobot
+            back<->front: Conexão Websocket para atualizar o front-end em tempo real
+            front->usuario: Retorna o status
         }
 
-        Bipagem de Medicamentos: {
+        Verificação de Validade: {
+            robo<->back: Conexão websocket para enviar dados sobre bipagem
+            back->db: Verificação da validade
+            db->back: Resposta
+            back<->front: Conexão Websocket para atualizar o front-end em tempo real
+            front->usuario: Notifica o usuário se o produto está dentro da validade
         }
 
         Logs do Dobot: {
-            robo->back: Envia logs para a API
+            robo<->back: Envia logs para a API
             back->db: Registro dos logs
         }
     }
