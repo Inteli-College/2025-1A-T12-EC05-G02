@@ -1,5 +1,4 @@
 # Este arquivo concentra as funções de movimentação do robô Dobot Magician Lite.
-
 from rich.console import Console
 from rich.panel import Panel
 
@@ -15,6 +14,13 @@ def move_to_bin(device, positions, drug, r, iter):
     # Loop de iteração sobre a quantidade de coletas na mesma bin
     while counter < int(iter):
         
+        console.print(
+            Panel
+            (
+                f"[bold cyan]Buscando {drug}...[/bold cyan]"
+            )
+        )
+
         # Move o sugador para as posições da bin especificada
         device.movej_to(
             positions['bins'][drug]['pos_x'],
@@ -25,9 +31,10 @@ def move_to_bin(device, positions, drug, r, iter):
         )
 
         console.print(
-            Panel(
-                f"[bold yellow]Movimento para {drug}[/bold yellow]")
+            (
+                f"[bold yellow] ▪️ Movimento para {drug}[/bold yellow]\n"
             )
+        )
         device.movel_to(
             positions['bins'][drug]['pos_x'],
             positions['bins'][drug]['pos_y'],
@@ -38,8 +45,9 @@ def move_to_bin(device, positions, drug, r, iter):
 
         # Ativa a sucção do bico sugador
         console.print(
-            Panel(
-                "[bold yellow]Ativando bico sugador[/bold yellow]")   
+            (
+                "[bold yellow] ▪️ Ativando bico sugador[/bold yellow]\n"
+            )   
         )
         device.suck(True)
 
@@ -53,17 +61,18 @@ def move_to_bin(device, positions, drug, r, iter):
 
         # Move o sugador para a posição de referência home
         console.print(
-            Panel(
-                "[bold yellow]Retornando para ponto de referência[/bold yellow]\n"
+            (
+                "[bold yellow] ▪️ Retornando para ponto de referência[/bold yellow]\n"
             )
         )
         
         return_home(device, positions)
         
         console.print(
-            Panel(
-                "[bold yellow]Movimento para o dispenser[/bold yellow]\n")
+            (
+                "[bold yellow] ▪️ Movimento para o dispenser[/bold yellow]\n"
             )
+        )
         
         device.movej_to(
             positions['presets']['dispenser']['pos_x'],
@@ -74,18 +83,15 @@ def move_to_bin(device, positions, drug, r, iter):
         )
         
         # Desativa a sucção do bico sugador
-        console.print(Panel(
-                f"[bold green]{drug} liberado![/bold green]\n"
+        console.print(
+            Panel
+            (
+                f"[bold green]✔ {drug} coletado![/bold green]\n"
             )
         )
         device.suck(False)
 
         # Retorna o sugador para a posição de referência home
-        console.print(
-            Panel(
-                "[bold yellow]Retornando para posição de referência[/bold yellow]\n"
-            )
-        )
         return_home(device, positions)
 
         # Adiciona unidade ao iterador

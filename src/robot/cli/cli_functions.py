@@ -1,12 +1,9 @@
 import inquirer
-import sys
-import os
 from rich.console import Console
 from rich.panel import Panel
 from yaspin import yaspin
 from serial.tools import list_ports
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 console = Console()
 
 def welcome_screen():
@@ -24,12 +21,12 @@ def main_menu():
             "action",
             message="O que gostaria de realizar?",
             choices=[
-                "Separação de fita de medicamentos",
-                "Retornar para home",
-                "Visualização da posição atual",
-                "Checagem das posições das bins",
-                "Portas de conexão",
-                "Sair"
+                "1 - Separação de fita de medicamentos",
+                "2 - Retornar para home",
+                "3 - Visualização da posição atual",
+                "4 - Checagem das posições das bins",
+                "5 - Portas de conexão",
+                "6 - Sair"
             ],
             carousel=True
         )
@@ -44,16 +41,15 @@ def test_port(pydobot):
         return
     
     for port in ports:
-        console.print("[orange]Testando portas de comunicação...[/orange]")
+        console.print("[green]Testando portas de comunicação...[/green]")
         try:
             device = pydobot.Dobot(port=port, verbose=False)
             device.close()
-            console.print(f"[green]Sua porta {port} está pronta para uso![/green]")
             return port
         except Exception as e:
             console.print("[bold red] Não foi possível conectar na porta[/bold red]")
 
-def remedy_collection():  
+def remedy_collection(pydobot):  
     # Seleção das bins
     questions = [
         inquirer.Checkbox(
@@ -63,7 +59,8 @@ def remedy_collection():
             carousel=True
         )
     ]
-    console.print("[yellow]Dica: utilize ↑, ↓ e [bold]barra de espaço[/bold] para selecionar suas opções![/yellow]")
+    console.print("[yellow]Dica: utilize ↑, ↓ e [bold]barra de espaço[/bold] para selecionar suas opções![/yellow]\n")
+    console.print("[yellow]Dica: utilize ENTER para confirmar sua escolha.[/yellow]\n")
     selected_bins = inquirer.prompt(questions)["bins"]
 
     # Input de quantidades
@@ -81,7 +78,6 @@ def remedy_collection():
     
     # Seleção da porta disponível
     port = test_port(pydobot)
-    print(bin_quantities, type(bin_quantities))
     return {"port": port, "bins": bin_quantities}
 
 def available_ports():
@@ -109,37 +105,37 @@ def return_to_menu():
 
 
 
-def terminal_start():
+def terminal_start(pydobot):
     action = main_menu()
     console.print("\n[bold yellow]→ Opção escolhida:[/bold yellow]", action, "\n")
 
-    if "Separação de fita de medicamentos" in action:
+    if "1" in action:
         loading_effect("Iniciando separação de fita de medicamentos...\n")
-        port_bin = remedy_collection()
+        port_bin = remedy_collection(pydobot)
         port = port_bin['port']
         bin_quantities = port_bin['bins']
         return {"action": "collect", "port": port, "bins": bin_quantities}
 
-    elif "Retornar para home" in action:
+    elif "2" in action:
         # Seleção da porta disponível
         port = test_port(pydobot)
         loading_effect("Retornando para home...\n")
         return {"action": "home", "port": port}
 
-    elif "Visualização da posição atual" in action:
+    elif "3" in action:
         loading_effect("Obtendo posição atual do PharmaBot...\n")
         port = test_port(pydobot)
         return {"action": "current_pos", "port": port}
 
-    elif "Checagem das posições das bins" in action:
+    elif "4" in action:
         loading_effect("Checando posições das bins...\n")
         return {"action": "check_bins"}
 
-    elif "Portas de conexão" in action:
+    elif "5" in action:
         loading_effect("Checando portas disponíveis...\n")
         ports = available_ports()
         return {"action": "ports", "ports": ports}
 
-    elif "Sair" in action:
+    elif "6" in action:
         console.print("[bold red]Encerrando o terminal.[/bold red]")
         return {"action": "exit"}
