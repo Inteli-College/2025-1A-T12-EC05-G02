@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-slug: /sprint-2/mapeamento/user-stories
+slug: /sprint-2/mapeamento/user-flow
 ---
 
 # User Flow

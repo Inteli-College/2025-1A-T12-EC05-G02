@@ -1,0 +1,12 @@
+Arquitetura Simplificada: {
+    shape: sequence_diagram
+    usuario: Usuário
+    sistema: Sistema/Plataforma
+    db: Banco de Dados
+    robo: Robô
+        usuario->sistema: Acessa o sistema
+        sistema<->robo: (Conexão Websocket)
+        sistema->db: Modificação
+        db->sistema: Resposta
+        sistema->usuario: Retorna respostas sobre o robô em tempo real
+}
