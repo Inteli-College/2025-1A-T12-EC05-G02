@@ -224,7 +224,7 @@ Identificação | US010
 --- | ---
 User Story | Eu, enquanto farmacêutica, quero ter acesso a informações do estoque em tempo real, como a quantidade disponível de cada medicamento, assim como quero um registro de todas as entradas e saídas de medicamentos, feito de forma automatizada
 Critérios de aceite 1 | O site exibe uma página que mostra uma tabela com dados do estoque de medicamentos em tempo real
-Teste de Aceitação | A farmacêutica se loga na plataforma e vai até a página de estoque. <br/>T01A: a página de estoque mostra uma tabela com todos os medicamentos cadastrados no estoque, as informações do medicamento mostradas incluem nome, data de validade, lote e data de entrada <br/>T01B: a página de estoque não mostra a tabela com medicamentos, ou os dados estão incompletos, incorretos ou desatualizados. Errado, precisa ser corrigido
+Teste de Aceitação | A farmacêutica se loga na plataforma e vai até a página de estoque. <br/>T01A: a página de estoque mostra uma tabela com todos os medicamentos cadastrados no estoque, as informações do medicamento mostradas incluem ID, nome do medicamento, data de validade, lote, data de entrada, quantidade e ID do bin em que está localizado <br/>T01B: a página de estoque não mostra a tabela com medicamentos, ou os dados estão incompletos, incorretos ou desatualizados. Errado, precisa ser corrigido
 Critério de aceite 2 | Existe uma barra de pesquisa para pesquisar medicamentos específicos
 Teste de Aceitação | Consigo pesquisar medicamentos específicos pelo nome ou lote <br/> T02A: É possível encontrar e clicar na barra de pesquisa, mostrando o resultado da pesquisa na tabela após digitar o nome ou lote de algum medicamento <br/> T02B: Não é possível encontrar a barra de pesquisa ou a pesquisa retorna resultados errados/incompletos. Errado, precisa ser corrigido
 Critério de aceite 3 | A farmacêutica deseja registrar manualmente o registro de saída de um kit de medicamentos
@@ -286,7 +286,7 @@ Teste de Aceitação | O sistema cadastra a devolução e registra os medicament
 
 Identificação | US013
 --- | ---
-User Story | Eu, como farmacêutica, desejo fazer pedidos de reposição do estoque, e desejo um relatório de todos os medicamentos do estoque, com informações como nome, lote, validade, quantidade disponível e data do último pedido
+User Story | Eu, como farmacêutica, desejo fazer pedidos de reposição do estoque, e desejo um relatório de todos os medicamentos do estoque, com informações como ID, nome do medicamento, data de validade, lote, data de entrada, quantidade e ID do bin em que está localizado
 Critérios de aceite 1 | Através da página de estoque, é possível registrar a entrada de uma nova leva de medicamentos
 Teste de Aceitação | A farmacêutica abre a página de estoque <br/>T01A: A página de estoque exibe as informações do estoque e as funcionalidades disponíveis <br/>T01B: A página de estoque não exibe as informações, ou não permite utilizar as funcionalidades da página. Errado, precisa ser corrigido
 Critério de aceite 2 | A farmacêutica preenche os dados dos medicamentos que chegaram no estoque.
