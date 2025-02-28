@@ -4,29 +4,49 @@
 
 ## 1° Passo: Instalar e a ativar venv 
 
-&emsp; Primeiro, abra um terminal e digite o seguinte comando para entrar na pasta que o projeto está presente.
+&emsp; Primeiro, abra um terminal e digite o seguinte comando para entrar na pasta necessária.
 
 ```bash
-    cd caminho-do-projeto
+    cd scr/robot
 ```
 &emsp; Em seguida, digite o seguinte comando para instalar o venv
 
+**Para Windows**
 ```bash
     python -m venv nome-do-venv
 ```
-&emsp; Por fim, digite o seguinte comando para ativar o venv
 
+**Para Linux**
 ```bash
-    venv\Scripts\activate
+    python3 -m venv .venv
 ```
 
+&emsp; Por fim, digite o seguinte comando para ativar o venv
 
+**Para Windows**
+
+```bash
+    nome-do-venv\Scripts\activate
+```
+**Para Linux**
+
+```bash
+    source ./.venv/bin/activate
+```
 ## 2° Passo: Instalar as bibliotecas externas
 
 &emsp; Primeiro, digite os seguintes comandos para baixar as bibliotecas
 
+**Para Windows**
+
 ```bash
-    pip install requirements.txt
+    pip install -f requirements.txt
+```
+
+**Para Linux**
+
+```bash
+    pip3 install -f requirements.txt
 ```
 
 ## 3° Passo: Executar a aplicação
@@ -39,8 +59,16 @@
 
 &emsp; Em seguida, digite o seguinte comando para executar a aplicação
 
+**Para Windows**
+
 ```bash
     python main.py
+```
+
+**Para Linux**
+
+```bash
+    python3 main.py
 ```
 
 ## 4° Passo: Escolher o comando a ser executado pelo braço robótico 

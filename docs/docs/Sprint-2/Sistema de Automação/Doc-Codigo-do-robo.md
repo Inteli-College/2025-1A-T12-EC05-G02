@@ -1,4 +1,9 @@
-# Documentação do código - Sprint 2
+
+# Documentação do código
+
+&emsp; Durante o desenvolvimento do segunda sprint, implementou-se um sistema básico de automação, no qual foi desenvolvido uma interfase por linha de comando para trocar informações com o braço de robótico, dessa forma, ao enviar comandos, o robô executa. Nesse sentido, abaixo são apresentados as tecnologias que foram utilizadas, como o modelo do braço robótico e as bibliotecas externas, além de uma breve explicação sobre as funcionalidades de cada arquivo e os comandos que o braço robótico é capaz de executar. Portanto, a presente documentação tem como objetivo facilitar o entendimento do funcionamento do robô, além disso, ao final expõem-se o vídeo que exemflifica tal operação.
+
+&emsp; A guia para a inicialização da CLI pode ser acessada pelo seguinte _[link](../Sistema%20de%20Automação/InicializaçãoDaCLI.md)_
 
 ## 1. Tecnologias utilizadas
 
@@ -31,34 +36,35 @@
 
 ```
 src
-└── 
     └── cli
-        ├── cli_functions.py
-    └── robot
-        └── cli
-            ├── __init__.py
             ├── cli_functions.py
-        ├── main.py
-        ├── positions.json
-        ├── requirements.txt
-        ├── robot_functions.py
+        └── robot    
+            └── cli
+                ├── __init__.py
+                ├── cli_functions.py
+            ├── main.py
+            ├── positions.json
+            ├── requirements.txt
+            ├── robot_functions.py
 
 ```
 ### Cli  
 
-- `cli_functions.py:` Este arquivo implementa um terminal interativo para o controle do braço robótico. 
+- _[`cli_functions.py:`](../../../../src/cli/cli_functions.py)_ Este arquivo implementa um terminal interativo para o controle do braço robótico. 
 
 ### Robot  
 
-- `main.py:` Este arquivo inicializa o funcionamento do braço robótico
+- _[`main.py:`](../../../../src/robot/main.py)_Este arquivo inicializa o funcionamento do braço robótico
 
-- `positions.json:` Este arquivo armazena as coordenadas em x, y, e z dos medicamentos
+- _[`positions.json:`](../../../../src/robot/positions.json)_ Este arquivo armazena as coordenadas em x, y, e z dos medicamentos
 
-- `requirements.txt:` Este arquivo armazena as dependências do presente projeto em python, especificando os pacotes necessários e suas versões. 
+- _[`requirements.txt:`](../../../../src/robot/requirements.txt)_ Este arquivo armazena as dependências do presente projeto em python, especificando os pacotes necessários e suas versões. 
 
-- `robot_functions.py` Este arquivo armazena as funções de movimentação do robô Dobot Magician Lite.
+- _[`robot_functions.py`](../../../../src/robot/robot_functions.py)_ Este arquivo armazena as funções de movimentação do robô Dobot Magician Lite.
 
 ## 3. Comandos
+
+&emsp; Segue abaixo os comandos disponíveis para o braço robótico e, em seguida, um vídeo demostrativo.
 
 - **Separação de fita de medicamentos:** Separa os medicamentos da fita que foram configurados;
 
