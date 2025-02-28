@@ -7,7 +7,7 @@ slug: /sprint-2/mapeamento/user-flow
 
 &emsp; O _User flow_, diferente da história de usuário que mostra uma sequência de passos afim de completar uma atividade de alto nível **utilizando** a solução - possivelmente através de canais diferentes e ao longo do tempo -, apresenta uma série de passos para completar uma tarefa curta no próprio produto [(Kaplan, 2023)](../referencias.md). Ela também é diferente em propósito e formato do Diagrama UML da seção [``API/Arquitetura da API``](../API/arquitetura-api.md), pois foca nos passos e "cliques" do usuário no sistema e não na reação deste em relação àquele.
 
-&emsp; Os  _User flows_ são criados com base nas _user stories_ e, abaixo, pode-se visualizar as principais tarefas que um usuário pode realizar na aplicação da PharmaTech. Nos diagramas apresentados, o círculo representa o início ou fim de uma tarefa, o retângulo representa o processo e o losango representa uma decisão, seja do sistema ou do usuário (Creately, 2022).
+&emsp; Os  _User flows_ são criados com base nas _user stories_ e, abaixo, pode-se visualizar as principais tarefas que um usuário pode realizar na aplicação da PharmaTech. Nos diagramas apresentados - criados no Excallidraw -, o círculo representa o início ou fim de uma tarefa, o retângulo representa o processo e o losango representa uma decisão, seja do sistema ou do usuário (Creately, 2022).
 
 <div align="center" width="100%">
 
