@@ -1,6 +1,6 @@
 # Inicialização da CLI
 
-&emsp; A sigla em inglês *command-line interfase (CLI)*, significa Interfase De Linha De Comando. Nesse sentido, ela representa um programa funcionando através de linhas de comando, que aceita entrada de texto para executar funçãoes da aplicação, neste caso, os comandos para o funcionando do braço robótico.
+&emsp; A sigla em inglês *Command-Line Interface (CLI)*, significa Interfase De Linha De Comando. Nesse sentido, ela representa um programa funcionando através de linhas de comando, que aceita entrada de texto para executar funçãoes da aplicação, neste caso, os comandos para o funcionando do braço robótico.
 
 ## 1° Passo: Instalar e a ativar venv 
 
@@ -73,7 +73,7 @@
 
 ## 4° Passo: Escolher o comando a ser executado pelo braço robótico 
 
-&emsp; Ao executar o *main.py* será exposto seis opções de ação para o braço robótico, exibidas a seguir. Assim, é possível escolher uma ação com a tecla de *enter*.
+&emsp; Ao executar o *main.py* serão expostas seis opções de ação para o braço robótico, exibidas a seguir. Assim, é possível escolher uma ação com a tecla de *enter*.
 
 1. Separação de fita de medicamentos
 2. Retornar para home

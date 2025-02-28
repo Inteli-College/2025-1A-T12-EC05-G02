@@ -1,7 +1,7 @@
 
 # Documentação do código
 
-&emsp; Durante o desenvolvimento do segunda sprint, implementou-se um sistema básico de automação, no qual foi desenvolvido uma interfase por linha de comando para trocar informações com o braço de robótico, dessa forma, ao enviar comandos, o robô executa. Nesse sentido, abaixo são apresentados as tecnologias que foram utilizadas, como o modelo do braço robótico e as bibliotecas externas, além de uma breve explicação sobre as funcionalidades de cada arquivo e os comandos que o braço robótico é capaz de executar. Portanto, a presente documentação tem como objetivo facilitar o entendimento do funcionamento do robô, além disso, ao final expõem-se o vídeo que exemflifica tal operação.
+&emsp; Durante o desenvolvimento do segunda sprint, implementou-se um sistema básico de automação, no qual foi desenvolvido uma interface por linha de comando para trocar informações com o braço de robótico. Nesse sentido, abaixo são apresentados as tecnologias que foram utilizadas, como o modelo do braço robótico e as bibliotecas externas, além de uma breve explicação sobre as funcionalidades de cada arquivo e os comandos que o braço robótico é capaz de executar. Portanto, a presente documentação tem como objetivo facilitar o entendimento do funcionamento do robô, além disso, ao final expõem-se o vídeo que exemflifica tal operação.
 
 &emsp; A guia para a inicialização da CLI pode ser acessada pelo seguinte _[link](../Sistema%20de%20Automação/InicializaçãoDaCLI.md)_
 
@@ -9,7 +9,7 @@
 
 ### 1.1. [Dobot Magician Lite](https://minipa.com.br/images/Manual/Magician-Lite-1101-BR.pdf)
 
-&emsp; O Magician Lite é um braço robótico multifuncional voltado para a educação de treinamento prático. Nesse sentido, o robô apresenta uma capacidade de carga de 250g, possui quatro eixos e apresenta um alcance máximo de 340mm. Além disso, o Dobot oferece um controlador externo denominado “Magic Box”, o qual separa o algoritmo de controle de movimentação e as tarefas do usuário para permitir maior conveniência de programação e criação. Por fim, os usuários podem expandir uma ampla linha de sensores e acessórios relacionados para obter mais possibilidades.
+&emsp; O Magician Lite é um braço robótico multifuncional voltado para a educação de treinamento prático. Nesse sentido, o robô apresenta uma capacidade de carga de 250g, possui quatro eixos e apresenta um alcance máximo de 340mm. Além disso, o Dobot oferece um controlador externo denominado “Magic Box”, o qual separa o algoritmo de controle de movimentação e as tarefas do usuário para permitir maior conveniência de programação e criação. Porém, decidiu-se utilizar o microcontrolador Raspberry Pi 5 por conta da possibilidade de comunicação via Wi-Fi, assim, o braço robótico consegue receber comandos sem estar conectado via cabo, o que não era possível através da Magic Box. Por fim, os usuários podem expandir uma ampla linha de sensores e acessórios relacionados para obter mais possibilidades.
 
 ### 1.2. Bibliotecas
 
@@ -21,7 +21,7 @@
 
 ## 2. Estrutura de pastas e arquivos
 
-&emsp; A estrutura de pastas do presente [repositório do GitHub](https://github.com/Inteli-College/2025-1A-T12-EC05-G02), tem-se as seguintes pastas:
+&emsp; A estrutura de pastas do presente [repositório do GitHub](https://github.com/Inteli-College/2025-1A-T12-EC05-G02) encontra-se abaixo:
 
 ```
 .
@@ -36,23 +36,19 @@
 
 ```
 src
-    └── cli
+    └── robot    
+        └── cli
+            ├── __init__.py
             ├── cli_functions.py
-        └── robot    
-            └── cli
-                ├── __init__.py
-                ├── cli_functions.py
-            ├── main.py
-            ├── positions.json
-            ├── requirements.txt
-            ├── robot_functions.py
+        ├── main.py
+        ├── positions.json
+        ├── requirements.txt
+        ├── robot_functions.py
 
 ```
-### Cli  
 
-- _[`cli_functions.py:`](../../../../src/cli/cli_functions.py)_ Este arquivo implementa um terminal interativo para o controle do braço robótico. 
-
-### Robot  
+### Robot
+- _[`cli_functions.py:`](../../../../src/robot/cli/cli_functions.py)_ Este arquivo implementa um terminal interativo para o controle do braço robótico.  
 
 - _[`main.py:`](../../../../src/robot/main.py)_Este arquivo inicializa o funcionamento do braço robótico
 
