@@ -1,4 +1,8 @@
-# Arquitetura
+---
+sidebar_position: 1
+slug: /sprint-2/Arquitetura/Arquitetura
+---
+# Diagrama de Blocos
 
 &emsp;&emsp;Após a apresentação do diagrama de arquitetura para os colaboradores do Hospital de Clínicas da Unicamp durante a Sprint 1. Foi decidido a alteração de parte da arquitetura do projeto.
 
