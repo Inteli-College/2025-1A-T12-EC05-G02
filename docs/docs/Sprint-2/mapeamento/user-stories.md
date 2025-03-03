@@ -222,7 +222,7 @@ Teste de Aceitação | O técnico seleciona um item do histórico que está inco
 
 Identificação | US010
 --- | ---
-User Story | Eu, como farmacêutica, quero ter acesso a informações do estoque em tempo real para que eu possa saber a quantidade disponível de cada medicamento, assim como quero um registro de todas as entradas e saídas de medicamentos, feito de forma automatizada
+User Story | Eu, como farmacêutica, quero ter acesso a informações do estoque em tempo real para que eu possa saber a quantidade disponível de cada medicamento
 Critérios de aceite 1 | O site exibe uma página que mostra uma tabela com dados do estoque de medicamentos em tempo real
 Teste de Aceitação | A farmacêutica se loga na plataforma e vai até a página de estoque. <br/>T01A: a página de estoque mostra uma tabela com todos os medicamentos cadastrados no estoque, as informações do medicamento mostradas incluem ID, nome do medicamento, data de validade, lote, data de entrada, quantidade e ID do bin em que está localizado <br/>T01B: a página de estoque não mostra a tabela com medicamentos, ou os dados estão incompletos, incorretos ou desatualizados. Errado, precisa ser corrigido
 Critério de aceite 2 | Existe uma barra de pesquisa para pesquisar medicamentos específicos
