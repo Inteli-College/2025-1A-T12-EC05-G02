@@ -1,0 +1,48 @@
+Arquitetura da API (Estoque): {
+    shape: sequence_diagram
+    adm: Administrador (Usuário com permissões)
+    usuario: Usuário
+    front: Front-end
+    back: API do Sistema
+    db: Banco de Dados
+    robo: API do Dobot
+
+    Estoque: {
+        
+        Listar produtos: {
+            usuario->front: Tenta obter a lista de produtos
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->usuario: Retorna a lista de produtos
+        }
+
+        Adicionar produto: {
+            usuario->front: Tenta adicionar um produto
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->usuario: Retorna sucesso ou falha
+        }
+
+        Atualizar produto: {
+            usuario->front: Tenta atualizar um produto
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->usuario: Retorna sucesso ou falha
+        }
+
+        Excluir produto: {
+            usuario->front: Tenta excluir um produto
+            front->back: Requisição
+            back->db: Consulta
+            db->back: Resposta
+            back->front: Resposta
+            front->usuario: Retorna sucesso ou falha
+        }
+    }
+}  
