@@ -222,7 +222,7 @@ Teste de Aceitação | O técnico seleciona um item do histórico que está inco
 
 Identificação | US010
 --- | ---
-User Story | Eu, enquanto farmacêutica, quero ter acesso a informações do estoque em tempo real, como a quantidade disponível de cada medicamento, assim como quero um registro de todas as entradas e saídas de medicamentos, feito de forma automatizada
+User Story | Eu, como farmacêutica, quero ter acesso a informações do estoque em tempo real para que eu possa saber a quantidade disponível de cada medicamento
 Critérios de aceite 1 | O site exibe uma página que mostra uma tabela com dados do estoque de medicamentos em tempo real
 Teste de Aceitação | A farmacêutica se loga na plataforma e vai até a página de estoque. <br/>T01A: a página de estoque mostra uma tabela com todos os medicamentos cadastrados no estoque, as informações do medicamento mostradas incluem ID, nome do medicamento, data de validade, lote, data de entrada, quantidade e ID do bin em que está localizado <br/>T01B: a página de estoque não mostra a tabela com medicamentos, ou os dados estão incompletos, incorretos ou desatualizados. Errado, precisa ser corrigido
 Critério de aceite 2 | Existe uma barra de pesquisa para pesquisar medicamentos específicos
@@ -244,7 +244,7 @@ Teste de Aceitação | A farmacêutica faz o registro da quantidade e dos medica
 
 Identificação | US011
 --- | ---
-User Story | Eu, enquanto farmacêutica, quero checar informações sobre o processo de bipagem automática, assim como desejo ter conhecimento sobre qualquer ocorrido fora do comum no processo de separação, como falta de medicamentos ou outros problema no processo de separação
+User Story | Eu, como farmacêutica, quero checar informações sobre o processo de bipagem automática para que eu tenha conhecimento sobre qualquer ocorrido fora do comum no processo de separação, como falta de medicamentos ou outros problemas no processo de separação
 Critérios de aceite 1 | Através da página inicial, é possível ver os kits em que a separação e bipagem já foram concluidas
 Teste de Aceitação | A farmacêutica abre a página inicial, visando verificar as informações do sistema <br/>T01A: A página inicial exibe todas as informações relacionadas ao estado atual do robô e a fila de pedidos <br/>T01B: A página inicial não exibe as informações, ou exibe informações incompletas ou desatualizadas. Errado, precisa ser corrigido
 Critério de aceite 2 | Ao analisar a lista de kits com medicamentos separados e bipados, é possível saber quais kits precisam passar pelo processo de triagem
@@ -266,7 +266,7 @@ Teste de Aceitação | A farmacêutica libera o kit de medicamentos para envio a
 
 Identificação | US012
 --- | ---
-User Story | Eu, como farmacêutica, recebi medicamentos que foram retirados da farmácia, porém não foram utilizados, logo devem ser devolvidos e contabilizados no estoque.
+User Story | Eu, como farmacêutica, quero registrar a devolução de medicamentos não utilizados para que eles sejam contabilizados novamente no estoque
 Critérios de aceite 1 | Através da página de estoque, é possível abrir uma requisição de retorno de medicamentos ao estoque
 Teste de Aceitação | A página de estoque exibe a opção de registrar a devolução de medicamentos ao estoque <br/>T01A: A página de estoque permite que você encontre a opção de devolver medicamentos <br/>T01B: A página de estoque não exibe todas as funcionalidades, ou não permite o acesso. Errado, precisa ser corrigido
 Critério de aceite 2 | A farmacêutica, registra os medicamentos que estão sendo devolvidos, e envia o registro.
@@ -286,7 +286,7 @@ Teste de Aceitação | O sistema cadastra a devolução e registra os medicament
 
 Identificação | US013
 --- | ---
-User Story | Eu, como farmacêutica, desejo fazer pedidos de reposição do estoque, e desejo um relatório de todos os medicamentos do estoque, com informações como ID, nome do medicamento, data de validade, lote, data de entrada, quantidade e ID do bin em que está localizado
+User Story | Eu, como farmacêutica, quero fazer pedidos de reposição do estoque para que eu possa manter o estoque sempre abastecido
 Critérios de aceite 1 | Através da página de estoque, é possível registrar a entrada de uma nova leva de medicamentos
 Teste de Aceitação | A farmacêutica abre a página de estoque <br/>T01A: A página de estoque exibe as informações do estoque e as funcionalidades disponíveis <br/>T01B: A página de estoque não exibe as informações, ou não permite utilizar as funcionalidades da página. Errado, precisa ser corrigido
 Critério de aceite 2 | A farmacêutica preenche os dados dos medicamentos que chegaram no estoque.
@@ -294,3 +294,28 @@ Teste de Aceitação | O sistema permite o preenchimento das informações sobre
 Critério de aceite 3 | A farmacêutica registra a nova leva de medicamentos e checa a adição deles ao banco de dados do estoque
 Teste de Aceitação | O sistema confirma o registro dos medicamentos e atualiza tanto o banco de dados quanto a página de estoque com os medicamentos e quantidades atualizadas <br/> T03A: A farmacêutica consegue visualizar na página de estoque as alterações no banco de dados após o registro da nova leva de medicamentos <br/> T03B: Não é possível visualizar os novos medicamentos cadastrados, ou a página está desatualizada. Errado, precisa ser corrigido
 
+<div style={{textAlign: 'center'}}>
+<sub>Fonte: Autoria Própria (2025).</sub>
+</div>
+
+<br />
+
+<div style={{textAlign: 'center'}}>
+<sup>Tabela 14 - User Story 014</sup>
+</div>
+
+Identificação | US014
+--- | ---
+User Story | Eu, como farmacêutica, desejo exportar um relatório do estoque para que eu possa compartilhar as informações com outros departamentos
+Critérios de aceite 1 | Através da página de estoque, é possível selecionar a opção de exportar relatório
+Teste de Aceitação | A farmacêutica abre a página de estoque <br/>T01A: A página de estoque exibe a opção de exportar relatório <br/>T01B: A página de estoque não exibe a opção de exportar relatório. Errado, precisa ser corrigido
+Critério de aceite 2 | A farmacêutica pode escolher o formato do relatório (PDF, Excel, etc)
+Teste de Aceitação | O sistema permite a seleção do formato do relatório <br/> T02A: A página exibe opções de formato para exportação <br/> T02B: A página não exibe opções de formato para exportação. Errado, precisa ser corrigido
+Critério de aceite 3 | A farmacêutica pode filtrar as informações que deseja incluir no relatório
+Teste de Aceitação | O sistema permite a seleção de filtros para o relatório <br/> T03A: A página exibe opções de filtros para personalizar o relatório <br/> T03B: A página não exibe opções de filtros para personalizar o relatório. Errado, precisa ser corrigido
+Critério de aceite 4 | O relatório é gerado e disponibilizado para download
+Teste de Aceitação | O sistema gera o relatório e disponibiliza para download <br/> T04A: O relatório é gerado e um link para download é exibido <br/> T04B: O relatório não é gerado ou o link para download não é exibido. Errado, precisa ser corrigido
+
+<div style={{textAlign: 'center'}}>
+<sub>Fonte: Autoria Própria (2025).</sub>
+</div>
