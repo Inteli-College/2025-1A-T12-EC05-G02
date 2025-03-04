@@ -22,9 +22,9 @@ Principais modificações na arquitetura e suas motivações:
 
 &emsp;&emsp;Por fim, foi decidido criar uma nova página no lugar, que servirá como um dashboard para acompanhar o status atual do sistema e do robô, permitindo ver quais kits já foram montados, quais estão sendo montados e quais estão na fila de espera. Além de permitir tomar ações emergenciais em relação ao robô, como parar todo o sistema em situações que isso se faça necessário.
 
-- **Microcontrolador:** ESP-32 > Raspberry PICO
+- **Microcontrolador:** ESP-32 > Raspberry Pi 5
 
 &emsp;&emsp;No **Microcontrolador** (localizado em **Atuadores físicos > Microcontrolador**), existe o microcontrolador que será utilizado para enviar comandos ao robô, hospedar a API do robô e para manter a comunicação com a API do sistema hospedada na Cloud.
 
-&emsp;&emsp;Neste caso, foi decidido alterar o microcontrolador utilizado, o ESP-32 foi trocado pelo Raspberry PICO, essa alteração se deu por razões de compatibilidade de linguagens de programação entre robô e microcontrolador, além de facilitar o desenvolvimento da API do Robô para uma linguagem de programação que os membros da equipe possuem maior facilidade e familiaridade.
+&emsp;&emsp;Neste caso, foi decidido alterar o microcontrolador utilizado, o ESP-32 foi trocado pelo Raspberry Pi 5, essa alteração se deu por razões de compatibilidade de linguagens de programação entre robô e microcontrolador, além de facilitar o desenvolvimento da API do Robô para uma linguagem de programação que os membros da equipe possuem maior facilidade e familiaridade.
 
