@@ -63,7 +63,7 @@ slug: /
 
 ## Sprint 2
 
-&emsp; Durante a Sprint 2, a equipe realizou a revisão do diagrama de blocos, elaborou o diagrama da API, o diagrama do banco de dados, as funções do robô e as user stories. Além disso, foram desenvolvidos a CLI do robô, o wireframe, o user flow e a apresentação do projeto. O protótipo de alta fidelidade está em andamento e será concluído até o final da Sprint 2.
+&emsp; Durante a Sprint 2, a equipe realizou a revisão do diagrama de blocos, elaborou o diagrama da API, o diagrama do banco de dados, as funções do robô e as user stories. Além disso, foram desenvolvidos a CLI do robô, o wireframe, o user flow e a apresentação do projeto. O protótipo de alta fidelidade está em andamento e será concluído até o final da Sprint 3.
 
 &emsp; A apresentação da Sprint 2 está disponível no link a seguir: [Link da apresentação](https://www.canva.com/design/DAGg4FzFG0Y/FrmuOVSsWIUIJ0UQQMvZaw/edit?utm_content=DAGg4FzFG0Y&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
