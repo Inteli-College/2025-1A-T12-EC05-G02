@@ -59,14 +59,14 @@ def move_to_bin(device, positions, drug, r, iter):
             wait=True
         )
 
-        # Move o sugador para a posição de referência home
+        # Retorna o sugador para a posição de referência home
         console.print(
             (
                 "[bold yellow] ▪️ Retornando para ponto de referência[/bold yellow]\n"
             )
         )
         
-        return_home(device, positions)
+        return_home(device, positions) # Retorna o robô para a home
         
         console.print(
             (
@@ -74,6 +74,7 @@ def move_to_bin(device, positions, drug, r, iter):
             )
         )
         
+        # Move o braço robótico para as posições do dispenser
         device.movej_to(
             positions['presets']['dispenser']['pos_x'],
             positions['presets']['dispenser']['pos_y'],
@@ -91,7 +92,6 @@ def move_to_bin(device, positions, drug, r, iter):
         )
         device.suck(False)
 
-        # Retorna o sugador para a posição de referência home
         return_home(device, positions)
 
         # Adiciona unidade ao iterador
@@ -108,6 +108,7 @@ def return_home(device, positions: dict):
         wait=True
     )
 
+# Função para retornar a posição atual do robô
 def get_current_position(device):
     pos = device.pose()
     return {"x": pos[0], "y": pos[1], "z": pos[2]}

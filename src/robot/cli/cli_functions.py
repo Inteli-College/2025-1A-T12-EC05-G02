@@ -7,15 +7,18 @@ from serial.tools import list_ports
 console = Console()
 
 def welcome_screen():
+    """Exibe a tela de boas-vindas."""
     console.clear()
     console.print(Panel("[bold cyan]Bem-vindo(a) ao terminal de acesso ao PharmaBot![/bold cyan]", expand=False))
 
 def loading_effect(text="Processando..."):
+    """Efeito de carregamento com spinner."""
     with yaspin(text=text, color="cyan") as spinner:
         spinner.hide()
         spinner.ok("✔")
 
 def main_menu():
+    """Exibe o menu principal e retorna a opção escolhida."""
     questions = [
         inquirer.List(
             "action",
@@ -35,6 +38,7 @@ def main_menu():
     return answer
 
 def test_port(pydobot):
+    """Testa portas seriais disponíveis e retorna a primeira funcional."""
     ports = available_ports()  
     if not ports:
         console.print("[bold orange]Nenhuma porta serial encontrada. Conecte o Dobot e tente novamente.[/bold orange]")
@@ -50,7 +54,7 @@ def test_port(pydobot):
             console.print("[bold red] Não foi possível conectar na porta[/bold red]")
 
 def remedy_collection(pydobot):  
-    # Seleção das bins
+    """Permite ao usuário selecionar bins e quantidades para coleta."""
     questions = [
         inquirer.Checkbox(
             'bins',
@@ -63,7 +67,7 @@ def remedy_collection(pydobot):
     console.print("[yellow]Dica: utilize ENTER para confirmar sua escolha.[/yellow]\n")
     selected_bins = inquirer.prompt(questions)["bins"]
 
-    # Input de quantidades
+    # Input de quantidades de cada bin selecionado
     bin_quantities = {}
     for bin in selected_bins:
         question = [
@@ -81,6 +85,7 @@ def remedy_collection(pydobot):
     return {"port": port, "bins": bin_quantities}
 
 def available_ports():
+    """Retorna uma lista de portas seriais disponíveis."""
     serial_ports = list_ports.comports()
     available_ports = [x.device for x in serial_ports]
     return available_ports if available_ports else ["Nenhuma porta disponível"]
@@ -106,6 +111,7 @@ def return_to_menu():
 
 
 def terminal_start(pydobot):
+    """Executa a ação escolhida pelo usuário e retorna os parâmetros necessários."""
     action = main_menu()
     console.print("\n[bold yellow]→ Opção escolhida:[/bold yellow]", action, "\n")
 
