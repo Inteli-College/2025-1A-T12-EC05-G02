@@ -1,3 +1,4 @@
+# Importa bibliotecas e funções a serem utilizadas.
 import pydobot.enums
 import pydobot.enums.CommunicationProtocolIDs
 import pydobot.enums.ControlValues
@@ -9,8 +10,9 @@ from rich.panel import Panel
 from robot_functions import move_to_bin, return_home
 from cli.cli_functions import terminal_start, welcome_screen, return_to_menu, test_port
 
-console = Console()  # Instância do console
+console = Console()  # Instancia do console.
 
+# Define classe InteliDobot, que herda classe pai pydobot.Dobot
 class InteliDobot(pydobot.Dobot):
     def __init__(self, port=None, verbose=False):
         super().__init__(port=port, verbose=verbose)
@@ -24,48 +26,48 @@ class InteliDobot(pydobot.Dobot):
     def SetSpeed(self, speed, acceleration):
         super().speed(speed,acceleration)
 
-# Carrega o json com as coordenadas das bins
+# Carrega o json com as coordenadas das bins.
 file_name = 'positions.json'
 def get_pos(file_name):
     with open(file_name, 'r') as file:
         return json.load(file)
 
-# Carregar as posições do arquivo positions.json
+# Carregar as posições do arquivo positions.json.
 positions = get_pos('positions.json')
 
+while True:  # Loop principal, se mantém até o usuário decidir sair.
+    welcome_screen()  # Exibe a menu inicial.
+    result = terminal_start(pydobot)  # Captura a entrada do usuário e informações da conexão com o robô.
 
-while True:
-    welcome_screen()
-    result = terminal_start(pydobot)
-
-    if 'port' in result:
+    if 'port' in result:  # Se a porta estiver disponível nos resultados...
         port = result['port']
-        device = InteliDobot(port=port, verbose=False)
+        device = InteliDobot(port=port, verbose=False)  # Inicializa o robô Dobot com a porta detectada.
 
-    action = result['action']
+    action = result['action']  # Obtém a ação escolhida pelo usuário.
 
-    if action == "collect":
-        port = result['port']
+    if action == "collect":  # Se a ação for "coletar"
+        port = result['port'] 
         bins = result['bins']
-        device.suck(False)
-        return_home(device, positions)
+        device.suck(False)  # Desliga a sucção do robô.
+        return_home(device, positions)  # Retorna o robô para a home.
         
-        for bin in bins:
+        for bin in bins:  # Percorre os bins e executa a movimentação para coleta.
             move_to_bin(device, positions, bin, 0, bins[bin])
 
-        if not (loop := return_to_menu()):
+        if not (loop := return_to_menu()):  # Pergunta se o usuário quer continuar. Se não, sai do loop.
             break
     
-    elif action == "home":
+    elif action == "home":  # Se a ação for "retornar para home"
         port = result['port']
-        return_home(device, positions)
+        return_home(device, positions)  # Move o robô para a posição inicial.
         console.print("[green]Robô retornou para a posição inicial com sucesso![/green]")
-        if not (loop := return_to_menu()):
+
+        if not (loop := return_to_menu()):  
             break
 
-    elif action == "current_pos":
-        port = result['port']
-        (x, y, z, r, j1, j2, j3, j4) = device.pose()
+    elif action == "current_pos":  # Se a ação for "ver posição atual"
+        port = result['port'] 
+        (x, y, z, r, j1, j2, j3, j4) = device.pose()  # Retorna a posição do robô.
         console.print(
             Panel(
                 f"Posição atual do robô:\n"
@@ -78,9 +80,9 @@ while True:
         if not (loop := return_to_menu()):
             break
     
-    elif action == "check_bins":
+    elif action == "check_bins":  # Se a ação for "verificar bins"
         console.print("[bold]Coordenadas das Bins:[/bold]")
-        for remedio in positions["bins"]:
+        for remedio in positions["bins"]:  # Percorre cada bin e exibe suas coordenadas.
             console.print(
                 Panel(
                     f"Remédio: {remedio}\n"
@@ -88,7 +90,6 @@ while True:
                     f"Coordenada Y: {positions['bins'][remedio]['pos_y']}\n"
                     f"Coordenada Z: {positions['bins'][remedio]['pos_z']}",
                     title=f"Bin: {remedio}",
-                    
                     border_style="magenta"
                 )
             )
@@ -96,13 +97,13 @@ while True:
         if not (loop := return_to_menu()):
             break
     
-    elif action == "ports":
-        port = test_port(pydobot)
+    elif action == "ports":  # Se a ação for "testar porta"
+        port = test_port(pydobot)  # Testa a porta de comunicação.
         console.print(f"[green]Sua porta [bold]{port}[/bold] está pronta para uso![/green]")
 
         if not (loop := return_to_menu()):
             break
 
-    elif action == "exit":
+    elif action == "exit":  # Se a ação for "sair"
         console.print("[red]Saindo do programa...[/red]")
-        break
+        break  # Sai do loop principal, encerrando o programa.
