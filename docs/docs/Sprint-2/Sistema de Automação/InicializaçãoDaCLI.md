@@ -1,6 +1,11 @@
+---
+sidebar_position: 2
+slug: /sprint-2/sistema-automacao/inicializacao-cli
+---
+
 # Inicialização da CLI
 
-&emsp; A sigla em inglês *Command-Line Interface (CLI)*, significa Interfase De Linha De Comando. Nesse sentido, ela representa um programa funcionando através de linhas de comando, que aceita entrada de texto para executar funçãoes da aplicação, neste caso, os comandos para o funcionando do braço robótico.
+&emsp; A sigla em inglês *Command-Line Interface (CLI)*, significa Interface de Linha de Comando. Nesse sentido, ela representa um programa funcionando através de linhas de comando, que aceita entrada de texto para executar funçãoes da aplicação, neste caso, os comandos para o funcionando do braço robótico.
 
 ## 1° Passo: Instalar e a ativar venv 
 

@@ -9,7 +9,7 @@
 &emsp; Primeiro, abra um terminal e digite o seguinte comando para entrar na pasta necessária.
 
 ```bash
-    cd scr/robot
+    cd src/robot
 ```
 &emsp; Em seguida, digite o seguinte comando para instalar o venv
 
@@ -56,7 +56,7 @@
 &emsp; Primeiro, digite o seguinte comando para entrar na página do código
 
 ```bash
-    cd scr/robot
+    cd src/robot
 ```
 
 &emsp; Em seguida, digite o seguinte comando para executar a aplicação
