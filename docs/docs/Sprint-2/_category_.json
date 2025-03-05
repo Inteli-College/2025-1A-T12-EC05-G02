@@ -1,4 +1,8 @@
 {
     "label": "Sprint 2",
-    "position": 3
+    "position": 3,
+    "link": {
+      "type": "generated-index",
+      "description": "A segunda sprint focou no desenvolvimento do protótipo de alta fidelidade, arquitetura do banco de dados, arquitetura da api e nas user stories."
+    }
   }
