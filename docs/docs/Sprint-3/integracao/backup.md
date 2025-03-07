@@ -5,7 +5,7 @@ slug: /sprint-3/integracao/backup
 
 # Backup do Leitor
 
-&emsp; Essa seção visa auxiliar o usuário à restaurar o leitor de QRCode ao padrão de fábrica manualmente em caso de falha no sensor. Para tanto, basta fazer com que o leitor leia os seguintes QRCodes em sequência
+&emsp; Pode ser que o leitor de QRCode pare de funcionar inesperadamente. Essa seção visa auxiliar o usuário à restaurar esse ao padrão de fábrica manualmente, caso esse tipo de falha aconteça. Para tanto, basta fazer com que o leitor leia os seguintes QRCodes em sequência
 
 <div align="center" width="100%">
 
@@ -17,6 +17,8 @@ slug: /sprint-3/integracao/backup
 
 </div>
 
+<br />
+
 <div align="center" width="100%">
 
 <sup>Figura 2 - QRCode 2</sup>
@@ -26,6 +28,9 @@ slug: /sprint-3/integracao/backup
 <sub>Fonte: Autoria própria (2025)</sub>
 
 </div>
+
+<br />
+
 
 <div align="center" width="100%">
 
@@ -37,6 +42,9 @@ slug: /sprint-3/integracao/backup
 
 </div>
 
+<br />
+
+
 <div align="center" width="100%">
 
 <sup>Figura 4 - QRCode 4</sup>
@@ -46,6 +54,9 @@ slug: /sprint-3/integracao/backup
 <sub>Fonte: Autoria própria (2025)</sub>
 
 </div>
+
+<br />
+
 
 <div align="center" width="100%">
 
