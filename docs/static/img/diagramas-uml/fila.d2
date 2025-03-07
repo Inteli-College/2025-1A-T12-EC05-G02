@@ -1,0 +1,41 @@
+Arquitetura da API (Fila): {
+    shape: sequence_diagram
+    adm: Administrador (Usuário com permissões)
+    usuario: Usuário
+    front: Front-end
+    back: API do Sistema
+    db: Banco de Dados
+    robo: API do Dobot
+
+    Fila de medicamentos: {
+        Processamento de Pedidos Realizados pelo Dobot: {
+            robo<->back: Conexão Websocket para passar dados sobre a fila de medicamentos que estão no banco de dados
+            back->db: Realiza a consulta
+            db->back: Retorna a resposta
+            back<->front: Conexão Websocket para retornar a lista de pedidos em tempo real
+            front->usuario: Retorna se o Dobot conseguiu processar o pedido 
+        }
+
+        Listar pedidos na fila: {
+            usuario->front: Tenta acessar a fila de medicamentos
+            back->db: Consulta
+            back<->front: Conexão Websocket para retornar a lista de pedidos em tempo real
+            db->back: Resposta
+            front->usuario: Retorna a lista de pedidos
+        }
+        Excluir um pedido na fila {
+            usuario->front: Tenta excluir um pedido na fila de medicamentos
+            back->db: Consulta
+            back<->front: Conexão Websocket para retornar a lista de pedidos em tempo real
+            db->back: Resposta
+            front->usuario: Retorna sucesso ou falha
+        }
+        Modificar a ordem da fila: {
+            usuario->front: Tenta modificar a fila de medicamentos
+            back->db: Consulta
+            back<->front: Conexão Websocket para retornar a lista de pedidos em tempo real
+            db->back: Resposta
+            front->usuario: Retorna sucesso ou falha
+        }
+    }
+}  

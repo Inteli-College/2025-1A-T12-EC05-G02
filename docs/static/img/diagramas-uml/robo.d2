@@ -1,0 +1,38 @@
+Arquitetura da API (Robô): {
+    shape: sequence_diagram
+    adm: Administrador (Usuário com permissões)
+    usuario: Usuário
+    front: Front-end
+    back: API do Sistema
+    db: Banco de Dados
+    robo: API do Dobot
+
+    Operações com o Dobot: {
+        Configurar os bins: {
+            usuario->front: Tenta configurar os bins do Dobot
+            back<->robo: Conexão Websocket para enviar dados sobre os bins
+            back<->front: Conexão Websocket para atualizar a fila de medicamentos em tempo real
+            front->usuario: Retorna sucesso ou falha
+        }
+
+        Status do Dobot: {
+            usuario->front: Tenta obter o status do Dobot
+            back<->robo: Conexão Websocket para enviar dados sobre o status do Dobot
+            back<->front: Conexão Websocket para atualizar o front-end em tempo real
+            front->usuario: Retorna o status
+        }
+
+        Verificação de Validade: {
+            robo<->back: Conexão websocket para enviar dados sobre bipagem
+            back->db: Verificação da validade
+            db->back: Resposta
+            back<->front: Conexão Websocket para atualizar o front-end em tempo real
+            front->usuario: Notifica o usuário se o produto está dentro da validade
+        }
+
+        Logs do Dobot: {
+            robo<->back: Envia logs para a API
+            back->db: Registro dos logs
+        }
+    }
+}  

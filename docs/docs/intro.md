@@ -35,11 +35,55 @@ slug: /
 - [Matheus Jorge](https://www.linkedin.com/in/matheusjorgerosa/)
 - [Lucas Santos](https://www.linkedin.com/in/lucas-nepomuceno-ismart/)
 
-# Apresentaçãoes 
-## Sprint 1
-link: [Link da apresentação](https://www.canva.com/design/DAGe61Ti2jY/8LlHrnHwNO6Wccc_JHGuew/edit?utm_content=DAGe61Ti2jY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+## Log de Atividades das Sprints
 
-# Configuração do Ambiente para Execução
+&emsp;A seguir, são apresentados os links para as apresentações das sprints realizadas pela equipe do projeto PharmaBot. Cada sprint corresponde a um ciclo de desenvolvimento do projeto, com atividades específicas e entregáveis definidos.
+
+## Sprint 1
+
+&emsp;Durante a Sprint 1, a equipe realizou a matriz de risco, o canvas proposta de valor, as 5 forças de Porter, a pesquisa de imersão preliminar, as personas, a jornada do usuário, os requisitos funcionais, os requisitos não funcionais e o diagrama de blocos. Além disso, a documentação foi publicada no GitHub Pages.
+
+&emsp;A apresentação da Sprint 1 está disponível no link a seguir: [Link da apresentação](https://www.canva.com/design/DAGe61Ti2jY/8LlHrnHwNO6Wccc_JHGuew/edit?utm_content=DAGe61Ti2jY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+### Status Report
+&emsp; Essa tabela apresenta o status atual do projeto, com base nas atividades realizadas e planejadas para a Sprint 1.
+
+| Atividade | Status | Data de Início | Data de Término |
+|-----------|--------|----------------|-----------------|
+| Matriz de Risco | Concluída | 05/02/2025 | 07/02/2025 |
+| Canvas Proposta de Valor | Concluída | 05/02/2025 | 07/02/2025 |
+| 5 Forças de Porter | Concluída | 10/02/2025 | 13/02/2025 |
+| Pesquisa de Imersão Preliminar | Concluída | 05/02/2025 | 07/02/2025 |
+| Personas | Concluída | 05/02/2025 | 07/02/2025 |
+| Jornada do Usuário | Concluída | 06/02/2025 | 07/02/2025 |
+| Requisitos Funcionais | Concluída | 10/02/2025 | 12/02/2025 |
+| Requisitos Não Funcionais | Concluída | 10/02/2025 | 12/02/2025 |
+| Diagrama de Blocos | Concluída | 10/02/2025 | 12/02/2025 |
+| GitHub Pages com a Documentação | Concluída | 07/02/2025 | 11/02/2025 |
+
+## Sprint 2
+
+&emsp; Durante a Sprint 2, a equipe realizou a revisão do diagrama de blocos, elaborou o diagrama da API, o diagrama do banco de dados, as funções do robô e as user stories. Além disso, foram desenvolvidos a CLI do robô, o wireframe, o user flow e a apresentação do projeto. O protótipo de alta fidelidade está em andamento e será concluído até o final da Sprint 3.
+
+&emsp; A apresentação da Sprint 2 está disponível no link a seguir: [Link da apresentação](https://www.canva.com/design/DAGg4FzFG0Y/FrmuOVSsWIUIJ0UQQMvZaw/edit?utm_content=DAGg4FzFG0Y&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+### Status Report
+&emsp; Essa tabela apresenta o status atual do projeto, com base nas atividades realizadas e planejadas para a Sprint 2.
+
+| Atividade | Status | Data de Início | Data de Término |
+|-----------|--------|----------------|-----------------|
+| Revisão do Diagrama de Blocos | Concluída | 17/02/2025 | 19/02/2025 |
+| Diagrama da API | Concluída | 17/02/2025 | 21/02/2025 |
+| Diagrama do Banco de Dados | Concluída | 17/02/2025 | 21/02/2025 |
+| Funções do Robô | Concluída | 17/02/2025 | 21/02/2025 |
+| User Stories | Concluída | 17/02/2025 | 21/02/2025 |
+| CLI do Robô | Concluída | 21/02/2025 | 26/02/2025 |
+| WireFrame | Concluída | 21/02/2025 | 25/02/2025 |
+| User Flow | Concluída | 21/02/2025 | 25/02/2025 |
+| Apresentação | Concluída | 21/02/2025 | 26/02/2025 |
+| Protótipo de alta fidelidade | Em andamento | 21/02/2025 | --- |
+
+## Configuração do Ambiente para Execução
 Este guia fornece as instruções para configurar o ambiente e executar o projeto corretamente.
 
 1️.Clonar o Repositório
@@ -51,9 +95,8 @@ Para obter o código-fonte do projeto, clone o repositório do GitHub:
 2️. Criar e Acessar a Branch de Desenvolvimento
 * git checkout -b main
 
-3️. Instalar o Docusaurus (se ainda não estiver instalado)
-* npx create-docusaurus@latest my-docs classic
-* cd my-docs
+3️. Instalar o Docusaurus
+* cd docs
 * npm install
 
 4️. Rodar o Docusaurus Localmente
