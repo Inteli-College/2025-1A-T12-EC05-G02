@@ -6,6 +6,7 @@ class Usuario(db.Model):
     nome = db.Column(db.Text, nullable=False)
     email = db.Column(db.Text, nullable=False)
     senha = db.Column(db.Text, nullable=False)
+    role = db.Column(db.Text, nullable=False)
     data_criacao = db.Column(db.DateTime, server_default=db.func.current_timestamp())
     
     # Relacionamento com os logs do sistema
