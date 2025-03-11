@@ -1,4 +1,4 @@
-from models.database import db
+from extensions import db
 
 class Estoque(db.Model):
     __tablename__ = 'estoque'

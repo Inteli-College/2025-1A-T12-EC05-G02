@@ -1,4 +1,4 @@
-from models.database import db
+from extensions import db
 
 class Pedido(db.Model):
     __tablename__ = 'pedidos'
