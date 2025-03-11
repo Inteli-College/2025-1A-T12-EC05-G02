@@ -7,6 +7,7 @@ console = Console()
 # Cria função de movimentação às bins especificadas
 def move_to_bin(device, positions, drug, r, iter):
     if drug not in positions['bins']:
+        logger(f"[bold red]{drug} não encontrada![/bold red]")
         raise ValueError(f"{drug} não encontrada!")
 
     counter = 0
@@ -14,12 +15,7 @@ def move_to_bin(device, positions, drug, r, iter):
     # Loop de iteração sobre a quantidade de coletas na mesma bin
     while counter < int(iter):
         
-        console.print(
-            Panel
-            (
-                f"[bold cyan]Buscando {drug}...[/bold cyan]"
-            )
-        )
+        logger(f"[bold cyan]Buscando {drug}...[/bold cyan]")
 
         # Move o sugador para as posições da bin especificada
         device.movej_to(
@@ -30,11 +26,7 @@ def move_to_bin(device, positions, drug, r, iter):
             wait=True
         )
 
-        console.print(
-            (
-                f"[bold yellow] ▪️ Movimento para {drug}[/bold yellow]\n"
-            )
-        )
+        logger(f"[bold yellow] ▪️ Movimento para {drug}[/bold yellow]\n")
         device.movel_to(
             positions['bins'][drug]['pos_x'],
             positions['bins'][drug]['pos_y'],
@@ -44,11 +36,7 @@ def move_to_bin(device, positions, drug, r, iter):
         )
 
         # Ativa a sucção do bico sugador
-        console.print(
-            (
-                "[bold yellow] ▪️ Ativando bico sugador[/bold yellow]\n"
-            )   
-        )
+        logger(f"[bold yellow] ▪️ Ativando bico sugador[/bold yellow]\n")
         device.suck(True)
 
         device.movel_to(
@@ -60,19 +48,11 @@ def move_to_bin(device, positions, drug, r, iter):
         )
 
         # Retorna o sugador para a posição de referência home
-        console.print(
-            (
-                "[bold yellow] ▪️ Retornando para ponto de referência[/bold yellow]\n"
-            )
-        )
+        logger(f"[bold yellow] ▪️ Retornando para ponto de referência[/bold yellow]\n")
         
         return_home(device, positions) # Retorna o robô para a home
         
-        console.print(
-            (
-                "[bold yellow] ▪️ Movimento para o dispenser[/bold yellow]\n"
-            )
-        )
+        logger(f"[bold yellow] ▪️ Movimento para o dispenser[/bold yellow]\n")
         
         # Move o braço robótico para as posições do dispenser
         device.movej_to(
@@ -84,12 +64,7 @@ def move_to_bin(device, positions, drug, r, iter):
         )
         
         # Desativa a sucção do bico sugador
-        console.print(
-            Panel
-            (
-                f"[bold green]✔ {drug} coletado![/bold green]\n"
-            )
-        )
+        logger(f"[bold green]✔ {drug} coletado![/bold green]")
         device.suck(False)
 
         return_home(device, positions)
@@ -112,3 +87,11 @@ def return_home(device, positions: dict):
 def get_current_position(device):
     pos = device.pose()
     return {"x": pos[0], "y": pos[1], "z": pos[2]}
+
+def logger(data):
+    console.print(
+            Panel
+            (
+                data
+            )
+        )
