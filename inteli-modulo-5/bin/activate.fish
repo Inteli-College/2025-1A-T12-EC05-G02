@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/inteli/projetos/inteli/2025-1A-T12-EC05-G02/src/backend/inteli-modulo-5
+set -gx VIRTUAL_ENV /home/inteli/projetos/inteli/2025-1A-T12-EC05-G02/inteli-modulo-5
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

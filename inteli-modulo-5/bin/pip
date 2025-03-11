@@ -1,4 +1,4 @@
-#!/home/inteli/projetos/inteli/2025-1A-T12-EC05-G02/src/backend/inteli-modulo-5/bin/python3.12
+#!/home/inteli/projetos/inteli/2025-1A-T12-EC05-G02/inteli-modulo-5/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys

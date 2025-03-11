@@ -1,9 +1,0 @@
-{
-  "version": "1",
-  "name": "Inteli módulo 5",
-  "type": "collection",
-  "ignore": [
-    "node_modules",
-    ".git"
-  ]
-}

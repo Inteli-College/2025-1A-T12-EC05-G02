@@ -9,7 +9,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV /home/inteli/projetos/inteli/2025-1A-T12-EC05-G02/src/backend/inteli-modulo-5
+setenv VIRTUAL_ENV /home/inteli/projetos/inteli/2025-1A-T12-EC05-G02/inteli-modulo-5
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/"bin":$PATH"
