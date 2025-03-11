@@ -24,6 +24,11 @@
   margin-bottom: 3rem;
 }
 
+.RaioContainer{
+  display: flex;
+  margin-bottom: 3rem;
+}
+
 .title {
   font-size: 2.5rem;
   font-weight: 650;
@@ -145,15 +150,16 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  border: 1px solid #ffffff;
+
 }
 
 .message {
   color: white;
-  font-size: 2.25rem;
-  font-weight: 500;
+  font-size: 2.5rem;
+  font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1rem;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .robotImageContainer {

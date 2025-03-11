@@ -70,11 +70,12 @@ export default function Login() {
         
         <div className={styles.imageSection}>
           <div className={styles.messageBox}>
+            
             <h2 className={styles.message}>
               Nunca foi<br />
               tão fácil<br />
               separar<br />
-              remédios !
+              remédios!
             </h2>
             
             <div className={styles.robotImageContainer}>
@@ -86,6 +87,15 @@ export default function Login() {
                 priority
               />
             </div>
+            <div className={styles.RaioContainer}>
+                <Image
+                src="/raio.png" 
+                alt="Robô farmacêutico"
+                width={75}
+                height={75}
+                priority
+              />
+               </div>
           </div>
         </div>
       </div>
