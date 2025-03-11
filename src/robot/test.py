@@ -1,8 +1,9 @@
-import serial
+import serial, time
 
 def main():
     # Configurar a porta serial
     port = "/dev/ttyAMA0"  # Altere para a porta correta (ex: /dev/ttyS0, /dev/ttyUSB1)
+    # port = "/dev/ttyUSB0"  # Altere para a porta correta (ex: /dev/ttyS0, /dev/ttyUSB1)
     baudrate = 9600  # Ajuste conforme necessário
     
     try:
@@ -11,6 +12,7 @@ def main():
             print("Aguardando dados...")
             
             while True:
+                # time.sleep(0.1)
                 if ser.in_waiting > 0:
                     line = ser.readline().decode('utf-8', errors='ignore').strip()
                     print(f"Recebido: {line}")
