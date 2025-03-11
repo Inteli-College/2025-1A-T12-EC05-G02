@@ -10,7 +10,6 @@ from rich.panel import Panel
 from robot_functions import move_to_bin, return_home
 from cli.cli_functions import terminal_start, welcome_screen, return_to_menu, test_port
 from extensions import sio
-from socketio import emit
 
 console = Console()  # Instancia do console.
 
@@ -41,12 +40,12 @@ positions = get_pos('positions.json')
 @sio.event
 def connect():
     print('Conectado ao servidor!')
-    emit('connectResponse', {'data': 'Robo conectado ao servidor'})
+    sio.emit('connectResponse', {'data': 'Robo conectado ao servidor'})
 
 @sio.event
 def disconnect():
     print('Desconectado do servidor.')
-    emit('disconnectResponse', {'data': 'Robo desconectado do servidor'})
+    sio.emit('disconnectResponse', {'data': 'Robo desconectado do servidor'})
 
 while True:  # Loop principal, se mantém até o usuário decidir sair.
     welcome_screen()  # Exibe a menu inicial.
