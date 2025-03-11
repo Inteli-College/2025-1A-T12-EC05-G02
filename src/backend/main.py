@@ -1,3 +1,4 @@
+
 import os
 import logging
 from flask import Flask
@@ -21,8 +22,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['JWT_SECRET_KEY'] = JWT_SECRET_KEY
 app.config['JWT_TOKEN_LOCATION'] = JWT_TOKEN_LOCATION
+app.config['DEBUG'] = True
+app.config['LOGGING'] = 'DEBUG'
 
 CORS(app)  # Permite todas as origens (para desenvolvimento)
+
 import extensions as ext
 
 ext.db.init_app(app)
