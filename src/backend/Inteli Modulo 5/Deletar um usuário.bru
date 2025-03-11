@@ -1,0 +1,17 @@
+meta {
+  name: Deletar um usuário
+  type: http
+  seq: 4
+}
+
+delete {
+  url: http://127.0.0.1:5000/user/delete
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email":"lika0123@gmail.com"
+  }
+}

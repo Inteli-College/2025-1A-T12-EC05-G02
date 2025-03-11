@@ -7,3 +7,4 @@ from .paciente import Paciente
 from .pedido import Pedido
 from .pedido_medicamento import PedidoMedicamento
 from .usuario import Usuario
+from .database import db

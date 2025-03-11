@@ -1,9 +1,10 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 import os
+from dotenv import load_dotenv
+from models.database import db
+# from flask_sqlalchemy import SQLAlchemy
 from user.user import usersFlask
 from robot.robot import robotFlask
-from dotenv import load_dotenv
 
 # python3 -m flask --app main run
 
@@ -13,7 +14,7 @@ SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
 db.init_app(app)
 
 import models

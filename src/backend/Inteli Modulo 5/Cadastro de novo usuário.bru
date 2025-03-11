@@ -1,0 +1,20 @@
+meta {
+  name: Cadastro de novo usuário
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:5000/user/signup
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "nome":"123",
+    "email":"lika0123@gmail.com",
+    "senha":"senha123",
+    "role":"admin"
+  }
+}
