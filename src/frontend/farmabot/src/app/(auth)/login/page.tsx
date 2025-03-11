@@ -33,27 +33,27 @@ export default function Login() {
           
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.inputGroup}>
-              <label htmlFor="username">Usuário</label>
               <input
                 id="username"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="user123"
+                placeholder=" "
                 required
               />
+              <label htmlFor="username">Usuário</label>
             </div>
             
             <div className={styles.inputGroup}>
-              <label htmlFor="password">Senha</label>
               <input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="********"
+                placeholder=" "
                 required
               />
+              <label htmlFor="password">Senha</label>
             </div>
             
             <div className={styles.forgotPassword}>
@@ -65,7 +65,6 @@ export default function Login() {
               ENTRAR
             </button>
             </div>
-
           </form>
         </div>
         

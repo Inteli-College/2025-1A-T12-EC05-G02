@@ -39,23 +39,52 @@
 }
 
 .inputGroup {
+  position: relative;
   margin-bottom: 1.5rem;
-}
-
-.inputGroup label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 0.875rem;
-  color: #666;
 }
 
 .inputGroup input {
   width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
+  border-bottom: 1.5px solid #000000;
+  border-radius: 0;
+  outline: none;
+  background-color: transparent;
   border: 1.5px solid #000000;
   border-radius: 4px;
-  outline: none;
+
+}
+
+.inputGroup label {
+  position: absolute;
+  left: 2%;
+  top: 0.75rem;
+  font-size: 1rem;
+  color: #666;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background-color: white;
+  padding: 0 5px;
+}
+
+.inputGroup input:focus,
+.inputGroup input:not(:placeholder-shown) {
+  border-color: #1696DE;
+}
+
+.inputGroup input:focus + label,
+.inputGroup input:not(:placeholder-shown) + label {
+  top: -0.3rem;
+  left: 1%;
+  font-size: 0.75rem;
+  color: #1696DE;
+  font-weight: 500;
+}
+
+/* Para esconder o placeholder visualmente */
+.inputGroup input::placeholder {
+  color: transparent;
 }
 
 .forgotPassword {
