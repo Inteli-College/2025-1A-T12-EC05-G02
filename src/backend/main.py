@@ -1,6 +1,7 @@
 from flask import Flask
 import os
 from user.user import usersFlask
+from medicine.medicine import medicineFlask
 import robot.robot as robot
 from dotenv import load_dotenv
 from flask_socketio import SocketIO
@@ -24,6 +25,7 @@ import models
 
 app.register_blueprint(usersFlask)
 app.register_blueprint(robot.robotFlask)
+app.register_blueprint(medicineFlask)
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)

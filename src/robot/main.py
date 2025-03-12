@@ -47,6 +47,37 @@ def disconnect():
     print('Desconectado do servidor.')
     sio.emit('disconnectResponse', {'data': 'Robo desconectado do servidor'})
 
+# listing to the medicine event
+@sio.event
+def medicine(data):
+    print("medicine: ", str(data))
+    #porta = test_port(pydobot)
+    result = {
+        'action': 'collect', 'port': '/dev/cu.usbmodem1101', 'bins': data['bins'], 'idFita': data['idFita']
+    }
+    separateMedicine(result)
+
+def separateMedicine(result):
+    
+    if 'port' in result:  # Se a porta estiver disponível nos resultados...
+        port = result['port']
+        device = InteliDobot(port=port, verbose=False)  # Inicializa o robô Dobot com a porta detectada.
+    
+    port = result['port'] 
+    bins = result['bins']
+    print(result)
+    device.suck(False)  # Desliga a sucção do robô.
+    return_home(device, positions)  # Retorna o robô para a home.
+    
+    sio.emit('log', {'acao': 'Robot Log - Separar', 'detalhes': 'Iniciando separação de fita de medicamentos, ID: ' + str(result['idFita']), 'usuario_id': 1})
+    sio.emit('medicineResponse', {'status': 'Separando', "idFita": str(result['idFita'])})
+    
+    for bin in bins:  # Percorre os bins e executa a movimentação para coleta.
+        move_to_bin(device, positions, bin, 0, bins[bin])
+        
+    sio.emit('medicineResponse', {'status': 'Completo', "idFita": str(result['idFita'])})
+
+
 while True:  # Loop principal, se mantém até o usuário decidir sair.
     welcome_screen()  # Exibe a menu inicial.
     result = terminal_start(pydobot)  # Captura a entrada do usuário e informações da conexão com o robô.
@@ -58,14 +89,7 @@ while True:  # Loop principal, se mantém até o usuário decidir sair.
     action = result['action']  # Obtém a ação escolhida pelo usuário.
 
     if action == "collect":  # Se a ação for "coletar"
-        port = result['port'] 
-        bins = result['bins']
-        device.suck(False)  # Desliga a sucção do robô.
-        return_home(device, positions)  # Retorna o robô para a home.
-        
-        for bin in bins:  # Percorre os bins e executa a movimentação para coleta.
-            move_to_bin(device, positions, bin, 0, bins[bin])
-
+        separateMedicine(result)  # Separa os medicamentos.
         if not (loop := return_to_menu()):  # Pergunta se o usuário quer continuar. Se não, sai do loop.
             break
     
@@ -119,3 +143,4 @@ while True:  # Loop principal, se mantém até o usuário decidir sair.
     elif action == "exit":  # Se a ação for "sair"
         console.print("[red]Saindo do programa...[/red]")
         break  # Sai do loop principal, encerrando o programa.
+

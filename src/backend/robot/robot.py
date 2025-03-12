@@ -2,6 +2,7 @@ from flask import Blueprint, request, current_app
 from flask_socketio import emit, send
 from extensions import socketio, db
 from models.log_sistema import LogSistema
+from models.pedido import Pedido
 # from main import socketio
 
 robotFlask = Blueprint('robot', __name__, url_prefix='/robot')
@@ -24,7 +25,24 @@ def handle_connect_response(data):
     
 @socketio.on('disconnectResponse')
 def handle_disconnect_response(data):
-    print("disconnectResponse: ", str(data))
+    print("disconnectResponse: ", str(data)) 
+
+@socketio.on('medicine')
+def handle_medicine(data):
+    print("medicine: ", str(data))
+    
+@socketio.on('medicineResponse')
+def handle_medicine_response(data):
+    print("medicineResponse: ", str(data))
+    # atualiza o status do pedido para 'Concluído'
+    try:
+        pedido = db.session.query(Pedido).filter_by(id=int(data['idFita'])).first()
+        pedido.status = data['status']
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error updating pedido status: {e}")
+
 
 @socketio.on('log')
 def handle_message(data):
@@ -40,5 +58,6 @@ def handle_message(data):
         db.session.rollback()
         print(f"Error adding log to database: {e}")
     print("log added to database")
+
     
     
