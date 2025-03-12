@@ -162,36 +162,76 @@ def admin_logs():
 
     return {"Logs": logs_list}, 200
 
-@usersFlask.route('/user-info', methods=['GET'])
+serverErrorMessage = jsonify({
+    'success': False,
+    'message': 'Erro ao fazer login',
+    'error': 'Internal Server Error'
+})
+
+@usersFlask.route('/info', methods=['GET'])
 @jwt_required()
-@role_required('Administrador')
+@role_required('admin')
 def find_user():
-    user_id = get_jwt_identity()
-    user = Usuario.query.filter_by(id=user_id).first()
-    
-    if user:
-        return jsonify({'message': 'Usuário encontrado', 'user': user}), 200
-    else:
-        return jsonify({'message': 'Usuário não encontrado'}), 404
+    try:
+        user_id = get_jwt_identity()
+        user = Usuario.query.filter_by(id=user_id).first()
+        
+        if user:
+            response = jsonify({'success': True, 'message': 'Usuário encontrado', 'user': user.nome, 'email': user.email})
+            return response, 200
+        else:
+            response = jsonify({'success': False, 'message': 'Usuário não encontrado', 'error': 'Not Found'})
+            return response, 404
+    except:
+        return serverErrorMessage, 500 # Erro interno do servidor
 
 @usersFlask.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()
-    email = data.get('email')
-    senha = data.get('senha')
+    try:
+        data = request.get_json()
+        email = data.get('email')
+        senha = data.get('senha')
 
-    user = Usuario.query.filter_by(email=email).first()
+        user = Usuario.query.filter_by(email=email).first()
+        
+        if user:
+            response = jsonify({
+                'success': False,
+                'message': 'Erro ao fazer login',
+                'error': 'Unauthorized'
+            })
+            return response, 401
 
-    if user and bcrypt.check_password_hash(user.senha, senha):
+        if not bcrypt.checkpw(senha.encode('utf-8'), user.senha.encode('utf-8')):
+            response = jsonify({
+                'success': False,
+                'message': 'Erro ao fazer login: Acesso não autorizado',
+                'error': 'Unauthorized'
+            })
+            return response, 401
+        
         additional_claims = {"roles": user.role}
         access_token = create_access_token(identity=user.id, additional_claims=additional_claims)
-        return jsonify({'message': 'Login feito com sucesso', 'access_token': access_token}), 200
-    else:
-        return jsonify({'message': 'Login falhou'}), 401
+        
+        message = jsonify({
+            'success': True,
+            'message': 'Login feito com sucesso',
+            'user_id': user.id,
+            'access_token': access_token
+        })
+        return message, 200
+    except:
+        return serverErrorMessage, 500 # Erro interno do servidor
 
 @usersFlask.route('/logout', methods=['POST'])
 @jwt_required()
 def logout():
-    response = jsonify({'message': 'Logout feito com sucesso'})
-    unset_jwt_cookies(response)
-    return response, 200
+    try:
+        response = jsonify({
+            'success': True,
+            'message': 'Logout feito com sucesso'
+        })
+        unset_jwt_cookies(response)
+        return response, 200
+    except:
+        return serverErrorMessage, 500 # Erro interno do servidor
