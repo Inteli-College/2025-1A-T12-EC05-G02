@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import styles from './login.module.css';
+import styles from '../login.module.css';
 import { Modal, Box, Typography, Button } from "@mui/material";
 
 export default function Login() {
