@@ -12,7 +12,7 @@
 
 <p style={{textAlign: 'center'}}>Fonte: Elaboração própria (2025)</p>
 
-&emsp; O diagrama presente na Figura 1 delinea as ligações eletrônicas do sistema *PharmaBot* e contém a identificação de cada um dos seus componentes principais: *Raspberry Pi 5*, *MH-ET LIVE Scanner* e o sensor *TCRT5000*.
+&emsp; O diagrama presente na Figura 1 delineia as ligações eletrônicas do sistema *PharmaBot* e contém a identificação de cada um dos seus componentes principais: *Raspberry Pi 5*, *MH-ET LIVE Scanner* e o sensor *TCRT5000*.
 
 <p style={{textAlign: 'center'}}>Figura 2 - Marcadores de VCC e Ground</p>
 
@@ -24,7 +24,7 @@
 
 <p style={{textAlign: 'center'}}>Fonte: Circuit Diagram Web Editor (2025)</p>
 
-&emsp; **Observações:** compreende-se o uso do marcador *+5V* e *GND* para substituir a extensão de ligações de alimentação no diagrama eletrônico. Desta forma, utiliza-se as padronizações presentes na Figura 2 como maneira de facilitar a visualização das ligações eletrônicas do circuito, sendo o marcador superior, indicação de conexão com o terminal *+5V* do microcomputador *Raspberry Pi 5*, e o marcador inferior, indica conexão com o terminal *GND* do mesmo microcomputado
+&emsp; **Observações:** compreende-se o uso do marcador *+5V* e *GND* para substituir a extensão de ligações de alimentação no diagrama eletrônico. Desta forma, utiliza-se as padronizações presentes na Figura 2 como maneira de facilitar a visualização das ligações eletrônicas do circuito, sendo o marcador superior, indicação de conexão com o terminal *+5V* do microcomputador *Raspberry Pi 5*, e o marcador inferior, indica conexão com o terminal *GND* do mesmo microcomputador
 
 ## Componentes utilizados
 
@@ -45,6 +45,8 @@
 </div>
 
 <p style={{textAlign: 'center'}}>Fonte: Hackatronic (2023)</p>
+
+&emsp; OBSERVAÇÃO: No diagrama da Figura 3, utiliza-se o terminal *GPIO1*, do *Raspberry Pi 5* para a conexão com o terminal *Data*, do sensor infravermelho *TRCT5000*, no entanto, essa conexão pode ser estabelecida entre o terminal *Data* e qualquer *GPIO* do microcomputador - contanto que o algoritmo de execução também seja adequado para o terminal correto.
 
 ---
 
