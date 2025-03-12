@@ -1,12 +1,29 @@
+from rich.console import Console
+from rich.panel import Panel
 import serial
 import json
+
+console = Console()
 
 def ler_qrcode(port, baudrate):
     """Lê dados do QR Code via porta serial e retorna a string decodificada."""
     try:
         with serial.Serial(port, baudrate, timeout=1) as ser:
-            print(f"Conectado à porta {port} a {baudrate} baud.")
-            print("Aguardando dados do QR Code...")
+            
+            console.print(
+                (
+                    f"[bold yellow] ▪️ Conectado à porta {port} a {baudrate} baud [/bold yellow]\n"
+                ) 
+            )
+             
+            console.print(
+                (
+                    "[bold yellow] ▪️ Aguardando dados do QR Code... [/bold yellow]\n"
+                ) 
+            )
+               
+            # print(f"Conectado à porta {port} a {baudrate} baud.")
+            # print("Aguardando dados do QR Code...")
             
             while True:
                 if ser.in_waiting > 0:
@@ -24,10 +41,25 @@ def processar_qrcode(dados):
         return
     
     try:
-        info = json.loads(dados)  # Tenta carregar como JSON
-        print("\nInformações do Medicamento:")
+        info = json.loads(dados) 
+        
+        console.print(
+            (
+                "[bold yellow] \nInformações do Medicamento: [/bold yellow]\n"
+            ) 
+        )
+        
+        # print("\nInformações do Medicamento:")
+        
         for chave, valor in info.items():
-            print(f"{chave.capitalize()}: {valor}")
+            console.print(
+                Panel
+                (
+                    f"[cyan] {chave.capitalize()}: {valor} [/cyan]"
+                )
+            )
+        return
+    
     except json.JSONDecodeError:
         print(f"Dado recebido (não JSON): {dados}")
-
+        return
