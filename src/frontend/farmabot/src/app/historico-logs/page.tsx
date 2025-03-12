@@ -51,13 +51,16 @@ interface Data {
 export default function Historico() {
     const [rows, setRows] = useState<Data[]>([]);
     const [key, setKey] = useState(0);
-    const [acao, setAcao] = useState<string[]>([]);  // Tipando como string[]
-    const [selectedAcao, setSelectedAcao] = useState<string>('');  // Ação selecionada
+    const [acao, setAcao] = useState<string[]>([]);
+    const [selectedAcao, setSelectedAcao] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false); // Novo estado para controle de carregamento
+    const [searchText, setSearchText] = useState<string>(''); // Estado para o texto de pesquisa
+    const [filteredRows, setFilteredRows] = useState<Data[]>([]); // Estado para os dados filtrados
 
 
-    const reRender = () => {  
-        setKey(prevKey => prevKey + 1);  
+    //função para atualizar a página com base no botão atualizar
+    const reRender = () => {
+        setKey(prevKey => prevKey + 1);
         setSelectedAcao('')
     };
 
@@ -107,6 +110,27 @@ export default function Historico() {
             .finally(() => setLoading(false)); // Finaliza o carregamento
     }, [selectedAcao, key]);  // O efeito será executado sempre que `selectedAcao` mudar
 
+    // Filtra os dados com base no texto de pesquisa
+    useEffect(() => {
+        if (searchText === '') {
+            setFilteredRows(rows); // Se não houver pesquisa, exibe todos os dados
+        } else {
+            const filtered = rows.filter((row) => {
+                return (
+                    row.id.includes(searchText) ||
+                    row.acao.toLowerCase().includes(searchText.toLowerCase()) ||
+                    row.detalhes.toLowerCase().includes(searchText.toLowerCase()) ||
+                    row.responsavel.toLowerCase().includes(searchText.toLowerCase())
+                );
+            });
+            setFilteredRows(filtered);
+        }
+    }, [searchText, rows]); // Atualiza sempre que `searchText` ou `rows` mudar
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchText(event.target.value);
+    };
+
     // Função para atualizar a ação selecionada
     const handleAcaoChange = (newAcao: string) => {
         setSelectedAcao(newAcao);
@@ -116,20 +140,26 @@ export default function Historico() {
         <ThemeProvider theme={theme}>
             <header>Placeholder para o header</header>
             <Container maxWidth="lg" className='shadow-sm p-2'>
-                <TituloTabela 
-                    titulo="Histórico de Ações do Sistema" 
-                    subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos" 
+                <TituloTabela
+                    titulo="Histórico de Ações do Sistema"
+                    subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos"
                 />
                 <div className='flex justify-between items-center'>
                     <Stack id="pesquisar" spacing={1} direction="row" className='items-center'>
-                        <TextField label="Pesquisar" size='small' type="search" />
+                        <TextField
+                            label="Pesquisar"
+                            size='small'
+                            type="search"
+                            value={searchText}
+                            onChange={handleSearchChange}
+                        />
                         <span></span>
-                        <SelectButton 
-                            atributo='acao' 
-                            label='Ação' 
+                        <SelectButton
+                            atributo='acao'
+                            label='Ação'
                             items={acao}
                             onSelect={handleAcaoChange}
-                            render = {key}
+                            render={key}
                         />
                         <FilterAltIcon className='opacity-70' />
                     </Stack>
@@ -145,7 +175,7 @@ export default function Historico() {
                         <CircularProgress />
                     </div>
                 ) : (
-                    <Tabela render={key} rows={rows} />
+                    <Tabela rows={filteredRows} render={key} /> /* Passa os dados filtrados para a tabela */
                 )}
             </Container>
         </ThemeProvider>
