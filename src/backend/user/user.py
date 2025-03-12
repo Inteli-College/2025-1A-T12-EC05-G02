@@ -1,11 +1,16 @@
+
 # Importando as bibliotecas necessárias
 import bcrypt
-from flask import Blueprint, request
 from sqlalchemy.exc import IntegrityError
 from models.usuario import Usuario
 from models.log_sistema import LogSistema
 from datetime import datetime
 from extensions import db
+from flask import Blueprint, request, jsonify
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, unset_jwt_cookies
+from decorators.route_auth import role_required
+from sqlalchemy import desc
+
 
 # Definindo o Blueprint
 usersFlask = Blueprint('user', __name__, url_prefix='/user')
@@ -133,10 +138,6 @@ def admin_delete():
 
     return {"Mensagem": "Usuário deletado com sucesso!"}, 200
 
-from flask import request
-
-from sqlalchemy import desc
-
 @usersFlask.route('/logs', methods=["GET"]) 
 def admin_logs():
     session = db.session
@@ -161,3 +162,36 @@ def admin_logs():
 
     return {"Logs": logs_list}, 200
 
+@usersFlask.route('/user-info', methods=['GET'])
+@jwt_required()
+@role_required('Administrador')
+def find_user():
+    user_id = get_jwt_identity()
+    user = Usuario.query.filter_by(id=user_id).first()
+    
+    if user:
+        return jsonify({'message': 'Usuário encontrado', 'user': user}), 200
+    else:
+        return jsonify({'message': 'Usuário não encontrado'}), 404
+
+@usersFlask.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    email = data.get('email')
+    senha = data.get('senha')
+
+    user = Usuario.query.filter_by(email=email).first()
+
+    if user and bcrypt.check_password_hash(user.senha, senha):
+        additional_claims = {"roles": user.role}
+        access_token = create_access_token(identity=user.id, additional_claims=additional_claims)
+        return jsonify({'message': 'Login feito com sucesso', 'access_token': access_token}), 200
+    else:
+        return jsonify({'message': 'Login falhou'}), 401
+
+@usersFlask.route('/logout', methods=['POST'])
+@jwt_required()
+def logout():
+    response = jsonify({'message': 'Logout feito com sucesso'})
+    unset_jwt_cookies(response)
+    return response, 200
