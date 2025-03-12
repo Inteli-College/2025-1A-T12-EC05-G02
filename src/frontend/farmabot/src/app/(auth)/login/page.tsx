@@ -4,10 +4,14 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './login.module.css';
+import { Modal, Box, Typography, Button } from "@mui/material";
 
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,7 +61,22 @@ export default function Login() {
             </div>
             
             <div className={styles.forgotPassword}>
-              <a href="/forgot-password">Esqueci minha senha</a>
+            <Button 
+                  style={{
+                    textTransform: 'none', // Remove o caps lock (caixa alta)
+                  }}onClick={handleOpen}>Esqueci minha senha</Button>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+              >
+                <Box className={styles.modalBox}>
+                  <Typography id="modal-modal-title" variant="h6" >
+                    Comunique a adiministração
+                  </Typography>
+                  <Button className={styles.fecharModal}variant="contained"onClick={handleClose}>Fechar</Button>
+                </Box>
+              </Modal>
             </div>
 
             <div className={styles.buttonContainer}>
