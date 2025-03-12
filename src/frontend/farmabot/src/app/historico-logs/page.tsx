@@ -48,6 +48,7 @@ interface Data {
     responsavel: string;
 }
 
+
 export default function Historico() {
     const [rows, setRows] = useState<Data[]>([]);
     const [key, setKey] = useState(0);
@@ -136,6 +137,47 @@ export default function Historico() {
         setSelectedAcao(newAcao);
     };
 
+    const exportToCSV = () => {
+        if (filteredRows.length === 0) {
+            alert("Não há dados para exportar.");
+            return;
+        }
+    
+        const header = ["ID", "Data e Hora", "Ação", "Detalhes", "Responsável"];
+        
+        // Formatar os dados para CSV
+        const csvRows = filteredRows.map(row => [
+            row.id,
+            row.dataHora.toLocaleString('pt-BR'),
+            `"${row.acao}"`, // Aspas garantem que valores com vírgula não quebrem o CSV
+            `"${row.detalhes}"`,
+            `"${row.responsavel}"`
+        ]);
+    
+        // Juntar cabeçalho e linhas
+        const csvContent = [header, ...csvRows].map(e => e.join(",")).join("\n");
+    
+        // Criar um Blob e disponibilizar para download
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const formatDate = (date: Date) => {
+        
+            return date.getFullYear().toString() +
+                   String(date.getMonth() + 1).padStart(2, '0') +
+                   String(date.getDate()).padStart(2, '0') +
+                   String(date.getHours()).padStart(2, '0') +
+                   String(date.getMinutes()).padStart(2, '0');
+        };
+        
+        let data = new Date()
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `historico_acoes-${formatDate(data)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <header>Placeholder para o header</header>
@@ -165,7 +207,7 @@ export default function Historico() {
                     </Stack>
                     <Stack id="botoes" spacing={1} direction="row">
                         <Button variant="outlined" color="black" onClick={reRender}>Atualizar</Button>
-                        <Button variant="contained">Exportar CSV</Button>
+                        <Button variant="contained" onClick={exportToCSV}>Exportar CSV</Button>
                     </Stack>
                 </div>
 

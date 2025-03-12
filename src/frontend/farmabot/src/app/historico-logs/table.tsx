@@ -39,7 +39,7 @@ interface Props {
 
 const Tabela: React.FC<Props> = ({ rows, render }) => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [data, setData] = useState<string>(''); // Inicie com uma string vazia
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -89,7 +89,7 @@ const Tabela: React.FC<Props> = ({ rows, render }) => {
       </TableContainer>
       {/* Componente de Paginação */}
       <TablePagination
-        rowsPerPageOptions={[20, 5, 10]}
+        rowsPerPageOptions={[10, 50, 100]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
