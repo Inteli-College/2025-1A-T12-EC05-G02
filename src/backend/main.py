@@ -1,23 +1,26 @@
-from flask import Flask
 import os
+import logging
+from flask import Flask
+from flask_cors import CORS
+from flask_jwt_extended import JWTManager
+from flask_socketio import SocketIO
 from dotenv import load_dotenv
-# from flask_sqlalchemy import SQLAlchemy
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from user.user import usersFlask
 from medicine.medicine import medicineFlask
-import robot.robot as robot
-from flask_cors import CORS
-from dotenv import load_dotenv
-from flask_socketio import SocketIO
-import logging
+from robot.robot import robotFlask
 
 load_dotenv()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
 SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
+SECRET_KEY = os.getenv('SECRET_KEY')
+JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
+JWT_TOKEN_LOCATION = ['headers']
+
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-app.config['DEBUG'] = True
-app.config['LOGGING'] = 'DEBUG'
+app.config['SECRET_KEY'] = SECRET_KEY
+app.config['JWT_SECRET_KEY'] = JWT_SECRET_KEY
+app.config['JWT_TOKEN_LOCATION'] = JWT_TOKEN_LOCATION
 
 CORS(app)  # Permite todas as origens (para desenvolvimento)
 import extensions as ext
@@ -25,7 +28,7 @@ import extensions as ext
 ext.db.init_app(app)
 ext.socketio.init_app(app, cors_allowed_origins="*")
 
-import models
+jwt = JWTManager(app)
 
 app.register_blueprint(usersFlask)
 app.register_blueprint(robot.robotFlask)
