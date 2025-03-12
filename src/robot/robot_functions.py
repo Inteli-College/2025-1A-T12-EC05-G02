@@ -2,6 +2,8 @@
 from rich.console import Console
 from rich.panel import Panel
 from extensions import sio
+from qrcode_function import ler_qrcode, processar_qrcode
+
 
 console = Console()
 
@@ -12,6 +14,10 @@ def move_to_bin(device, positions, drug, r, iter):
         raise ValueError(f"{drug} não encontrada!")
 
     counter = 0
+    
+    port="/dev/ttyAMA0"
+    
+    baudrate=9600
 
     # Loop de iteração sobre a quantidade de coletas na mesma bin
     while counter < int(iter):
@@ -28,6 +34,23 @@ def move_to_bin(device, positions, drug, r, iter):
         )
 
         logger(f"[bold yellow] ▪️ Movimento para {drug}[/bold yellow]\n")
+        
+        #*******************************
+        
+        device.movel_to(
+            positions['bins'][drug]['pos_x'],
+            positions['bins'][drug]['pos_y'],
+            28,
+            r,
+            wait=True
+        )
+        
+        
+        dados_qr = ler_qrcode(port=port,baudrate=baudrate)
+        processar_qrcode(dados_qr)
+                
+        #***********************************
+        
         device.movel_to(
             positions['bins'][drug]['pos_x'],
             positions['bins'][drug]['pos_y'],
@@ -35,6 +58,7 @@ def move_to_bin(device, positions, drug, r, iter):
             r,
             wait=True
         )
+        
 
         # Ativa a sucção do bico sugador
         logger(f"[bold yellow] ▪️ Ativando bico sugador[/bold yellow]\n")
