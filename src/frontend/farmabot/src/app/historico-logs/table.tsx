@@ -39,7 +39,7 @@ interface Props {
 
 const Tabela: React.FC<Props> = ({ rows, render }) => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [data, setData] = useState<string>(''); // Inicie com uma string vazia
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -53,7 +53,7 @@ const Tabela: React.FC<Props> = ({ rows, render }) => {
 
   useEffect(() => {
     setData(new Date().toLocaleString('pt-BR')); // Atribui uma string de data formatada
-  }, []);
+  }, [render]);
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }} className='mt-5'>

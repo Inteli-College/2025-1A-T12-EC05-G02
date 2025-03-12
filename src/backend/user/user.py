@@ -133,13 +133,24 @@ def admin_delete():
 
     return {"Mensagem": "Usuário deletado com sucesso!"}, 200
 
-# Rota para visualizar logs
+from flask import request
+
 @usersFlask.route('/logs', methods=["GET"])
 def admin_logs():
     session = db.session
     try:
-        logs = session.query(LogSistema).all()
+        # Obtém o valor do parâmetro 'acao' da consulta (se houver)
+        acao_filter = request.args.get('acao', None)
+        
+        # Se 'acao' for fornecido, filtra os logs por ação
+        if acao_filter:
+            logs = session.query(LogSistema).filter(LogSistema.acao == acao_filter).all()
+        else:
+            logs = session.query(LogSistema).all()
+
+        # Converte os logs para o formato desejado
         logs_list = [{"id": log.id, "acao": log.acao, "data_hora": log.data_hora, "detalhes": log.detalhes} for log in logs]
+        
     finally:
         session.close()
 

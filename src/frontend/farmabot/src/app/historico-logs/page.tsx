@@ -1,6 +1,6 @@
 "use client"; // Isso força o componente a rodar no lado do cliente
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import TituloTabela from "../components/TituloTabela";
 import SelectButton from '../components/SelectButton';
@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider, alpha } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import Tabela from './table';
 
 // Extensão da paleta para incluir 'black'
@@ -46,27 +46,71 @@ interface Data {
     acao: string;
     detalhes: string;
     responsavel: string;
-  }
-
-// Exemplo de dados
-const rows: Data[] = [
-    { id: '1', dataHora: new Date("Mon Mar 11 2025 14:38:15 GMT+0000 (Coordinated Universal Time)")
-        , acao: 'Criado', detalhes: 'Registro criado com sucesso', responsavel: 'João' },
-    { id: '2', dataHora: new Date("Mon Mar 11 2025 14:38:15 GMT+0000 (Coordinated Universal Time)"), acao: 'Editado', detalhes: 'Registro atualizado', responsavel: 'Maria' },
-    { id: '3', dataHora: new Date("Mon Mar 11 2025 14:38:15 GMT+0000 (Coordinated Universal Time)"), acao: 'Deletado', detalhes: 'Registro excluído', responsavel: 'Carlos' },
-    { id: '4', dataHora: new Date("Mon Mar 11 2025 14:38:15 GMT+0000 (Coordinated Universal Time)"), acao: 'Aprovado', detalhes: 'Registro aprovado', responsavel: 'Ana' },
-    { id: '5', dataHora: new Date("Mon Mar 11 2025 14:38:15 GMT+0000 (Coordinated Universal Time)"), acao: 'Rejeitado', detalhes: 'Registro rejeitado', responsavel: 'Pedro' },
-    { id: '6', dataHora: new Date("Mon Mar 11 2025 14:38:15 GMT+0000 (Coordinated Universal Time)"), acao: 'Rejeitado', detalhes: 'Registro rejeitado', responsavel: 'Pedro' },
-  
-  ];
-
+}
 
 export default function Historico() {
+    const [rows, setRows] = useState<Data[]>([]);
     const [key, setKey] = useState(0);
-    
+    const [acao, setAcao] = useState<string[]>([]);  // Tipando como string[]
+    const [selectedAcao, setSelectedAcao] = useState<string>('');  // Ação selecionada
+    const [loading, setLoading] = useState<boolean>(false); // Novo estado para controle de carregamento
+
+
     const reRender = () => {  
         setKey(prevKey => prevKey + 1);  
-      };  
+        setSelectedAcao('')
+    };
+
+    // Primeira requisição para buscar as ações
+    useEffect(() => {
+        setLoading(true); // Inicia o carregamento
+        fetch('http://127.0.0.1:5000/user/logs')
+            .then((response) => response.json())
+            .then((data) => {
+                // Função para filtrar valores únicos
+                function onlyUnique(value: any, index: any, array: string[]) {
+                    return array.indexOf(value) === index;
+                }
+
+                // Gerar lista de ações únicas
+                let acaoList = data.Logs.map((item: any) => typeof item.acao === 'string' ? item.acao : '');
+                acaoList = acaoList.filter(onlyUnique);
+                setAcao(acaoList);  // Armazenando corretamente como array de strings
+            })
+            .catch((error) => console.error("Erro ao buscar ações:", error))
+            .finally(() => setLoading(false)); // Finaliza o carregamento
+    }, []);  // Esse efeito executa apenas uma vez quando o componente for montado
+
+    // Segunda requisição para buscar os logs filtrados pela ação selecionada
+    useEffect(() => {
+        setLoading(true); // Inicia o carregamento
+        // Montar a URL com base na ação selecionada
+        const url = selectedAcao
+            ? `http://127.0.0.1:5000/user/logs?acao=${selectedAcao}`
+            : 'http://127.0.0.1:5000/user/logs';
+
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                // Transformar os dados no formato esperado
+                const formattedData: Data[] = data.Logs.map((item: any) => ({
+                    id: item.id.toString(),
+                    dataHora: new Date(item.data_hora), // Converter string para Date
+                    acao: item.acao,
+                    detalhes: item.detalhes,
+                    responsavel: "José do Banco",
+                }));
+
+                setRows(formattedData);
+            })
+            .catch((error) => console.error("Erro ao buscar logs:", error))
+            .finally(() => setLoading(false)); // Finaliza o carregamento
+    }, [selectedAcao, key]);  // O efeito será executado sempre que `selectedAcao` mudar
+
+    // Função para atualizar a ação selecionada
+    const handleAcaoChange = (newAcao: string) => {
+        setSelectedAcao(newAcao);
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -83,7 +127,9 @@ export default function Historico() {
                         <SelectButton 
                             atributo='acao' 
                             label='Ação' 
-                            items={["item mockado 1", "item mockado 2", "item mockado 3"]}
+                            items={acao}
+                            onSelect={handleAcaoChange}
+                            render = {key}
                         />
                         <FilterAltIcon className='opacity-70' />
                     </Stack>
@@ -92,7 +138,15 @@ export default function Historico() {
                         <Button variant="contained">Exportar CSV</Button>
                     </Stack>
                 </div>
-                <Tabela render={key} rows={rows}/>
+
+                {/* Mostrar animação de loading enquanto está buscando os dados */}
+                {loading ? (
+                    <div className="flex justify-center items-center py-10">
+                        <CircularProgress />
+                    </div>
+                ) : (
+                    <Tabela render={key} rows={rows} />
+                )}
             </Container>
         </ThemeProvider>
     );
