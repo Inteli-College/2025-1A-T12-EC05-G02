@@ -1,6 +1,7 @@
 # Este arquivo concentra as funções de movimentação do robô Dobot Magician Lite.
 from rich.console import Console
 from rich.panel import Panel
+from extensions import sio
 
 console = Console()
 
@@ -75,6 +76,7 @@ def move_to_bin(device, positions, drug, r, iter):
 
 # Função para definição da posição de referência home
 def return_home(device, positions: dict):
+    sio.emit('log', {'acao': 'Robot Log', 'detalhes': 'Retornando para home', 'usuario_id': 1})
     device.movej_to(
         positions['presets']['home']['pos_x'],
         positions['presets']['home']['pos_y'],
@@ -86,9 +88,11 @@ def return_home(device, positions: dict):
 # Função para retornar a posição atual do robô
 def get_current_position(device):
     pos = device.pose()
+    sio.emit('log', {'acao': 'Robot Log', 'detalhes': f'Posição atual: {pos}', 'usuario_id': 1})
     return {"x": pos[0], "y": pos[1], "z": pos[2]}
 
 def logger(data):
+    sio.emit('log', {'acao': 'Robot Log', 'detalhes': data, 'usuario_id': 1})
     console.print(
             Panel
             (

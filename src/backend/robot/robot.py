@@ -10,13 +10,21 @@ robotFlask = Blueprint('robot', __name__, url_prefix='/robot')
 def handle_connect():
     print(request.sid)
     print("client has connected")
-    emit("connectResponse", {"data": f"id: {request.sid} is connected"})
+    emit("connectResponse", {"data": f"id: {request.sid} is connected"}, broadcast=True, include_self=True)
 
 
 @socketio.on('disconnect')
 def handle_disconnect():
     print("client has disconnected")
-    emit("disconnectResponse", {"data": f"id: {request.sid} is disconnected"})
+    emit("disconnectResponse", {"data": f"id: {request.sid} is disconnected"}, broadcast=True, include_self=True)
+    
+@socketio.on('connectResponse')
+def handle_connect_response(data):
+    print("connectResponse: ", str(data))
+    
+@socketio.on('disconnectResponse')
+def handle_disconnect_response(data):
+    print("disconnectResponse: ", str(data))
 
 @socketio.on('log')
 def handle_message(data):
