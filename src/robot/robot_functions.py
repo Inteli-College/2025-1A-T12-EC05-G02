@@ -4,6 +4,7 @@ from rich.panel import Panel
 from extensions import sio
 from qrcode_function import ler_qrcode, processar_qrcode
 from infra_function import ler_infra
+import serial
 
 
 console = Console()
@@ -41,7 +42,7 @@ def move_to_bin(device, positions, drug, r, iter):
         device.movel_to(
             positions['bins'][drug]['pos_x'],
             positions['bins'][drug]['pos_y'],
-            28,
+            90,
             r,
             wait=True
         )
@@ -74,6 +75,7 @@ def move_to_bin(device, positions, drug, r, iter):
             positions['bins'][drug]['pos_x'],
             positions['bins'][drug]['pos_y'],
             15,
+            17,
             r,
             wait=True
         )
