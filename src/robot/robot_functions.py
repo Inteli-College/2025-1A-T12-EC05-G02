@@ -6,7 +6,7 @@ from qrcode_function import ler_qrcode, processar_qrcode
 from infra_function import ler_infra
 import lgpio
 import time
-import serial
+
 
 
 console = Console()
