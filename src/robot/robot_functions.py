@@ -4,6 +4,8 @@ from rich.panel import Panel
 from extensions import sio
 from qrcode_function import ler_qrcode, processar_qrcode
 from infra_function import ler_infra
+import lgpio
+import time
 import serial
 
 
@@ -48,8 +50,12 @@ def move_to_bin(device, positions, drug, r, iter):
         )
         
         
-        dados_qr = ler_qrcode(port=port,baudrate=baudrate)
+        # dados_qr = ler_qrcode(port=port,baudrate=baudrate)
+        # processar_qrcode(dados_qr)
+        dados_qr = ler_qrcode(port=port, baudrate=baudrate)
         processar_qrcode(dados_qr)
+
+
                 
         #***********************************
         
