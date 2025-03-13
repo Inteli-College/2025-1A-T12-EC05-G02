@@ -183,7 +183,7 @@ def find_user():
             response = jsonify({'success': False, 'message': 'Usuário não encontrado', 'error': 'Not Found'})
             return response, 404
     except:
-        return serverErrorMessage, 500 # Erro interno do servidor
+        return jsonify(serverErrorMessage), 500 # Erro interno do servidor
 
 @usersFlask.route('/login', methods=['POST'])
 def login():
@@ -221,7 +221,7 @@ def login():
         })
         return message, 200
     except:
-        return serverErrorMessage, 500 # Erro interno do servidor
+        return jsonify(serverErrorMessage), 500 # Erro interno do servidor
 
 @usersFlask.route('/logout', methods=['POST'])
 @jwt_required()
@@ -234,4 +234,4 @@ def logout():
         unset_jwt_cookies(response)
         return response, 200
     except:
-        return serverErrorMessage, 500 # Erro interno do servidor
+        return jsonify(serverErrorMessage), 500 # Erro interno do servidor
