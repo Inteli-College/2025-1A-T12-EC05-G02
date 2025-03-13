@@ -33,6 +33,9 @@ def ler_qrcode(port, baudrate):
     except serial.SerialException as e:
         print(f"Erro ao acessar a porta serial: {e}")
         return None
+    
+    finally:
+        ser.close()
 
 def processar_qrcode(dados):
     """Processa os dados do QR Code e exibe as informações do medicamento."""
