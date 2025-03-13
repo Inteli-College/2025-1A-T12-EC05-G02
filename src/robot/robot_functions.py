@@ -8,7 +8,6 @@ import lgpio
 import time
 
 
-
 console = Console()
 
 # Cria função de movimentação às bins especificadas
@@ -18,10 +17,6 @@ def move_to_bin(device, positions, drug, r, iter):
         raise ValueError(f"{drug} não encontrada!")
 
     counter = 0
-    
-    port="/dev/ttyAMA0"
-    
-    baudrate=9600
 
     # Loop de iteração sobre a quantidade de coletas na mesma bin
     while counter < int(iter):
@@ -49,9 +44,7 @@ def move_to_bin(device, positions, drug, r, iter):
             wait=True
         )
         
-        
-        # dados_qr = ler_qrcode(port=port,baudrate=baudrate)
-        # processar_qrcode(dados_qr)
+
         dados_qr = ler_qrcode(port=port, baudrate=baudrate)
         processar_qrcode(dados_qr)
 
