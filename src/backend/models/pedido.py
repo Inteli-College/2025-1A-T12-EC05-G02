@@ -1,4 +1,4 @@
-from main import db
+from extensions import db
 
 class Pedido(db.Model):
     __tablename__ = 'pedidos'
