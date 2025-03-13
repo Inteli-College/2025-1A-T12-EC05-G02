@@ -4,25 +4,38 @@ from dotenv import load_dotenv
 from models.database import db
 # from flask_sqlalchemy import SQLAlchemy
 from user.user import usersFlask
-from flask_cors import CORS
-from robot.robot import robotFlask
-
-# python3 -m flask --app main run
+from medicine.medicine import medicineFlask
+import robot.robot as robot
+from dotenv import load_dotenv
+from flask_socketio import SocketIO
+import logging
 
 load_dotenv()
 app = Flask(__name__)
 CORS(app)  # Permite todas as origens (para desenvolvimento)
+app.config['SECRET_KEY'] = 'secret!'
 SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
-
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['DEBUG'] = True
+app.config['LOGGING'] = 'DEBUG'
 
-# db = SQLAlchemy()
-db.init_app(app)
+
+import extensions as ext
+
+ext.db.init_app(app)
+ext.socketio.init_app(app, cors_allowed_origins="*")
 
 import models
 
 app.register_blueprint(usersFlask)
-app.register_blueprint(robotFlask)
+app.register_blueprint(robot.robotFlask)
+app.register_blueprint(medicineFlask)
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 with app.app_context():
-    db.create_all()
+    ext.db.create_all()
+
+if __name__ == '__main__':
+    ext.socketio.run(app, debug=True, host='0.0.0.0', port=5555)

@@ -1,4 +1,4 @@
-from models.database import db
+from extensions import db
 
 class ConfiguracoesBins(db.Model):
     __tablename__ = 'configuracoes_bins'

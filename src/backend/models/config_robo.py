@@ -1,4 +1,4 @@
-from models.database import db
+from extensions import db
 
 class ConfiguracoesRobo(db.Model):
     __tablename__ = 'configuracoes_robo'
