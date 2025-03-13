@@ -3,16 +3,14 @@ from flask_socketio import emit, send
 from extensions import socketio, db
 from models.log_sistema import LogSistema
 from models.pedido import Pedido
-# from main import socketio
-
+from models.pedido_medicamento import PedidoMedicamento
+import time
 robotFlask = Blueprint('robot', __name__, url_prefix='/robot')
 
 @socketio.on('connect')
 def handle_connect():
     print(request.sid)
     print("client has connected")
-    emit("connectResponse", {"data": f"id: {request.sid} is connected"}, broadcast=True, include_self=True)
-
 
 @socketio.on('disconnect')
 def handle_disconnect():
@@ -22,6 +20,8 @@ def handle_disconnect():
 @socketio.on('connectResponse')
 def handle_connect_response(data):
     print("connectResponse: ", str(data))
+    if data['data'] == 'Robo conectado ao servidor':
+        get_queue_medicine()
     
 @socketio.on('disconnectResponse')
 def handle_disconnect_response(data):
@@ -39,6 +39,9 @@ def handle_medicine_response(data):
         pedido = db.session.query(Pedido).filter_by(id=int(data['idFita'])).first()
         pedido.status = data['status']
         db.session.commit()
+        if data['status'] == 'Completo':
+            get_queue_medicine()
+               
     except Exception as e:
         db.session.rollback()
         print(f"Error updating pedido status: {e}")
@@ -58,6 +61,26 @@ def handle_message(data):
         db.session.rollback()
         print(f"Error adding log to database: {e}")
     print("log added to database")
-
+    
+@robotFlask.route('/medicine/reload', methods=['POST'])
+def reload_medicine():
+    get_queue_medicine()
+    return {
+        'message': 'Fila de medicamentos recarregada',
+        'code': 200
+    }
     
     
+def get_queue_medicine():
+    # Verifica se tem algum pedido pendente ordenado por data de criação e prioridade crescente
+    pedido_pendente = db.session.query(Pedido).filter_by(status='Pendente').order_by(Pedido.data_pedido, Pedido.prioridade).first()
+    print(pedido_pendente)
+    
+    if pedido_pendente:
+        fita = {}
+        pedido_medicamentos = db.session.query(PedidoMedicamento).filter_by(pedido_id=pedido_pendente.id).all()
+        for pedido_medicamento in pedido_medicamentos:
+            fita[pedido_medicamento.medicamento_id] = pedido_medicamento.quantidade
+        
+        time.sleep(1)
+        emit("medicine", {"idFita": pedido_pendente.id, "bins": fita}, namespace='/', broadcast=True, include_self=True)

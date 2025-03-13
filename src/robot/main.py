@@ -13,10 +13,23 @@ from extensions import sio
 
 console = Console()  # Instancia do console.
 
+# Variável global para armazenar a porta do robô
+robot_port = None
+
 # Define classe InteliDobot, que herda classe pai pydobot.Dobot
 class InteliDobot(pydobot.Dobot):
+    port = None
     def __init__(self, port=None, verbose=False):
-        super().__init__(port=port, verbose=verbose)
+        global robot_port
+        if robot_port is not None:
+            self.port = robot_port
+        elif port is not None:
+            self.port = port
+            robot_port = port
+        else:
+            self.port = test_port(pydobot)
+            robot_port = self.port
+        super().__init__(port=self.port, verbose=verbose)
     
     def movej_to(self, x, y, z, r, wait=True):
         super()._set_ptp_cmd(x, y, z, r, mode=pydobot.enums.PTPMode.MOVJ_XYZ, wait=wait)
@@ -25,7 +38,7 @@ class InteliDobot(pydobot.Dobot):
         super()._set_ptp_cmd(x, y, z, r, mode=pydobot.enums.PTPMode.MOVL_XYZ, wait=wait)
     
     def SetSpeed(self, speed, acceleration):
-        super().speed(speed,acceleration)
+        super().speed(speed, acceleration)
 
 # Carrega o json com as coordenadas das bins.
 file_name = 'positions.json'
@@ -51,19 +64,14 @@ def disconnect():
 @sio.event
 def medicine(data):
     print("medicine: ", str(data))
-    #porta = test_port(pydobot)
+    
     result = {
-        'action': 'collect', 'port': '/dev/cu.usbmodem1101', 'bins': data['bins'], 'idFita': data['idFita']
+        'action': 'collect', 'bins': data['bins'], 'idFita': data['idFita']
     }
     separateMedicine(result)
 
 def separateMedicine(result):
-    
-    if 'port' in result:  # Se a porta estiver disponível nos resultados...
-        port = result['port']
-        device = InteliDobot(port=port, verbose=False)  # Inicializa o robô Dobot com a porta detectada.
-    
-    port = result['port'] 
+    device = InteliDobot(verbose=False)  # Inicializa o robô Dobot com a porta detectada.
     bins = result['bins']
     print(result)
     device.suck(False)  # Desliga a sucção do robô.
@@ -78,6 +86,8 @@ def separateMedicine(result):
     sio.emit('medicineResponse', {'status': 'Completo', "idFita": str(result['idFita'])})
 
 
+sio.emit('connectResponse', {'data': 'Robo conectado ao servidor'})
+
 while True:  # Loop principal, se mantém até o usuário decidir sair.
     welcome_screen()  # Exibe a menu inicial.
     result = terminal_start(pydobot)  # Captura a entrada do usuário e informações da conexão com o robô.
@@ -85,6 +95,8 @@ while True:  # Loop principal, se mantém até o usuário decidir sair.
     if 'port' in result:  # Se a porta estiver disponível nos resultados...
         port = result['port']
         device = InteliDobot(port=port, verbose=False)  # Inicializa o robô Dobot com a porta detectada.
+    else:
+        device = InteliDobot(verbose=False)  # Inicializa o robô Dobot com a porta armazenada.
 
     action = result['action']  # Obtém a ação escolhida pelo usuário.
 
@@ -94,7 +106,6 @@ while True:  # Loop principal, se mantém até o usuário decidir sair.
             break
     
     elif action == "home":  # Se a ação for "retornar para home"
-        port = result['port']
         return_home(device, positions)  # Move o robô para a posição inicial.
         console.print("[green]Robô retornou para a posição inicial com sucesso![/green]")
 
@@ -102,7 +113,6 @@ while True:  # Loop principal, se mantém até o usuário decidir sair.
             break
 
     elif action == "current_pos":  # Se a ação for "ver posição atual"
-        port = result['port'] 
         (x, y, z, r, j1, j2, j3, j4) = device.pose()  # Retorna a posição do robô.
         console.print(
             Panel(
