@@ -4,8 +4,8 @@ from flask import Blueprint, request
 from sqlalchemy.exc import IntegrityError
 from models.usuario import Usuario
 from models.log_sistema import LogSistema
-from models.database import db  # Importando o módulo da inicialização do db
 from datetime import datetime
+from extensions import db
 
 # Definindo o Blueprint
 usersFlask = Blueprint('user', __name__, url_prefix='/user')
@@ -133,14 +133,31 @@ def admin_delete():
 
     return {"Mensagem": "Usuário deletado com sucesso!"}, 200
 
-# Rota para visualizar logs
-@usersFlask.route('/logs', methods=["GET"])
+from flask import request
+
+from sqlalchemy import desc
+
+@usersFlask.route('/logs', methods=["GET"]) 
 def admin_logs():
     session = db.session
     try:
-        logs = session.query(LogSistema).all()
-        logs_list = [{"id": log.id, "acao": log.acao, "data_hora": log.data_hora, "detalhes": log.detalhes} for log in logs]
+        # Obtém o valor do parâmetro 'acao' da consulta (se houver)
+        acao_filter = request.args.get('acao', None)
+        
+        # Base da consulta ordenada pela data_hora do mais novo para o mais antigo
+        query = session.query(LogSistema).order_by(desc(LogSistema.data_hora))
+
+        # Se 'acao' for fornecido, filtra os logs por ação
+        if acao_filter:
+            query = query.filter(LogSistema.acao == acao_filter)
+        
+        logs = query.all()
+
+        # Converte os logs para o formato desejado
+        logs_list = [{"id": log.id, "acao": log.acao, "data_hora": log.data_hora, "detalhes": log.detalhes, "responsavel":log.usuario_id} for log in logs]
+        
     finally:
         session.close()
 
     return {"Logs": logs_list}, 200
+
