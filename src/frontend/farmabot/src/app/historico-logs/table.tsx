@@ -73,7 +73,7 @@ const Tabela: React.FC<Props> = ({ rows, render }) => {
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // Paginação aplicada aqui
               .map((row) => (
-                <TableRow key={row.id}>
+                <TableRow className='hover:bg-gray-50 transition' key={row.id}>
                   {colunas.map((col) => {
                     const value = row[col.id];
                     return (

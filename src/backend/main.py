@@ -1,25 +1,24 @@
 from flask import Flask
 import os
 from dotenv import load_dotenv
-from models.database import db
 # from flask_sqlalchemy import SQLAlchemy
 from user.user import usersFlask
 from medicine.medicine import medicineFlask
 import robot.robot as robot
+from flask_cors import CORS
 from dotenv import load_dotenv
 from flask_socketio import SocketIO
 import logging
 
 load_dotenv()
 app = Flask(__name__)
-CORS(app)  # Permite todas as origens (para desenvolvimento)
 app.config['SECRET_KEY'] = 'secret!'
 SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['DEBUG'] = True
 app.config['LOGGING'] = 'DEBUG'
 
-
+CORS(app)  # Permite todas as origens (para desenvolvimento)
 import extensions as ext
 
 ext.db.init_app(app)

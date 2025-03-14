@@ -11,6 +11,7 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Button, CircularProgress } from '@mui/material';
 import Tabela from './table';
 
+
 // Extensão da paleta para incluir 'black'
 declare module '@mui/material/styles' {
     interface Palette {
@@ -68,7 +69,7 @@ export default function Historico() {
     // Primeira requisição para buscar as ações
     useEffect(() => {
         setLoading(true); // Inicia o carregamento
-        fetch('http://127.0.0.1:5000/user/logs')
+        fetch('http://127.0.0.1:5555/user/logs')
             .then((response) => response.json())
             .then((data) => {
                 // Função para filtrar valores únicos
@@ -90,8 +91,8 @@ export default function Historico() {
         setLoading(true); // Inicia o carregamento
         // Montar a URL com base na ação selecionada
         const url = selectedAcao
-            ? `http://127.0.0.1:5000/user/logs?acao=${selectedAcao}`
-            : 'http://127.0.0.1:5000/user/logs';
+            ? `http://127.0.0.1:5555/user/logs?acao=${selectedAcao}`
+            : 'http://127.0.0.1:5555/user/logs';
 
         fetch(url)
             .then((response) => response.json())
@@ -102,7 +103,7 @@ export default function Historico() {
                     dataHora: new Date(item.data_hora), // Converter string para Date
                     acao: item.acao,
                     detalhes: item.detalhes,
-                    responsavel: "José do Banco",
+                    responsavel: item.responsavel,
                 }));
 
                 setRows(formattedData);
@@ -142,9 +143,9 @@ export default function Historico() {
             alert("Não há dados para exportar.");
             return;
         }
-    
+
         const header = ["ID", "Data e Hora", "Ação", "Detalhes", "Responsável"];
-        
+
         // Formatar os dados para CSV
         const csvRows = filteredRows.map(row => [
             row.id,
@@ -153,22 +154,22 @@ export default function Historico() {
             `"${row.detalhes}"`,
             `"${row.responsavel}"`
         ]);
-    
+
         // Juntar cabeçalho e linhas
         const csvContent = [header, ...csvRows].map(e => e.join(",")).join("\n");
-    
+
         // Criar um Blob e disponibilizar para download
         const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
         const url = URL.createObjectURL(blob);
         const formatDate = (date: Date) => {
-        
+
             return date.getFullYear().toString() +
-                   String(date.getMonth() + 1).padStart(2, '0') +
-                   String(date.getDate()).padStart(2, '0') +
-                   String(date.getHours()).padStart(2, '0') +
-                   String(date.getMinutes()).padStart(2, '0');
+                String(date.getMonth() + 1).padStart(2, '0') +
+                String(date.getDate()).padStart(2, '0') +
+                String(date.getHours()).padStart(2, '0') +
+                String(date.getMinutes()).padStart(2, '0');
         };
-        
+
         let data = new Date()
         const link = document.createElement("a");
         link.href = url;
@@ -180,8 +181,16 @@ export default function Historico() {
 
     return (
         <ThemeProvider theme={theme}>
-            <header>Placeholder para o header</header>
-            <Container maxWidth="lg" className='shadow-sm p-2'>
+            <header className='flex w-full justify-between items-center h-16 bg-black'>
+                <img className="h-10 ml-4" src="./pharmatech-logo.png"></img>
+                <div className='flex gap-4 text-white p-4'>
+                    <p className='hover:text-gray-300 cursor-pointer'>Home</p>
+                    <p className='hover:text-gray-300 cursor-pointer'>Dashboard</p>
+                    <p className='hover:text-gray-300 cursor-pointer'>Histórico Prescrições</p>
+                    <p className='hover:text-gray-300 cursor-pointer'>FAQ</p>
+                </div>
+            </header>
+            <Container maxWidth="lg" className='shadow-sm p-2 mt-4'>
                 <TituloTabela
                     titulo="Histórico de Ações do Sistema"
                     subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos"
