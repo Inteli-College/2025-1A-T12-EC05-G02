@@ -194,7 +194,7 @@ def login():
 
         user = Usuario.query.filter_by(email=email).first()
         
-        if user:
+        if not user:
             response = jsonify({
                 'success': False,
                 'message': 'Erro ao fazer login',
