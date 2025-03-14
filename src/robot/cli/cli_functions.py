@@ -82,6 +82,7 @@ def remedy_collection(pydobot):
     
     # Seleção da porta disponível
     port = test_port(pydobot)
+    print(bin_quantities)
     return {"port": port, "bins": bin_quantities}
 
 def available_ports():
