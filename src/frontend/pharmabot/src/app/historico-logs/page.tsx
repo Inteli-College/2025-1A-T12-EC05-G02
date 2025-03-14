@@ -122,7 +122,7 @@ export default function Historico() {
                     row.id.includes(searchText) ||
                     row.acao.toLowerCase().includes(searchText.toLowerCase()) ||
                     row.detalhes.toLowerCase().includes(searchText.toLowerCase()) ||
-                    row.responsavel.toLowerCase().includes(searchText.toLowerCase())
+                    String(row.responsavel).toLowerCase().includes(searchText.toLowerCase())
                 );
             });
             setFilteredRows(filtered);
