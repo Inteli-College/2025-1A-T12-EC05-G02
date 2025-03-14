@@ -10,6 +10,10 @@ import time
 
 console = Console()
 
+port="/dev/ttyAMA0"
+    
+baudrate=9600
+
 # Cria função de movimentação às bins especificadas
 def move_to_bin(device, positions, drug, r, iter):
     if drug not in positions['bins']:
@@ -35,51 +39,39 @@ def move_to_bin(device, positions, drug, r, iter):
         logger(f"[bold yellow] ▪️ Movimento para {drug}[/bold yellow]\n")
         
     
-        
+        #Desce para ler qrcode
         device.movel_to(
             positions['bins'][drug]['pos_x'],
             positions['bins'][drug]['pos_y'],
-            90,
+            80,
             r,
             wait=True
         )
         
-
+        #Lê o qrcode
         dados_qr = ler_qrcode(port=port, baudrate=baudrate)
         processar_qrcode(dados_qr)
-
-
-                
-        #***********************************
         
+        
+        #Move no sentido positivo de x para melhor posicionar o sugador        
         device.movel_to(
-            positions['bins'][drug]['pos_x'],
+            positions['bins'][drug]['pos_x'] + 19,
             positions['bins'][drug]['pos_y'],
-            90,
+            80,
             r,
             wait=True
         )
         
-        
-        # dados_qr = ler_qrcode(port=port,baudrate=baudrate)
-        # processar_qrcode(dados_qr)
-        dados_qr = ler_qrcode(port=port, baudrate=baudrate)
-        processar_qrcode(dados_qr)
-
-
-                
-        #***********************************
-        
+        #Desce para sugar 
         device.movel_to(
-            positions['bins'][drug]['pos_x'],
+            positions['bins'][drug]['pos_x'] + 19,
             positions['bins'][drug]['pos_y'],
-            15,
-            17,
+            8,
             r,
             wait=True
         )
         
-
+    
         # Ativa a sucção do bico sugador
         logger(f"[bold yellow] ▪️ Ativando bico sugador[/bold yellow]\n")
         device.suck(True)
@@ -116,7 +108,7 @@ def move_to_bin(device, positions, drug, r, iter):
 
         return_home(device, positions)
 
-        # Adiciona unidade ao iterador
+        # # Adiciona unidade ao iterador
         counter += 1
 
 

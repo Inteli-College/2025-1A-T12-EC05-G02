@@ -21,9 +21,6 @@ def ler_qrcode(port, baudrate):
                     "[bold yellow] ▪️ Aguardando dados do QR Code... [/bold yellow]\n"
                 ) 
             )
-               
-            # print(f"Conectado à porta {port} a {baudrate} baud.")
-            # print("Aguardando dados do QR Code...")
             
             while True:
                 if ser.in_waiting > 0:
@@ -64,5 +61,5 @@ def processar_qrcode(dados):
         return
     
     except json.JSONDecodeError:
-        print(f"Dado recebido (não JSON): {dados}")
+        print(f"Dado recebido em formato não json: {dados}")
         return
