@@ -2,6 +2,7 @@ from flask import Flask
 import os
 from dotenv import load_dotenv
 # from flask_sqlalchemy import SQLAlchemy
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from user.user import usersFlask
 from medicine.medicine import medicineFlask
 import robot.robot as robot
@@ -35,6 +36,9 @@ logger = logging.getLogger(__name__)
 
 with app.app_context():
     ext.db.create_all()
+    
+PREFIX = '/api'
+app.wsgi_app = DispatcherMiddleware(Flask('dummy_app'), {PREFIX: app.wsgi_app})
 
 if __name__ == '__main__':
     ext.socketio.run(app, debug=True, host='0.0.0.0', port=5555)
