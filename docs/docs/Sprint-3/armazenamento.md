@@ -15,7 +15,7 @@ description: Funcionamento do armazenamento de logs pela PharmaTech
 
 ## Quais são os _logs_ guardados pela PharmaTech
 
-&emsp; No que tange aos _logs_ guardados pela PharmaTech, os seguintes principais eventos são registrados por meio de uma tabela estruturada no banco de dados da equipe:
+&emsp; No que tange aos _logs_ guardados pela PharmaTech, os seguintes principais eventos podem ser registrados por meio de uma tabela estruturada no banco de dados da equipe:
 - Robô
     - Início da separação
     - Movimentos (_bin_, _home_ e caixa de separação)
