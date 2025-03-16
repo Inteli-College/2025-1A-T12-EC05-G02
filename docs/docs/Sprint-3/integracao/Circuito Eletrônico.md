@@ -1,3 +1,8 @@
+---
+sidebar_position: 2
+slug: /sprint-3/integracao/circuito-eletronico
+---
+
 # Circuito Eletrônico
 
 &emsp; Para o nominal funcionamento do projeto *PharmaBot* conforme suas regras de negócio, um esquema eletrônico simplificado foi desenvolvido para assegurar correta conexão e comunicação entre os dispositivos. Para tal, as conexões eletrônicas foram fundamentadas no diagrama eletrônico abaixo (Figura 1). 

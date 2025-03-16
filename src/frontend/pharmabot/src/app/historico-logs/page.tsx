@@ -69,7 +69,7 @@ export default function Historico() {
     // Primeira requisição para buscar as ações
     useEffect(() => {
         setLoading(true); // Inicia o carregamento
-        fetch('http://127.0.0.1:5555/user/logs')
+        fetch('http://127.0.0.1:5555/api/user/logs')
             .then((response) => response.json())
             .then((data) => {
                 // Função para filtrar valores únicos
@@ -91,8 +91,8 @@ export default function Historico() {
         setLoading(true); // Inicia o carregamento
         // Montar a URL com base na ação selecionada
         const url = selectedAcao
-            ? `http://127.0.0.1:5555/user/logs?acao=${selectedAcao}`
-            : 'http://127.0.0.1:5555/user/logs';
+            ? `http://127.0.0.1:5555/api/user/logs?acao=${selectedAcao}`
+            : 'http://127.0.0.1:5555/api/user/logs';
 
         fetch(url)
             .then((response) => response.json())
