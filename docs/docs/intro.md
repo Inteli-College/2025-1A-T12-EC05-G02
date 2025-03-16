@@ -83,6 +83,31 @@ slug: /
 | Apresentação | Concluída | 21/02/2025 | 26/02/2025 |
 | Protótipo de alta fidelidade | Em andamento | 21/02/2025 | --- |
 
+## Sprint 3
+
+&emsp; Durante a Sprint 3, a equipe realizou a integração dos periféricos (leitor de QRCode e sensor infravermelho ao robô). Além disso, foi realizada a conexão do backend da aplicação com a Raspberry Pi Pico de forma que é agora é possível controlar o robô via requisições na API. No que tange à aplicação, desenvolveu-se o front-end completo do histórico de logs e os primeiros 1000 _logs_ da plataforma e do robô foram enviados para esta página. A página de login está em processo de integração com o backend, assim como o front-end da tela de cadastro.
+
+&emsp; A apresentação da Sprint 3 está disponível no link a seguir: [Link da apresentação](https://www.canva.com/design/DAGhnrcDwoQ/ZUmR30jRNdVwMQvTwUkjEg/edit?utm_content=DAGhnrcDwoQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+### Status Report
+&emsp; Essa tabela apresenta o status atual do projeto, com base nas atividades realizadas e planejadas para a Sprint 3.
+
+| Atividade | Status | Data de Início | Data de Término |
+|-----------|--------|----------------|-----------------|
+| Diagrama de Circuito | Concluída | 07/03/2025 | 10/03/2025 |
+| Implantação dos Periféricos | Concluída | 10/03/2025 | 10/03/2025 |
+| Integração dos Periféricos | Concluída | 10/03/2025 | 14/03/2025 |
+| Conexão Robô-API via Websocket | Concluída | 10/03/2025 | 13/03/2025 |
+| Front-end do Login | Concluída | 10/03/2025 | 13/03/2025 |
+| Front-end do Cadastro | Em Andamento | 13/03/2025 | --- |
+| Back-end do Login | Concluída | 07/03/2025 | 11/03/2025 |
+| Back-end do Cadastro | Concluída | 07/03/2025 | 12/03/2025 |
+| Front-end dos Logs | Concluída | 10/03/2025 | 14/03/2025 |
+| Back-end dos Logs | Concluída | 10/03/2025 | 14/03/2025 |
+| Deploy da plataforma no servidor do Inteli | Concluída | 11/03/2025 | 14/03/2025 |
+| Integração Login | Em andamento | 14/03/2025 | --- |
+| Integração Histórico de Logs | Concluída | 12/03/2025 | 14/03/2025 |
+
 ## Configuração do Ambiente para Execução
 Este guia fornece as instruções para configurar o ambiente e executar o projeto corretamente.
 
