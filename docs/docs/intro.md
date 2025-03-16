@@ -86,21 +86,36 @@ slug: /
 ## Configuração do Ambiente para Execução
 Este guia fornece as instruções para configurar o ambiente e executar o projeto corretamente.
 
-1️.Clonar o Repositório
+1️.**Clonar o Repositório**
 Para obter o código-fonte do projeto, clone o repositório do GitHub:
 
-* git clone https://github.com/Inteli-College/2025-1A-T12-EC05-G02.git
-* cd 2025-1A-T12-EC05-G02
+```shell
+git clone https://github.com/Inteli-College/2025-1A-T12-EC05-G02.git
+```
+```shell
+cd 2025-1A-T12-EC05-G02
+```
 
-2️. Criar e Acessar a Branch de Desenvolvimento
-* git checkout -b main
+2️. **Criar e Acessar a Branch de Desenvolvimento**
 
-3️. Instalar o Docusaurus
-* cd docs
-* npm install
+```shell
+git checkout -b main
+```
 
-4️. Rodar o Docusaurus Localmente
-* npm run start
+3️. **Instalar o Docusaurus**
+
+```shell
+cd docs
+```
+```shell
+npm install
+```
+
+4️. **Rodar o Docusaurus Localmente**
+
+```shell
+npm run start
+```
 
 A documentação estará disponível em http://localhost:3000/.
 
