@@ -1,6 +1,6 @@
 ---
-sidebar_position: 4
-slug: /sprint-3/integracao/API
+sidebar_position: 1
+slug: /Tutoriais/API
 ---
 
 # API - Application Programming Interface
