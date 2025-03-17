@@ -12,7 +12,7 @@ slug: /sprint-3/integracao/sensores
 - `infra_function.py`
 - `qrcode_function.py`
 
-&emsp; E, para implementação com o código de movimentação do braço robótico, altera-se o arquivo `robot_functions.py`. Abaixo é explorado os novos arquivos desenvolvidos:
+&emsp; E, para implementação com o código de movimentação do braço robótico, altera-se o arquivo `robot_functions.py`. Abaixo são explorados os novos arquivos desenvolvidos:
 
 ## Arquivo `qrcode_function.py`:
 
