@@ -1,11 +1,16 @@
+
 # Importando as bibliotecas necessárias
 import bcrypt
-from flask import Blueprint, request
 from sqlalchemy.exc import IntegrityError
 from models.usuario import Usuario
 from models.log_sistema import LogSistema
 from datetime import datetime
 from extensions import db
+from flask import Blueprint, request, jsonify
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, unset_jwt_cookies
+from decorators.route_auth import role_required
+from sqlalchemy import desc
+
 
 # Definindo o Blueprint
 usersFlask = Blueprint('user', __name__, url_prefix='/user')
@@ -133,10 +138,6 @@ def admin_delete():
 
     return {"Mensagem": "Usuário deletado com sucesso!"}, 200
 
-from flask import request
-
-from sqlalchemy import desc
-
 @usersFlask.route('/logs', methods=["GET"]) 
 def admin_logs():
     session = db.session
@@ -161,3 +162,76 @@ def admin_logs():
 
     return {"Logs": logs_list}, 200
 
+serverErrorMessage = {
+    'success': False,
+    'message': 'Erro ao fazer login',
+    'error': 'Internal Server Error'
+}
+
+@usersFlask.route('/info', methods=['GET'])
+@jwt_required()
+@role_required('admin')
+def find_user():
+    try:
+        user_id = get_jwt_identity()
+        user = Usuario.query.filter_by(id=user_id).first()
+        
+        if user:
+            response = jsonify({'success': True, 'message': 'Usuário encontrado', 'user': user.nome, 'email': user.email})
+            return response, 200
+        else:
+            response = jsonify({'success': False, 'message': 'Usuário não encontrado', 'error': 'Not Found'})
+            return response, 404
+    except:
+        return jsonify(serverErrorMessage), 500 # Erro interno do servidor
+
+@usersFlask.route('/login', methods=['POST'])
+def login():
+    try:
+        data = request.get_json()
+        email = data.get('email')
+        senha = data.get('senha')
+
+        user = Usuario.query.filter_by(email=email).first()
+        
+        if not user:
+            response = jsonify({
+                'success': False,
+                'message': 'Erro ao fazer login',
+                'error': 'Unauthorized'
+            })
+            return response, 401
+
+        if not bcrypt.checkpw(senha.encode('utf-8'), user.senha.encode('utf-8')):
+            response = jsonify({
+                'success': False,
+                'message': 'Erro ao fazer login: Acesso não autorizado',
+                'error': 'Unauthorized'
+            })
+            return response, 401
+        
+        additional_claims = {"roles": user.role}
+        access_token = create_access_token(identity=user.id, additional_claims=additional_claims)
+        
+        message = jsonify({
+            'success': True,
+            'message': 'Login feito com sucesso',
+            'user_id': user.id,
+            'access_token': access_token
+        })
+        return message, 200
+    except:
+        return jsonify(serverErrorMessage), 500 # Erro interno do servidor
+
+@usersFlask.route('/logout', methods=['POST'])
+@jwt_required()
+def logout():
+    try:
+        response = jsonify({
+            'success': True,
+            'message': 'Logout feito com sucesso'
+        })
+        unset_jwt_cookies(response)
+        return response, 200
+    except:
+        return jsonify(serverErrorMessage), 500 # Erro interno do servidor

@@ -1,6 +1,8 @@
 from extensions import db
+from flask_login import UserMixin
+from extensions import db
 
-class Usuario(db.Model):
+class Usuario(UserMixin, db.Model):
     __tablename__ = 'usuarios'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.Text, nullable=False)
