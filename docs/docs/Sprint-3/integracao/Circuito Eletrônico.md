@@ -97,6 +97,12 @@ slug: /sprint-3/integracao/circuito-eletronico
 
 ---
 
+## Demostração de todo o sistema integrado
+
+&emsp;Na terceira sprint, o hardware *PharmaBot* foi aprimorado com a integração dos sensores de infravermelho e QR Code, elevando sua capacidade de identificação e separação automática das fitas de medicamentos conforme a demanda do Hospital das Clínicas. Com essa implementação, o sistema agora pode ler QR Codes ou códigos de barras, exibindo as informações do medicamento no terminal. Após a leitura, o sensor de infravermelho verifica a presença real do item coletado, garantindo maior controle durante todo o processo. Por fim, todo esse fluxo mencionado pode ser visualizado nesse [video](https://drive.google.com/file/d/1F46_raCgcBh_TuTKi6FLztHPZMw6Hi-A/view?usp=sharing). 
+
+---
+
 ## Considerações Finais
 
 &emsp; Através do documento acima, compreende-se as ligações eletrônicas da componentização periférica aplicadas ao projeto *PharmaBot*. O circuito foi estruturado para garantir a correta integração entre os dispositivos, assegurando comunicação eficiente e confiável entre o *Raspberry Pi 5*, o leitor *MH-ET LIVE Scanner* e o sensor *TCRT5000*. A utilização de padrões de ligação, como os marcadores de alimentação e *GND*, bem como a escolha criteriosa dos componentes e suas conexões, possibilitam um funcionamento seguro da aplicação e alinhamento às necessidades do sistema.
