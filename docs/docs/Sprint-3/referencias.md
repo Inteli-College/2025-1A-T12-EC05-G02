@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 4
 slug: /sprint-3/referencias
 description: A seguir, são listadas as referências utilizadas na elaboração do projeto, na sprint 3.
 ---
