@@ -1,12 +1,23 @@
 # Este arquivo concentra as funções de movimentação do robô Dobot Magician Lite.
 from rich.console import Console
 from rich.panel import Panel
+from extensions import sio
+from qrcode_function import ler_qrcode, processar_qrcode
+from infra_function import ler_infra
+import lgpio
+import time
+
 
 console = Console()
+
+port="/dev/ttyAMA0"
+    
+baudrate=9600
 
 # Cria função de movimentação às bins especificadas
 def move_to_bin(device, positions, drug, r, iter):
     if drug not in positions['bins']:
+        logger(f"[bold red]{drug} não encontrada![/bold red]")
         raise ValueError(f"{drug} não encontrada!")
 
     counter = 0
@@ -14,12 +25,7 @@ def move_to_bin(device, positions, drug, r, iter):
     # Loop de iteração sobre a quantidade de coletas na mesma bin
     while counter < int(iter):
         
-        console.print(
-            Panel
-            (
-                f"[bold cyan]Buscando {drug}...[/bold cyan]"
-            )
-        )
+        logger(f"[bold cyan]Buscando {drug}...[/bold cyan]")
 
         # Move o sugador para as posições da bin especificada
         device.movej_to(
@@ -30,27 +36,48 @@ def move_to_bin(device, positions, drug, r, iter):
             wait=True
         )
 
-        console.print(
-            (
-                f"[bold yellow] ▪️ Movimento para {drug}[/bold yellow]\n"
-            )
-        )
+        logger(f"[bold yellow] ▪️ Movimento para {drug}[/bold yellow]\n")
+        
+    
+        #Desce para ler qrcode
         device.movel_to(
             positions['bins'][drug]['pos_x'],
             positions['bins'][drug]['pos_y'],
-            18,
+            80,
             r,
             wait=True
         )
-
-        # Ativa a sucção do bico sugador
-        console.print(
-            (
-                "[bold yellow] ▪️ Ativando bico sugador[/bold yellow]\n"
-            )   
+        
+        #Lê o qrcode
+        dados_qr = ler_qrcode(port=port, baudrate=baudrate)
+        processar_qrcode(dados_qr)
+        
+        
+        #Move no sentido positivo de x para melhor posicionar o sugador        
+        device.movel_to(
+            positions['bins'][drug]['pos_x'] + 19,
+            positions['bins'][drug]['pos_y'],
+            80,
+            r,
+            wait=True
         )
+        
+        #Desce para sugar 
+        device.movel_to(
+            positions['bins'][drug]['pos_x'] + 19,
+            positions['bins'][drug]['pos_y'],
+            8,
+            r,
+            wait=True
+        )
+        
+    
+        # Ativa a sucção do bico sugador
+        logger(f"[bold yellow] ▪️ Ativando bico sugador[/bold yellow]\n")
         device.suck(True)
 
+        dado_infra = ler_infra()
+        
         device.movel_to(
             positions['bins'][drug]['pos_x'],
             positions['bins'][drug]['pos_y'],
@@ -60,19 +87,11 @@ def move_to_bin(device, positions, drug, r, iter):
         )
 
         # Retorna o sugador para a posição de referência home
-        console.print(
-            (
-                "[bold yellow] ▪️ Retornando para ponto de referência[/bold yellow]\n"
-            )
-        )
+        logger(f"[bold yellow] ▪️ Retornando para ponto de referência[/bold yellow]\n")
         
         return_home(device, positions) # Retorna o robô para a home
         
-        console.print(
-            (
-                "[bold yellow] ▪️ Movimento para o dispenser[/bold yellow]\n"
-            )
-        )
+        logger(f"[bold yellow] ▪️ Movimento para o dispenser[/bold yellow]\n")
         
         # Move o braço robótico para as posições do dispenser
         device.movej_to(
@@ -84,22 +103,18 @@ def move_to_bin(device, positions, drug, r, iter):
         )
         
         # Desativa a sucção do bico sugador
-        console.print(
-            Panel
-            (
-                f"[bold green]✔ {drug} coletado![/bold green]\n"
-            )
-        )
+        logger(f"[bold green]✔ {drug} coletado![/bold green]")
         device.suck(False)
 
         return_home(device, positions)
 
-        # Adiciona unidade ao iterador
+        # # Adiciona unidade ao iterador
         counter += 1
 
 
 # Função para definição da posição de referência home
 def return_home(device, positions: dict):
+    sio.emit('log', {'acao': 'Robot Log', 'detalhes': 'Retornando para home', 'usuario_id': 1})
     device.movej_to(
         positions['presets']['home']['pos_x'],
         positions['presets']['home']['pos_y'],
@@ -111,4 +126,14 @@ def return_home(device, positions: dict):
 # Função para retornar a posição atual do robô
 def get_current_position(device):
     pos = device.pose()
+    sio.emit('log', {'acao': 'Robot Log', 'detalhes': f'Posição atual: {pos}', 'usuario_id': 1})
     return {"x": pos[0], "y": pos[1], "z": pos[2]}
+
+def logger(data):
+    sio.emit('log', {'acao': 'Robot Log', 'detalhes': data, 'usuario_id': 1})
+    console.print(
+            Panel
+            (
+                data
+            )
+        )

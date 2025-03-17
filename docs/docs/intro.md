@@ -83,24 +83,89 @@ slug: /
 | Apresentação | Concluída | 21/02/2025 | 26/02/2025 |
 | Protótipo de alta fidelidade | Em andamento | 21/02/2025 | --- |
 
+## Sprint 3
+
+&emsp; Durante a Sprint 3, a equipe realizou a integração dos periféricos (leitor de QRCode e sensor infravermelho ao robô). Além disso, foi realizada a conexão do backend da aplicação com a Raspberry Pi Pico de forma que é agora é possível controlar o robô via requisições na API. No que tange à aplicação, desenvolveu-se o front-end completo do histórico de logs e os primeiros 1000 _logs_ da plataforma e do robô foram enviados para esta página. A página de login está em processo de integração com o backend, assim como o front-end da tela de cadastro.
+
+&emsp; A apresentação da Sprint 3 está disponível no link a seguir: [Link da apresentação](https://www.canva.com/design/DAGhnrcDwoQ/ZUmR30jRNdVwMQvTwUkjEg/edit?utm_content=DAGhnrcDwoQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+### Status Report
+&emsp; Essa tabela apresenta o status atual do projeto, com base nas atividades realizadas e planejadas para a Sprint 3.
+
+| Atividade | Status | Data de Início | Data de Término |
+|-----------|--------|----------------|-----------------|
+| Diagrama de Circuito | Concluída | 07/03/2025 | 10/03/2025 |
+| Implantação dos Periféricos | Concluída | 10/03/2025 | 10/03/2025 |
+| Integração dos Periféricos | Concluída | 10/03/2025 | 14/03/2025 |
+| Conexão Robô-API via Websocket | Concluída | 10/03/2025 | 13/03/2025 |
+| Front-end do Login | Concluída | 10/03/2025 | 13/03/2025 |
+| Front-end do Cadastro | Em Andamento | 13/03/2025 | --- |
+| Back-end do Login | Concluída | 07/03/2025 | 11/03/2025 |
+| Back-end do Cadastro | Concluída | 07/03/2025 | 12/03/2025 |
+| Front-end dos Logs | Concluída | 10/03/2025 | 14/03/2025 |
+| Back-end dos Logs | Concluída | 10/03/2025 | 14/03/2025 |
+| Deploy da plataforma no servidor do Inteli | Concluída | 11/03/2025 | 14/03/2025 |
+| Integração Login | Em andamento | 14/03/2025 | --- |
+| Integração Histórico de Logs | Concluída | 12/03/2025 | 14/03/2025 |
+
 ## Configuração do Ambiente para Execução
 Este guia fornece as instruções para configurar o ambiente e executar o projeto corretamente.
 
-1️.Clonar o Repositório
+1️.**Clonar o Repositório**
 Para obter o código-fonte do projeto, clone o repositório do GitHub:
 
-* git clone https://github.com/Inteli-College/2025-1A-T12-EC05-G02.git
-* cd 2025-1A-T12-EC05-G02
+```shell
+git clone https://github.com/Inteli-College/2025-1A-T12-EC05-G02.git
+```
+```shell
+cd 2025-1A-T12-EC05-G02
+```
 
-2️. Criar e Acessar a Branch de Desenvolvimento
-* git checkout -b main
+2️. **Criar e Acessar a Branch de Desenvolvimento**
 
-3️. Instalar o Docusaurus
-* cd docs
-* npm install
+```shell
+git checkout -b main
+```
 
-4️. Rodar o Docusaurus Localmente
-* npm run start
+3️. **Instalar o Docusaurus**
+
+```shell
+cd docs
+```
+```shell
+npm install
+```
+
+4️. **Rodar o Docusaurus Localmente**
+
+```shell
+npm run start
+```
 
 A documentação estará disponível em http://localhost:3000/.
 
+## Guia de Inicialização do frontend local
+
+### 1° Passo: Entrar no diretório do projeto
+
+&emsp;Primeiro, abra um terminal e digite o seguinte comando para entrar na pasta do frontend.
+
+```bash
+cd src/frontend/pharmabot
+```
+
+### 2° Passo: Instalar as dependências
+
+&emsp;Em seguida, instale as dependências do projeto com o seguinte comando:
+
+```bash
+npm install
+```
+### 3° Passo: Executar a aplicação
+
+ &emsp;Para iniciar o servidor local do frontend, execute o seguinte comando:
+
+```bash
+npm run dev
+```
+&emsp;Após a execução, o terminal exibirá o link onde a aplicação estará rodando, geralmente http://localhost:3000/. Basta abrir o navegador e acessar o link para visualizar a aplicação em funcionamento.

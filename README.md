@@ -83,3 +83,29 @@
 4. Checagem das posições das bins
 5. Portas de conexão
 6. Sair
+
+## Guia de Inicialização do frontend local
+
+### 1° Passo: Entrar no diretório do projeto
+
+&emsp;Primeiro, abra um terminal e digite o seguinte comando para entrar na pasta do frontend.
+
+```bash
+cd src/frontend/pharmabot
+```
+
+### 2° Passo: Instalar as dependências
+
+&emsp;Em seguida, instale as dependências do projeto com o seguinte comando:
+
+```bash
+npm install
+```
+### 3° Passo: Executar a aplicação
+
+ &emsp;Para iniciar o servidor local do frontend, execute o seguinte comando:
+
+```bash
+npm run dev
+```
+&emsp;Após a execução, o terminal exibirá o link onde a aplicação estará rodando, geralmente http://localhost:3000/. Basta abrir o navegador e acessar o link para visualizar a aplicação em funcionamento.

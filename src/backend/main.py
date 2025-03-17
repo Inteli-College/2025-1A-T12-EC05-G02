@@ -1,8 +1,44 @@
 from flask import Flask
+import os
+from dotenv import load_dotenv
+# from flask_sqlalchemy import SQLAlchemy
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from user.user import usersFlask
-from robot.robot import robotFlask
+from medicine.medicine import medicineFlask
+import robot.robot as robot
+from flask_cors import CORS
+from dotenv import load_dotenv
+from flask_socketio import SocketIO
+import logging
 
+load_dotenv()
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['DEBUG'] = True
+app.config['LOGGING'] = 'DEBUG'
+
+CORS(app)  # Permite todas as origens (para desenvolvimento)
+import extensions as ext
+
+ext.db.init_app(app)
+ext.socketio.init_app(app, cors_allowed_origins="*")
+
+import models
 
 app.register_blueprint(usersFlask)
-app.register_blueprint(robotFlask)
+app.register_blueprint(robot.robotFlask)
+app.register_blueprint(medicineFlask)
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+with app.app_context():
+    ext.db.create_all()
+    
+PREFIX = '/api'
+app.wsgi_app = DispatcherMiddleware(Flask('dummy_app'), {PREFIX: app.wsgi_app})
+
+if __name__ == '__main__':
+    ext.socketio.run(app, debug=True, host='0.0.0.0', port=5555)
