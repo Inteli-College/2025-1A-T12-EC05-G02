@@ -5,14 +5,14 @@ slug: /sprint-3/integracao/sensores
 
 # Implementação dos sensores no código
 
-&emsp; A utilização dos sensores MH-ET LIVE Scanner e TCRT5000 para leitura de QR Codes e validação da coleta de um medicamento no bin implica na necessidade de atualizar o código de funcionamento do robô.
+&emsp; A utilização dos sensores MH-ET LIVE Scanner e TCRT5000 para leitura de QR Codes e validação da coleda de um medicamento no bin implica na necessidade de atualizar o código de funcionamento do robô.
 
 &emsp; De acordo com o [Diagrama de Arquitetura em Blocos do projeto](docs/Sprint-2/Arquitetura/diagrama.md), tem-se que o microcontrolador - em nosso caso o *Raspberry Pi 5* - é responsável pela coleta de dados dos sensores e envio de comandos ao braço robótico *Magician Lite*. Desta forma, é necessário definir as funções de leitura dos sensores e atualizar o código de movimentação do braço robótico para a leitura dos sensores periféricos quando necessário. Portanto, os seguintes arquivos são adicionados:
 
 - `infra_function.py`
 - `qrcode_function.py`
 
-&emsp; E, para implementação com o código de movimentação do braço robótico, altera-se o arquivo `robot_functions.py`. Abaixo são explorados os novos arquivos desenvolvidos:
+&emsp; E, para implementação com o código de movimentação do braço robótico, altera-se o arquivo `robot_functions.py`. Abaixo é explorado os novos arquivos desenvolvidos:
 
 ## Arquivo `qrcode_function.py`:
 

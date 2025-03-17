@@ -99,7 +99,18 @@ slug: /sprint-3/integracao/circuito-eletronico
 
 ## Demostração de todo o sistema integrado
 
-&emsp;Na terceira sprint, o hardware *PharmaBot* foi aprimorado com a integração dos sensores de infravermelho e QR Code, elevando sua capacidade de identificação e separação automática das fitas de medicamentos conforme a demanda do Hospital das Clínicas. Com essa implementação, o sistema agora pode ler QR Codes ou códigos de barras, exibindo as informações do medicamento no terminal. Após a leitura, o sensor de infravermelho verifica a presença real do item coletado, garantindo maior controle durante todo o processo. Por fim, todo esse fluxo mencionado pode ser visualizado nesse [video](https://drive.google.com/file/d/1F46_raCgcBh_TuTKi6FLztHPZMw6Hi-A/view?usp=sharing). 
+&emsp;Na terceira sprint, o hardware *PharmaBot* foi aprimorado com a integração dos sensores de infravermelho e QR Code, elevando sua capacidade de identificação e separação automática das fitas de medicamentos conforme a demanda do Hospital das Clínicas. Com essa implementação, o sistema agora pode ler QR Codes ou códigos de barras, exibindo as informações do medicamento no terminal. Após a leitura, o sensor de infravermelho verifica a presença real do item coletado, garantindo maior controle durante todo o processo. Por fim, todo esse fluxo mencionado pode ser visualizado nesse [video](https://drive.google.com/file/d/1F46_raCgcBh_TuTKi6FLztHPZMw6Hi-A/view?usp=sharing).
+
+<div align="center" width="100%">
+
+<sub>Vídeo 1 - Video de funcionamento do braço robótico com integração dos sensores</sub>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u1MBkP50Yxs?si=Su3Xpmw6FsNMHThp&start=30&end=61" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<br/>
+<sup>Fonte: Autoria própria </sup>
+
+</div>
 
 ---
 
