@@ -11,6 +11,8 @@ robotFlask = Blueprint('robot', __name__, url_prefix='/robot')
 def handle_connect():
     print(request.sid)
     print("client has connected")
+    emit("connectResponse", {"data": f"id: {request.sid} is connected"})
+
 
 @socketio.on('disconnect')
 def handle_disconnect():
