@@ -105,7 +105,7 @@ slug: /sprint-3/integracao/circuito-eletronico
 
 <sub>Vídeo 1 - Video de funcionamento do braço robótico com integração dos sensores</sub>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/u1MBkP50Yxs?si=Su3Xpmw6FsNMHThp&start=30&end=61" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_lpzDtwCuUM?si=jnpYa8ez530pcXA5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <br/>
 <sup>Fonte: Autoria própria </sup>
