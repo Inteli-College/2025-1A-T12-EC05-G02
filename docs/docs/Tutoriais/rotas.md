@@ -1,11 +1,11 @@
 ---
-sidebar_position: 2
-slug: /sprint-3/integracao/rotas
+sidebar_position: 3
+slug: /tutoriais/rotas
 ---
 
 # Autenticação de rotas
 
-Este tutorial, explica como utilizar as funções de autenticação de rotas através do  backend, principalmente para os desenvolvedores do projeto responsáveis por tarefas relacionadas ao back-end.
+Este tutorial, explica como utilizar as funções de autenticação de rotas através do backend, principalmente para os desenvolvedores do projeto responsáveis por tarefas relacionadas ao back-end.
 
 ## Instalação e importação das bibliotecas necessárias
 
