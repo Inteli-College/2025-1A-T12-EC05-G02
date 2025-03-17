@@ -9,7 +9,7 @@ from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from user.user import usersFlask
 from medicine.medicine import medicineFlask
 from robot.robot import robotFlask
-from extensions import ext
+
 
 load_dotenv()
 app = Flask(__name__)
@@ -28,6 +28,9 @@ app.config['DEBUG'] = True
 app.config['LOGGING'] = 'DEBUG'
 
 CORS(app)  # Permite todas as origens (para desenvolvimento)
+import extensions as ext
+ext.db.init_app(app)
+ext.socketio.init_app(app, cors_allowed_origins="*")
 
 jwt = JWTManager(app)
 

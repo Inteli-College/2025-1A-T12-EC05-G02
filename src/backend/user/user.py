@@ -162,11 +162,11 @@ def admin_logs():
 
     return {"Logs": logs_list}, 200
 
-serverErrorMessage = jsonify({
+serverErrorMessage = {
     'success': False,
     'message': 'Erro ao fazer login',
     'error': 'Internal Server Error'
-})
+}
 
 @usersFlask.route('/info', methods=['GET'])
 @jwt_required()
