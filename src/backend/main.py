@@ -9,9 +9,11 @@ from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from user.user import usersFlask
 from medicine.medicine import medicineFlask
 from robot.robot import robotFlask
+from extensions import ext
 
 load_dotenv()
 app = Flask(__name__)
+
 SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 SECRET_KEY = os.getenv('SECRET_KEY')
 JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
@@ -27,15 +29,10 @@ app.config['LOGGING'] = 'DEBUG'
 
 CORS(app)  # Permite todas as origens (para desenvolvimento)
 
-import extensions as ext
-
-ext.db.init_app(app)
-ext.socketio.init_app(app, cors_allowed_origins="*")
-
 jwt = JWTManager(app)
 
 app.register_blueprint(usersFlask)
-app.register_blueprint(robot.robotFlask)
+app.register_blueprint(robotFlask)
 app.register_blueprint(medicineFlask)
 
 logging.basicConfig(level=logging.DEBUG)
