@@ -53,13 +53,14 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px; /* Aumentando a largura para um modal mais espaçoso */
+  width: 300px;
   background-color: #fff;
-  border-radius: 12px; /* Bordas arredondadas para um visual mais moderno */
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave e moderna */
-  padding: 20px; /* Aumentando o padding para mais espaço interno */
-  z-index: 9999; /* Garantir que o modal fique acima de outros elementos */
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 9999;
 }
+
 .title {
   font-size: 2.5rem;
   font-weight: 650;
@@ -117,7 +118,6 @@
   font-weight: 500;
 }
 
-/* Para esconder o placeholder visualmente */
 .inputGroup input::placeholder {
   color: transparent;
 }
@@ -158,11 +158,13 @@
 .loginButton:hover {
   background-color: #1382c2;
 }
+
 .buttonContainer {
   display: flex;
   justify-content: center;
   width: 100%;
 }
+
 .imageSection {
   flex: 1;
   position: relative;
@@ -194,6 +196,7 @@
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1rem;
+  flex-shrink: 0; /* Prevent text from shrinking */
 }
 
 .robotImageContainer {
@@ -201,9 +204,72 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  position: relative;
+  min-height: 0; 
 }
 
-/* Responsividade */
+.robotImageContainer img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Maintain aspect ratio */
+  position: absolute; /* Position the image */
+  bottom: 0; 
+}
+
+/* Desktop Responsiveness */
+@media screen and (min-width: 1200px) {
+  .form {
+    width: 50%;
+    max-width: 500px;
+  }
+  
+  .title {
+    font-size: 2.75rem;
+  }
+  
+  .loginButton {
+    width: 25%;
+  }
+  
+  .messageBox {
+    height: 85%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .formSection {
+    padding: 3rem;
+  }
+  
+  .form {
+    width: 45%;
+    max-width: 600px;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .inputGroup {
+    margin-bottom: 2rem;
+  }
+  
+  .inputGroup input {
+    padding: 0.9rem;
+    font-size: 1.1rem;
+  }
+  
+  .loginButton {
+    padding: 0.9rem;
+    font-size: 1.1rem;
+  }
+  
+  .messageBox {
+    height: 90%;
+  }
+}
+
 @media (max-width: 768px) {
   .loginContainer {
     flex-direction: column;
