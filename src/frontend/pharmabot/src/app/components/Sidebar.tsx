@@ -1,25 +1,27 @@
-"use client";
+"use client"; // Indica que este componente deve ser renderizado no lado do cliente 
 
-import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Divider from '@mui/material/Divider';
-import Link from 'next/link';
-import Typography from '@mui/material/Typography';
-import { usePathname } from 'next/navigation';
-
-
+import React, { useState } from 'react'; // Importa React e useState para gerenciar o estado de abertura/fechamento da sidebar
+import Box from '@mui/material/Box'; // Componente contêiner flexível do MUI para estruturação do layout
+import SwipeableDrawer from '@mui/material/SwipeableDrawer'; // Componente do MUI que permite criar uma sidebar deslizante 
+import IconButton from '@mui/material/IconButton'; // Botão icônico do MUI (usado para o botão do menu hamburguer)
+import List from '@mui/material/List'; // Componente para listas (menu de navegação)
+import ListItem from '@mui/material/ListItem'; // Item individual da lista
+import ListItemButton from '@mui/material/ListItemButton'; // Botão clicável dentro do ListItem
+import ListItemText from '@mui/material/ListItemText'; // Texto dentro de cada item da lista
+import MenuIcon from '@mui/icons-material/Menu'; // Ícone de "menu" (hamburguer) para abrir a sidebar
+import Divider from '@mui/material/Divider'; // Linha divisória (usado para separar o rodapé do restante da sidebar)
+import Link from 'next/link'; // Componente do Next.js para navegação entre páginas sem recarregar a página
+import Typography from '@mui/material/Typography'; // Componente de texto do MUI (usado para exibir textos no rodapé)
+import { usePathname } from 'next/navigation'; // Hook do Next.js para obter o caminho atual da página (usado para destacar o item ativo da sidebar)
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Estado para controlar se a sidebar está aberta (true) ou fechada (false)
 
+  const pathname = usePathname(); // Captura o caminho atual da página (ex: "/dashboard") para destacar o item correspondente no menu
+
+  // Função para abrir ou fechar a sidebar
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    // Previne o comportamento padrão ao pressionar Tab ou Shift
     if (
       event &&
       event.type === 'keydown' &&
@@ -27,9 +29,10 @@ const Sidebar = () => {
     ) {
       return;
     }
-    setIsOpen(open);
+    setIsOpen(open); // Atualiza estado da sidebar
   };
 
+  // Lista dos itens do menu com textos e rotas correspondentes
   const menuItems = [
     { text: 'Lista de Bins', route: '/bins' },
     { text: 'Histórico Logs', route: '/historico-logs' },
@@ -38,62 +41,63 @@ const Sidebar = () => {
     { text: 'Teste', route: '/teste' },
   ];
 
+  // Função que retorna o conteúdo interno da sidebar
   const list = () => (
     <Box
       sx={{
-        width: 250,
-        height: '100%',
-        backgroundColor: '#EDEDED',
+        width: 250, // Largura da sidebar
+        height: '100%', // Altura da tela inteira
+        backgroundColor: '#EDEDED', // Cor de fundo cinza claro
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between', // Separa topo e rodapé
         paddingTop: 2
       }}
       role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
+      onClick={toggleDrawer(false)} // Fecha a sidebar ao clicar em qualquer item
+      onKeyDown={toggleDrawer(false)} // Fecha a sidebar ao usar teclado
     >
-      {/* Topo com logo */}
+      {/* TOPO DA SIDEBAR: Logo + Menu */}
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {/* Logo PharmaTech */}
         <img src="/pharmatech-logo.png" alt="PharmaTech Logo" style={{ width: 150, marginBottom: 32 }} />
 
-        {/* Lista de itens */}
+        {/* Lista de itens do menu */}
         <List sx={{ width: '100%' }}>
+          {menuItems.map((item, index) => {
+            const isActive = pathname === item.route; // Verifica se o caminho atual corresponde à rota do item
 
-        {menuItems.map((item, index) => {
-          const isActive = pathname === item.route; // Verifica se a rota atual é igual à do menu
-
-          return (
-            <Link href={item.route} key={index} style={{ textDecoration: 'none' }}>
-              <ListItem disablePadding>
-                <ListItemButton
-                  sx={{
-                    pl: 3,
-                    backgroundColor: isActive ? '#ccc' : 'transparent', // Cor diferente se estiver ativo
-                    '&:hover': { backgroundColor: '#bbb' }
-                  }}
-                >
-                  <ListItemText
-                    primary={item.text}
-                    primaryTypographyProps={{
-                      color: '#333',
-                      fontWeight: isActive ? 'bold' : 'normal' // Deixa bold se ativo
-                   }}
-          />
-        </ListItemButton>
-      </ListItem>
-    </Link>
-  );
-})}
-
+            return (
+              <Link href={item.route} key={index} style={{ textDecoration: 'none' }}>
+                <ListItem disablePadding>
+                  <ListItemButton
+                    sx={{
+                      pl: 3,
+                      backgroundColor: isActive ? '#ccc' : 'transparent', // Cor diferente para o item ativo
+                      '&:hover': { backgroundColor: '#bbb' } // Cor ao passar o mouse
+                    }}
+                  >
+                    <ListItemText
+                      primary={item.text}
+                      primaryTypographyProps={{
+                        color: '#333',
+                        fontWeight: isActive ? 'bold' : 'normal' // Texto em bold se ativo
+                      }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            );
+          })}
         </List>
       </Box>
 
-      {/* Rodapé */}
+      {/* RODAPÉ DA SIDEBAR: Nome do usuário + Logout */}
       <Box sx={{ mb: 2, textAlign: 'center' }}>
         <Divider />
         <Typography variant="body2" sx={{ mt: 2, color: '#555' }}>
-          Olá, Usuário
+          Olá, Usuário 
+          {/* Futuramente substituir pelo nome real do usuário logado via auth */}
         </Typography>
         <Link href="/logout" style={{ textDecoration: 'none' }}>
           <Typography variant="body2" sx={{ mt: 1, color: 'red', cursor: 'pointer' }}>
@@ -104,28 +108,27 @@ const Sidebar = () => {
     </Box>
   );
 
-  const pathname = usePathname(); // para guar o link da página
-
   return (
     <div>
-      {/* Botão menu */}
+      {/* BOTÃO MENU (hamburguer) que abre a sidebar */}
       <IconButton onClick={toggleDrawer(true)} sx={{ color: 'black', m: 1 }}>
         <MenuIcon />
       </IconButton>
 
+      {/* COMPONENTE SwipeableDrawer que controla a sidebar deslizante */}
       <SwipeableDrawer
-        anchor='left'
-        open={isOpen}
-        onClose={toggleDrawer(false)}
-        onOpen={toggleDrawer(true)}
+        anchor='left' // Sidebar desliza da esquerda
+        open={isOpen} // Define se está aberta
+        onClose={toggleDrawer(false)} // Fecha ao clicar fora
+        onOpen={toggleDrawer(true)} // Abre ao clicar no botão
         sx={{
-          '& .MuiDrawer-paper': { backgroundColor: '#EDEDED' },
+          '& .MuiDrawer-paper': { backgroundColor: '#EDEDED' }, // Cor do drawer igual à sidebar
         }}
       >
-        {list()}
+        {list()} {/* Insere o conteúdo da sidebar */}
       </SwipeableDrawer>
     </div>
   );
 };
 
-export default Sidebar;
+export default Sidebar; // Exporta o componente para ser usado em outras partes do projeto
