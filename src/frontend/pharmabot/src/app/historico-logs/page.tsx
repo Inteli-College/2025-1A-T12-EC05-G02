@@ -89,7 +89,7 @@ export default function Historico() {
 
     return (
         <TabelaPharma titulo="Histórico de Ações do Sistema"
-            subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos" rows={filteredRows} key={key} loading={loading}>
+            subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos" rows={filteredRows} render={key} loading={loading}>
             <div className='flex justify-between items-center'>
                 <Stack id="pesquisar" spacing={1} direction="row" className='items-center'>
                     <TextField

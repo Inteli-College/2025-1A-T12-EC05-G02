@@ -13,12 +13,12 @@ interface Props {
     titulo: string
     subtitulo: string
     rows: Data[]
-    key: number
+    render: number
     loading: boolean
     children?: React.ReactNode; // Adicionando suporte a children
 }
 
-const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, key, loading, children }) => {
+const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, render, loading, children }) => {
 
     return (
         <Container maxWidth="lg" className='shadow-sm p-2 mt-4'>
@@ -33,7 +33,7 @@ const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, key, loading, 
                     <CircularProgress />
                 </div>
             ) : (
-                <Tabela rows={rows} render={key} /> /* Passa os dados filtrados para a tabela */
+                <Tabela rows={rows} render={render} /> /* Passa os dados filtrados para a tabela */
             )}
         </Container>
     )
