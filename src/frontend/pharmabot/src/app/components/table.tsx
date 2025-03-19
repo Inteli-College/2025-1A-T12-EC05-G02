@@ -25,11 +25,7 @@ const colunas: readonly Column[] = [
 ];
 
 interface Data {
-  id: string;
-  dataHora: Date;
-  acao: string;
-  detalhes: string;
-  responsavel: string;
+  [key: string]: any; // Permite campos adicionais
 }
 
 interface Props {
