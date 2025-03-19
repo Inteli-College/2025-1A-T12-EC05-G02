@@ -50,7 +50,7 @@ const SelectButton: React.FC<Props> = ({ atributo, label, items, onSelect, rende
             <MenuItem
               key={index}
               value={index === 0 ? "" : item}
-              sx={index === 0 ? { color: "pink" } : {}}
+              sx={index === 0 ? { color: "gray" } : {}}
             >
               {item}
             </MenuItem>
