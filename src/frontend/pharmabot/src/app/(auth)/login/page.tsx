@@ -7,17 +7,37 @@ import styles from '../login.module.css';
 import { Modal, Box, Typography, Button } from "@mui/material";
 
 export default function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [open, setOpen] = useState(false);
+  const [emailError, setEmailError] = useState('');
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+    // Função para validar email
+    const validateEmail = (email: string) => {
+      if (!email) return false;
+      const hasAtSymbol = email.includes('@');
+      const endsWithDotCom = email.endsWith('.com');
+      return hasAtSymbol && endsWithDotCom;
+    };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Lógica de autenticação
-    console.log('Tentativa de login com:', username);
+
+    // Validação do email
+    if (!validateEmail(email)) {
+      setEmailError('Insira um email válido');
+      return;
+    }
+    
+    // Limpa o erro se o email for válido
+    setEmailError('');
+
+    console.log('Tentativa de login com:', email);
   };
+
+  
 
   return (
     <div className={styles.container}>
@@ -36,16 +56,17 @@ export default function Login() {
           <h1 className={styles.title}>Login</h1>
           
           <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.inputGroup}>
+          <div className={styles.inputGroup}>
               <input
-                id="username"
+                id="email"
                 type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder=" "
                 required
               />
-              <label htmlFor="username">Usuário</label>
+              <label htmlFor="email">Email</label>
+              {emailError && <p className={styles.errorMessage}>{emailError}</p>}
             </div>
             
             <div className={styles.inputGroup}>
