@@ -7,73 +7,37 @@ import { Modal, Box, Typography, Button, CircularProgress } from "@mui/material"
 import { useRouter } from 'next/navigation';
 
 export default function Login() {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [open, setOpen] = useState(false);
   const [emailError, setEmailError] = useState('');
-  const [loginError, setLoginError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // Função para validar email
-  const validateEmail = (email: string) => {
-    if (!email) return false;
-    const hasAtSymbol = email.includes('@');
-    return hasAtSymbol;
-  };
+    // Função para validar email
+    const validateEmail = (email: string) => {
+      if (!email) return false;
+      const hasAtSymbol = email.includes('@');
+      const endsWithDotCom = email.endsWith('.com');
+      return hasAtSymbol && endsWithDotCom;
+    };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoginError('');
 
     // Validação do email
     if (!validateEmail(email)) {
-      setLoginError('Insira um email válido');
+      setEmailError('Insira um email válido');
       return;
     }
     
     // Limpa o erro se o email for válido
     setEmailError('');
-    
-    try {
-      setIsLoading(true);
-      
-      // Dados para enviar ao backend
-      const loginData = { 
-        email: email,
-        senha: password
-      };
-      
-      // Fazendo a requisição para o backend
-      const response = await fetch('http://localhost:5555/api/user/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
-            
-      if (response.status === 401) {
-        // Caso específico para credenciais inválidas
-        setLoginError('Email ou senha incorretos');
-      } else if (!response.ok) {
-        // Outros erros do servidor
-        setLoginError('Erro ao fazer login. Tente novamente.');
-      } else {
-        // Login bem-sucedido
-        router.push('/home');
-      }
-      
-    } catch (error) {
-      // Erro de rede ou outro erro não esperado
-      setLoginError('Erro ao conectar com o servidor');
-    } finally {
-      setIsLoading(false);
-    }
+
+    console.log('Tentativa de login com:', email);
   };
+
+  
 
   return (
     <div className={styles.container}>
@@ -98,15 +62,20 @@ export default function Login() {
           )}
           
           <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.inputGroup}>
+          <div className={styles.inputGroup}>
               <input
                 id="email"
+                id="email"
                 type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder=" "
                 required
               />
+              <label htmlFor="email">Email</label>
+              {emailError && <p className={styles.errorMessage}>{emailError}</p>}
               <label htmlFor="email">Email</label>
               {emailError && <p className={styles.errorMessage}>{emailError}</p>}
             </div>
