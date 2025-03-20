@@ -12,6 +12,7 @@ import { Button, CircularProgress } from '@mui/material';
 import Tabela from './table';
 
 
+
 // Extensão da paleta para incluir 'black'
 declare module '@mui/material/styles' {
     interface Palette {
