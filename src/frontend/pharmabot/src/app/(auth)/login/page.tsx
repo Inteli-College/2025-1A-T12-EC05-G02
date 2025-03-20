@@ -65,7 +65,7 @@ export default function Login() {
         setLoginError('Erro ao fazer login. Tente novamente.');
       } else {
         // Login bem-sucedido
-        router.push('/dashboard'); // Ajuste conforme a rota desejada
+        router.push('/home');
       }
       
     } catch (error) {
