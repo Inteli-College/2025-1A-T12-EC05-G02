@@ -10,12 +10,12 @@ const handleClickButton = () => {
 
 export default function SidebarActions() {
   return (
-    <div className="sidebar-actions h-[688px] w-[373px] bg-white rounded-md shadow-md">
-      <div className="flex flex-col items-center justify-center h-[8%] " >
-        <h1 className="self-start pl-4"><strong>AÇÕES:</strong></h1>
+    <div className="bg-white rounded-md shadow-md w-[100%] h-[100%] pb-4 justify-center items-center">
+      <div className="flex flex-col space-y-4 w-[100%]">
+        <h1 className="self-start text-3xl p-6"><strong>AÇÕES:</strong></h1>
       </div>
 
-      <div className="flex flex-col space-y-4 p-4">
+      <div className="flex flex-col space-y-4 justify-center items-center">
         <ButtonSidebar icon={Clipboard} label="FITAS DE MEDICAMENTOS" onClick={handleClickButton} />
         <ButtonSidebar icon={PackageOpen} label="ESTOQUE" onClick={handleClickButton} />
         <ButtonSidebar icon={Clock4} label="HISTÓRICO DE PRESCRIÇÕES" onClick={handleClickButton} />

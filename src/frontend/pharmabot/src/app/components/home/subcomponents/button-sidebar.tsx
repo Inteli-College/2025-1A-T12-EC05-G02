@@ -10,10 +10,10 @@ interface ButtonSidebarProps {
 // Componente de botão reutilizável
 export default function ButtonSidebar({ icon: Icon, label, onClick }: ButtonSidebarProps) {
   return (
-    <div className="flex flex-col items-center justify-center mt-4 w-[90%]">
+    <div className="flex flex-col items-center justify-center mt-4 w-[90%] ">
       <button
         onClick={onClick}
-        className="flex justify-center gap-2 bg-[#0099e5] text-white py-3 px-4 w-[300px] rounded-md font-medium hover:bg-[#0088cc] transition-colors"
+        className="flex justify-center items-center gap-2 bg-[#0099e5] text-white py-3 px-4 w-[100%] rounded-md font-medium hover:bg-[#0088cc] transition-colors"
       >
         <Icon className="w-5 h-5" />
         <span>{label}</span>

@@ -7,9 +7,9 @@ interface StatusCardProps {
 }
 
 const urgencyInfos = [
-    ["border-green-500 bg-green-400", ["Novo(s)", "Pedidos para serem separados"]],
-    ["border-yellow-500 bg-yellow-400", ["Separado(s)", "Pedidos aguardando separação"]],
-    ["border-red-500 bg-red-400", ["Recusado(s)", "Pedidos aguardando verificação"]]
+    ["[#80C7A3]", ["Novo(s)", "Pedidos para serem separados"]],
+    ["[#1696DE]", ["Separado(s)", "Pedidos aguardando separação"]],
+    ["[#DE1619]", ["Recusado(s)", "Pedidos aguardando verificação"]]
 ]
 
 export default function StatusCard({ urgency, quantity, onClick }: StatusCardProps) {
@@ -21,19 +21,18 @@ export default function StatusCard({ urgency, quantity, onClick }: StatusCardPro
 
   return (
     <div
-        className={`relative flex flex-col justify-center items-center h-[136px] w-[300px] p-4 border-2 rounded-md ${colorClasses}`}
+        className={`relative flex flex-col justify-between items-center h-[150px] w-[300px] p-3 rounded-sm bg-${colorClasses}`}
         onClick={onClick}
     >
-        <div className="text-center">
-            <div className="flex items-center justify-center">
-                <h2 className="text-4xl font-bold mr-2">{quantity}</h2>
-                <h3 className="text-lg">{quantityIndicator}</h3>
+        <div className="text-left w-[90%]">
+            <div className="flex items-center justify-left mb-2 text-white">
+                <h2 className="text-4xl font-bold mr-2 text-white">{quantity}</h2>
+                <h3 className="text-lg text-white">{quantityIndicator}</h3>
             </div>
-            <p className="text-sm">{description}</p>
+            <p className="text-sm text-white">{description}</p>
         </div>
         <button
-            className="absolute bottom-[-20px] bg-white text-green-600 font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-100"
-        >
+            className={`bg-white text-${colorClasses} font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-100 transition-all`}>
             Verificar
         </button>
     </div>
