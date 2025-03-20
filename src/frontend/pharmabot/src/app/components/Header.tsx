@@ -70,14 +70,17 @@ const Header: React.FC<Props> = ({dashboard}) => {
         <Box sx={{ flexGrow: 1 }} >
         <AppBar position="static" >     
 
-          <Toolbar className='flex justify-center bg-[#1C191D] py-2'>
+            <Toolbar className='flex justify-center bg-[#1C191D] py-2'>
+
+            <div className='w-auto h-auto'>
+                <Sidebar />
+            </div>
 
             <Link href="./"  >
                 <img src="/pharmatech-logo.png" alt="Logo do cinetag" className='h-17'/>
-                
             </Link>
 
-          </Toolbar>
+            </Toolbar>
 
 
         </AppBar>
