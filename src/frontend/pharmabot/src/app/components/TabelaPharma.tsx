@@ -16,9 +16,11 @@ interface Props {
     render: number
     loading: boolean
     children?: React.ReactNode; // Adicionando suporte a children
+    itemsPerPage?: number[];
+    initialNumItems?: number;
 }
 
-const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, render, loading, children }) => {
+const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, render, loading, itemsPerPage, initialNumItems, children }) => {
 
     return (
         <Container maxWidth="lg" className='shadow-sm p-2 mt-4'>
@@ -33,7 +35,7 @@ const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, render, loadin
                     <CircularProgress />
                 </div>
             ) : (
-                <Tabela rows={rows} render={render} /> /* Passa os dados filtrados para a tabela */
+                <Tabela itemsPerPage={itemsPerPage} rows={rows} render={render} initialNumItems={initialNumItems} /> /* Passa os dados filtrados para a tabela */
             )}
         </Container>
     )
