@@ -1,7 +1,7 @@
 "use client";
 
 import SidebarActions from "../components/home/sidebar-actions";
-import StatusCard from "../components/home/subcomponents/status-card";
+import StatusCard from "../components/home/status-card";
 import { redirect } from "next/navigation";
 
 export default function Home() {
@@ -28,21 +28,21 @@ export default function Home() {
               urgency={0}
               quantity={21}
               onClick={() => {
-                navigate("/login");
+                navigate("/");
               }}
             />
             <StatusCard
               urgency={1}
               quantity={39}
               onClick={() => {
-                navigate("/login");
+                navigate("/");
               }}
             />
             <StatusCard
               urgency={2}
               quantity={10}
               onClick={() => {
-                navigate("/login");
+                navigate("/");
               }}
             />
           </div>
