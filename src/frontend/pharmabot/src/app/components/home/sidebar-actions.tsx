@@ -8,18 +8,21 @@ import {
   PackageOpen,
   User,
 } from "lucide-react";
-import ButtonSidebar from "./subcomponents/button-sidebar";
+import ButtonSidebar from "./button-sidebar";
+import { useRouter } from "next/navigation";
 
-import { redirect } from "next/navigation";
+const routes = [
+  "fitas-de-medicamentos",
+  "estoque",
+  "historico-de-prescricoes",
+  "historico-logs",
+  "bins",
+  "usuarios",
+];
 
-interface StatusCardProps {
-  onClick: () => void;
-}
+export default function SidebarActions() {
+  const router = useRouter(); // Inicializa o hook para navegação
 
-const routes = ["fitas-de-medicamentos", "estoque", "historico-de-prescricoes", "historico-logs", "bins", "usuarios"];
-
-// Define a função fora do componente para torná-la acessível
-export default function SidebarActions({ onClick }: StatusCardProps) {
   return (
     <div className="bg-white rounded-md shadow-md w-[100%] h-[100%] pb-4 justify-center items-center">
       <div className="flex flex-col space-y-4 w-[100%]">
@@ -32,31 +35,32 @@ export default function SidebarActions({ onClick }: StatusCardProps) {
         <ButtonSidebar
           icon={Clipboard}
           label="FITAS DE MEDICAMENTOS"
-          onClick={() => redirect(routes[0])}
+          onClick={() => router.push(routes[0])}
         />
-        <ButtonSidebar icon={PackageOpen} 
-        label="ESTOQUE" 
-        onClick={() => redirect(routes[1])} 
+        <ButtonSidebar
+          icon={PackageOpen}
+          label="ESTOQUE"
+          onClick={() => router.push(routes[1])}
         />
         <ButtonSidebar
           icon={Clock4}
           label="HISTÓRICO DE PRESCRIÇÕES"
-          onClick={() => redirect(routes[2])}
+          onClick={() => router.push(routes[2])}
         />
         <ButtonSidebar
           icon={FileClock}
           label="HISTÓRICO DE LOGS"
-          onClick={() => redirect(routes[3])}
+          onClick={() => router.push(routes[3])}
         />
-        <ButtonSidebar 
-        icon={PillBottle} 
-        label="BINS" 
-        onClick={() => redirect(routes[4])} 
+        <ButtonSidebar
+          icon={PillBottle}
+          label="BINS"
+          onClick={() => router.push(routes[4])}
         />
-        <ButtonSidebar 
-        icon={User} 
-        label="USUÁRIOS" 
-        onClick={() => redirect(routes[5])} 
+        <ButtonSidebar
+          icon={User}
+          label="USUÁRIOS"
+          onClick={() => router.push(routes[5])}
         />
       </div>
     </div>
