@@ -22,7 +22,7 @@ interface Data {
 }
 
 
-export default function Historico() {
+export default function HistoricoLogs() {
     const [rows, setRows] = useState<Data[]>([]);
     const [key, setKey] = useState(0);
     const [selectedAcao, setSelectedAcao] = useState<string>('');
