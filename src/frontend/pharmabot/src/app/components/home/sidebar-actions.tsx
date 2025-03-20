@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Clipboard, Clock4, FileClock, PackageOpen, User } from "lucide-react";
+import { PillBottle, Clipboard, Clock4, FileClock, PackageOpen, User } from "lucide-react";
 import ButtonSidebar from "./subcomponents/button-sidebar";
 
 // Define a função fora do componente para torná-la acessível
@@ -20,7 +20,7 @@ export default function SidebarActions() {
         <ButtonSidebar icon={PackageOpen} label="ESTOQUE" onClick={handleClickButton} />
         <ButtonSidebar icon={Clock4} label="HISTÓRICO DE PRESCRIÇÕES" onClick={handleClickButton} />
         <ButtonSidebar icon={FileClock} label="HISTÓRICO DE LOGS" onClick={handleClickButton} />
-        <ButtonSidebar icon={Box} label="BINS" onClick={handleClickButton} />
+        <ButtonSidebar icon={PillBottle} label="BINS" onClick={handleClickButton} />
         <ButtonSidebar icon={User} label="USUÁRIOS" onClick={handleClickButton} />
       </div>
     </div>
