@@ -25,21 +25,19 @@ const colunas: readonly Column[] = [
 ];
 
 interface Data {
-  id: string;
-  dataHora: Date;
-  acao: string;
-  detalhes: string;
-  responsavel: string;
+  [key: string]: any; // Permite campos adicionais
 }
 
 interface Props {
   rows: Data[];
-  render: number
+  render: number;
+  initialNumItems?: number;
+  itemsPerPage?: number[]
 }
 
-const Tabela: React.FC<Props> = ({ rows, render }) => {
+const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [10, 50, 100], initialNumItems = 15 }) => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(initialNumItems);
   const [data, setData] = useState<string>(''); // Inicie com uma string vazia
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -89,7 +87,7 @@ const Tabela: React.FC<Props> = ({ rows, render }) => {
       </TableContainer>
       {/* Componente de Paginação */}
       <TablePagination
-        rowsPerPageOptions={[10, 50, 100]}
+        rowsPerPageOptions={itemsPerPage}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
