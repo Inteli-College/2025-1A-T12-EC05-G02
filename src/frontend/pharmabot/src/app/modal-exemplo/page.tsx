@@ -16,8 +16,7 @@ export default function TestModal() {
                 open={open} 
                 onClose={() => setOpen(false)} 
                 title="Cadastro de Usuário"
-                content={
-                    <form>
+            ><form>
                         <TextField 
                             label="Nome" 
                             variant="outlined" 
@@ -45,9 +44,7 @@ export default function TestModal() {
                         >
                             Salvar
                         </Button>
-                    </form>
-                }
-            />
+                    </form></CustomModal>
         </Container>
     );
 }

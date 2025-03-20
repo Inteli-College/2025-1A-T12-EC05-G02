@@ -14,14 +14,14 @@ const theme = createTheme({
     },
 });
 
-interface ModalProps {
+interface Props {
     open: boolean;
     onClose: () => void;
     title: string;
-    content: ReactNode;
+    children: ReactNode;
 }
 
-export default function CustomModal({ open, onClose, title, content }: ModalProps) {
+const CustomModal: React.FC<Props> = ({ open, onClose, title, children }) => {
     return (
         <ThemeProvider theme={theme}>
             <Modal open={open} onClose={onClose}>
@@ -41,7 +41,8 @@ export default function CustomModal({ open, onClose, title, content }: ModalProp
                     <Typography variant="h6" component="h2">
                         {title}
                     </Typography>
-                    <Typography sx={{ mt: 2 }}>{content}</Typography>
+                    <Typography sx={{ mt: 2 }}></Typography>
+                    {children}
                     <Button
                         variant="contained"
                         color="black"
@@ -55,3 +56,5 @@ export default function CustomModal({ open, onClose, title, content }: ModalProp
         </ThemeProvider>
     );
 }
+
+export default CustomModal;
