@@ -8,6 +8,7 @@ import Link from "next/link";
 import StopButton from "./StopButton";
 import CoordinateDisplay from './CoordinateDisplay';
 import Active from './Active';
+import Sidebar from './Sidebar';
 
 interface Props {
     dashboard: boolean
@@ -24,6 +25,10 @@ const Header: React.FC<Props> = ({dashboard}) => {
         <AppBar position="static" >     
 
             <Toolbar className='flex justify-center bg-[#1C191D] py-2 items-center'>
+
+                <div className='w-auto h-auto'>
+                    <Sidebar />
+                </div>
 
                 <Link href="./"  >
                     <img src="/pharmatech-logo.png" alt="Logo do cinetag" className='h-17'/>
