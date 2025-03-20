@@ -11,10 +11,10 @@ import Active from './Active';
 import Sidebar from './Sidebar';
 
 interface Props {
-    dashboard: boolean
+    dashboard?: boolean
 }
 
-const Header: React.FC<Props> = ({dashboard}) => {
+const Header: React.FC<Props> = ({dashboard=false}) => {
     
     const handleStop = () => {
         alert("O robô irá parar suas atividades");
@@ -72,7 +72,7 @@ const Header: React.FC<Props> = ({dashboard}) => {
 
             <Toolbar className='flex justify-center bg-[#1C191D] py-2'>
 
-            <div className='w-auto h-auto'>
+            <div className='w-auto h-auto absolute left-5' >
                 <Sidebar />
             </div>
 
