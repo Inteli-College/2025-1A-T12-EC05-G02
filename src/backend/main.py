@@ -41,6 +41,11 @@ app.register_blueprint(medicineFlask)
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
+# Rota de teste
+@app.get('/version')
+def hello_world():
+    return '1.0.1'
+
 with app.app_context():
     ext.db.create_all()
     
