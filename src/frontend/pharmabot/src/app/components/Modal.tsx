@@ -19,9 +19,12 @@ interface Props {
     onClose: () => void;
     title: string;
     children: ReactNode;
+    botaoSubmit?: boolean;
+    labelBotao?: string;
+    idForm: string;
 }
 
-const CustomModal: React.FC<Props> = ({ open, onClose, title, children }) => {
+const CustomModal: React.FC<Props> = ({ open, onClose, title, children, botaoSubmit, labelBotao, idForm }) => {
     return (
         <ThemeProvider theme={theme}>
             <Modal open={open} onClose={onClose}>
@@ -43,14 +46,32 @@ const CustomModal: React.FC<Props> = ({ open, onClose, title, children }) => {
                     </Typography>
                     <Typography sx={{ mt: 2 }}></Typography>
                     {children}
-                    <Button
-                        variant="contained"
-                        color="black"
-                        onClick={onClose}
-                        sx={{ mt: 2 }}
-                    >
-                        Fechar
-                    </Button>
+                    {botaoSubmit ? (<div className="flex justify-between">
+                        <Button
+                            variant="contained"
+                            color="black"
+                            onClick={onClose}
+                            sx={{ mt: 2 }}
+                        >
+                            Fechar
+                        </Button>
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            sx={{ mt: 2 }}
+                            form={idForm}
+                        >
+                            {labelBotao}
+                        </Button>
+                    </div>) : (
+                        <Button
+                            variant="contained"
+                            color="black"
+                            onClick={onClose}
+                            sx={{ mt: 2 }}
+                        >
+                            Fechar
+                        </Button>)}
                 </Box>
             </Modal>
         </ThemeProvider>
