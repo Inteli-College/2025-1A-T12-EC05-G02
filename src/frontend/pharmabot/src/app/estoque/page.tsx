@@ -81,7 +81,7 @@ export default function Estoque() {
     return (<>
         <Header></Header>
         <FormRegistro open={open} handleOpen={setOpen} />
-        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Aqui você encontra os produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas}>
+        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas}>
             <div className='flex justify-between items-center'>
                 <TextField
                     label="Pesquisar"

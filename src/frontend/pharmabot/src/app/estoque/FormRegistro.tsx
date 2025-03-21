@@ -1,6 +1,14 @@
 import { Alert, TextField } from "@mui/material";
 import { useState } from "react";
 import CustomModal from "../components/Modal";
+import { styled } from '@mui/material/styles';
+
+const CustomTextField = styled(TextField)({
+    '& .MuiFormLabel-asterisk': {
+      color: "#820707",
+    },
+  });
+  
 
 interface Props {
     open: boolean;
@@ -67,10 +75,10 @@ const FormRegistro: React.FC<Props> = ({ open, handleOpen }) => {
             {alertRegistro && <Alert variant="filled" severity="error">Erro ao enviar o formulário: {erro}</Alert>}
 
             <form onSubmit={handleSubmit} id={idForm}>
-                <TextField label="Nome do Item" name="item" variant="outlined" fullWidth required margin="normal" />
-                <TextField label="Código de Identificação" name="codigoIdentificacao" variant="outlined" fullWidth required margin="normal" />
-                <TextField label="Localização" name="localizacao" variant="outlined" fullWidth required margin="normal" />
-                <TextField label="Quantidade" name="quantidade" variant="outlined" type="number" required fullWidth margin="normal" />
+                <CustomTextField label="Nome do Item" name="item" variant="outlined" fullWidth required margin="normal" />
+                <CustomTextField label="Código de Identificação" name="codigoIdentificacao" variant="outlined" fullWidth required margin="normal" />
+                <CustomTextField label="Localização" name="localizacao" variant="outlined" fullWidth required margin="normal" />
+                <CustomTextField label="Quantidade" name="quantidade" variant="outlined" type="number" required fullWidth margin="normal" />
                 <input name="ultimaAtualizacao" readOnly value={date} className="hidden" />
             </form>
         </CustomModal>
