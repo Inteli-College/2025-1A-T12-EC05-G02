@@ -30,7 +30,7 @@ const urgencyInfos: [string, [string, string]][] = [
             <p className="text-lg text-white">{description}</p>
         </div>
         <button
-            className={`bg-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-100 transition-all mt-2`}
+            className={`bg-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-100 transition-all mt-2 cursor-pointer`}
             style={{color: color}}>
             Verificar
         </button>

@@ -13,7 +13,7 @@ export default function ButtonSidebar({ icon: Icon, label, onClick }: ButtonSide
     <div className="flex flex-col items-center justify-center mt-4 w-[90%] ">
       <button
         onClick={onClick}
-        className="flex justify-center items-center gap-2 bg-[#0099e5] text-white py-3 px-4 w-[100%] rounded-md font-medium hover:bg-[#0088cc] transition-colors"
+        className="flex justify-center items-center gap-2 bg-[#0099e5] text-white py-3 px-4 w-[100%] rounded-md font-medium hover:bg-[#0088cc] transition-colors cursor-pointer"
       >
         <Icon className="w-5 h-5" />
         <span>{label}</span>
@@ -21,6 +21,3 @@ export default function ButtonSidebar({ icon: Icon, label, onClick }: ButtonSide
     </div>
   );
 }
-
-// Exemplo de uso
-// <ButtonSidebar icon={Clipboard} label="FITAS DE MEDICAMENTOS" onClick={handleClick} />
