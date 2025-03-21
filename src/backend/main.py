@@ -43,14 +43,12 @@ logger = logging.getLogger(__name__)
 
 # Rota de teste
 @app.get('/version')
-def hello_world():
-    return '1.0.1'
+def version():
+    return '1.0.2'
 
 with app.app_context():
     ext.db.create_all()
     
-PREFIX = '/api'
-app.wsgi_app = DispatcherMiddleware(Flask('dummy_app'), {PREFIX: app.wsgi_app})
 
 if __name__ == '__main__':
     ext.socketio.run(app, debug=True, host='0.0.0.0', port=5555)
