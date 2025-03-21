@@ -1,0 +1,101 @@
+"use client"
+
+import Header from "../components/Header"
+import TabelaPharma from "../components/TabelaPharma"
+import { useState, useEffect } from "react";
+import { Data } from "../components/table";
+import { TextField, Stack, Button } from "@mui/material";
+import { Column } from "../components/table";
+import CustomModal from "../components/Modal";
+import Alert from '@mui/material/Alert';
+import FormRegistro from "./FormRegistro";
+
+const colunas: Column[] = [
+    { id: 'item', label: 'Item', minWidth: 150 },
+    { id: 'codigoIdentificacao', label: 'Código de Identificação', align: 'center', minWidth: 170 },
+    { id: 'localizacao', label: 'Localização', minWidth: 200 },
+    { id: 'quantidade', label: 'Quantidade', minWidth: 170 },
+    { id: 'ultimaAtualizacao', label: 'Última Atualização', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
+]
+
+export default function Estoque() {
+    const [loading, setLoading] = useState<boolean>(false); // Novo estado para controle de carregamento
+    const [loadingCriar, setLoadingCriar] = useState<boolean>(false); // Novo estado para controle de carregamento
+    const [rows, setRows] = useState<Data[]>([]);
+    const [searchText, setSearchText] = useState<string>(''); // Estado para o texto de pesquisa
+    const [filteredRows, setFilteredRows] = useState<Data[]>([]); // Estado para os dados filtrados
+    const [key, setKey] = useState(0);
+    const [open, setOpen] = useState(false);
+
+    //função para atualizar a página com base no botão atualizar
+    const reRender = () => {
+        setKey(prevKey => prevKey + 1);
+    };
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchText(event.target.value);
+    };
+
+    useEffect(() => {
+        setLoading(true); // Inicia o carregamento
+        // Montar a URL com base na ação selecionada
+        const url = `http://127.0.0.1:5555/api/estoque/registros` //NECESSARIO INTEGRAR COM O BACK
+
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                // Transformar os dados no formato esperado
+                const formattedData: Data[] = data.registros.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
+                    item: item.item.toString(),
+                    codigoIdentificacao: item.codigoIdentificacao,
+                    localizacao: item.localizacao,
+                    quantidade: item.quantidade.toString(),
+                    ultimaAtualizacao: new Date(item.ultimaAtualizacao)
+                }));
+
+                setRows(formattedData);
+            })
+            .catch((error) => console.error("Erro ao buscar registros:", error))
+            .finally(() => setLoading(false)); // Finaliza o carregamento
+    }, [key]);  // O efeito será executado sempre que `selectedAcao` mudar
+
+    // Filtra os dados com base no texto de pesquisa
+    useEffect(() => {
+        if (searchText === '') {
+            setFilteredRows(rows); // Se não houver pesquisa, exibe todos os dados
+        } else {
+            const filtered = rows.filter((row) => {
+                return (
+                    row.id.includes(searchText) ||
+                    row.acao.toLowerCase().includes(searchText.toLowerCase()) ||
+                    row.detalhes.toLowerCase().includes(searchText.toLowerCase()) ||
+                    String(row.responsavel).toLowerCase().includes(searchText.toLowerCase())
+                );
+            });
+            setFilteredRows(filtered);
+        }
+    }, [searchText, rows]); // Atualiza sempre que `searchText` ou `rows` mudar
+
+    const idForm = 'criar-registro'
+
+    return (<>
+        <Header></Header>
+        <FormRegistro open={open} handleOpen={setOpen} />
+        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas}>
+            <div className='flex justify-between items-center'>
+                <TextField
+                    label="Pesquisar"
+                    size='small'
+                    type="search"
+                    value={searchText}
+                    onChange={handleSearchChange}
+                />
+                <Stack id="botoes" spacing={1} direction="row">
+                    <Button variant="outlined" color="black" onClick={reRender}>Atualizar</Button>
+                    <Button variant="contained" onClick={() => setOpen(true)}>Criar Item</Button>
+                </Stack>
+            </div>
+        </TabelaPharma>
+
+    </>)
+}

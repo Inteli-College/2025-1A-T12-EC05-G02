@@ -12,7 +12,7 @@ export interface Column {
   id: string;
   label: string;
   minWidth?: number;
-  align?: 'right';
+  align?: 'right' | 'left' | 'center' ;
   format?: (value: any) => string;
 }
 
@@ -28,7 +28,7 @@ interface Props {
   colunas: Column[];
 }
 
-const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [10, 50, 100], initialNumItems = 15, colunas }) => {
+const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [15, 50, 100], initialNumItems = 15, colunas }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(initialNumItems);
   const [data, setData] = useState<string>(''); // Inicie com uma string vazia
