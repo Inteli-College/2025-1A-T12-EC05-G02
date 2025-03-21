@@ -8,14 +8,16 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Button } from '@mui/material';
 import { exportToCSV } from '../(util)/exportToCSV';
 import TabelaPharma from '../components/TabelaPharma';
+import { Column } from '../components/table';
+import { Data } from '../components/table';
 
-interface Data {
-    id: string;
-    dataHora: Date;
-    acao: string;
-    detalhes: string;
-    responsavel: string;
-}
+const colunas: Column[] = [
+    { id: 'id', label: 'ID', minWidth: 100 },
+    { id: 'dataHora', label: 'Data e Hora', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
+    { id: 'acao', label: 'Ação', minWidth: 170 },
+    { id: 'detalhes', label: 'Detalhes', minWidth: 200 },
+    { id: 'responsavel', label: 'Responsável', minWidth: 170},
+  ];
 
 
 export default function Historico() {
@@ -89,7 +91,7 @@ export default function Historico() {
 
     return (
         <TabelaPharma titulo="Histórico de Ações do Sistema"
-            subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos" rows={filteredRows} render={key} loading={loading}>
+            subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos" rows={filteredRows} render={key} loading={loading} colunas={colunas}>
             <div className='flex justify-between items-center'>
                 <Stack id="pesquisar" spacing={1} direction="row" className='items-center'>
                     <TextField
