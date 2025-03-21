@@ -11,14 +11,23 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { exportToCSV } from '../(util)/exportToCSV';
 import { redirect } from "next/navigation";
 import { useState, useEffect } from 'react';
+import { Column } from '../components/table';
 
 interface Data {
   id: string;
-  dataHora: Date;
-  acao: string;
-  detalhes: string;
-  responsavel: string;
+  horaPrescricao: Date;
+  prescricao: string;
+  paciente: string;
+  farmaceutico: string;
 }
+
+const colunas: Column[] = [
+    { id: 'id', label: 'ID', minWidth: 100 },
+    { id: 'horaPrescricao', label: 'Horário de Separação', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
+    { id: 'prescricao', label: 'Prescrição', minWidth: 170 },
+    { id: 'paciente', label: 'Paciente', minWidth: 200 },
+    { id: 'farmaceutico', label: 'Farmacêutico', minWidth: 170},
+  ];
 
 export default function Home() {
   const navigate = (path: string) => {
@@ -49,21 +58,21 @@ export default function Home() {
       : rota;
 
     fetch(url)
-      .then((response) => response.json())
+      .then((response) => response.json()
       .then((data) => {
         // Transformar os dados no formato esperado
         const formattedData: Data[] = data.Logs.map((item: any) => ({
           id: item.id.toString(),
-          dataHora: new Date(item.data_hora), // Converter string para Date
-          acao: item.acao,
-          detalhes: item.detalhes,
-          responsavel: item.responsavel,
+          horaPrescricao: new Date(item.data_hora), // Converter string para Date
+          prescricao: item.prescricao,
+          paciente: item.paciente,
+          farmaceutico: item.farmaceutico,
         }));
 
         setRows(formattedData);
       })
       .catch((error) => console.error("Erro ao buscar logs:", error))
-      .finally(() => setLoading(false)); // Finaliza o carregamento
+      .finally(() => setLoading(false))); // Finaliza o carregamento
   }, [selectedAcao, key]); // O efeito será executado sempre que `selectedAcao` mudar
 
   // Filtra os dados com base no texto de pesquisa
@@ -74,9 +83,9 @@ export default function Home() {
       const filtered = rows.filter((row) => {
         return (
           row.id.includes(searchText) ||
-          row.acao.toLowerCase().includes(searchText.toLowerCase()) ||
-          row.detalhes.toLowerCase().includes(searchText.toLowerCase()) ||
-          String(row.responsavel)
+          row.prescricao.toLowerCase().includes(searchText.toLowerCase()) ||
+          row.paciente.toLowerCase().includes(searchText.toLowerCase()) ||
+          String(row.farmaceutico)
             .toLowerCase()
             .includes(searchText.toLowerCase())
         );
@@ -134,63 +143,33 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full h-full">
-            <TabelaPharma
-              titulo="Histórico de Prescrições"
-              subtitulo="Aqui você encontra as prescrições separadas anteriormente pelo PharmaBot."
-              rows={filteredRows}
-              render={key}
-              loading={loading}
-            >
-              <div className="flex justify-between items-center">
-                <Stack
-                  id="pesquisar"
-                  spacing={1}
-                  direction="row"
-                  className="items-center"
-                >
-                  <TextField
-                    label="Pesquisar"
-                    size="small"
-                    type="search"
-                    value={searchText}
-                    onChange={handleSearchChange}
-                  />
-                  <span></span>
-                  <SelectButton
-                    atributo="acao"
-                    label="Ação"
-                    onSelect={handleAcaoChange}
-                    render={key}
-                    rota={rota}
-                  />
-                  <FilterAltIcon className="opacity-70" />
+          <TabelaPharma titulo="Histórico de Ações do Sistema"
+            subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos" rows={filteredRows} render={key} loading={loading} colunas={colunas}>
+            <div className='flex justify-between items-center'>
+                <Stack id="pesquisar" spacing={1} direction="row" className='items-center'>
+                    <TextField
+                        label="Pesquisar"
+                        size='small'
+                        type="search"
+                        value={searchText}
+                        onChange={handleSearchChange}
+                    />
+                    <span></span>
+                    <SelectButton
+                        atributo='acao'
+                        label='Ação'
+                        onSelect={handleAcaoChange}
+                        render={key}
+                        rota={rota}
+                    />
+                    <FilterAltIcon className='opacity-70' />
                 </Stack>
                 <Stack id="botoes" spacing={1} direction="row">
-                  <Button variant="outlined" color="black" onClick={reRender}>
-                    Atualizar
-                  </Button>
-                  <Button
-                    variant="contained"
-                    onClick={() =>
-                      exportToCSV(
-                        filteredRows,
-                        [
-                          "ID",
-                          "Data e Hora",
-                          "Ação",
-                          "Detalhes",
-                          "Responsável",
-                        ],
-                        ["id", "dataHora", "acao", "detalhes", "responsavel"],
-                        "historico-acoes"
-                      )
-                    }
-                  >
-                    Exportar CSV
-                  </Button>
+                    <Button variant="outlined" color="black" onClick={reRender}>Atualizar</Button>
+                    <Button variant="contained" onClick={() => exportToCSV(filteredRows, ["ID", "Data e Hora", "Ação", "Detalhes", "Responsável"], ['id', 'dataHora', 'acao', 'detalhes', 'responsavel'], "historico-acoes")}>Exportar CSV</Button>
                 </Stack>
-              </div>
-            </TabelaPharma>
+            </div>
+        </TabelaPharma>
           </div>
         </div>
       </div>
