@@ -151,8 +151,8 @@ export default function Home() {
           </div>
           <div className="flex flex-col justify-center items-center w-full h-full">
             <TabelaPharma
-              titulo="Histórico de Ações do Sistema"
-              subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos"
+              titulo="Histórico de Prescrições"
+              subtitulo="Aqui você encontra as prescrições separadas anteriormente pelo PharmaBot"
               rows={filteredRows}
               render={key}
               loading={loading}
