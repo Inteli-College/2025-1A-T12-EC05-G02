@@ -8,23 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
-interface Column {
-  id: 'id' | 'dataHora' | 'acao' | 'detalhes' | 'responsavel';
+export interface Column {
+  id: string;
   label: string;
   minWidth?: number;
   align?: 'right';
   format?: (value: any) => string;
 }
 
-const colunas: readonly Column[] = [
-  { id: 'id', label: 'ID', minWidth: 100 },
-  { id: 'dataHora', label: 'Data e Hora', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
-  { id: 'acao', label: 'Ação', minWidth: 170 },
-  { id: 'detalhes', label: 'Detalhes', minWidth: 200 },
-  { id: 'responsavel', label: 'Responsável', minWidth: 170},
-];
-
-interface Data {
+export interface Data {
   [key: string]: any; // Permite campos adicionais
 }
 
@@ -32,10 +24,11 @@ interface Props {
   rows: Data[];
   render: number;
   initialNumItems?: number;
-  itemsPerPage?: number[]
+  itemsPerPage?: number[];
+  colunas: Column[];
 }
 
-const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [10, 50, 100], initialNumItems = 15 }) => {
+const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [10, 50, 100], initialNumItems = 15, colunas }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(initialNumItems);
   const [data, setData] = useState<string>(''); // Inicie com uma string vazia

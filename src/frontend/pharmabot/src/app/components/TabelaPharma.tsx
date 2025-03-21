@@ -4,10 +4,8 @@ import Container from '@mui/material/Container';
 import TituloTabela from './TituloTabela';
 import { CircularProgress } from '@mui/material';
 import Tabela from './table';
-
-interface Data {
-    [key: string]: any;
-}
+import { Column } from '../components/table';
+import { Data } from './table';
 
 interface Props {
     titulo: string
@@ -18,9 +16,10 @@ interface Props {
     children?: React.ReactNode; // Adicionando suporte a children
     itemsPerPage?: number[];
     initialNumItems?: number;
+    colunas: Column[];
 }
 
-const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, render, loading, itemsPerPage, initialNumItems, children }) => {
+const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, render, loading, itemsPerPage, initialNumItems, children, colunas }) => {
 
     return (
         <Container maxWidth="lg" className='shadow-sm p-2 mt-4'>
@@ -35,7 +34,7 @@ const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, render, loadin
                     <CircularProgress />
                 </div>
             ) : (
-                <Tabela itemsPerPage={itemsPerPage} rows={rows} render={render} initialNumItems={initialNumItems} /> /* Passa os dados filtrados para a tabela */
+                <Tabela itemsPerPage={itemsPerPage} rows={rows} render={render} initialNumItems={initialNumItems} colunas={colunas} /> /* Passa os dados filtrados para a tabela */
             )}
         </Container>
     )
