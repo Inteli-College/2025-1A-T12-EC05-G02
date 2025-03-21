@@ -24,8 +24,8 @@ const urgencyInfos: [string, [string, string]][] = [
         
         <div className="text-left w-[90%]">
             <div className="flex items-center justify-left mb-2 text-white">
-                <h2 className="text-6xl font-bold mr-2 text-white">{quantity}</h2>
-                <h3 className="text-4xl text-white">{quantityIndicator}</h3>
+                <h2 className="text-4xl font-bold mr-2 text-white">{quantity}</h2>
+                <h3 className="text-2xl text-white">{quantityIndicator}</h3>
             </div>
             <p className="text-lg text-white">{description}</p>
         </div>
