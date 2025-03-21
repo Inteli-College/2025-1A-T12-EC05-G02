@@ -111,8 +111,8 @@ const Sidebar = () => {
   return (
     <div>
       {/* BOTÃO MENU (hamburguer) que abre a sidebar */}
-      <IconButton onClick={toggleDrawer(true)} sx={{ color: 'black', m: 1 }}>
-        <MenuIcon />
+      <IconButton onClick={toggleDrawer(true)} sx={{ color: '#FFFBFF', m: 0}}>
+        <MenuIcon className='mr-4 ml-0'/>
       </IconButton>
 
       {/* COMPONENTE SwipeableDrawer que controla a sidebar deslizante */}

@@ -1,8 +1,6 @@
 "use client"; // Isso força o componente a rodar no lado do cliente
 
 import { useState, useEffect } from 'react';
-import Container from '@mui/material/Container';
-import TituloTabela from "../components/TituloTabela";
 import SelectButton from '../components/SelectButton';
 import TextField from '@mui/material/TextField';
 import { ThemeProvider } from '@mui/material/styles';
@@ -12,14 +10,17 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Button, CircularProgress } from '@mui/material';
 import Tabela from './table';
 import { exportToCSV } from '../(util)/exportToCSV';
+import TabelaPharma from '../components/TabelaPharma';
+import { Column } from '../components/table';
+import { Data } from '../components/table';
 
-interface Data {
-    id: string;
-    dataHora: Date;
-    acao: string;
-    detalhes: string;
-    responsavel: string;
-}
+const colunas: Column[] = [
+    { id: 'id', label: 'ID', minWidth: 100 },
+    { id: 'dataHora', label: 'Data e Hora', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
+    { id: 'acao', label: 'Ação', minWidth: 170 },
+    { id: 'detalhes', label: 'Detalhes', minWidth: 200 },
+    { id: 'responsavel', label: 'Responsável', minWidth: 170},
+  ];
 
 
 export default function HistoricoLogs() {
@@ -92,46 +93,31 @@ export default function HistoricoLogs() {
     };
 
     return (
-        <ThemeProvider theme={theme}>
-            <Container maxWidth="lg" className='shadow-sm p-2 mt-4'>
-                <TituloTabela
-                    titulo="Histórico de Ações do Sistema"
-                    subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos"
-                />
-                <div className='flex justify-between items-center'>
-                    <Stack id="pesquisar" spacing={1} direction="row" className='items-center'>
-                        <TextField
-                            label="Pesquisar"
-                            size='small'
-                            type="search"
-                            value={searchText}
-                            onChange={handleSearchChange}
-                        />
-                        <span></span>
-                        <SelectButton
-                            atributo='acao'
-                            label='Ação'
-                            onSelect={handleAcaoChange}
-                            render={key}
-                            rota={rota}
-                        />
-                        <FilterAltIcon className='opacity-70' />
-                    </Stack>
-                    <Stack id="botoes" spacing={1} direction="row">
-                        <Button variant="outlined" color="black" onClick={reRender}>Atualizar</Button>
-                        <Button variant="contained" onClick={() => exportToCSV(filteredRows, ["ID", "Data e Hora", "Ação", "Detalhes", "Responsável"],['id', 'dataHora', 'acao', 'detalhes', 'responsavel'], "historico-acoes")}>Exportar CSV</Button>
-                    </Stack>
-                </div>
-
-                {/* Mostrar animação de loading enquanto está buscando os dados */}
-                {loading ? (
-                    <div className="flex justify-center items-center py-10">
-                        <CircularProgress />
-                    </div>
-                ) : (
-                    <Tabela rows={filteredRows} render={key} /> /* Passa os dados filtrados para a tabela */
-                )}
-            </Container>
-        </ThemeProvider>
+        <TabelaPharma titulo="Histórico de Ações do Sistema"
+            subtitulo="Aqui você encontra o histórico de ações do sistema, como início de separações e recebimentos de pedidos" rows={filteredRows} render={key} loading={loading} colunas={colunas}>
+            <div className='flex justify-between items-center'>
+                <Stack id="pesquisar" spacing={1} direction="row" className='items-center'>
+                    <TextField
+                        label="Pesquisar"
+                        size='small'
+                        type="search"
+                        value={searchText}
+                        onChange={handleSearchChange}
+                    />
+                    <span></span>
+                    <SelectButton
+                        atributo='acao'
+                        label='Ação'
+                        onSelect={handleAcaoChange}
+                        render={key}
+                        rota={rota}
+                    />
+                </Stack>
+                <Stack id="botoes" spacing={1} direction="row">
+                    <Button variant="outlined" color="black" onClick={reRender}>Atualizar</Button>
+                    <Button variant="contained" onClick={() => exportToCSV(filteredRows, ["ID", "Data e Hora", "Ação", "Detalhes", "Responsável"], ['id', 'dataHora', 'acao', 'detalhes', 'responsavel'], "historico-acoes")}>Exportar CSV</Button>
+                </Stack>
+            </div>
+        </TabelaPharma>
     );
 }
