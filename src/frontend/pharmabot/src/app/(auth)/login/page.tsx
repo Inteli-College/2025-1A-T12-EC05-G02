@@ -22,8 +22,7 @@ export default function Login() {
   const validateEmail = (email: string) => {
     if (!email) return false;
     const hasAtSymbol = email.includes('@');
-    const endsWithDotCom = email.endsWith('.com');
-    return hasAtSymbol && endsWithDotCom;
+    return hasAtSymbol;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,7 +31,7 @@ export default function Login() {
 
     // Validação do email
     if (!validateEmail(email)) {
-      setEmailError('Insira um email válido');
+      setLoginError('Insira um email válido');
       return;
     }
     
