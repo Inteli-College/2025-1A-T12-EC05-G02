@@ -1,6 +1,6 @@
-export type Status = 'todo' | 'in-progress' | 'done'
+export type Status = 'fila' | 'em-preparo' | 'separado'
 export type Priority = 'low' | 'medium' | 'high'
-export type Task = {
+export type Fita = {
   title: string,
   id: string,
   status: Status,
@@ -9,5 +9,5 @@ export type Task = {
   order: number // Adicionado para controlar a ordem
 }
 
-export const statuses: Status[] = ['todo', 'in-progress', 'done']
+export const statuses: Status[] = ['fila', 'em-preparo', 'separado']
 export const priorities: Priority[] = ['low', 'medium', 'high']
