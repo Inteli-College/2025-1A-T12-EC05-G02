@@ -3,12 +3,8 @@
 import { useState, useEffect } from 'react';
 import SelectButton from '../components/SelectButton';
 import TextField from '@mui/material/TextField';
-import { ThemeProvider } from '@mui/material/styles';
-import { theme } from '../../../theme.ds';
 import Stack from '@mui/material/Stack';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { Button, CircularProgress } from '@mui/material';
-import Tabela from './table';
+import { Button } from '@mui/material';
 import { exportToCSV } from '../(util)/exportToCSV';
 import TabelaPharma from '../components/TabelaPharma';
 import { Column } from '../components/table';
