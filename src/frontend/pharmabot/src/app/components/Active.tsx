@@ -9,7 +9,7 @@ const Active: React.FC<Props> = ({active}) => {
             ATIVO
         </div>
     ) : (
-        <div className="bg-[#80C7A3] text-[13px] w-18 h-8 rounded-md flex items-center justify-center text-[#3F3047]">
+        <div className="bg-[#c78080] text-[13px] w-18 h-8 rounded-md flex items-center justify-center text-[#3F3047]">
             INATIVO
         </div>
     )

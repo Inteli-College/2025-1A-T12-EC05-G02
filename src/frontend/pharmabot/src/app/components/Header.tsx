@@ -11,13 +11,20 @@ import Active from './Active';
 import Sidebar from './Sidebar';
 
 interface Props {
-    dashboard?: boolean
+    dashboard?: boolean;
+    onStopClick?: () => void; // Função para o clique do botão
+    coordinates?: { x: number; y: number; z: number }; // Coordenadas
+    isActive?: boolean; // Estado do robô
 }
 
-const Header: React.FC<Props> = ({dashboard=false}) => {
+const Header: React.FC<Props> = ({ dashboard = false, onStopClick, coordinates = { x: 0, y: 0, z: 0 }, isActive = false }) => {
     
     const handleStop = () => {
-        alert("O robô irá parar suas atividades");
+        if (onStopClick) {
+            onStopClick();
+        } else {
+            alert("O robô irá parar suas atividades");
+        }
     };
 
     return dashboard ? (
@@ -32,38 +39,34 @@ const Header: React.FC<Props> = ({dashboard=false}) => {
 
                 <Link href="./"  >
                     <img src="/pharmatech-logo.png" alt="Logo do cinetag" className='h-17'/>
-                
                 </Link>
 
                 <div className='ml-auto flex flex-row items-center'>
 
                     <div>
-                        
-                    <div>
-                        <p className='text-[13px] mb-2'>ROBÔ:</p>
-                    </div>
+                        <div>
+                            <p className='text-[13px] mb-2'>ROBÔ:</p>
+                        </div>
 
-                    <div className='mr-5'>
-                        <Active active = {true} ></Active>
-                    </div>
-
+                        <div className='mr-5'>
+                            <Active active={isActive} />
+                        </div>
                     </div>
 
                     <div className='mr-4'>
-                        <CoordinateDisplay className={'mb-1'} label="X" value={10} />
-                        <CoordinateDisplay className={"mb-1"} label="Y" value={20} />
-                        <CoordinateDisplay className={'mb-0'} label="Z" value={30} />
+                        <CoordinateDisplay className={'mb-1'} label="X" value={coordinates.x} />
+                        <CoordinateDisplay className={"mb-1"} label="Y" value={coordinates.y} />
+                        <CoordinateDisplay className={'mb-0'} label="Z" value={coordinates.z} />
                     </div>
                     
                     <div className='ml-auto items-center'>
-                        <StopButton onClick={handleStop}/>
+                        <StopButton onClick={handleStop} />
                     </div>
 
                 </div>
 
             </Toolbar>
 
-        
         </AppBar>
       </Box>
     ) : (
@@ -82,12 +85,9 @@ const Header: React.FC<Props> = ({dashboard=false}) => {
 
             </Toolbar>
 
-
         </AppBar>
       </Box>
     )
 }
 
-export default Header
-
-//return Dasboard ? (<></>) : (<></>)
+export default Header;

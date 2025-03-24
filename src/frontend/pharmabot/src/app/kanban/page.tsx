@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Column from "./components/Column";
 import { Status, statuses, Fita } from "./utils/data-task";
-import Header  from "../components/Header";
+import Header from "../components/Header";
 
 export default function Kanban() {
     const [fitas, setTasks] = useState<Fita[]>([]);
@@ -11,77 +11,77 @@ export default function Kanban() {
     const [currentlyHoveringOver, setCurrentlyHoveringOver] =
         useState<Status | null>(null);
 
-        const fitasMock: Fita[] = [
-            {
-                nomePaciente: "João Silva",
-                id: "1",
-                status: "fila",
-                priority: "low",
-                order: 0,
-                leito: "101A",
-                medicamentos: [
-                    { nome: "Paracetamol", quantidade: 2 },
-                    { nome: "Ibuprofeno", quantidade: 1 }
-                ]
-            },
-            {
-                nomePaciente: "Maria Oliveira",
-                id: "2",
-                status: "em-preparo",
-                priority: "medium",
-                order: 1,
-                leito: "102B",
-                medicamentos: [
-                    { nome: "Amoxicilina", quantidade: 3 }
-                ]
-            },
-            {
-                nomePaciente: "Carlos Souza",
-                id: "3",
-                status: "separado",
-                priority: "high",
-                order: 2,
-                leito: "103C",
-                medicamentos: [
-                    { nome: "Dipirona", quantidade: 1 },
-                    { nome: "Omeprazol", quantidade: 2 }
-                ]
-            },
-            {
-                nomePaciente: "Ana Costa",
-                id: "4",
-                status: "separado",
-                priority: "high",
-                order: 3,
-                leito: "104D",
-                medicamentos: [
-                    { nome: "Losartana", quantidade: 1 }
-                ]
-            },
-            {
-                nomePaciente: "Pedro Lima",
-                id: "5",
-                status: "separado",
-                priority: "high",
-                order: 4,
-                leito: "105E",
-                medicamentos: [
-                    { nome: "Metformina", quantidade: 2 },
-                    { nome: "Insulina", quantidade: 1 }
-                ]
-            },
-            {
-                nomePaciente: "Fernanda Alves",
-                id: "6",
-                status: "separado",
-                priority: "high",
-                order: 5,
-                leito: "106F",
-                medicamentos: [
-                    { nome: "Atorvastatina", quantidade: 1 }
-                ]
-            },
-        ];
+    const fitasMock: Fita[] = [
+        {
+            nomePaciente: "João Silva",
+            id: "1",
+            status: "fila",
+            priority: "low",
+            order: 0,
+            leito: "101A",
+            medicamentos: [
+                { nome: "Paracetamol", quantidade: 2 },
+                { nome: "Ibuprofeno", quantidade: 1 }
+            ]
+        },
+        {
+            nomePaciente: "Maria Oliveira",
+            id: "2",
+            status: "fila",
+            priority: "medium",
+            order: 1,
+            leito: "102B",
+            medicamentos: [
+                { nome: "Amoxicilina", quantidade: 3 }
+            ]
+        },
+        {
+            nomePaciente: "Carlos Souza",
+            id: "3",
+            status: "fila",
+            priority: "high",
+            order: 2,
+            leito: "103C",
+            medicamentos: [
+                { nome: "Dipirona", quantidade: 1 },
+                { nome: "Omeprazol", quantidade: 2 }
+            ]
+        },
+        {
+            nomePaciente: "Ana Costa",
+            id: "4",
+            status: "fila",
+            priority: "high",
+            order: 3,
+            leito: "104D",
+            medicamentos: [
+                { nome: "Losartana", quantidade: 1 }
+            ]
+        },
+        {
+            nomePaciente: "Pedro Lima",
+            id: "5",
+            status: "separado",
+            priority: "high",
+            order: 4,
+            leito: "105E",
+            medicamentos: [
+                { nome: "Metformina", quantidade: 2 },
+                { nome: "Insulina", quantidade: 1 }
+            ]
+        },
+        {
+            nomePaciente: "Fernanda Alves",
+            id: "6",
+            status: "separado",
+            priority: "high",
+            order: 5,
+            leito: "106F",
+            medicamentos: [
+                { nome: "Atorvastatina", quantidade: 1 }
+            ]
+        },
+    ];
 
     useEffect(() => {
         setTasks(fitasMock);
@@ -159,8 +159,10 @@ export default function Kanban() {
     }));
 
     return (
-        <div className="flex flex-col h-screen w-full">
-            <Header dashboard={true} />
+        <div className="flex flex-col h-screen w-full overflow-hidden">
+            <Header dashboard={true} coordinates={
+                { x: 10, y: 20, z: 30 }
+            } isActive={false} onStopClick={()=>{}} />
 
             <div className="flex flex-1 justify-center py-4 w-full font-inter bg-[#FFFBFF]">
                 <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x w-full">
@@ -170,15 +172,13 @@ export default function Kanban() {
                             status={column.status}
                             fitas={column.fitas}
                             currentlyHoveringOver={currentlyHoveringOver}
-                            handleDrop={handleDrop}
-                            handleDragEnter={handleDragEnter}
+                            isDraggable={column.status === "fila"}
                             handleTaskReorder={handleFitaReorder}
                             setDraggedTaskId={setDraggedFitasId}
                             setHoveredIndex={setHoveredIndex}
                             hoveredIndex={hoveredIndex}
                             draggedTaskId={draggedFitasId}
                             updateTask={updateFita}
-                            isDraggable={column.status === "fila"}
                         />
                     ))}
                 </div>
