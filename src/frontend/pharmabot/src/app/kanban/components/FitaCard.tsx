@@ -55,7 +55,7 @@ const FitaCard = ({
         <div
             draggable
             onDragStart={(e) => e.dataTransfer.setData('id', fita.id)}
-            className={classNames('rounded-lg m-2 bg-gray-50', {
+            className={classNames('rounded-lg m-2 ', {
                 'border-4 border-red-500': fita.priority === 'high',
             })}
         >
