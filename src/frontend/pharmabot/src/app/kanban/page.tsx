@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { io } from "socket.io-client";
 import Column from "./components/Column";
 import { Status, statuses, Fita } from "./utils/data-task";
 import Header from "../components/Header";
@@ -61,7 +62,7 @@ export default function Kanban() {
         {
             nomePaciente: "Pedro Lima",
             id: "5",
-            status: "separado",
+            status: "em-preparo",
             priority: "high",
             order: 4,
             leito: "105E",
@@ -85,6 +86,33 @@ export default function Kanban() {
 
     useEffect(() => {
         setTasks(fitasMock);
+    }, []);
+
+    useEffect(() => {
+        const socket = io("http://10.32.0.8:6001");
+
+        socket.on("connect", () => {
+            
+            console.log("Conectado ao Socket.IO");
+        });
+
+        socket.on("fitas", (data) => {
+            console.log("Dados de fitas recebidos", data);
+            const updatedFitas: Fita[] = data;
+            setTasks(updatedFitas);
+        });
+
+        socket.on("connect_error", (error) => {
+            console.error("Erro na conexão com Socket.IO", error);
+        });
+
+        socket.on("disconnect", () => {
+            console.log("Conexão Socket.IO fechada");
+        });
+
+        return () => {
+            socket.disconnect();
+        };
     }, []);
 
     const updateFita = (updatedFita: Fita) => {
