@@ -4,7 +4,7 @@ import serial
 import json
 from datetime import datetime
 import logging
-from robot_functions import logger
+from utils.logger import logger
 
 console = Console()
 

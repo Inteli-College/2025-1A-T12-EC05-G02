@@ -128,12 +128,3 @@ def get_current_position(device):
     pos = device.pose()
     sio.emit('log', {'acao': 'Robot Log', 'detalhes': f'Posição atual: {pos}', 'usuario_id': 1})
     return {"x": pos[0], "y": pos[1], "z": pos[2]}
-
-def logger(data):
-    sio.emit('log', {'acao': 'Robot Log', 'detalhes': data, 'usuario_id': 1})
-    console.print(
-            Panel
-            (
-                data
-            )
-        )

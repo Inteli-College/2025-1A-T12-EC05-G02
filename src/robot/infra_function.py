@@ -1,7 +1,7 @@
 import lgpio
 import time
 import datetime
-from robot_functions import logger
+from utils.logger import logger
 from rich.console import Console
 from rich.panel import Panel
 
