@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Column from "./components/Column";
 import { Status, statuses, Fita } from "./utils/data-task";
+import Header  from "../components/Header";
 
 export default function Kanban() {
     const [fitas, setTasks] = useState<Fita[]>([]);
@@ -95,6 +96,10 @@ export default function Kanban() {
         e.preventDefault();
         setHoveredIndex(null);
         setCurrentlyHoveringOver(null);
+
+        const isDraggableColumn = statuses.find((s) => s === status) === "fila";
+        if (!isDraggableColumn) return;
+
         const id = e.dataTransfer.getData("id");
         const fita = fitas.find((fitas) => fitas.id === id);
         if (fita) {
@@ -155,19 +160,7 @@ export default function Kanban() {
 
     return (
         <div className="flex flex-col h-screen w-full">
-            <header className="flex w-full justify-between items-center h-24 bg-black">
-                <img
-                    className="h-10 ml-4"
-                    src="./pharmatech-logo.png"
-                    alt="Pharmatech Logo"
-                />
-                <div className="flex gap-4 text-white p-4">
-                    <p className="hover:text-gray-300 cursor-pointer">Home</p>
-                    <p className="hover:text-gray-300 cursor-pointer">Dashboard</p>
-                    <p className="hover:text-gray-300 cursor-pointer">Histórico Prescrições</p>
-                    <p className="hover:text-gray-300 cursor-pointer">FAQ</p>
-                </div>
-            </header>
+            <Header dashboard={true} />
 
             <div className="flex flex-1 justify-center py-4 w-full font-inter bg-[#FFFBFF]">
                 <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x w-full">
@@ -185,6 +178,7 @@ export default function Kanban() {
                             hoveredIndex={hoveredIndex}
                             draggedTaskId={draggedFitasId}
                             updateTask={updateFita}
+                            isDraggable={column.status === "fila"}
                         />
                     ))}
                 </div>

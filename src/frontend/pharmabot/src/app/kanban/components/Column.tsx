@@ -18,6 +18,7 @@ interface ColumnProps {
     hoveredIndex: number | null;
     draggedTaskId: string | null;
     updateTask: (task: Fita) => void;
+    isDraggable: boolean;
 }
 
 const Column: React.FC<ColumnProps> = ({
@@ -32,6 +33,7 @@ const Column: React.FC<ColumnProps> = ({
     hoveredIndex,
     draggedTaskId,
     updateTask: updateFita,
+    isDraggable, // Nova prop
 }) => {
     return (
         <div
@@ -55,25 +57,33 @@ const Column: React.FC<ColumnProps> = ({
                     .map((fita, index) => (
                         <div
                             key={index}
-                            draggable
+                            draggable={isDraggable} // Controla se o item é "draggable"
                             onDragStart={(e) => {
-                                e.dataTransfer.setData("id", fita.id);
-                                setDraggedTaskId(fita.id);
+                                if (isDraggable) {
+                                    e.dataTransfer.setData("id", fita.id);
+                                    setDraggedTaskId(fita.id);
+                                }
                             }}
                             onDragOver={(e) => {
-                                e.preventDefault();
-                                setHoveredIndex(index);
+                                if (isDraggable) {
+                                    e.preventDefault();
+                                    setHoveredIndex(index);
+                                }
                             }}
                             onDragLeave={() => {
-                                setHoveredIndex(null);
+                                if (isDraggable) {
+                                    setHoveredIndex(null);
+                                }
                             }}
                             onDrop={(e) => {
-                                handleTaskReorder(e, status, fita.id);
-                                setHoveredIndex(null);
+                                if (isDraggable) {
+                                    handleTaskReorder(e, status, fita.id);
+                                    setHoveredIndex(null);
+                                }
                             }}
                             className={`transition-all duration-200 ${
                                 hoveredIndex === index &&
-                                draggedTaskId !== fita.id
+                                draggedTaskId !== fita.id && status == 'fila'
                                     ? "mt-8"
                                     : ""
                             }`}
