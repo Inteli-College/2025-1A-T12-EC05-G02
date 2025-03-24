@@ -2,6 +2,9 @@ from rich.console import Console
 from rich.panel import Panel
 import serial
 import json
+from datetime import datetime
+import logging
+from robot_functions import logger
 
 console = Console()
 
@@ -21,6 +24,9 @@ def ler_qrcode(port, baudrate):
                     "[bold yellow] ▪️ Aguardando dados do QR Code... [/bold yellow]\n"
                 ) 
             )
+            
+            current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            logger(f"QR Code lido com sucesso. Timestamp: {current_time}")
             
             while True:
                 if ser.in_waiting > 0:
@@ -50,6 +56,8 @@ def processar_qrcode(dados):
         )
         
         # print("\nInformações do Medicamento:")
+        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        logger(f"O QR Code lido foi processado. Dados: {info}  \n Timestamp: {current_time}")
         
         for chave, valor in info.items():
             console.print(
