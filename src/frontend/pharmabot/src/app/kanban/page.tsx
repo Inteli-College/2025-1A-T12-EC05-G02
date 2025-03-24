@@ -1,111 +1,78 @@
-"use client"
-import { useState, useEffect } from 'react';
-import TaskCard from './components/TaskCard'
-import { Status, statuses, Task } from './utils/data-task'
-
+"use client";
+import { useState, useEffect } from "react";
+import Column from "./components/Column";
+import { Status, statuses, Fita } from "./utils/data-task";
 
 export default function Kanban() {
+    const [fitas, setTasks] = useState<Fita[]>([]);
+    const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [currentlyHoveringOver, setCurrentlyHoveringOver] =
+        useState<Status | null>(null);
 
-    const [tasks, setTasks] = useState<Task[]>([])
-    const columns = statuses.map((status) => {
-        const tasksInColumn = tasks.filter((task) => task.status === status)
-        return {
-            status,
-            tasks: tasksInColumn
-        }
-    })
-    const tasksMock: Task[] = [
-        {
-            title: 'task 1',
-            id: '1',
-            status: 'todo',
-            priority: 'low',
-            points: 1,
-            order: 0
-        },
-        {
-            title: 'task 2',
-            id: '2',
-            status: 'in-progress',
-            priority: 'medium',
-            points: 2,
-            order: 0
-        },
-        {
-            title: 'task 3',
-            id: '3',
-            status: 'done',
-            priority: 'high',
-            points: 3,
-            order: 0
-        }
-    ]
+    const tasksMock: Fita[] = [
+        { title: "task 1", id: "1", status: "fila", priority: "low", points: 1, order: 0 },
+        { title: "task 2", id: "2", status: "em-preparo", priority: "medium", points: 2, order: 0 },
+        { title: "task 3", id: "3", status: "separado", priority: "high", points: 3, order: 0 },
+        { title: "task 3", id: "4", status: "separado", priority: "high", points: 3, order: 0 },
+        { title: "task 3", id: "5", status: "separado", priority: "high", points: 3, order: 0 },
+        { title: "task 3", id: "6", status: "separado", priority: "high", points: 3, order: 0 },
+    ];
 
     useEffect(() => {
-        // fetch('http://localhost:3000/tasks').then((res) => res.json()).then((data) => {
-        //     setTasks(data)
-        // })
-        // Task = {
-        //     title: string;
-        //     id: string;
-        //     status: Status;
-        //     priority: Priority;
-        //     points?: number;
-        // }
+        setTasks(tasksMock);
+    }, []);
 
-        // mock data
-
-        setTasks(tasksMock)
-    }, [])
-
-    const updateTask = (task: Task) => {
-        fetch(`http://localhost:3000/tasks/${task.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(task)
-        })
-        const updatedTasks = tasks.map((t) => {
-            return t.id === task.id ? task : t
-        })
-        setTasks(updatedTasks)
-    }
+    const updateFita = (fitas: Fita) => {
+        const updatedTasks = fitas.map((t) => (t.id === fitas.id ? fitas : t));
+        setTasks(updatedTasks);
+    };
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>, status: Status) => {
-        e.preventDefault()
-        setCurrentlyHoveringOver(null)
-        const id = e.dataTransfer.getData("id")
-        const task = tasks.find((task) => task.id === id)
-        if (task) {
-            updateTask({ ...task, status })
-        }
-    }
-
-    const handleTaskReorder = (e: React.DragEvent<HTMLDivElement>, columnStatus: Status, targetTaskId: string) => {
         e.preventDefault();
-        const draggedTaskId = e.dataTransfer.getData("id");
-        if (draggedTaskId === targetTaskId) return;
+        setHoveredIndex(null);
+        setCurrentlyHoveringOver(null);
+        const id = e.dataTransfer.getData("id");
+        const fita = fitas.find((fitas) => fitas.id === id);
+        if (fita) {
+            updateFita({ ...fita, status });
+        }
+    };
 
-        const columnTasks = tasks.filter((task) => task.status === columnStatus).sort((a, b) => a.order - b.order);
+    const handleFitaReorder = (
+        e: React.DragEvent<HTMLDivElement>,
+        columnStatus: Status,
+        targetFitaId: string
+    ) => {
+        e.preventDefault();
+        const draggedFitaId = e.dataTransfer.getData("id");
+        if (draggedFitaId === targetFitaId) return;
 
-        const draggedTaskIndex = columnTasks.findIndex((task) => task.id === draggedTaskId);
-        const targetTaskIndex = columnTasks.findIndex((task) => task.id === targetTaskId);
+        const columnFitaks = fitas
+            .filter((task) => task.status === columnStatus)
+            .sort((a, b) => a.order - b.order);
+
+        const draggedTaskIndex = columnFitaks.findIndex(
+            (task) => task.id === draggedFitaId
+        );
+        const targetTaskIndex = columnFitaks.findIndex(
+            (task) => task.id === targetFitaId
+        );
 
         if (draggedTaskIndex !== -1 && targetTaskIndex !== -1) {
-            const updatedColumnTasks = [...columnTasks];
+            const updatedColumnTasks = [...columnFitaks];
             const [draggedTask] = updatedColumnTasks.splice(draggedTaskIndex, 1);
             updatedColumnTasks.splice(targetTaskIndex, 0, draggedTask);
 
-            // Atualizar o campo `order` das tarefas
             updatedColumnTasks.forEach((task, index) => {
                 task.order = index;
             });
 
-            // Atualizar o estado global das tarefas
-            const updatedTasks = tasks.map((task) => {
+            const updatedTasks = fitas.map((task) => {
                 if (task.status === columnStatus) {
-                    return updatedColumnTasks.find((t) => t.id === task.id) || task;
+                    return (
+                        updatedColumnTasks.find((t) => t.id === task.id) || task
+                    );
                 }
                 return task;
             });
@@ -114,60 +81,51 @@ export default function Kanban() {
         }
     };
 
-    const [currentlyHoveringOver, setCurrentlyHoveringOver] = useState<Status | null>(null)
     const handleDragEnter = (status: Status) => {
-        setCurrentlyHoveringOver(status)
-    }
+        setCurrentlyHoveringOver(status);
+    };
+
+    const columns = statuses.map((status) => ({
+        status,
+        tasks: fitas.filter((task) => task.status === status),
+    }));
 
     return (
-        <div className='flex flex-col h-screen w-full '>
-            <header className='flex w-full justify-between items-center h-24 bg-black'>
-                <img className="h-10 ml-4" src="./pharmatech-logo.png"></img>
-                <div className='flex gap-4 text-white p-4'>
-                    <p className='hover:text-gray-300 cursor-pointer'>Home</p>
-                    <p className='hover:text-gray-300 cursor-pointer'>Dashboard</p>
-                    <p className='hover:text-gray-300 cursor-pointer'>Histórico Prescrições</p>
-                    <p className='hover:text-gray-300 cursor-pointer'>FAQ</p>
+        <div className="flex flex-col h-screen w-full">
+            <header className="flex w-full justify-between items-center h-24 bg-black">
+                <img
+                    className="h-10 ml-4"
+                    src="./pharmatech-logo.png"
+                    alt="Pharmatech Logo"
+                />
+                <div className="flex gap-4 text-white p-4">
+                    <p className="hover:text-gray-300 cursor-pointer">Home</p>
+                    <p className="hover:text-gray-300 cursor-pointer">Dashboard</p>
+                    <p className="hover:text-gray-300 cursor-pointer">Histórico Prescrições</p>
+                    <p className="hover:text-gray-300 cursor-pointer">FAQ</p>
                 </div>
             </header>
 
-            <div className="flex justify-center py-4 w-full font-inter bg-[#FFFBFF]">
+            <div className="flex flex-1 justify-center py-4 w-full font-inter bg-[#FFFBFF]">
                 <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x w-full">
                     {columns.map((column, index) => (
-                        <div
+                        <Column
                             key={index}
-                            className="flex-1 h-screen"
-                            onDrop={(e) => handleDrop(e, column.status)}
-                            onDragOver={(e) => e.preventDefault()}
-                            onDragEnter={() => handleDragEnter(column.status)}
-                        >
-                            <div className="flex text-xl md:text-3xl p-2 font-bold text-white justify-center">
-                                <h2 className="capitalize bg-[#3F3047] p-3 rounded-xl">{column.status}</h2>
-                            </div>
-                            <div className={`h-full mt-4 ${currentlyHoveringOver === column.status ? 'bg-gray-100' : ''}`}>
-                                {column.tasks
-                                    .sort((a, b) => a.order - b.order) // Ordena as tarefas antes de renderizar
-                                    .map((task, index) => (
-                                        <div
-                                            key={task.id}
-                                            draggable
-                                            onDragStart={(e) => e.dataTransfer.setData("id", task.id)}
-                                            onDragOver={(e) => e.preventDefault()}
-                                            onDrop={(e) => handleTaskReorder(e, column.status, task.id)}
-                                        >
-                                            <TaskCard
-                                                task={task}
-                                                updateTask={updateTask}
-                                            />
-                                        </div>
-                                    ))}
-                            </div>
-                        </div>
+                            status={column.status}
+                            fitas={column.tasks}
+                            currentlyHoveringOver={currentlyHoveringOver}
+                            handleDrop={handleDrop}
+                            handleDragEnter={handleDragEnter}
+                            handleTaskReorder={handleFitaReorder}
+                            setDraggedTaskId={setDraggedTaskId}
+                            setHoveredIndex={setHoveredIndex}
+                            hoveredIndex={hoveredIndex}
+                            draggedTaskId={draggedTaskId}
+                            updateTask={updateFita}
+                        />
                     ))}
                 </div>
             </div>
-
-
         </div>
     );
 }
