@@ -5,26 +5,89 @@ import { Status, statuses, Fita } from "./utils/data-task";
 
 export default function Kanban() {
     const [fitas, setTasks] = useState<Fita[]>([]);
-    const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null);
+    const [draggedFitasId, setDraggedFitasId] = useState<string | null>(null);
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const [currentlyHoveringOver, setCurrentlyHoveringOver] =
         useState<Status | null>(null);
 
-    const tasksMock: Fita[] = [
-        { title: "task 1", id: "1", status: "fila", priority: "low", points: 1, order: 0 },
-        { title: "task 2", id: "2", status: "em-preparo", priority: "medium", points: 2, order: 0 },
-        { title: "task 3", id: "3", status: "separado", priority: "high", points: 3, order: 0 },
-        { title: "task 3", id: "4", status: "separado", priority: "high", points: 3, order: 0 },
-        { title: "task 3", id: "5", status: "separado", priority: "high", points: 3, order: 0 },
-        { title: "task 3", id: "6", status: "separado", priority: "high", points: 3, order: 0 },
-    ];
+        const fitasMock: Fita[] = [
+            {
+                nomePaciente: "João Silva",
+                id: "1",
+                status: "fila",
+                priority: "low",
+                order: 0,
+                leito: "101A",
+                medicamentos: [
+                    { nome: "Paracetamol", quantidade: 2 },
+                    { nome: "Ibuprofeno", quantidade: 1 }
+                ]
+            },
+            {
+                nomePaciente: "Maria Oliveira",
+                id: "2",
+                status: "em-preparo",
+                priority: "medium",
+                order: 1,
+                leito: "102B",
+                medicamentos: [
+                    { nome: "Amoxicilina", quantidade: 3 }
+                ]
+            },
+            {
+                nomePaciente: "Carlos Souza",
+                id: "3",
+                status: "separado",
+                priority: "high",
+                order: 2,
+                leito: "103C",
+                medicamentos: [
+                    { nome: "Dipirona", quantidade: 1 },
+                    { nome: "Omeprazol", quantidade: 2 }
+                ]
+            },
+            {
+                nomePaciente: "Ana Costa",
+                id: "4",
+                status: "separado",
+                priority: "high",
+                order: 3,
+                leito: "104D",
+                medicamentos: [
+                    { nome: "Losartana", quantidade: 1 }
+                ]
+            },
+            {
+                nomePaciente: "Pedro Lima",
+                id: "5",
+                status: "separado",
+                priority: "high",
+                order: 4,
+                leito: "105E",
+                medicamentos: [
+                    { nome: "Metformina", quantidade: 2 },
+                    { nome: "Insulina", quantidade: 1 }
+                ]
+            },
+            {
+                nomePaciente: "Fernanda Alves",
+                id: "6",
+                status: "separado",
+                priority: "high",
+                order: 5,
+                leito: "106F",
+                medicamentos: [
+                    { nome: "Atorvastatina", quantidade: 1 }
+                ]
+            },
+        ];
 
     useEffect(() => {
-        setTasks(tasksMock);
+        setTasks(fitasMock);
     }, []);
 
-    const updateFita = (fitas: Fita) => {
-        const updatedTasks = fitas.map((t) => (t.id === fitas.id ? fitas : t));
+    const updateFita = (updatedFita: Fita) => {
+        const updatedTasks = fitas.map((t) => (t.id === updatedFita.id ? updatedFita : t));
         setTasks(updatedTasks);
     };
 
@@ -48,36 +111,36 @@ export default function Kanban() {
         const draggedFitaId = e.dataTransfer.getData("id");
         if (draggedFitaId === targetFitaId) return;
 
-        const columnFitaks = fitas
-            .filter((task) => task.status === columnStatus)
+        const columnFitas = fitas
+            .filter((fita) => fita.status === columnStatus)
             .sort((a, b) => a.order - b.order);
 
-        const draggedTaskIndex = columnFitaks.findIndex(
-            (task) => task.id === draggedFitaId
+        const draggedFitasIndex = columnFitas.findIndex(
+            (fita) => fita.id === draggedFitaId
         );
-        const targetTaskIndex = columnFitaks.findIndex(
-            (task) => task.id === targetFitaId
+        const targetFitasIndex = columnFitas.findIndex(
+            (fita) => fita.id === targetFitaId
         );
 
-        if (draggedTaskIndex !== -1 && targetTaskIndex !== -1) {
-            const updatedColumnTasks = [...columnFitaks];
-            const [draggedTask] = updatedColumnTasks.splice(draggedTaskIndex, 1);
-            updatedColumnTasks.splice(targetTaskIndex, 0, draggedTask);
+        if (draggedFitasIndex !== -1 && targetFitasIndex !== -1) {
+            const updatedColumnFitas = [...columnFitas];
+            const [draggedTask] = updatedColumnFitas.splice(draggedFitasIndex, 1);
+            updatedColumnFitas.splice(targetFitasIndex, 0, draggedTask);
 
-            updatedColumnTasks.forEach((task, index) => {
-                task.order = index;
+            updatedColumnFitas.forEach((fita, index) => {
+                fita.order = index;
             });
 
-            const updatedTasks = fitas.map((task) => {
-                if (task.status === columnStatus) {
+            const updatedFitas = fitas.map((fita) => {
+                if (fita.status === columnStatus) {
                     return (
-                        updatedColumnTasks.find((t) => t.id === task.id) || task
+                        updatedColumnFitas.find((t) => t.id === fita.id) || fita
                     );
                 }
-                return task;
+                return fita;
             });
 
-            setTasks(updatedTasks);
+            setTasks(updatedFitas);
         }
     };
 
@@ -87,7 +150,7 @@ export default function Kanban() {
 
     const columns = statuses.map((status) => ({
         status,
-        tasks: fitas.filter((task) => task.status === status),
+        fitas: fitas.filter((fita) => fita.status === status),
     }));
 
     return (
@@ -112,15 +175,15 @@ export default function Kanban() {
                         <Column
                             key={index}
                             status={column.status}
-                            fitas={column.tasks}
+                            fitas={column.fitas}
                             currentlyHoveringOver={currentlyHoveringOver}
                             handleDrop={handleDrop}
                             handleDragEnter={handleDragEnter}
                             handleTaskReorder={handleFitaReorder}
-                            setDraggedTaskId={setDraggedTaskId}
+                            setDraggedTaskId={setDraggedFitasId}
                             setHoveredIndex={setHoveredIndex}
                             hoveredIndex={hoveredIndex}
-                            draggedTaskId={draggedTaskId}
+                            draggedTaskId={draggedFitasId}
                             updateTask={updateFita}
                         />
                     ))}

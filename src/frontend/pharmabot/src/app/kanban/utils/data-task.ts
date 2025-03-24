@@ -1,12 +1,19 @@
 export type Status = 'fila' | 'em-preparo' | 'separado'
 export type Priority = 'low' | 'medium' | 'high'
+
+export type Medicamento = {
+  nome: string,
+  quantidade: number
+}
+
 export type Fita = {
-  title: string,
   id: string,
   status: Status,
   priority: Priority,
-  points?: number,
-  order: number // Adicionado para controlar a ordem
+  order: number,
+  nomePaciente: string,
+  leito: string, 
+  medicamentos: Medicamento[]
 }
 
 export const statuses: Status[] = ['fila', 'em-preparo', 'separado']

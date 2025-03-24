@@ -1,27 +1,17 @@
 'use client'
-import { useState } from 'react'
 import { Fita as Fita } from '../utils/data-task'
 import Image from 'next/image'
 
 const filaStatusIcon = <Image src="/circle0.svg" alt="low" width={24} height={24} />
 const emPreparoIcon = <Image src="/circle1.svg" alt="medium" width={24} height={24} />
-const separadoIcon = <Image src="/circle2.svg" alt="high" width={24} height={24}/>
+const separadoIcon = <Image src="/circle2.svg" alt="high" width={24} height={24} />
 
 
 const FitaCard = ({ fita: fita, updateFita: updateTask }: {
     fita: Fita
     updateFita: (task: Fita) => void
 }) => {
-    const points = fita.points || 0
-    const updatePoints = (direction: 'up' | 'down') => {
-        const fib = [0, 1, 2, 3, 5, 8, 13]
-        const index = fib.indexOf(points)
-        const nextIndex = direction === 'up' ? index + 1 : index - 1
-        const newPoints = fib[nextIndex]
-        if (newPoints) {
-            updateTask({ ...fita, points: newPoints })
-        }
-    }
+
     return <div
         draggable
         onDragStart={(e) => {
@@ -33,30 +23,52 @@ const FitaCard = ({ fita: fita, updateFita: updateTask }: {
 
             <div className="flex flex-col text-black text-sm">
                 <div className="flex flex-row justify-between items-center">
-                    <div className="text-2xl font-base py-2">
-                        {fita.title}
+                    <div className="flex flex-col">
+                        <div className="text-2xl font-base">
+                            {fita.nomePaciente}
+                        </div>
+                        <div className="text-xs text-[19191B] yt-2 font-light">
+                            Leito: {fita.leito}
+                        </div>
                     </div>
-                    <div className="flex gap-2">
-                        {fita.status === 'fila' && filaStatusIcon}
-                        {fita.status === 'em-preparo' && emPreparoIcon}
-                        {fita.status === 'separado' && separadoIcon}
-                        <div>
-                            {}
-                            
+
+                    <div className="flex flex-col justify-center items-center py-2">
+                        <div className="flex gap-2 items-center text-xl">
+                            {fita.status === 'fila' && filaStatusIcon}
+                            {fita.status === 'em-preparo' && emPreparoIcon}
+                            {fita.status === 'separado' && separadoIcon}
+                            <div >
+                                {fita.status === 'fila' && "1/3"}
+                                {fita.status === 'em-preparo' && "2/3"}
+                                {fita.status === 'separado' && "3/3"}
+                            </div>
+                        </div>
+                        <div className="flex gap-2 items-center py-2">
+                            <div className="w-6 h-6">
+                                <svg viewBox="0 0 24 24" fill={fita.priority === 'high' ? 'red' : fita.priority === 'medium' ? 'orange' : 'green'} xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" />
+                                </svg>
+                            </div>
+                            <div className="text-base text-black ">
+                                {fita.priority === 'high' && "Alta"}
+                                {fita.priority === 'medium' && "Média"}
+                                {fita.priority === 'low' && "Baixa"}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="flex gap-2">
-                    <button onClick={() => updatePoints('up')}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                        </svg>
-                    </button>
-                    <button onClick={() => updatePoints('down')}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10h14" />
-                        </svg>
-                    </button>
+                <div className="flex flex-col pb-2">
+                    <div className="text-base font-semibold">Medicamentos:</div>
+                    <ol className="list-decimal list-inside px-4 my-1">
+                        {fita.medicamentos.map((medicamento, index) => (
+                            <li key={index} className="text-sm mt-1 text-gray-700">
+                                {medicamento.nome} - Quantidade: {medicamento.quantidade}
+                                {index !== fita.medicamentos.length - 1 && (
+                                    <hr className="border-t border-gray-300 my-2" />
+                                )}
+                            </li>
+                        ))}
+                    </ol>
                 </div>
             </div>
         </div>
