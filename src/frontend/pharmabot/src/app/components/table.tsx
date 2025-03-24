@@ -7,12 +7,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import { Button } from '@mui/material';
+import { SquarePen } from 'lucide-react';
 
 export interface Column {
   id: string;
   label: string;
   minWidth?: number;
-  align?: 'right' | 'left' | 'center' ;
+  align?: 'right' | 'left' | 'center';
   format?: (value: any) => string;
 }
 
@@ -26,9 +28,11 @@ interface Props {
   initialNumItems?: number;
   itemsPerPage?: number[];
   colunas: Column[];
+  handleEdit?: (args:any ) => void
+  handleId?: (args:any ) => void
 }
 
-const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [15, 50, 100], initialNumItems = 15, colunas }) => {
+const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [15, 50, 100], initialNumItems = 15, colunas, handleEdit, handleId }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(initialNumItems);
   const [data, setData] = useState<string>(''); // Inicie com uma string vazia
@@ -63,9 +67,19 @@ const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [15, 50, 100], i
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // Paginação aplicada aqui
-              .map((row) => (
-                <TableRow className='hover:bg-gray-50 transition' key={row.id}>
+              .map((row, index) => (
+                <TableRow className='hover:bg-gray-50 transition' key={index}>
                   {colunas.map((col) => {
+                    console.log(col.id)
+                    if (col.id == 'id') {
+                      return (<TableCell key={col.id} align={col.align || 'left'}> {/* Wrap the button inside a <td> */}
+                        {row.id && (
+                          <Button variant='contained' onClick={() => handleEdit && handleEdit(true) && handleId && handleId(row.id)}>
+                            <SquarePen />
+                          </Button>
+                        )}
+                      </TableCell>)
+                    }
                     const value = row[col.id];
                     return (
                       <TableCell key={col.id} align={col.align || 'left'}>
