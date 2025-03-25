@@ -51,14 +51,14 @@ export default function Home() {
     setSelectedAcao("");
   };
 
-  const rota: string = "http://0.0.0.0:5555/medicine/logs";
+  const rota: string = "http://127.0.0.1:5555/medicine/logs";
 
   // Segunda requisição para buscar os logs filtrados pela ação selecionada
   useEffect(() => {
     setLoading(true); // Inicia o carregamento
     // Montar a URL com base na ação selecionada
     const url = selectedAcao
-      ? `http://0.0.0.0:5555/medicine/logs?acao=${selectedAcao}`
+      ? `http://127.0.0.1:5555/medicine/logs?acao=${selectedAcao}`
       : rota;
 
     fetch(url)
