@@ -25,12 +25,14 @@ def ler_qrcode(port, baudrate):
                 ) 
             )
             
-            current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            logger(f"QR Code lido com sucesso. Timestamp: {current_time}")
             
             while True:
                 if ser.in_waiting > 0:
+                    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    logger(f"QR Code lido com sucesso. Timestamp: {current_time}")
+                    
                     line = ser.readline().decode('utf-8', errors='ignore').strip()
+                    
                     return line  # Retorna os dados lidos
 
     except serial.SerialException as e:

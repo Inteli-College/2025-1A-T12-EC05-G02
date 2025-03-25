@@ -1,6 +1,6 @@
 import lgpio
 import time
-import datetime
+from datetime import datetime
 from utils.logger import logger
 from rich.console import Console
 from rich.panel import Panel
