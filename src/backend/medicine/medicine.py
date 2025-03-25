@@ -4,6 +4,7 @@ from models.pedido import Pedido
 from models.pedido_medicamento import PedidoMedicamento
 from extensions import db
 from flask_socketio import emit
+from models.medicamento import Medicamento  # Adicione esta linha
 
 
 medicineFlask = Blueprint('medicine', __name__, url_prefix='/medicine')
@@ -78,3 +79,49 @@ def get_prescription_logs():
             'message': 'Erro ao obter logs de prescrição',
             'code': 500
         }), 500
+    
+# get the full medicine queue
+@medicineFlask.route('/queue', methods=['GET'])
+def get_full_queue_medicine():
+    try:
+        # Use join para buscar pedidos e seus medicamentos em uma única consulta
+        pending_orders = (
+            db.session.query(Pedido, PedidoMedicamento, Medicamento)
+            .join(PedidoMedicamento, Pedido.id == PedidoMedicamento.pedido_id)
+            .join(Medicamento, PedidoMedicamento.medicamento_id == Medicamento.id)
+            .order_by(Pedido.data_pedido, Pedido.prioridade)
+            .all()
+        )
+
+        # Organize os dados em um dicionário para evitar duplicação de pedidos
+        queue = {}
+        for pedido, pedido_medicamento, medicamento in pending_orders:
+            if pedido.id not in queue:
+                queue[pedido.id] = {
+                    "id": str(pedido.id),
+                    "status": pedido.status,
+                    "priority": pedido.prioridade,
+                    "order": pedido.id,
+                    "nomePaciente": pedido.paciente.nome if pedido.paciente else "Desconhecido",
+                    "leito": pedido.paciente.leito if pedido.paciente and hasattr(pedido.paciente, 'leito') else "Desconhecido",
+                    "medicamentos": []
+                }
+            queue[pedido.id]["medicamentos"].append({
+                "nome": medicamento.nome if medicamento else "Desconhecido",
+                "quantidade": pedido_medicamento.quantidade
+            })
+
+        # Converta o dicionário em uma lista
+        queue_list = list(queue.values())
+
+        return {
+            'message': 'Fila completa de medicamentos carregada',
+            'code': 200,
+            'queue': queue_list  # Retorna a lista de fitas
+        }, 200
+    except Exception as e:
+        db.session.rollback()
+        return {
+            'message': f'Erro ao buscar fila completa de medicamentos: {e}',
+            'code': 500
+        }, 500

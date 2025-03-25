@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import Column from "./components/Column";
-import { Status, statuses, Fita } from "./utils/data-task";
+import { Status, statuses, Fita, RobotStatus } from "./utils/data-task";
 import Header from "../components/Header";
+import { Socket } from "dgram";
 
 export default function Kanban() {
     const [fitas, setTasks] = useState<Fita[]>([]);
@@ -11,6 +12,13 @@ export default function Kanban() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const [currentlyHoveringOver, setCurrentlyHoveringOver] =
         useState<Status | null>(null);
+
+    const [robotStatus, setRobotStatus] = useState<RobotStatus>({
+        x: 0,
+        y: 0,
+        z: 0,
+        status: "Desconectado"
+    });
 
     const fitasMock: Fita[] = [
         {
@@ -88,11 +96,12 @@ export default function Kanban() {
         setTasks(fitasMock);
     }, []);
 
+    const socket = io("http://0.0.0.0:5555");
+
     useEffect(() => {
-        const socket = io("http://0.0.0.0:5555");
 
         socket.on("connect", () => {
-            
+
             console.log("Conectado ao Socket.IO");
         });
 
@@ -102,8 +111,10 @@ export default function Kanban() {
             setTasks(updatedFitas);
         });
 
-        socket.on("robotStatus", (data) => {
+        socket.on("robotStatusFront", (data) => {
             console.log("Status do robô recebido", data);
+            //{status: 'Conectado', x: 275.34912109375, y: 69.3950424194336, z: 80}
+            setRobotStatus(data);
         });
 
         socket.on("medicineResponse", (data) => {
@@ -213,9 +224,12 @@ export default function Kanban() {
 
     return (
         <div className="flex flex-col h-screen w-full overflow-hidden">
-            <Header dashboard={true} coordinates={
-                { x: 10, y: 20, z: 30 }
-            } isActive={false} onStopClick={()=>{}} />
+            <Header dashboard={true} status={robotStatus.status} coordinates={
+                { x: robotStatus!.x, y: robotStatus!.y, z: robotStatus!.z }
+            } isActive={robotStatus.status === 'Desconectado' ? false : true} onStopClick={() => {
+                socket.emit("stopRobot", { data: "stop" });
+            }
+            } />
 
             <div className="flex flex-1 justify-center py-4 w-full font-inter bg-[#FFFBFF]">
                 <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x w-full">

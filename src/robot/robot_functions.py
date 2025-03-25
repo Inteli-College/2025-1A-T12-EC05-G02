@@ -6,7 +6,7 @@ from qrcode_function import ler_qrcode, processar_qrcode
 from infra_function import ler_infra
 import lgpio
 import time
-
+import config
 
 console = Console()
 
@@ -24,7 +24,10 @@ def move_to_bin(device, positions, drug, r, iter):
 
     # Loop de iteração sobre a quantidade de coletas na mesma bin
     while counter < int(iter):
-        
+        if config.stop_flag:  # Verifica se o config.stop_flag foi ativado
+            logger("[bold red]Movimentação interrompida pelo comando stopRobot.[/bold red]")
+            return
+
         logger(f"[bold cyan]Buscando {drug}...[/bold cyan]")
 
         # Move o sugador para as posições da bin especificada
@@ -36,10 +39,13 @@ def move_to_bin(device, positions, drug, r, iter):
             wait=True
         )
 
+        if config.stop_flag:  # Verifica novamente após o movimento
+            logger("[bold red]Movimentação interrompida pelo comando stopRobot.[/bold red]")
+            return
+
         logger(f"[bold yellow] ▪️ Movimento para {drug}[/bold yellow]\n")
-        
-    
-        #Desce para ler qrcode
+
+        # Desce para ler QR Code
         device.movel_to(
             positions['bins'][drug]['pos_x'],
             positions['bins'][drug]['pos_y'],
@@ -47,13 +53,16 @@ def move_to_bin(device, positions, drug, r, iter):
             r,
             wait=True
         )
-        
-        #Lê o qrcode
+
+        if config.stop_flag:  # Verifica novamente após o movimento
+            logger("[bold red]Movimentação interrompida pelo comando stopRobot.[/bold red]")
+            return
+
+        # Lê o QR Code
         dados_qr = ler_qrcode(port=port, baudrate=baudrate)
         processar_qrcode(dados_qr)
-        
-        
-        #Move no sentido positivo de x para melhor posicionar o sugador        
+
+        # Move no sentido positivo de x para melhor posicionar o sugador        
         device.movel_to(
             positions['bins'][drug]['pos_x'] + 19,
             positions['bins'][drug]['pos_y'],
@@ -61,8 +70,12 @@ def move_to_bin(device, positions, drug, r, iter):
             r,
             wait=True
         )
-        
-        #Desce para sugar 
+
+        if config.stop_flag:  # Verifica novamente após o movimento
+            logger("[bold red]Movimentação interrompida pelo comando stopRobot.[/bold red]")
+            return
+
+        # Desce para sugar 
         device.movel_to(
             positions['bins'][drug]['pos_x'] + 19,
             positions['bins'][drug]['pos_y'],
@@ -70,14 +83,17 @@ def move_to_bin(device, positions, drug, r, iter):
             r,
             wait=True
         )
-        
-    
+
+        if config.stop_flag:  # Verifica novamente após o movimento
+            logger("[bold red]Movimentação interrompida pelo comando stopRobot.[/bold red]")
+            return
+
         # Ativa a sucção do bico sugador
         logger(f"[bold yellow] ▪️ Ativando bico sugador[/bold yellow]\n")
         device.suck(True)
 
         dado_infra = ler_infra()
-        
+
         device.movel_to(
             positions['bins'][drug]['pos_x'],
             positions['bins'][drug]['pos_y'],
@@ -86,13 +102,16 @@ def move_to_bin(device, positions, drug, r, iter):
             wait=True
         )
 
+        if config.stop_flag:  # Verifica novamente após o movimento
+            logger("[bold red]Movimentação interrompida pelo comando stopRobot.[/bold red]")
+            return
+
         # Retorna o sugador para a posição de referência home
         logger(f"[bold yellow] ▪️ Retornando para ponto de referência[/bold yellow]\n")
-        
-        return_home(device, positions) # Retorna o robô para a home
-        
+        return_home(device, positions)  # Retorna o robô para a home
+
         logger(f"[bold yellow] ▪️ Movimento para o dispenser[/bold yellow]\n")
-        
+
         # Move o braço robótico para as posições do dispenser
         device.movej_to(
             positions['presets']['dispenser']['pos_x'],
@@ -101,14 +120,18 @@ def move_to_bin(device, positions, drug, r, iter):
             r,
             wait=True
         )
-        
+
+        if config.stop_flag:  # Verifica novamente após o movimento
+            logger("[bold red]Movimentação interrompida pelo comando stopRobot.[/bold red]")
+            return
+
         # Desativa a sucção do bico sugador
         logger(f"[bold green]✔ {drug} coletado![/bold green]")
         device.suck(False)
 
         return_home(device, positions)
 
-        # # Adiciona unidade ao iterador
+        # Adiciona unidade ao iterador
         counter += 1
 
 
