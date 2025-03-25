@@ -7,6 +7,15 @@ from models.pedido_medicamento import PedidoMedicamento
 import time
 robotFlask = Blueprint('robot', __name__, url_prefix='/robot')
 
+global robot_sid, front_sid, x, y, z
+
+# Initialize global variables
+robot_sid = None
+front_sid = None
+x = 0
+y = 0
+z = 0
+
 @socketio.on('connect')
 def handle_connect():
     print(request.sid)
@@ -16,15 +25,31 @@ def handle_connect():
 
 @socketio.on('disconnect')
 def handle_disconnect():
+    global robot_sid, front_sid  # Ensure global variables are used
     print("client has disconnected")
+    if robot_sid == request.sid:
+        robot_sid = None
+        x = 0
+        y = 0
+        z = 0
+    if front_sid == request.sid:
+        front_sid = None
     emit("disconnectResponse", {"data": f"id: {request.sid} is disconnected"}, broadcast=True, include_self=True)
     
 @socketio.on('connectResponse')
 def handle_connect_response(data):
     print("connectResponse: ", str(data))
+    global robot_sid, front_sid  # Ensure global variables are used
     if data['data'] == 'Robo conectado ao servidor':
+        robot_sid = request.sid  # Save the robot's SID
+        print(request.sid)
+        print("Robo conectado ao servidor")
         get_queue_medicine()
-    
+        
+    if data['data'] == 'Front conectado ao servidor':
+        front_sid = request.sid
+        checkStatusRobot()
+        
 @socketio.on('disconnectResponse')
 def handle_disconnect_response(data):
     print("disconnectResponse: ", str(data)) 
@@ -72,6 +97,14 @@ def reload_medicine():
         'code': 200
     }
     
+@socketio.on('robotStatus')
+def handle_robot_status(data):
+    global robot_sid, x, y, z
+    print("robotStatus: ", str(data))
+    x = data.get('x', 0)
+    y = data.get('y', 0)
+    z = data.get('z', 0)
+    checkStatusRobot()
     
 def get_queue_medicine():
     # Verifica se tem algum pedido pendente ordenado por data de criação e prioridade crescente
@@ -86,3 +119,8 @@ def get_queue_medicine():
         
         time.sleep(1)
         emit("medicine", {"idFita": pedido_pendente.id, "bins": fita}, namespace='/', broadcast=True, include_self=True)
+
+def checkStatusRobot():
+    global robot_sid 
+    status = 'Conectado' if robot_sid else 'Desconectado'
+    emit("robotStatusFront", {"status": status, "x": x, "y": y, "z": z}, broadcast=True, include_self=True)

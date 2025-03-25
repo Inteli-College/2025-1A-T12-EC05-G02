@@ -69,6 +69,11 @@ def medicine(data):
         'action': 'collect', 'bins': data['bins'], 'idFita': data['idFita']
     }
     separateMedicine(result)
+    
+@sio.event
+def robotStatus(data):
+   (x, y, z, r, j1, j2, j3, j4) = device.pose() 
+    emit("robotStatus", {"x": x, "y": y, "z": z}, broadcast=True, include_self=True)
 
 def separateMedicine(result):
     device = InteliDobot(verbose=False)  # Inicializa o robô Dobot com a porta detectada.

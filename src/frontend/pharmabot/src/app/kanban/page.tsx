@@ -89,7 +89,7 @@ export default function Kanban() {
     }, []);
 
     useEffect(() => {
-        const socket = io("http://10.32.0.8:6001");
+        const socket = io("http://0.0.0.0:5555");
 
         socket.on("connect", () => {
             
@@ -100,6 +100,31 @@ export default function Kanban() {
             console.log("Dados de fitas recebidos", data);
             const updatedFitas: Fita[] = data;
             setTasks(updatedFitas);
+        });
+
+        socket.on("robotStatus", (data) => {
+            console.log("Status do robô recebido", data);
+        });
+
+        socket.on("medicineResponse", (data) => {
+            let idFita = data.idFita;
+
+            let fita = fitas.find((fita) => fita.id === idFita);
+            if (fita) {
+                switch (data.status) {
+                    case "Pendente":
+                        updateFita({ ...fita, status: "fila" });
+                        break;
+                    case "Separando":
+                        updateFita({ ...fita, status: "em-preparo" });
+                        break;
+                    case "Completo":
+                        updateFita({ ...fita, status: "separado" });
+                        break;
+                    default:
+                        break;
+                }
+            }
         });
 
         socket.on("connect_error", (error) => {
