@@ -21,12 +21,12 @@ const FormUsuario: React.FC<Props> = ({ open, handleOpen }) => {
 
   return (
     <FormModal
-      title="Cadastro de Usuário"
-      open={open}
-      handleOpen={handleOpen}
-      rota="http://127.0.0.1:5555/api/usuarios/criar"
-      inputs={inputs}
-    />
+  title="Cadastro de Usuário"
+  open={open}
+  handleOpen={handleOpen}
+  rota="http://127.0.0.1:5555/api/user/signup"
+  inputs={inputs}
+/>
   );
 };
 

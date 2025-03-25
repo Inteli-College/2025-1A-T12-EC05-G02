@@ -14,10 +14,6 @@ const colunas: Column[] = [
   { id: 'email', label: 'email', minWidth: 200 },
   { id: 'data', label: 'data do cadastro', minWidth: 170 },
 ];
-//mocka os dados tempoririamente
-const rowsMock: Data[] = [
-    { id: "01", usuario: 'Mateus', email: 'mateus01@gmail.com', data: '25/03/2025' }
-  ];
 
 export default function UsuariosCadastrados() {
   const [rows, setRows] = useState<Data[]>([]);
@@ -33,36 +29,37 @@ export default function UsuariosCadastrados() {
   };
 
   // Busca os usuários na API
-  useEffect(() => {
-    // Atualiza os dados mockados ao clicar em "Atualizar"
+//   useEffect(() => {
+//     // Atualiza os dados mockados ao clicar em "Atualizar"
+//     setLoading(true);
+  
+//     const rowsMock: Data[] = [
+//       { id: "01", usuario: 'Mateus', email: 'mateus01@gmail.com', data: '25/03/2025' },
+//       { id: "02", usuario: 'Laura', email: 'laura@sou.inteli.edu.br', data: '26/03/2025' }
+//     ];
+  
+//     setRows(rowsMock);
+//     setLoading(false);
+//   }, [key]);
+  
+useEffect(() => {
     setLoading(true);
   
-    const rowsMock: Data[] = [
-      { id: "01", usuario: 'Mateus', email: 'mateus01@gmail.com', data: '25/03/2025' },
-      { id: "02", usuario: 'Laura', email: 'laura@sou.inteli.edu.br', data: '26/03/2025' }
-    ];
-  
-    setRows(rowsMock);
-    setLoading(false);
+    fetch("http://127.0.0.1:5555/api/user/list")
+      .then(res => res.json())
+      .then(data => {
+        const formatted: Data[] = data.usuarios.map((user: any) => ({
+          id: user.id,
+          usuario: user.nome,
+          email: user.email,
+          data: user.datacadastro
+        }));
+        setRows(formatted);
+      })
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
   }, [key]);
-
-  //ESSES COMENTÁRIOS ABAIXO É PRA QUANDO N FOR MAIS USAR OS DADOS MOKADOS
   
-//     setLoading(true);
-//     //fetch("http://127.0.0.1:5555/api/usuarios") // ajuste a URL se necessário
-//       .then(res => res.json())
-//       .then(data => {
-//         const formatted: Data[] = data.usuarios.map((user: any) => ({
-//           id: user.id,
-//           usuario: user.nome,
-//           email: user.email,
-//           data: user.dataCadastro
-//         }));
-//         setRows(formatted);
-//       })
-//       .catch(err => console.error(err))
-//       .finally(() => setLoading(false));
-//   }, [key]);
 
   // Filtra com base no campo de busca
   useEffect(() => {
