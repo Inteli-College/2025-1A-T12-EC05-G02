@@ -4,6 +4,7 @@ from rich.panel import Panel
 from extensions import sio
 from qrcode_function import ler_qrcode, processar_qrcode
 from infra_function import ler_infra
+from utils.logger import logger
 import lgpio
 import time
 
