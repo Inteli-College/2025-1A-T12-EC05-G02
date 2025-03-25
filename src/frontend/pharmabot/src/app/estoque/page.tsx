@@ -85,7 +85,7 @@ export default function Estoque() {
         <Header></Header>
         <FormEditar open={openEditar} handleOpen={setOpenEditar} rota={rota + '/editar/' + idEdicao}></FormEditar>
         <FormRegistro open={open} handleOpen={setOpen} />
-        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas} handleEdit={setOpenEditar} handleId={setIdEdicao}>
+        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas} handleEdit={setOpenEditar} handleId={setIdEdicao} editar={true}>
             <div className='flex justify-between items-center'>
                 <TextField
                     label="Pesquisar"
