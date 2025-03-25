@@ -64,13 +64,12 @@ export default function Home() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         // Transformar os dados no formato esperado
         const formattedData: Data[] = data.data.map((item: any) => ({
-          prescricao: item.prescricao.toString(),
+          prescricao: String(item.prescricao),
           horaPrescricao: new Date(item.data_pedido), // Converter string para Date
-          paciente: item.paciente,
-          farmaceutico: item.farmaceutico,
+          paciente: String(item.paciente),
+          farmaceutico: String(item.farmaceutico),
         }));
 
         setRows(formattedData);
@@ -86,12 +85,12 @@ export default function Home() {
     } else {
       const filtered = rows.filter((row) => {
         return (
-          row.id.includes(searchText) ||
-          row.prescricao.toLowerCase().includes(searchText.toLowerCase()) ||
-          row.paciente.toLowerCase().includes(searchText.toLowerCase()) ||
-          String(row.farmaceutico)
-            .toLowerCase()
-            .includes(searchText.toLowerCase())
+          (row.prescricao &&
+            row.prescricao.toString().toLowerCase().includes(searchText.toLowerCase())) ||
+          (row.paciente &&
+            row.paciente.toString().toLowerCase().includes(searchText.toLowerCase())) ||
+          (row.farmaceutico &&
+            row.farmaceutico.toString().toLowerCase().includes(searchText.toLowerCase()))
         );
       });
       setFilteredRows(filtered);
@@ -172,14 +171,6 @@ export default function Home() {
                     onChange={handleSearchChange}
                   />
                   <span></span>
-                  <SelectButton
-                    atributo="acao"
-                    label="Ação"
-                    onSelect={handleAcaoChange}
-                    render={key}
-                    rota={rota}
-                  />
-                  <FilterAltIcon className="opacity-70" />
                 </Stack>
                 <Stack id="botoes" spacing={1} direction="row">
                   <Button variant="outlined" color="black" onClick={reRender}>
