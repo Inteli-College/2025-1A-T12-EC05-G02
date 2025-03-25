@@ -1,4 +1,4 @@
-from flask import Blueprint, request, current_app
+from flask import Blueprint, request, current_app, jsonify
 from models.log_sistema import LogSistema
 from models.pedido import Pedido
 from models.pedido_medicamento import PedidoMedicamento
@@ -67,38 +67,32 @@ def create_prescription():
         'message': 'Prescrição médica criada com sucesso',
         'code': 200
     }
-    
-# Lista as prescrições médicas em um histórico
-@medicineFlask.route('/prescription/list', methods=['GET'])
 
-def list_prescriptions():
+@medicineFlask.route('/logs', methods=['GET'])
+def get_prescription_logs():
     try:
+        orders = db.session.query(Pedido).order_by(Pedido.data_pedido.desc()).all()
         
-        # Obtém o valor do parâmetro 'acao' da consulta (se houver)
-        acao_filter = request.args.get('acao', None)
+        result = []
 
-        # Se 'acao' for fornecido, filtra os logs por ação
-        if acao_filter:
-            query = query.filter(Pedido.acao == acao_filter)
+        for order in orders:
+            result.append({
+            'prescricao': order.id,
+            'status': order.status,
+            'data_pedido': order.data_pedido,
+            'paciente': order.paciente_id,
+            'prioridade': order.prioridade,
+            'farmaceutico': order.liberado_por
+        })
         
-        prescriptions = db.session.query(Pedido).all()
-        prescriptions = [
-            {
-                'id': prescription.id,
-                'status': prescription.status,
-                'paciente_id': prescription.paciente_id,
-                'prioridade': prescription.prioridade,
-                'liberado_por': prescription.liberado_por
-            }
-            for prescription in prescriptions
-        ]
+        return jsonify({
+            'message': 'Logs retornados!',
+            'data': result,
+            'code': 200
+        })
     except Exception as e:
-        return {
-            'message': f'Erro ao listar prescrições médicas: {e}',
+        current_app.logger.error(f"Erro ao obter logs de prescrição: {e}")
+        return jsonify({
+            'message': 'Erro ao obter logs de prescrição',
             'code': 500
-        }, 500
-    
-    return {
-        'prescriptions': prescriptions,
-        'code': 200
-    }
+        }), 500

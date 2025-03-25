@@ -22,14 +22,13 @@ interface Data {
 }
 
 const colunas: Column[] = [
-  { id: "id", label: "ID", minWidth: 100 },
+  { id: "prescricao", label: "Prescrição", minWidth: 100 },
   {
     id: "horaPrescricao",
     label: "Horário de Separação",
     minWidth: 150,
     format: (value: Date) => value.toLocaleString("pt-BR"),
   },
-  { id: "prescricao", label: "Prescrição", minWidth: 170 },
   { id: "paciente", label: "Paciente", minWidth: 200 },
   { id: "farmaceutico", label: "Farmacêutico", minWidth: 170 },
 ];
@@ -52,26 +51,24 @@ export default function Home() {
     setSelectedAcao("");
   };
 
-  const rota: string = "http://127.0.0.1:5555/api/prescriptions/logs";
+  const rota: string = "http://0.0.0.0:5555/medicine/logs";
 
   // Segunda requisição para buscar os logs filtrados pela ação selecionada
   useEffect(() => {
     setLoading(true); // Inicia o carregamento
     // Montar a URL com base na ação selecionada
     const url = selectedAcao
-      ? `http://127.0.0.1:5555/api/user/prescriptions?acao=${selectedAcao}`
+      ? `http://0.0.0.0:5555/medicine/logs?acao=${selectedAcao}`
       : rota;
-
-    console.log(url);
 
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         // Transformar os dados no formato esperado
-        const formattedData: Data[] = data.Logs.map((item: any) => ({
-          id: item.id.toString(),
-          horaPrescricao: new Date(item.data_hora), // Converter string para Date
-          prescricao: item.prescricao,
+        const formattedData: Data[] = data.data.map((item: any) => ({
+          prescricao: item.prescricao.toString(),
+          horaPrescricao: new Date(item.data_pedido), // Converter string para Date
           paciente: item.paciente,
           farmaceutico: item.farmaceutico,
         }));
@@ -154,6 +151,8 @@ export default function Home() {
               titulo="Histórico de Prescrições"
               subtitulo="Aqui você encontra as prescrições separadas anteriormente pelo PharmaBot"
               rows={filteredRows}
+              itemsPerPage={[5]}
+              initialNumItems={5}
               render={key}
               loading={loading}
               colunas={colunas}
@@ -192,13 +191,12 @@ export default function Home() {
                       exportToCSV(
                         filteredRows,
                         [
-                          "ID",
-                          "Data e Hora",
-                          "Ação",
-                          "Detalhes",
-                          "Responsável",
+                          "Prescrição",
+                          "Horário de Separação",
+                          "Paciente",
+                          "Farmacêutico",
                         ],
-                        ["id", "horaPrescricao", "prescricao", "paciente", "farmaceutico"],
+                        ["prescricao", "horaPrescricao", "paciente", "farmaceutico"],
                         "home"
                       )
                     }
