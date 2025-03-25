@@ -67,3 +67,29 @@ def create_prescription():
         'message': 'Prescrição médica criada com sucesso',
         'code': 200
     }
+    
+# Lista as prescrições médicas em um histórico
+@medicineFlask.route('/prescriptions/list', methods=['GET'])
+def list_prescriptions():
+    try:
+        prescriptions = db.session.query(Pedido).all()
+        prescriptions = [
+            {
+                'id': prescription.id,
+                'status': prescription.status,
+                'paciente_id': prescription.paciente_id,
+                'prioridade': prescription.prioridade,
+                'liberado_por': prescription.liberado_por
+            }
+            for prescription in prescriptions
+        ]
+    except Exception as e:
+        return {
+            'message': f'Erro ao listar prescrições médicas: {e}',
+            'code': 500
+        }, 500
+    
+    return {
+        'prescriptions': prescriptions,
+        'code': 200
+    }
