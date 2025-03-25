@@ -8,6 +8,24 @@ from flask_socketio import emit
 
 medicineFlask = Blueprint('medicine', __name__, url_prefix='/medicine')
 
+# Função auxiliar para registrar logs
+def registrar_log(acao, detalhes):
+    session = db.session
+    try:
+        # Obtendo o último ID registrado e incrementando para o próximo log
+        ultimo_log = session.query(LogSistema).order_by(LogSistema.id.desc()).first()
+        # Se não houver logs, o próximo ID será 1
+        proximo_id = (ultimo_log.id + 1) if ultimo_log else 1
+        # Criando o log
+        log = LogSistema(id=proximo_id, acao=acao, detalhes=detalhes, data_hora=datetime.now())
+        session.add(log)
+        session.commit()
+    except Exception as e:
+        session.rollback()
+        print(f"Erro ao registrar log: {e}")
+    finally:
+        session.close()
+
 # Cria uma prescrição médica
 @medicineFlask.route('/prescription', methods=['POST'])
 def create_prescription():
