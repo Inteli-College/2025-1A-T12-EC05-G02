@@ -15,7 +15,7 @@ const colunas: Column[] = [
     { id: 'localizacao', label: 'Localização', minWidth: 200 },
     { id: 'quantidade', label: 'Quantidade', minWidth: 170 },
     { id: 'ultimaAtualizacao', label: 'Última Atualização', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
-    { id: 'id', label: '', minWidth: 170 },
+    { id: 'idEd', label: '', minWidth: 170 },
 ]
 
 export default function Estoque() {
@@ -55,7 +55,7 @@ export default function Estoque() {
                     localizacao: item.localizacao,
                     quantidade: item.quantidade.toString(),
                     ultimaAtualizacao: new Date(item.ultimaAtualizacao), 
-                    id: item.id
+                    idEd: item.id
                 }));
 
                 setRows(formattedData);
