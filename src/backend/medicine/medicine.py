@@ -1,4 +1,4 @@
-from flask import Blueprint, request, current_app
+from flask import Blueprint, request, current_app, jsonify
 from models.log_sistema import LogSistema
 from models.pedido import Pedido
 from models.pedido_medicamento import PedidoMedicamento
@@ -49,3 +49,32 @@ def create_prescription():
         'message': 'Prescrição médica criada com sucesso',
         'code': 200
     }
+
+@medicineFlask.route('/logs', methods=['GET'])
+def get_prescription_logs():
+    try:
+        orders = db.session.query(Pedido).order_by(Pedido.data_pedido.desc()).all()
+        
+        result = []
+
+        for order in orders:
+            result.append({
+            'prescricao': order.id,
+            'status': order.status,
+            'data_pedido': order.data_pedido,
+            'paciente': order.paciente_id,
+            'prioridade': order.prioridade,
+            'farmaceutico': order.liberado_por
+        })
+        
+        return jsonify({
+            'message': 'Logs retornados!',
+            'data': result,
+            'code': 200
+        })
+    except Exception as e:
+        current_app.logger.error(f"Erro ao obter logs de prescrição: {e}")
+        return jsonify({
+            'message': 'Erro ao obter logs de prescrição',
+            'code': 500
+        }), 500

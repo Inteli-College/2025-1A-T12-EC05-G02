@@ -19,10 +19,10 @@ interface Props {
     colunas: Column[];
     handleEdit?: any
     handleId?: any
-
+    editar?: boolean
 }
 
-const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, render, loading, itemsPerPage, initialNumItems, children, colunas, handleEdit, handleId }) => {
+const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, render, loading, itemsPerPage, initialNumItems, children, colunas, handleEdit, handleId, editar }) => {
 
     return (
         <Container maxWidth="lg" className='shadow-sm p-2 mt-4'>
@@ -37,7 +37,7 @@ const TabelaPharma: React.FC<Props> = ({ titulo, subtitulo, rows, render, loadin
                     <CircularProgress />
                 </div>
             ) : (
-                <Tabela itemsPerPage={itemsPerPage} rows={rows} render={render} initialNumItems={initialNumItems} colunas={colunas} handleEdit={handleEdit} handleId={handleId}/> /* Passa os dados filtrados para a tabela */
+                <Tabela itemsPerPage={itemsPerPage} rows={rows} render={render} initialNumItems={initialNumItems} colunas={colunas} handleEdit={handleEdit} handleId={handleId} editar={editar}/> /* Passa os dados filtrados para a tabela */
             )}
         </Container>
     )

@@ -30,9 +30,10 @@ interface Props {
   colunas: Column[];
   handleEdit?: (args:any ) => void
   handleId?: (args:any ) => void
+  editar?: boolean
 }
 
-const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [15, 50, 100], initialNumItems = 15, colunas, handleEdit, handleId }) => {
+const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [15, 50, 100], initialNumItems = 15, colunas, handleEdit, handleId, editar }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(initialNumItems);
   const [data, setData] = useState<string>(''); // Inicie com uma string vazia
@@ -70,10 +71,9 @@ const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [15, 50, 100], i
               .map((row, index) => (
                 <TableRow className='hover:bg-gray-50 transition' key={index}>
                   {colunas.map((col) => {
-                    console.log(col.id)
                     if (col.id == 'id') {
                       return (<TableCell key={col.id} align={col.align || 'left'}> {/* Wrap the button inside a <td> */}
-                        {row.id && (
+                        {editar && row.id && (
                           <Button variant='contained' onClick={() => handleEdit && handleEdit(true) && handleId && handleId(row.id)}>
                             <SquarePen />
                           </Button>
