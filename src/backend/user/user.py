@@ -74,7 +74,7 @@ def admin_list():
     session = db.session
     try:
         users = session.query(Usuario).all()
-        users_list = [{"id": user.id, "nome": user.nome, "email": user.email, "role": user.role} for user in users]
+        users_list = [ {"id": user.id, "nome": user.nome, "email": user.email, "role": user.role, "datacadastro": user.data_criacao} for user in users ]
         registrar_log("Listagem de Usuários", "Listagem de todos os usuários realizada com sucesso.")
     finally:
         session.close()

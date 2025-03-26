@@ -11,8 +11,9 @@ import FormUsuario from "./FormUsuario"; // componente de modal para cadastro
 const colunas: Column[] = [
   { id: 'id', label: 'ID', minWidth: 150 },
   { id: 'usuario', label: 'Usuário', align: 'center', minWidth: 170 },
-  { id: 'email', label: 'email', minWidth: 200 },
-  { id: 'data', label: 'data do cadastro', minWidth: 170 },
+  { id: 'email', label: 'E-mail', minWidth: 200 },
+  { id: 'role', label: 'Função', minWidth: 150 }, // Adicionando role
+  { id: 'data', label: 'Data do Cadastro', minWidth: 150, format: (value: Date) => value.toLocaleString("pt-BR") },
 ];
 
 export default function UsuariosCadastrados() {
@@ -29,22 +30,9 @@ export default function UsuariosCadastrados() {
   };
 
   // Busca os usuários na API
-//   useEffect(() => {
-//     // Atualiza os dados mockados ao clicar em "Atualizar"
-//     setLoading(true);
-  
-//     const rowsMock: Data[] = [
-//       { id: "01", usuario: 'Mateus', email: 'mateus01@gmail.com', data: '25/03/2025' },
-//       { id: "02", usuario: 'Laura', email: 'laura@sou.inteli.edu.br', data: '26/03/2025' }
-//     ];
-  
-//     setRows(rowsMock);
-//     setLoading(false);
-//   }, [key]);
-  
-useEffect(() => {
+  useEffect(() => {
     setLoading(true);
-  
+
     fetch("http://127.0.0.1:5555/user/list")
       .then(res => res.json())
       .then(data => {
@@ -52,14 +40,14 @@ useEffect(() => {
           id: user.id,
           usuario: user.nome,
           email: user.email,
-          data: user.datacadastro
+          role: user.role, // Adicionando o role à tabela
+          data: new Date(user.datacadastro)
         }));
         setRows(formatted);
       })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
   }, [key]);
-  
 
   // Filtra com base no campo de busca
   useEffect(() => {
@@ -68,7 +56,8 @@ useEffect(() => {
     } else {
       const filtered = rows.filter((row) =>
         row.usuario.toLowerCase().includes(searchText.toLowerCase()) ||
-        row.email.toLowerCase().includes(searchText.toLowerCase())
+        row.email.toLowerCase().includes(searchText.toLowerCase()) ||
+        row.role.toLowerCase().includes(searchText.toLowerCase()) // Filtro por role também
       );
       setFilteredRows(filtered);
     }
