@@ -4,5 +4,9 @@ class ConfiguracoesBins(db.Model):
     __tablename__ = 'configuracoes_bins'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     configuracao_robo_id = db.Column(db.Integer, db.ForeignKey('configuracoes_robo.id'))
-    bin_id = db.Column(db.Text, nullable=False)
     coordenada = db.Column(db.Text, nullable=False)
+
+    nome_bin = db.Column(db.String(255), nullable=False)
+    nome_medicamento = db.Column(db.String(255), nullable=False)
+    quantidade = db.Column(db.Integer, nullable=False)
+
