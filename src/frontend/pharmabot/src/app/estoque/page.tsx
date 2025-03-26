@@ -38,21 +38,21 @@ export default function Estoque() {
         setSearchText(event.target.value);
     };
 
-    const rota = `http://127.0.0.1:5555/api/estoque/`
+    const rota = `http://127.0.0.1:5555/logs`
 
     useEffect(() => {
         setLoading(true); // Inicia o carregamento
         // Montar a URL com base na ação selecionada
-        const url = rota + '/registros' //NECESSARIO INTEGRAR COM O BACK
+        const url = rota + '/estoque' //NECESSARIO INTEGRAR COM O BACK
 
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
                 // Transformar os dados no formato esperado
-                const formattedData: Data[] = data.registros.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
-                    item: item.item.toString(),
-                    codigoIdentificacao: item.codigoIdentificacao,
-                    localizacao: item.localizacao,
+                const formattedData: Data[] = data.estoque.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
+                    item: item.nome_medicamento.toString(),
+                    codigoIdentificacao: item.medicamento_id,
+                    localizacao: item.bin_localizacao,
                     quantidade: item.quantidade.toString(),
                     ultimaAtualizacao: new Date(item.ultimaAtualizacao), 
                     idEd: item.id
@@ -60,7 +60,7 @@ export default function Estoque() {
 
                 setRows(formattedData);
             })
-            .catch((error) => console.error("Erro ao buscar registros:", error))
+            .catch((error) => console.error("Erro ao buscar estoque:", error))
             .finally(() => setLoading(false)); // Finaliza o carregamento
     }, [key]);  // O efeito será executado sempre que `selectedAcao` mudar
 
