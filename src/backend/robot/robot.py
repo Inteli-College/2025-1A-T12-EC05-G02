@@ -95,6 +95,8 @@ def handle_stop_robot(data):
 @socketio.on('medicineResponse')
 def handle_medicine_response(data):
     print("medicineResponse: ", str(data))
+    
+    emit("medicineFrontResponse", data, broadcast=True, include_self=True)
     # atualiza o status do pedido para 'Concluído'
     try:
         pedido = db.session.query(Pedido).filter_by(id=int(data['idFita'])).first()
@@ -163,6 +165,11 @@ def checkStatusRobot():
     global robot_sid, robot_pause
     if robot_pause:
         status = 'Pausado'
+        emit("robotStatusFront", {"status": status, "x": x, "y": y, "z": z}, broadcast=True, include_self=True)
+        return
+    
+    if robot_sid:
+        status = 'Conectado'
     else:
-        status = 'Conectado' if robot_sid else 'Desconectado'
+        status = 'Desconectado'
     emit("robotStatusFront", {"status": status, "x": x, "y": y, "z": z}, broadcast=True, include_self=True)

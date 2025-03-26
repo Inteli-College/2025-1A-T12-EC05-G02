@@ -39,7 +39,7 @@ export default function Kanban() {
             });
     }, []);
 
-    const mapStatus = (status: string): Status => {
+    const mapStatus = (status: string): Status | null => {
         switch (status) {
             case "Pendente":
                 return "fila";
@@ -48,7 +48,7 @@ export default function Kanban() {
             case "Completo":
                 return "separado";
             default:
-                return "fila"; // Valor padrão
+                return null; // Retorna null para remover o item da lista
         }
     };
 
@@ -61,37 +61,43 @@ export default function Kanban() {
             console.log("Conectado ao Socket.IO");
         });
 
-        socket.on("fitas", (data) => {
-            console.log("Dados de fitas recebidos", data);
-            const updatedFitas: Fita[] = data;
-            setTasks(updatedFitas);
-        });
-
         socket.on("robotStatusFront", (data) => {
             console.log("Status do robô recebido", data);
             //{status: 'Conectado', x: 275.34912109375, y: 69.3950424194336, z: 80}
             setRobotStatus(data);
         });
 
-        socket.on("medicineResponse", (data) => {
-            let idFita = data.idFita;
-
-            let fita = fitas.find((fita) => fita.id === idFita);
-            if (fita) {
-                switch (data.status) {
-                    case "Pendente":
-                        updateFita({ ...fita, status: "fila" });
-                        break;
-                    case "Separando":
-                        updateFita({ ...fita, status: "em-preparo" });
-                        break;
-                    case "Completo":
-                        updateFita({ ...fita, status: "separado" });
-                        break;
-                    default:
-                        break;
+        socket.on("medicineFrontResponse", (data) => {
+            console.log("Resposta de medicamento recebida", data);
+            const idFita = data.idFita;
+            console.log("idFita: ", idFita);
+        
+            setTasks((prevFitas) => {
+                console.log("fitas antes da atualização: ", prevFitas);
+        
+                const fita = prevFitas.find((fita) => fita.id === idFita);
+                if (fita) {
+                    let updatedFita = { ...fita };
+        
+                    switch (data.status) {
+                        case "Pendente":
+                            updatedFita.status = "fila";
+                            break;
+                        case "Separando":
+                            updatedFita.status = "em-preparo";
+                            break;
+                        case "Completo":
+                            updatedFita.status = "separado";
+                            break;
+                        default:
+                            return prevFitas;
+                    }
+        
+                    return prevFitas.map((t) => (t.id === idFita ? updatedFita : t));
                 }
-            }
+        
+                return prevFitas;
+            });
         });
 
         socket.on("connect_error", (error) => {

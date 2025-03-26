@@ -101,7 +101,7 @@ def get_full_queue_medicine():
                     "id": str(pedido.id),
                     "status": pedido.status,
                     "priority": pedido.prioridade,
-                    "order": pedido.id,
+                    "order": pedido.ultima_atualizacao,
                     "nomePaciente": pedido.paciente.nome if pedido.paciente else "Desconhecido",
                     "leito": pedido.paciente.leito if pedido.paciente and hasattr(pedido.paciente, 'leito') else "Desconhecido",
                     "medicamentos": []

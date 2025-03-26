@@ -40,7 +40,10 @@ const Column: React.FC<ColumnProps> = ({
                 className="flex-1 mt-4 overflow-y-auto max-h-[calc(100vh-200px)] flex-grow"
             >
                 {fitas
-                    .sort((a, b) => a.order - b.order)
+                    .sort((a, b) => new Date(a.order).getTime() - new Date(b.order).getTime())
+                    .sort((a, b) => new Date(a.order).getTime() - new Date(b.order).getTime())
+                    .filter(() => true) // Placeholder to maintain chaining
+                    .reverse() // Reverse the array
                     .map((fita, index) => (
                         <div
                             key={index}
@@ -78,7 +81,8 @@ const Column: React.FC<ColumnProps> = ({
                         >
                             <FitaCard fita={fita} updateFita={updateFita} />
                         </div>
-                    ))}
+                    ))
+                    }
             </div>
         </div>
     );
