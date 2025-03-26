@@ -9,6 +9,7 @@ from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from user.user import usersFlask
 from medicine.medicine import medicineFlask
 from robot.robot import robotFlask
+from bins.bins import binsFlask
 
 
 load_dotenv()
@@ -37,6 +38,7 @@ jwt = JWTManager(app)
 app.register_blueprint(usersFlask)
 app.register_blueprint(robotFlask)
 app.register_blueprint(medicineFlask)
+app.register_blueprint(binsFlask)
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
