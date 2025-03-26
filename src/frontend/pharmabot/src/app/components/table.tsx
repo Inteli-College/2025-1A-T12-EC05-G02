@@ -71,7 +71,8 @@ const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [15, 50, 100], i
               .map((row, index) => (
                 <TableRow className='hover:bg-gray-50 transition' key={index}>
                   {colunas.map((col) => {
-                    if (col.id == 'id') {
+                    console.log(col.id)
+                    if (col.id == 'idEd') {
                       return (<TableCell key={col.id} align={col.align || 'left'}> {/* Wrap the button inside a <td> */}
                         {editar && row.id && (
                           <Button variant='contained' onClick={() => handleEdit && handleEdit(true) && handleId && handleId(row.id)}>
