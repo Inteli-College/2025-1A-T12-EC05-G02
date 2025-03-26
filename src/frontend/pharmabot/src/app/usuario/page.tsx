@@ -45,10 +45,10 @@ export default function UsuariosCadastrados() {
 useEffect(() => {
     setLoading(true);
   
-    fetch("http://127.0.0.1:5555/api/user/list")
+    fetch("http://127.0.0.1:5555/user/list")
       .then(res => res.json())
       .then(data => {
-        const formatted: Data[] = data.usuarios.map((user: any) => ({
+        const formatted: Data[] = data.Usuários.map((user: any) => ({
           id: user.id,
           usuario: user.nome,
           email: user.email,
