@@ -89,10 +89,10 @@ def get_full_queue_medicine():
             db.session.query(Pedido, PedidoMedicamento, Medicamento)
             .join(PedidoMedicamento, Pedido.id == PedidoMedicamento.pedido_id)
             .join(Medicamento, PedidoMedicamento.medicamento_id == Medicamento.id)
-            .order_by(Pedido.data_pedido, Pedido.prioridade)
+            .order_by(Pedido.ultima_atualizacao)
             .all()
         )
-
+        
         # Organize os dados em um dicionário para evitar duplicação de pedidos
         queue = {}
         for pedido, pedido_medicamento, medicamento in pending_orders:

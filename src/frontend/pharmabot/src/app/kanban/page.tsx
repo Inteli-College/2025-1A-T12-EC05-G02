@@ -13,6 +13,9 @@ export default function Kanban() {
     const [currentlyHoveringOver, setCurrentlyHoveringOver] =
         useState<Status | null>(null);
 
+    // Base Url backend
+    const baseUrl = "http://0.0.0.0:5555";
+
     const [robotStatus, setRobotStatus] = useState<RobotStatus>({
         x: 0,
         y: 0,
@@ -20,83 +23,36 @@ export default function Kanban() {
         status: "Desconectado"
     });
 
-    const fitasMock: Fita[] = [
-        {
-            nomePaciente: "João Silva",
-            id: "1",
-            status: "fila",
-            priority: "low",
-            order: 0,
-            leito: "101A",
-            medicamentos: [
-                { nome: "Paracetamol", quantidade: 2 },
-                { nome: "Ibuprofeno", quantidade: 1 }
-            ]
-        },
-        {
-            nomePaciente: "Maria Oliveira",
-            id: "2",
-            status: "fila",
-            priority: "medium",
-            order: 1,
-            leito: "102B",
-            medicamentos: [
-                { nome: "Amoxicilina", quantidade: 3 }
-            ]
-        },
-        {
-            nomePaciente: "Carlos Souza",
-            id: "3",
-            status: "fila",
-            priority: "high",
-            order: 2,
-            leito: "103C",
-            medicamentos: [
-                { nome: "Dipirona", quantidade: 1 },
-                { nome: "Omeprazol", quantidade: 2 }
-            ]
-        },
-        {
-            nomePaciente: "Ana Costa",
-            id: "4",
-            status: "fila",
-            priority: "high",
-            order: 3,
-            leito: "104D",
-            medicamentos: [
-                { nome: "Losartana", quantidade: 1 }
-            ]
-        },
-        {
-            nomePaciente: "Pedro Lima",
-            id: "5",
-            status: "em-preparo",
-            priority: "high",
-            order: 4,
-            leito: "105E",
-            medicamentos: [
-                { nome: "Metformina", quantidade: 2 },
-                { nome: "Insulina", quantidade: 1 }
-            ]
-        },
-        {
-            nomePaciente: "Fernanda Alves",
-            id: "6",
-            status: "separado",
-            priority: "high",
-            order: 5,
-            leito: "106F",
-            medicamentos: [
-                { nome: "Atorvastatina", quantidade: 1 }
-            ]
-        },
-    ];
-
     useEffect(() => {
-        setTasks(fitasMock);
+        fetch(`${baseUrl}/medicine/queue`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Dados de fitas recebidos", data);
+                const updatedFitas: Fita[] = data.queue.map((fita: Fita) => ({
+                    ...fita,
+                    status: mapStatus(fita.status), // Mapeie o status para os valores esperados
+                }));
+                setTasks(updatedFitas);
+            })
+            .catch((error) => {
+                console.error("Erro ao buscar dados de fitas", error);
+            });
     }, []);
 
-    const socket = io("http://0.0.0.0:5555");
+    const mapStatus = (status: string): Status => {
+        switch (status) {
+            case "Pendente":
+                return "fila";
+            case "Separando":
+                return "em-preparo";
+            case "Completo":
+                return "separado";
+            default:
+                return "fila"; // Valor padrão
+        }
+    };
+
+    const socket = io(baseUrl);
 
     useEffect(() => {
 
@@ -223,7 +179,7 @@ export default function Kanban() {
     }));
 
     return (
-        <div className="flex flex-col h-screen w-full overflow-hidden">
+        <div className=" h-screen w-full overflow-hidden">
             <Header dashboard={true} status={robotStatus.status} coordinates={
                 { x: robotStatus!.x, y: robotStatus!.y, z: robotStatus!.z }
             } isActive={robotStatus.status === 'Desconectado' ? false : true} onStopClick={() => {
@@ -231,8 +187,8 @@ export default function Kanban() {
             }
             } />
 
-            <div className="flex flex-1 justify-center py-4 w-full font-inter bg-[#FFFBFF]">
-                <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x w-full">
+            <div className="justify-center py-4 w-full font-inter bg-[#FFFBFF] h-full">
+                <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x w-full h-full">
                     {columns.map((column, index) => (
                         <Column
                             key={index}

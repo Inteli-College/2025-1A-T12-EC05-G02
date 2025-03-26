@@ -51,6 +51,5 @@ def version():
 with app.app_context():
     ext.db.create_all()
     
-
 if __name__ == '__main__':
     ext.socketio.run(app, debug=True, host='0.0.0.0', port=5555)
