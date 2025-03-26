@@ -69,9 +69,18 @@ def create_prescription():
     }
     
 # Lista as prescrições médicas em um histórico
-@medicineFlask.route('/prescriptions/list', methods=['GET'])
+@medicineFlask.route('/prescription/list', methods=['GET'])
+
 def list_prescriptions():
     try:
+        
+        # Obtém o valor do parâmetro 'acao' da consulta (se houver)
+        acao_filter = request.args.get('acao', None)
+
+        # Se 'acao' for fornecido, filtra os logs por ação
+        if acao_filter:
+            query = query.filter(Pedido.acao == acao_filter)
+        
         prescriptions = db.session.query(Pedido).all()
         prescriptions = [
             {

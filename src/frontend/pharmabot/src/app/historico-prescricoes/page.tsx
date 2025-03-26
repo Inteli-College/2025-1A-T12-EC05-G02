@@ -35,14 +35,14 @@ export default function HistoricoPrescricoes() {
         setSelectedAcao('')
     };
 
-    const rota: string = 'http://127.0.0.1:5555/medicine/prescriptions/list'; // Alterado para o novo endpoint
+    const rota: string = 'http://127.0.0.1:5555/medicine/prescription/list'; // Alterado para o novo endpoint
 
     // Segunda requisição para buscar os logs filtrados pela ação selecionada
     useEffect(() => {
       setLoading(true); // Inicia o carregamento
       // Montar a URL com base na ação selecionada
     const url = selectedAcao
-        ? `${rota}?filter=${selectedAcao}`
+        ? `http://127.0.0.1:5555/medicine/prescription/list?acao=${selectedAcao}`
         : rota;
 
       fetch(url)
@@ -75,8 +75,8 @@ export default function HistoricoPrescricoes() {
                     row.status.toLowerCase().includes(searchText.toLowerCase()) ||
                     row.data_pedido.toLocaleString('pt-BR').toLowerCase().includes(searchText.toLowerCase()) ||
                     String(row.liberado_por).toLowerCase().includes(searchText.toLowerCase()) ||
-                    row.paciente_id.toLowerCase().includes(searchText.toLowerCase()) ||
-                    row.prioridade.toLowerCase().includes(searchText.toLowerCase())
+                    String(row.paciente_id).toLowerCase().includes(searchText.toLowerCase()) ||
+                    String(row.prioridade).toLowerCase().includes(searchText.toLowerCase())
                 );
             });
             setFilteredRows(filtered);
@@ -106,15 +106,6 @@ export default function HistoricoPrescricoes() {
                         onChange={handleSearchChange}
                     />
                     <span></span>
-                    <SelectButton
-                        atributo='farmaceutico'
-                        label='Farmacêutico'
-                        onSelect={handleAcaoChange}
-                        render={key}
-                        rota={rota}
-                        model='prescriptions'
-                        filtro='liberado_por'
-                    />
                 </Stack>
                 <Stack id="botoes" spacing={1} direction="row">
                     <Button variant="outlined" color="black" onClick={reRender}>Atualizar</Button>

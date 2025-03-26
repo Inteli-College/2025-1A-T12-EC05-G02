@@ -13,11 +13,9 @@ interface Props {
   onSelect: (value: string) => void;
   render: number;
   rota: string;
-  model: string;
-  filtro: string;
 }
 
-const SelectButton: React.FC<Props> = ({ atributo, label, onSelect, render, rota, model, filtro }) => {
+const SelectButton: React.FC<Props> = ({ atributo, label, onSelect, render, rota }) => {
   const [value, setValue] = useState("");
   const [filteredItems, setFilteredItems] = useState<string[]>([]);
   const [items, setItems] = useState<string[]>([]);
@@ -26,8 +24,8 @@ const SelectButton: React.FC<Props> = ({ atributo, label, onSelect, render, rota
     fetch(rota)
       .then((response) => response.json())
       .then((data) => {
-        const acaoList = data[model]
-          .map((item: any) => (typeof item[filtro] === 'string' ? item[filtro]: ''))
+        const acaoList = data.Logs
+          .map((item: any) => (typeof item.acao === 'string' ? item.acao : ''))
           .filter((value: any, index: any, array: any) => array.indexOf(value) === index); // Remover valores duplicados
 
         setItems(acaoList);
