@@ -1,5 +1,6 @@
 from rich.console import Console
 from rich.panel import Panel
+from time import time, sleep
 import serial
 import json
 
@@ -22,10 +23,13 @@ def ler_qrcode(port, baudrate):
                 ) 
             )
             
-            while True:
+            time_limit = time() + 120
+            while time() < time_limit:
                 if ser.in_waiting > 0:
                     line = ser.readline().decode('utf-8', errors='ignore').strip()
                     return line  # Retorna os dados lidos
+                    
+                    
 
     except serial.SerialException as e:
         print(f"Erro ao acessar a porta serial: {e}")
