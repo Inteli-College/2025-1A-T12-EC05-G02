@@ -173,3 +173,4 @@ def checkStatusRobot():
     else:
         status = 'Desconectado'
     emit("robotStatusFront", {"status": status, "x": x, "y": y, "z": z}, broadcast=True, include_self=True)
+ 

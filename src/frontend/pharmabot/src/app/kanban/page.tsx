@@ -67,18 +67,29 @@ export default function Kanban() {
             setRobotStatus(data);
         });
 
+        socket.on("medicineQueue", (data) => {
+            console.log("Dados de fitas recebidos", data);
+            const updatedFitas: Fita[] = data.queue.map((fita: Fita) => ({
+                ...fita,
+                status: mapStatus(fita.status), // Mapeie o status para os valores esperados
+            }));
+
+            setTasks(updatedFitas);
+        }
+        );
+
         socket.on("medicineFrontResponse", (data) => {
             console.log("Resposta de medicamento recebida", data);
             const idFita = data.idFita;
             console.log("idFita: ", idFita);
-        
+
             setTasks((prevFitas) => {
                 console.log("fitas antes da atualização: ", prevFitas);
-        
+
                 const fita = prevFitas.find((fita) => fita.id === idFita);
                 if (fita) {
                     let updatedFita = { ...fita };
-        
+
                     switch (data.status) {
                         case "Pendente":
                             updatedFita.status = "fila";
@@ -92,10 +103,10 @@ export default function Kanban() {
                         default:
                             return prevFitas;
                     }
-        
+
                     return prevFitas.map((t) => (t.id === idFita ? updatedFita : t));
                 }
-        
+
                 return prevFitas;
             });
         });
