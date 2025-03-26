@@ -10,6 +10,7 @@ from user.user import usersFlask
 from logs.logs import logsFlask
 from medicine.medicine import medicineFlask
 from robot.robot import robotFlask
+from storage.storage import estoqueFlask
 
 
 load_dotenv()
@@ -39,6 +40,7 @@ app.register_blueprint(usersFlask)
 app.register_blueprint(logsFlask)
 app.register_blueprint(robotFlask)
 app.register_blueprint(medicineFlask)
+app.register_blueprint(estoqueFlask)
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
