@@ -7,6 +7,7 @@ class Pedido(db.Model):
     data_pedido = db.Column(db.DateTime, server_default=db.func.current_timestamp())
     paciente_id = db.Column(db.Integer, db.ForeignKey('pacientes.id'))
     prioridade = db.Column(db.Integer)
+    order = db.Column(db.Text)
     liberado_por = db.Column(db.Text)
     ultima_atualizacao = db.Column(db.DateTime, server_default=db.func.current_timestamp(), server_onupdate=db.func.current_timestamp())
     

@@ -1,10 +1,9 @@
 from flask import Blueprint, request, current_app, jsonify
 from models.pedido import Pedido
 from models.pedido_medicamento import PedidoMedicamento
-from extensions import db
 from flask_socketio import emit
 from models.medicamento import Medicamento  # Adicione esta linha
-
+from extensions import socketio, db
 
 medicineFlask = Blueprint('medicine', __name__, url_prefix='/medicine')
 
@@ -122,7 +121,7 @@ def get_queue_medicine():
                     "id": str(pedido.id),
                     "status": pedido.status,
                     "priority": pedido.prioridade,
-                    "order": pedido.ultima_atualizacao.isoformat() if pedido.ultima_atualizacao else None,
+                    "order": pedido.order if pedido.order else pedido.ultima_atualizacao.isoformat(),
                     "nomePaciente": pedido.paciente.nome if pedido.paciente else "Desconhecido",
                     "leito": pedido.paciente.leito if pedido.paciente and hasattr(pedido.paciente, 'leito') else "Desconhecido",
                     "medicamentos": []
@@ -137,6 +136,35 @@ def get_queue_medicine():
         emit("medicineQueue", {"queue": queue_list}, namespace='/', broadcast=True, include_self=True)
 
         return queue_list
+
+@socketio.on('updateQueue')
+def handle_update_queue(data):
+    try:
+        fitas = data.get("queue", [])
+        fitas = [item for item in fitas if item.get('status') == 'Pendente']
+        for item in fitas:
+            pedido_id = item.get("id")
+
+            # Busca o pedido pelo ID
+            pedido = db.session.query(Pedido).filter_by(id=pedido_id).first()
+
+            if pedido:
+                # Atualiza o status do pedido
+                pedido.order = item.get("order")
+                db.session.add(pedido)
+
+        # Salva as alterações no banco de dados
+        db.session.commit()
+
+        # Emite a fila atualizada para todos os clientes conectados
+        queue_list = get_queue_medicine()
+        emit("queue", {"queue": queue_list}, namespace='/', broadcast=True, include_self=True)
+
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(f"Erro ao atualizar a fila: {e}")
+        emit("error", {"message": f"Erro ao atualizar a fila: {e}"}, namespace='/')
+
 
 @medicineFlask.route('/statuses', methods=['GET'])
 def get_statuses_count():

@@ -32,6 +32,7 @@ export default function Kanban() {
                     ...fita,
                     status: mapStatus(fita.status), // Mapeie o status para os valores esperados
                 }));
+                console.log("Dados de fitas atualizados ::::", updatedFitas);
                 setTasks(updatedFitas);
             })
             .catch((error) => {
@@ -73,7 +74,6 @@ export default function Kanban() {
                 ...fita,
                 status: mapStatus(fita.status), // Mapeie o status para os valores esperados
             }));
-
             setTasks(updatedFitas);
         }
         );
@@ -182,6 +182,27 @@ export default function Kanban() {
             });
 
             setTasks(updatedFitas);
+            console.log("Fitas atualizadas move:", updatedFitas);
+
+            const inverseMapStatus = (status: Status): string => {
+                switch (status) {
+                    case "fila":
+                        return "Pendente";
+                    case "em-preparo":
+                        return "Separando";
+                    case "separado":
+                        return "Completo";
+                    default:
+                        return "Desconhecido";
+                }
+            };
+
+            const updatedQueue = updatedFitas.map((fita) => ({
+                ...fita,
+                status: inverseMapStatus(fita.status),
+            }));
+
+            socket.emit("updateQueue", { queue: updatedQueue });
         }
     };
 
