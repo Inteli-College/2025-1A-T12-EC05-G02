@@ -125,13 +125,10 @@ def handle_message(data):
         print(f"Error adding log to database: {e}")
     print("log added to database")
     
-@robotFlask.route('/medicine/reload', methods=['POST'])
-def reload_medicine():
-    get_queue_medicine()
-    return {
-        'message': 'Fila de medicamentos recarregada',
-        'code': 200
-    }
+@socketio.on('medicineQueue')
+def handle_medicine_queue(data):
+    print("medicineReload: ", str(data))
+   
     
 @socketio.on('robotStatus')
 def handle_robot_status(data):

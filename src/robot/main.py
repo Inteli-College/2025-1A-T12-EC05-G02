@@ -71,7 +71,7 @@ def connect():
 @sio.event
 def stopRobotCall(data):
     global device, separation_thread
-    evice = None
+    device = None
     config.stop_flag = True  # Define o flag para interromper a separação
     print("stopRobot: ", str(data))
     sio.emit('stopRobotResponse', {'data': 'Robo parado e retornou para a home'})
@@ -97,6 +97,9 @@ def medicine(data):
     global separation_thread
     print("medicine: ", str(data))
     
+    if config.stop_flag:  # Verifica se o flag foi ativado
+        return
+    
     result = {
         'action': 'collect', 'bins': data['bins'], 'idFita': data['idFita']
     }
@@ -106,22 +109,21 @@ def medicine(data):
     
 def separateMedicine(result):
     global device
-    config.stop_flag = False  # Reseta o flag antes de iniciar a separação
     device = InteliDobot(verbose=False)  # Inicializa o robô Dobot com a porta detectada.
     bins = result['bins']
     print(result)
     device.suck(False)  # Desliga a sucção do robô.
     return_home(device, positions)  # Retorna o robô para a home.
-    
+
     sio.emit('log', {'acao': 'Robot Log - Separar', 'detalhes': 'Iniciando separação de fita de medicamentos, ID: ' + str(result['idFita']), 'usuario_id': 1})
     sio.emit('medicineResponse', {'status': 'Separando', "idFita": str(result['idFita'])})
     
     for bin in bins:  # Percorre os bins e executa a movimentação para coleta.
+        move_to_bin(device, positions, bin, 0, bins[bin])
         if config.stop_flag:  # Verifica se o flag foi ativado
             print("Separação interrompida pelo evento stopRobot.")
-            # sio.emit('medicineResponse', {'status': 'Interrompido', "idFita": str(result['idFita'])})
+            sio.emit('medicineResponse', {'status': 'Pendente', "idFita": str(result['idFita'])})
             return  # Sai da função imediatamente
-        move_to_bin(device, positions, bin, 0, bins[bin])
         
     sio.emit('medicineResponse', {'status': 'Completo', "idFita": str(result['idFita'])})
 

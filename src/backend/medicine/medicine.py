@@ -39,6 +39,11 @@ def create_prescription():
         db.session.commit()
         
         emit("medicine", {"bins": fita, "idFita": pedido.id}, namespace='/', broadcast=True, include_self=True)
+        
+        queue_list = get_queue_medicine()
+        emit("queue", {"queue": queue_list}, namespace='/', broadcast=True, include_self=True)
+
+   
     except Exception as e:
         db.session.rollback()
         return {
@@ -85,7 +90,7 @@ def get_prescription_logs():
 def get_full_queue_medicine():
     try:
         queue_list = get_queue_medicine()
-    
+        
         return {
             'message': 'Fila completa de medicamentos carregada',
             'code': 200,

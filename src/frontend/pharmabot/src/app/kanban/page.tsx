@@ -57,7 +57,7 @@ export default function Kanban() {
     useEffect(() => {
 
         socket.on("connect", () => {
-
+            socket.emit("connectResponse", { data: "Front conectado ao servidor" });
             console.log("Conectado ao Socket.IO");
         });
 
@@ -67,7 +67,7 @@ export default function Kanban() {
             setRobotStatus(data);
         });
 
-        socket.on("medicineQueue", (data) => {
+        socket.on("queue", (data) => {
             console.log("Dados de fitas recebidos", data);
             const updatedFitas: Fita[] = data.queue.map((fita: Fita) => ({
                 ...fita,
@@ -84,7 +84,6 @@ export default function Kanban() {
             console.log("idFita: ", idFita);
 
             setTasks((prevFitas) => {
-                console.log("fitas antes da atualização: ", prevFitas);
 
                 const fita = prevFitas.find((fita) => fita.id === idFita);
                 if (fita) {
