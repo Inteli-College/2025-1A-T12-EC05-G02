@@ -20,6 +20,8 @@ interface Props {
   open: boolean;
   handleOpen: (args: any) => void;
   rota: string;
+  values?: { [key: string]: string }; // Objeto que contém os valores dos inputs
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void; // Função para atualizar os valores
 }
 
 const CustomTextField = styled(TextField)({
@@ -28,7 +30,7 @@ const CustomTextField = styled(TextField)({
   },
 });
 
-const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen }) => {
+const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, values = {}, onChange }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [alerta, setAlerta] = useState<boolean>(false);
   const [erro, setErro] = useState<string>("");
@@ -105,7 +107,8 @@ const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen }) =
             required={input.required ?? true}
             margin="normal"
             hidden={input.hidden} // Aplica o atributo hidden se input.hidden for verdadeiro
-            value={input.value ?? undefined}
+            value={values[input.name] || undefined} // Acessa o valor do campo de acordo com o nome
+            onChange={onChange || undefined}
             {...(input.hidden ? { readOnly: true } : {})}
           />
         ))}

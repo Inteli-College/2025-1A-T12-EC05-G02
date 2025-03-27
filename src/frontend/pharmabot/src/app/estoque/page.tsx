@@ -6,9 +6,8 @@ import { useState, useEffect } from "react";
 import { Data } from "../components/table";
 import { TextField, Stack, Button } from "@mui/material";
 import { Column } from "../components/table";
-import CustomModal from "../components/Modal";
-import Alert from '@mui/material/Alert';
 import FormRegistro from "./FormRegistro";
+import FormEditar from "./FormEditar";
 
 const colunas: Column[] = [
     { id: 'item', label: 'Item', minWidth: 150 },
@@ -16,16 +15,19 @@ const colunas: Column[] = [
     { id: 'localizacao', label: 'Localização', minWidth: 200 },
     { id: 'quantidade', label: 'Quantidade', minWidth: 170 },
     { id: 'ultimaAtualizacao', label: 'Última Atualização', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
+    { id: 'idEd', label: '', minWidth: 170 },
 ]
 
 export default function Estoque() {
     const [loading, setLoading] = useState<boolean>(false); // Novo estado para controle de carregamento
-    const [loadingCriar, setLoadingCriar] = useState<boolean>(false); // Novo estado para controle de carregamento
     const [rows, setRows] = useState<Data[]>([]);
     const [searchText, setSearchText] = useState<string>(''); // Estado para o texto de pesquisa
     const [filteredRows, setFilteredRows] = useState<Data[]>([]); // Estado para os dados filtrados
     const [key, setKey] = useState(0);
     const [open, setOpen] = useState(false);
+    const [openEditar, setOpenEditar] = useState(false);
+    const [idEdicao, setIdEdicao] = useState<any>('')
+
 
     //função para atualizar a página com base no botão atualizar
     const reRender = () => {
@@ -36,26 +38,29 @@ export default function Estoque() {
         setSearchText(event.target.value);
     };
 
+    const rota = `http://127.0.0.1:5555/logs`
+
     useEffect(() => {
         setLoading(true); // Inicia o carregamento
         // Montar a URL com base na ação selecionada
-        const url = `http://127.0.0.1:5555/api/estoque/registros` //NECESSARIO INTEGRAR COM O BACK
+        const url = rota + '/estoque' //NECESSARIO INTEGRAR COM O BACK
 
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
                 // Transformar os dados no formato esperado
-                const formattedData: Data[] = data.registros.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
-                    item: item.item.toString(),
-                    codigoIdentificacao: item.codigoIdentificacao,
-                    localizacao: item.localizacao,
+                const formattedData: Data[] = data.estoque.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
+                    item: item.nome_medicamento.toString(),
+                    codigoIdentificacao: item.medicamento_id,
+                    localizacao: item.bin_localizacao,
                     quantidade: item.quantidade.toString(),
-                    ultimaAtualizacao: new Date(item.ultimaAtualizacao)
+                    ultimaAtualizacao: new Date(item.ultimaAtualizacao), 
+                    idEd: item.id
                 }));
 
                 setRows(formattedData);
             })
-            .catch((error) => console.error("Erro ao buscar registros:", error))
+            .catch((error) => console.error("Erro ao buscar estoque:", error))
             .finally(() => setLoading(false)); // Finaliza o carregamento
     }, [key]);  // O efeito será executado sempre que `selectedAcao` mudar
 
@@ -66,22 +71,21 @@ export default function Estoque() {
         } else {
             const filtered = rows.filter((row) => {
                 return (
-                    row.id.includes(searchText) ||
-                    row.acao.toLowerCase().includes(searchText.toLowerCase()) ||
-                    row.detalhes.toLowerCase().includes(searchText.toLowerCase()) ||
-                    String(row.responsavel).toLowerCase().includes(searchText.toLowerCase())
+                    row.item.includes(searchText) ||
+                    row.codigoIdentificacao.toLowerCase().includes(searchText.toLowerCase()) ||
+                    row.localizacao.toLowerCase().includes(searchText.toLowerCase())
                 );
             });
             setFilteredRows(filtered);
         }
     }, [searchText, rows]); // Atualiza sempre que `searchText` ou `rows` mudar
 
-    const idForm = 'criar-registro'
 
     return (<>
         <Header></Header>
+        <FormEditar open={openEditar} handleOpen={setOpenEditar} rota={rota + '/editar/' + idEdicao}></FormEditar>
         <FormRegistro open={open} handleOpen={setOpen} />
-        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas}>
+        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas} handleEdit={setOpenEditar} handleId={setIdEdicao} editar={true}>
             <div className='flex justify-between items-center'>
                 <TextField
                     label="Pesquisar"
