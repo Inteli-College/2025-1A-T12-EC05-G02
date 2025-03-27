@@ -50,7 +50,7 @@ logger = logging.getLogger(__name__)
 # Rota de teste
 @app.get('/version')
 def version():
-    return '1.0.3'
+    return '1.0.4'
 
 with app.app_context():
     ext.db.create_all()

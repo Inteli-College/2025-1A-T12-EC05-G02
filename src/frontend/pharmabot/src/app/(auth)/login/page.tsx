@@ -48,7 +48,7 @@ export default function Login() {
       };
       
       // Fazendo a requisição para o backend
-      const response = await fetch('http://localhost:5555/api/user/login', {
+      const response = await fetch('http://10.32.0.8:6001/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -221,8 +221,14 @@ def login():
             'access_token': access_token
         })
         return message, 200
-    except:
-        return jsonify(serverErrorMessage), 500 # Erro interno do servidor
+    except(Exception, KeyError) as e:
+        print(f"Erro ao fazer login: {e}")
+        response = jsonify({
+            'success': False,
+            'message': 'Erro ao fazer login',
+            'error': 'Internal Server Error'
+        })
+        return response, 500
 
 @usersFlask.route('/logout', methods=['POST'])
 @jwt_required()
