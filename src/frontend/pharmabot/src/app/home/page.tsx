@@ -22,14 +22,13 @@ interface Data {
 }
 
 const colunas: Column[] = [
-  { id: "id", label: "ID", minWidth: 100 },
+  { id: "prescricao", label: "Prescrição", minWidth: 100 },
   {
     id: "horaPrescricao",
     label: "Horário de Separação",
     minWidth: 150,
     format: (value: Date) => value.toLocaleString("pt-BR"),
   },
-  { id: "prescricao", label: "Prescrição", minWidth: 170 },
   { id: "paciente", label: "Paciente", minWidth: 200 },
   { id: "farmaceutico", label: "Farmacêutico", minWidth: 170 },
 ];
@@ -45,6 +44,10 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(false); // Novo estado para controle de carregamento
   const [searchText, setSearchText] = useState<string>(""); // Estado para o texto de pesquisa
   const [filteredRows, setFilteredRows] = useState<Data[]>([]); // Estado para os dados filtrados
+  const [statuses, setStatuses] = useState<{ completed: number; in_queue: number }>({
+    completed: 0,
+    in_queue: 0,
+  });
 
   //função para atualizar a página com base no botão atualizar
   const reRender = () => {
@@ -52,28 +55,25 @@ export default function Home() {
     setSelectedAcao("");
   };
 
-  const rota: string = "http://127.0.0.1:5555/api/prescriptions/logs";
+  const rota: string = "http://127.0.0.1:5555/medicine/logs";
 
   // Segunda requisição para buscar os logs filtrados pela ação selecionada
   useEffect(() => {
     setLoading(true); // Inicia o carregamento
     // Montar a URL com base na ação selecionada
     const url = selectedAcao
-      ? `http://127.0.0.1:5555/api/user/prescriptions?acao=${selectedAcao}`
+      ? `http://127.0.0.1:5555/medicine/logs?acao=${selectedAcao}`
       : rota;
-
-    console.log(url);
 
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         // Transformar os dados no formato esperado
-        const formattedData: Data[] = data.Logs.map((item: any) => ({
-          id: item.id.toString(),
-          horaPrescricao: new Date(item.data_hora), // Converter string para Date
-          prescricao: item.prescricao,
-          paciente: item.paciente,
-          farmaceutico: item.farmaceutico,
+        const formattedData: Data[] = data.data.map((item: any) => ({
+          prescricao: String(item.prescricao),
+          horaPrescricao: new Date(item.data_pedido), // Converter string para Date
+          paciente: String(item.paciente),
+          farmaceutico: String(item.farmaceutico),
         }));
 
         setRows(formattedData);
@@ -89,12 +89,12 @@ export default function Home() {
     } else {
       const filtered = rows.filter((row) => {
         return (
-          row.id.includes(searchText) ||
-          row.prescricao.toLowerCase().includes(searchText.toLowerCase()) ||
-          row.paciente.toLowerCase().includes(searchText.toLowerCase()) ||
-          String(row.farmaceutico)
-            .toLowerCase()
-            .includes(searchText.toLowerCase())
+          (row.prescricao &&
+            row.prescricao.toString().toLowerCase().includes(searchText.toLowerCase())) ||
+          (row.paciente &&
+            row.paciente.toString().toLowerCase().includes(searchText.toLowerCase())) ||
+          (row.farmaceutico &&
+            row.farmaceutico.toString().toLowerCase().includes(searchText.toLowerCase()))
         );
       });
       setFilteredRows(filtered);
@@ -106,9 +106,16 @@ export default function Home() {
   };
 
   // Função para atualizar a ação selecionada
-  const handleAcaoChange = (newAcao: string) => {
-    setSelectedAcao(newAcao);
-  };
+  useEffect(() => {
+    fetch("http://127.0.0.1:5555/medicine/statuses")
+      .then((response) => response.json())
+      .then((data) => {
+        setStatuses(data.data); // Atualiza o estado com os valores recebidos
+        console.log(data)
+        
+      })
+      .catch((error) => console.error("Erro ao buscar status:", error));
+  }, []);
 
   return (
     <div className="bg-[#FBFBFB] w-full h-[100vh] pl-8 pr-8">
@@ -125,28 +132,21 @@ export default function Home() {
         </div>
         <div className="flex flex-col w-[75%] justify-center items-center ">
           <div className="flex flex-col w-[100%]items-center bg-white rounded-md shadow-md w-[100%] pl-16 pr-16 pt-4 pb-4">
-            <div className="flex flex-row w-[100%] justify-between">
-              <StatusCard
-                urgency={0}
-                quantity={21}
-                onClick={() => {
-                  navigate("/");
-                }}
-              />
-              <StatusCard
-                urgency={1}
-                quantity={39}
-                onClick={() => {
-                  navigate("/");
-                }}
-              />
-              <StatusCard
-                urgency={2}
-                quantity={10}
-                onClick={() => {
-                  navigate("/");
-                }}
-              />
+            <div className="flex flex-row w-[100%] justify-between gap-x-8">
+            <StatusCard
+              urgency={0}
+              quantity={statuses.completed}
+              onClick={() => {
+                navigate("/kanban");
+              }}
+            />
+            <StatusCard
+              urgency={1}
+              quantity={statuses.in_queue}
+              onClick={() => {
+                navigate("/kanban");
+              }}
+            />
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full h-full">
@@ -154,6 +154,8 @@ export default function Home() {
               titulo="Histórico de Prescrições"
               subtitulo="Aqui você encontra as prescrições separadas anteriormente pelo PharmaBot"
               rows={filteredRows}
+              itemsPerPage={[5]}
+              initialNumItems={5}
               render={key}
               loading={loading}
               colunas={colunas}
@@ -173,14 +175,6 @@ export default function Home() {
                     onChange={handleSearchChange}
                   />
                   <span></span>
-                  <SelectButton
-                    atributo="acao"
-                    label="Ação"
-                    onSelect={handleAcaoChange}
-                    render={key}
-                    rota={rota}
-                  />
-                  <FilterAltIcon className="opacity-70" />
                 </Stack>
                 <Stack id="botoes" spacing={1} direction="row">
                   <Button variant="outlined" color="black" onClick={reRender}>
@@ -192,13 +186,12 @@ export default function Home() {
                       exportToCSV(
                         filteredRows,
                         [
-                          "ID",
-                          "Data e Hora",
-                          "Ação",
-                          "Detalhes",
-                          "Responsável",
+                          "Prescrição",
+                          "Horário de Separação",
+                          "Paciente",
+                          "Farmacêutico",
                         ],
-                        ["id", "horaPrescricao", "prescricao", "paciente", "farmaceutico"],
+                        ["prescricao", "horaPrescricao", "paciente", "farmaceutico"],
                         "home"
                       )
                     }

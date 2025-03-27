@@ -4,6 +4,7 @@ import bcrypt
 from sqlalchemy.exc import IntegrityError
 from models.usuario import Usuario
 from models.log_sistema import LogSistema
+from sqlalchemy.orm import joinedload
 from datetime import datetime
 from extensions import db
 from flask import Blueprint, request, jsonify

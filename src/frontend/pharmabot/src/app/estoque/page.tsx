@@ -15,7 +15,6 @@ const colunas: Column[] = [
     { id: 'localizacao', label: 'Localização', minWidth: 200 },
     { id: 'quantidade', label: 'Quantidade', minWidth: 170 },
     { id: 'ultimaAtualizacao', label: 'Última Atualização', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
-    { id: 'idEd', label: '', minWidth: 170 },
 ]
 
 export default function Estoque() {
@@ -38,29 +37,29 @@ export default function Estoque() {
         setSearchText(event.target.value);
     };
 
-    const rota = `http://127.0.0.1:5555/api/estoque/`
+    const rota = `http://127.0.0.1:5555/estoque`
 
     useEffect(() => {
         setLoading(true); // Inicia o carregamento
         // Montar a URL com base na ação selecionada
-        const url = rota + '/registros' //NECESSARIO INTEGRAR COM O BACK
+        const url = rota //NECESSARIO INTEGRAR COM O BACK
 
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
                 // Transformar os dados no formato esperado
-                const formattedData: Data[] = data.registros.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
-                    item: item.item.toString(),
-                    codigoIdentificacao: item.codigoIdentificacao,
-                    localizacao: item.localizacao,
+                const formattedData: Data[] = data.estoque.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
+                    item: item.nome_medicamento.toString(),
+                    codigoIdentificacao: item.medicamento_id,
+                    localizacao: item.bin_localizacao,
                     quantidade: item.quantidade.toString(),
-                    ultimaAtualizacao: new Date(item.ultimaAtualizacao), 
+                    ultimaAtualizacao: new Date(item.ultima_atualizacao).toLocaleDateString("pt-br"), 
                     idEd: item.id
                 }));
 
                 setRows(formattedData);
             })
-            .catch((error) => console.error("Erro ao buscar registros:", error))
+            .catch((error) => console.error("Erro ao buscar estoque:", error))
             .finally(() => setLoading(false)); // Finaliza o carregamento
     }, [key]);  // O efeito será executado sempre que `selectedAcao` mudar
 
@@ -83,9 +82,9 @@ export default function Estoque() {
 
     return (<>
         <Header></Header>
-        <FormEditar open={openEditar} handleOpen={setOpenEditar} rota={rota + '/editar/' + idEdicao}></FormEditar>
+        <FormEditar open={openEditar} handleOpen={setOpenEditar} rota={rota + '/criar' + idEdicao}></FormEditar>
         <FormRegistro open={open} handleOpen={setOpen} />
-        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas} handleEdit={setOpenEditar} handleId={setIdEdicao} editar={true}>
+        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas} handleEdit={setOpenEditar} handleId={setIdEdicao} editar={false}>
             <div className='flex justify-between items-center'>
                 <TextField
                     label="Pesquisar"
