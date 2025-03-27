@@ -14,7 +14,7 @@ export default function Kanban() {
         useState<Status | null>(null);
 
     // Base Url backend
-    const baseUrl = "http://0.0.0.0:5555";
+    const baseUrl = "http://10.32.0.8:6001";
 
     const [robotStatus, setRobotStatus] = useState<RobotStatus>({
         x: 0,

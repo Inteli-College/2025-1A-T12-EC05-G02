@@ -35,14 +35,14 @@ export default function HistoricoLogs() {
         setSelectedAcao('')
     };
 
-    const rota: string = 'http://127.0.0.1:5555/api/user/logs'
+    const rota: string = 'http://10.32.0.8:6001/api/user/logs'
 
     // Segunda requisição para buscar os logs filtrados pela ação selecionada
     useEffect(() => {
         setLoading(true); // Inicia o carregamento
         // Montar a URL com base na ação selecionada
         const url = selectedAcao
-            ? `http://127.0.0.1:5555/api/user/logs?acao=${selectedAcao}`
+            ? `http://10.32.0.8:6001/api/user/logs?acao=${selectedAcao}`
             : rota;
 
         fetch(url)

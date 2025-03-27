@@ -9,7 +9,7 @@ export default function TestModal() {
 
     return (
         <Container>
-            <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
+            {/* <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
                 Abrir Modal
             </Button>
             <CustomModal 
@@ -44,7 +44,7 @@ export default function TestModal() {
                         >
                             Salvar
                         </Button>
-                    </form></CustomModal>
+                    </form></CustomModal> */}
         </Container>
     );
 }
