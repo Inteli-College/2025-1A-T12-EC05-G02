@@ -86,7 +86,35 @@ def list_bins():
     finally:
         session.close()
         
-@binsFlask.route('/editar/<int:id>', methods=['POST'])
+@binsFlask.route('/list/<int:id>', methods=['GET'])
+def get_bin(id):
+    session = db.session
+    
+    try:
+        bin = session.query(ConfiguracoesBins).get(id)
+        if not bin:
+            return {"message": "Bin não encontrado", "code": 404}, 404
+
+        bin_data = {
+            'id': bin.id,
+            'nomeBin': bin.nome_bin,
+            'nomeMedicamento': bin.nome_medicamento,
+            'quantidade': bin.quantidade,
+            'coordenadas': json.loads(bin.coordenada)  # Converte de volta para dicionário
+        }
+        
+        return {"Bin": bin_data}, 200
+
+    except Exception as e:
+        return {
+            'message': f'Erro ao listar bins: {e}',
+            'code': 500
+        }, 500
+    
+    finally:
+        session.close()
+        
+@binsFlask.route('/editar/<int:id>', methods=['GET'])
 def edit_bin(id):
     data = request.json
 

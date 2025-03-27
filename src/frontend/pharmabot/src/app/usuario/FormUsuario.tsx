@@ -22,7 +22,7 @@ const FormUsuario: React.FC<Props> = ({ open, handleOpen }) => {
       title="Cadastro de Usuário"
       open={open}
       handleOpen={handleOpen}
-      rota="http://127.0.0.1:5555/user/signup"
+      rota="http://10.32.0.8:6001/user/signup"
       inputs={inputs}
     />
   );

@@ -53,7 +53,7 @@ export default function Bins() {
     useEffect(() => {
             setLoading(true); // Inicia o carregamento
             // Montar a URL com base na ação selecionada
-            const rota = `http://127.0.0.1:5555/bins` //NECESSARIO INTEGRAR COM O BACK
+            const rota = `http://10.32.0.8:6001/bins` //NECESSARIO INTEGRAR COM O BACK
     
             fetch(rota)
                 .then((response) => response.json())
@@ -90,7 +90,7 @@ export default function Bins() {
 
         useEffect(() => {
             setLoading(true);
-            const url = `http://127.0.0.1:5555/bins/list`;
+            const url = `http://10.32.0.8:6001/bins/list`;
         
             fetch(url)
                 .then((response) => response.json())
@@ -129,10 +129,10 @@ export default function Bins() {
     return(<>
         <Header></Header>
 
-        <FormEdit open={openEditar} handleOpen={setOpenEditar} rota={'http://127.0.0.1:5555/bins' + '/editar/' + idEdicao} >
+        <FormEdit open={openEditar} handleOpen={setOpenEditar} rota={'http://10.32.0.8:6001/bins' + '/editar/' + idEdicao} >
 
         </FormEdit>
-        <FormModal title="Cadastrar bin" inputs={input}  rota="http://127.0.0.1:5555/bins/criar" open={open} handleOpen={setOpen} ></FormModal>
+        <FormModal title="Cadastrar bin" inputs={input}  rota="http://10.32.0.8:6001/bins/criar" open={open} handleOpen={setOpen} ></FormModal>
         <TabelaPharma titulo="Lista de bins" subtitulo="Lista de todos os bins cadastrados" render={key} rows={filteredRows} colunas={colunas} loading={loading} editar ={true} handleEdit={setOpenEditar} handleId={setIdEdicao}>
             <div className='flex justify-between items-center'>
                 <TextField
