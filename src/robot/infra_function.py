@@ -1,5 +1,7 @@
 import lgpio
 import time
+from datetime import datetime
+from utils.logger import logger
 from rich.console import Console
 from rich.panel import Panel
 
@@ -18,16 +20,24 @@ def ler_infra():
     lgpio.gpio_claim_input(h, GPIO_PIN)
 
     try:
-        estado = lgpio.gpio_read(h, GPIO_PIN) 
-        
-        console.print(
-            Panel
-            (
-                f"[bold cyan] ▪️ {'Medicamento não detectado' if estado else 'Medicamento detectado'} [/bold cyan]\n"
+
+        while True:
+            estado = lgpio.gpio_read(h, GPIO_PIN) 
+            message = 'Medicamento não detectado.' if estado else 'Medicamento detectado.'
+            
+            console.print(
+                Panel
+                (
+                    f"[bold cyan] ▪️ {message} [/bold cyan]\n"
+                )
             )
-        )
-        
-        time.sleep(0.5)
+            
+            current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            logger(message + f"Timestamp: {current_time}")
+            
+            time.sleep(0.5)
+            return
+
 
     except KeyboardInterrupt:
         print("\nEncerrando...")

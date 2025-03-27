@@ -142,6 +142,7 @@ while True:  # Loop principal, se mantém até o usuário decidir sair.
     action = result['action']  # Obtém a ação escolhida pelo usuário.
 
     if action == "collect":  # Se a ação for "coletar"
+        result["idFita"] = 1
         separateMedicine(result)  # Separa os medicamentos.
         if not (loop := return_to_menu()):  # Pergunta se o usuário quer continuar. Se não, sai do loop.
             break

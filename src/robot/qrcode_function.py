@@ -2,7 +2,12 @@ from rich.console import Console
 from rich.panel import Panel
 import serial
 import json
+
 from time import time, sleep
+from datetime import datetime
+import logging
+from utils.logger import logger
+
 
 console = Console()
 
@@ -22,11 +27,17 @@ def ler_qrcode(port, baudrate):
                     "[bold yellow] ▪️ Aguardando dados do QR Code... [/bold yellow]\n"
                 ) 
             )
-            
+
+
             timelimit = time() + 120
             while time() < timelimit:
+
                 if ser.in_waiting > 0:
+                    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    logger(f"QR Code lido com sucesso. Timestamp: {current_time}")
+                    
                     line = ser.readline().decode('utf-8', errors='ignore').strip()
+                    
                     return line  # Retorna os dados lidos
                 if time() == timelimit - 60 or time() == timelimit - 1:
                     tocar_buzzer()
@@ -54,6 +65,8 @@ def processar_qrcode(dados):
         )
         
         # print("\nInformações do Medicamento:")
+        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        logger(f"O QR Code lido foi processado. Dados: {info}  \n Timestamp: {current_time}")
         
         for chave, valor in info.items():
             console.print(
