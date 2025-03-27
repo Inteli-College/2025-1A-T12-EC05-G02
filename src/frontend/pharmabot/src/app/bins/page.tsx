@@ -8,18 +8,18 @@ import { Column } from "../components/table";
 import { Data } from "../components/table";
 import FormModal from "../components/FormModal";
 import { Input } from "../components/FormModal";
+ 
 
 
 const colunas: Column[] = [
-    {id: 'id', label: 'id', align: 'center'},
-    {id: 'nomeBin', label: 'Nome do Bin', align: 'center'},
+    {id: 'nomeBin', label: 'Número do Bin', align: 'center'},
     {id: 'nomeMedicamento', label: 'Medicamento', align: 'center'},
     {id: 'quantidade', label: 'Quantidade', align: 'center'},
     {id: 'coordenadas', label: 'Coordenadas - X / Y / Z ', align: 'center'}
 ]
 
 const input: Input[] = [
-    {label: 'Nome do bin', type: 'text', name: 'nomeBin', required: true },
+    {label: 'Numero do bin', type: 'text', name: 'nomeBin', required: true },
     {label: 'Nome do Medicamento', type: 'text', name: 'nomeMedicamento', required: true },
     {label: 'quantidade', type: 'number', name: 'quantidade', required: true },
     {label: 'Coordenadas - x', type: 'text', name: 'x', required: true },
@@ -54,7 +54,6 @@ export default function Bins() {
                 .then((data) => {
                     // Transformar os dados no formato esperado
                     const formattedData: Data[] = data.bins.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
-                        id: item.id,
                         nomeBin: item.nomeBin,
                         nomeMedicamento: item.nomeMedicamento,
                         quantidade: item.quantidade,
@@ -74,7 +73,6 @@ export default function Bins() {
             } else {
                 const filtered = rows.filter((row) => {
                     return (
-                        row.id.includes(searchText) ||
                         row.nomeBin.toLowerCase().includes(searchText.toLowerCase()) ||
                         row.nomeMedicamento.toLowerCase().includes(searchText.toLowerCase()) ||
                         String(row.quantidade).toLowerCase().includes(searchText.toLowerCase()) ||
@@ -107,7 +105,6 @@ export default function Bins() {
                         }
         
                         return {
-                            id: item.id,
                             nomeBin: item.nomeBin,
                             nomeMedicamento: item.nomeMedicamento || "N/A", // Caso não venha do backend
                             quantidade: item.quantidade || 0, // Caso não venha do backend

@@ -6,7 +6,6 @@ from extensions import db
 from flask_socketio import emit
 import json
 
-
 binsFlask = Blueprint('bins', __name__, url_prefix='/bins')
 
 # Cria um bin
@@ -15,6 +14,19 @@ def create_bin():
     data = request.json
     
     try:
+        
+        verifica_bin = ConfiguracoesBins.query.filter(
+            (ConfiguracoesBins.nome_bin == data['nomeBin']) |
+            (ConfiguracoesBins.nome_medicamento == data['nomeMedicamento'])
+        ).first()
+
+        if verifica_bin:
+            return {
+                'message': 'Já existe um bin ou medicamento com esse nome.',
+                'code': 400
+            }, 400
+
+
         coordenada_json = json.dumps({  # Converte o dicionário para string JSON
             "x": float(data['x']),
             "y": float(data['y']),
@@ -26,7 +38,6 @@ def create_bin():
             nome_bin = data['nomeBin'],
             nome_medicamento = data['nomeMedicamento'],
             quantidade = data['quantidade']
-            
         )
         
         db.session.add(bin)
@@ -51,10 +62,10 @@ def list_bins():
     session = db.session
     
     try:
+        
         bins = session.query(ConfiguracoesBins).all()
         bins_list = [
             {
-                'id': bin.id,
                 'nomeBin': bin.nome_bin,
                 'nomeMedicamento' : bin.nome_medicamento,
                 'quantidade' : bin.quantidade,
