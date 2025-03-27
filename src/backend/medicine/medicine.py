@@ -104,7 +104,6 @@ def get_full_queue_medicine():
         }, 500
         
 def get_queue_medicine():
-    try:
     # Use join para buscar pedidos e seus medicamentos em uma única consulta
         pending_orders = (
             db.session.query(Pedido, PedidoMedicamento, Medicamento)
@@ -136,14 +135,4 @@ def get_queue_medicine():
         queue_list = list(queue.values())
         emit("medicineQueue", {"queue": queue_list}, namespace='/', broadcast=True, include_self=True)
 
-        return {
-            'message': 'Fila completa de medicamentos carregada',
-            'code': 200,
-            'queue': queue_list  # Retorna a lista de fitas
-        }, 200
-    except Exception as e:
-        db.session.rollback()
-        return {
-            'message': f'Erro ao buscar fila completa de medicamentos: {e}',
-            'code': 500
-        }, 500
+        return queue_list
