@@ -39,6 +39,8 @@ const Sidebar = () => {
     { text: 'Histórico De Logs', route: '/historico-logs' },
     { text: 'Dashboard', route: '/kanban' },
     { text: 'Estoque', route: '/estoque' },
+    { text: 'Histórico de prescrições', route: '/historico-prescricoes'},
+    { text: 'Usuarios', route: '/usuario' },
   ];
 
   // Função que retorna o conteúdo interno da sidebar
