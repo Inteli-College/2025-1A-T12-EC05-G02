@@ -10,6 +10,8 @@ from user.user import usersFlask
 from logs.logs import logsFlask
 from medicine.medicine import medicineFlask
 from robot.robot import robotFlask
+from bins.bins import binsFlask
+from storage.storage import estoqueFlask
 
 
 load_dotenv()
@@ -39,6 +41,8 @@ app.register_blueprint(usersFlask)
 app.register_blueprint(logsFlask)
 app.register_blueprint(robotFlask)
 app.register_blueprint(medicineFlask)
+app.register_blueprint(binsFlask)
+app.register_blueprint(estoqueFlask)
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -51,6 +55,5 @@ def version():
 with app.app_context():
     ext.db.create_all()
     
-
 if __name__ == '__main__':
     ext.socketio.run(app, debug=True, host='0.0.0.0', port=5555)
