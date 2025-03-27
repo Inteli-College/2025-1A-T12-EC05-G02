@@ -8,6 +8,7 @@ import { Column } from "../components/table";
 import { Data } from "../components/table";
 import FormModal from "../components/FormModal";
 import { Input } from "../components/FormModal";
+import FormEdit from "./FormEdit";
  
 
 
@@ -15,7 +16,8 @@ const colunas: Column[] = [
     {id: 'nomeBin', label: 'Número do Bin', align: 'center'},
     {id: 'nomeMedicamento', label: 'Medicamento', align: 'center'},
     {id: 'quantidade', label: 'Quantidade', align: 'center'},
-    {id: 'coordenadas', label: 'Coordenadas - X / Y / Z ', align: 'center'}
+    {id: 'coordenadas', label: 'Coordenadas - X / Y / Z ', align: 'center'},
+    {id: 'idEd', label: ''}
 ]
 
 const input: Input[] = [
@@ -25,6 +27,7 @@ const input: Input[] = [
     {label: 'Coordenadas - x', type: 'text', name: 'x', required: true },
     {label: 'Coordenadas - y', type: 'text', name: 'y', required: true },
     {label: 'Coordenadas - z', type: 'text', name: 'z', required: true },
+    
 ]
 
 export default function Bins() {
@@ -35,6 +38,9 @@ export default function Bins() {
     const [filteredRows, setFilteredRows] = useState<Data[]>([]); // Estado para os dados filtrados
     const [key, setKey] = useState(0);
     const [open, setOpen] = useState(false);
+    const [openEditar, setOpenEditar] = useState(false);
+    const [idEdicao, setIdEdicao] = useState<any>('')
+
 
     const reRender = () => {
         setKey(prevKey => prevKey + 1);
@@ -47,17 +53,19 @@ export default function Bins() {
     useEffect(() => {
             setLoading(true); // Inicia o carregamento
             // Montar a URL com base na ação selecionada
-            const url = `http://127.0.0.1:5555/bins` //NECESSARIO INTEGRAR COM O BACK
+            const rota = `http://127.0.0.1:5555/bins` //NECESSARIO INTEGRAR COM O BACK
     
-            fetch(url)
+            fetch(rota)
                 .then((response) => response.json())
                 .then((data) => {
                     // Transformar os dados no formato esperado
+                    console.log(data)
                     const formattedData: Data[] = data.bins.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
+                        idEd : item.id,
                         nomeBin: item.nomeBin,
                         nomeMedicamento: item.nomeMedicamento,
                         quantidade: item.quantidade,
-                        coordenadas: item.coordenada_json
+                        coordeandas: item.coordenada_json
                     }));
     
                     setRows(formattedData);
@@ -73,10 +81,7 @@ export default function Bins() {
             } else {
                 const filtered = rows.filter((row) => {
                     return (
-                        row.nomeBin.toLowerCase().includes(searchText.toLowerCase()) ||
-                        row.nomeMedicamento.toLowerCase().includes(searchText.toLowerCase()) ||
-                        String(row.quantidade).toLowerCase().includes(searchText.toLowerCase()) ||
-                        row.coordenadas.includes(searchText.toLowerCase()) 
+                        row.nomeMedicamento.toLowerCase().includes(searchText.toLowerCase())  
                     );
                 });
                 setFilteredRows(filtered);
@@ -105,6 +110,7 @@ export default function Bins() {
                         }
         
                         return {
+                            idEd: item.id,
                             nomeBin: item.nomeBin,
                             nomeMedicamento: item.nomeMedicamento || "N/A", // Caso não venha do backend
                             quantidade: item.quantidade || 0, // Caso não venha do backend
@@ -122,8 +128,12 @@ export default function Bins() {
         
     return(<>
         <Header></Header>
+
+        <FormEdit open={openEditar} handleOpen={setOpenEditar} rota={'http://127.0.0.1:5555/bins' + '/editar/' + idEdicao} >
+
+        </FormEdit>
         <FormModal title="Cadastrar bin" inputs={input}  rota="http://127.0.0.1:5555/bins/criar" open={open} handleOpen={setOpen} ></FormModal>
-        <TabelaPharma titulo="Lista de bins" subtitulo="Lista de todos os bins cadastrados" render={key} rows={filteredRows} colunas={colunas} loading={loading} >
+        <TabelaPharma titulo="Lista de bins" subtitulo="Lista de todos os bins cadastrados" render={key} rows={filteredRows} colunas={colunas} loading={loading} editar ={true} handleEdit={setOpenEditar} handleId={setIdEdicao}>
             <div className='flex justify-between items-center'>
                 <TextField
                     label="Pesquisar"

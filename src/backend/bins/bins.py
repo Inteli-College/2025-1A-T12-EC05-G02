@@ -66,6 +66,7 @@ def list_bins():
         bins = session.query(ConfiguracoesBins).all()
         bins_list = [
             {
+                'id' : bin.id,
                 'nomeBin': bin.nome_bin,
                 'nomeMedicamento' : bin.nome_medicamento,
                 'quantidade' : bin.quantidade,
@@ -84,3 +85,28 @@ def list_bins():
     
     finally:
         session.close()
+        
+@binsFlask.route('/editar/<int:id>', methods=['POST'])
+def edit_bin(id):
+    data = request.json
+
+    try:
+        bin = ConfiguracoesBins.query.get(id)
+        if not bin:
+            return {"message": "Bin não encontrado", "code": 404}, 404
+
+        bin.nome_bin = data.get('nomeBin', bin.nome_bin)
+        bin.nome_medicamento = data.get('nomeMedicamento', bin.nome_medicamento)
+        bin.quantidade = data.get('quantidade', bin.quantidade)
+        bin.coordenada = json.dumps({
+            "x": float(data['x']),
+            "y": float(data['y']),
+            "z": float(data['z'])
+        })
+
+        db.session.commit()
+        return {"message": "Bin atualizado com sucesso", "code": 200}
+
+    except Exception as e:
+        db.session.rollback()
+        return {"message": f"Erro ao atualizar bin: {e}", "code": 500}, 500
