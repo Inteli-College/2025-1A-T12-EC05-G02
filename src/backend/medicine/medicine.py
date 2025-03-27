@@ -135,31 +135,7 @@ def get_queue_medicine():
         emit("medicineQueue", {"queue": queue_list}, namespace='/', broadcast=True, include_self=True)
 
         return queue_list
-@medicineFlask.route('/statuses', methods=['GET'])
-def get_statuses_count():
-    try:
-        completed = db.session.query(Pedido).filter(Pedido.status == 'Completo').count()
-        in_queue = db.session.query(Pedido).filter(Pedido.status == 'Erro').count()
 
-        print('Completed', completed)
-        print('Awaiting', in_queue)
-
-        statuses = {
-            'completed': completed,
-            'in_queue': in_queue
-        }
-        
-        return jsonify({
-            'message': 'Status retornados!',
-            'data': statuses,
-            'code': 200
-        })
-    except Exception as e:
-        current_app.logger.error(f"Erro ao obter status de prescrição: {e}")
-        return jsonify({
-            'message': 'Erro ao obter status de prescrição',
-            'code': 500
-        }), 500
 @medicineFlask.route('/statuses', methods=['GET'])
 def get_statuses_count():
     try:
