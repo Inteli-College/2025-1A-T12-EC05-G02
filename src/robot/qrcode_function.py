@@ -1,5 +1,6 @@
 from rich.console import Console
 from rich.panel import Panel
+from time import time, sleep
 import serial
 import json
 
