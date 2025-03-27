@@ -109,6 +109,7 @@ def get_queue_medicine():
             .join(PedidoMedicamento, Pedido.id == PedidoMedicamento.pedido_id)
             .join(Medicamento, PedidoMedicamento.medicamento_id == Medicamento.id)
             .order_by(Pedido.ultima_atualizacao)
+            .filter(Pedido.ultima_atualizacao >= db.func.current_date())
             .all()
         )
         
