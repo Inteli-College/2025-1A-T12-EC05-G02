@@ -44,7 +44,10 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(false); // Novo estado para controle de carregamento
   const [searchText, setSearchText] = useState<string>(""); // Estado para o texto de pesquisa
   const [filteredRows, setFilteredRows] = useState<Data[]>([]); // Estado para os dados filtrados
-  const [statuses, setStatuses] = useState<{ completed: number; in_queue: number }>({
+  const [statuses, setStatuses] = useState<{
+    completed: number;
+    in_queue: number;
+  }>({
     completed: 0,
     in_queue: 0,
   });
@@ -90,11 +93,20 @@ export default function Home() {
       const filtered = rows.filter((row) => {
         return (
           (row.prescricao &&
-            row.prescricao.toString().toLowerCase().includes(searchText.toLowerCase())) ||
+            row.prescricao
+              .toString()
+              .toLowerCase()
+              .includes(searchText.toLowerCase())) ||
           (row.paciente &&
-            row.paciente.toString().toLowerCase().includes(searchText.toLowerCase())) ||
+            row.paciente
+              .toString()
+              .toLowerCase()
+              .includes(searchText.toLowerCase())) ||
           (row.farmaceutico &&
-            row.farmaceutico.toString().toLowerCase().includes(searchText.toLowerCase()))
+            row.farmaceutico
+              .toString()
+              .toLowerCase()
+              .includes(searchText.toLowerCase()))
         );
       });
       setFilteredRows(filtered);
@@ -111,8 +123,7 @@ export default function Home() {
       .then((response) => response.json())
       .then((data) => {
         setStatuses(data.data); // Atualiza o estado com os valores recebidos
-        console.log(data)
-        
+        console.log(data);
       })
       .catch((error) => console.error("Erro ao buscar status:", error));
   }, []);
@@ -133,30 +144,30 @@ export default function Home() {
         <div className="flex flex-col w-[75%] justify-center items-center ">
           <div className="flex flex-col w-[100%]items-center bg-white rounded-md shadow-md w-[100%] pl-16 pr-16 pt-4 pb-4">
             <div className="flex flex-row w-[100%] justify-between gap-x-8">
-            <StatusCard
-              urgency={0}
-              quantity={statuses.completed}
-              onClick={() => {
-                navigate("/kanban");
-              }}
-            />
-            <StatusCard
-              urgency={1}
-              quantity={statuses.in_queue}
-              onClick={() => {
-                navigate("/kanban");
-              }}
-            />
+              <StatusCard
+                urgency={0}
+                quantity={statuses.in_queue}
+                onClick={() => {
+                  navigate("/kanban");
+                }}
+              />
+              <StatusCard
+                urgency={1}
+                quantity={statuses.completed}
+                onClick={() => {
+                  navigate("/kanban");
+                }}
+              />
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full h-full">
             <TabelaPharma
-              titulo="Histórico de Prescrições"
-              subtitulo="Aqui você encontra as prescrições separadas anteriormente pelo PharmaBot"
+              titulo="Histórico de Prescrições do Sistema"
+              subtitulo="Histórico de prescrições do sistema, como hora de separações, seus respectivos pacientes e farmacêuticos."
               rows={filteredRows}
+              render={key}
               itemsPerPage={[5]}
               initialNumItems={5}
-              render={key}
               loading={loading}
               colunas={colunas}
             >
@@ -191,8 +202,13 @@ export default function Home() {
                           "Paciente",
                           "Farmacêutico",
                         ],
-                        ["prescricao", "horaPrescricao", "paciente", "farmaceutico"],
-                        "home"
+                        [
+                          "prescricao",
+                          "horaPrescricao",
+                          "paciente",
+                          "farmaceutico",
+                        ],
+                        "historico_prescricoes"
                       )
                     }
                   >

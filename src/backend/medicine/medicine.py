@@ -140,7 +140,7 @@ def get_queue_medicine():
 def get_statuses_count():
     try:
         completed = db.session.query(Pedido).filter(Pedido.status == 'Completo').count()
-        in_queue = db.session.query(Pedido).filter(Pedido.status == 'Erro').count()
+        in_queue = db.session.query(Pedido).filter(Pedido.status == 'Pendente').count()
 
         print('Completed', completed)
         print('Awaiting', in_queue)

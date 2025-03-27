@@ -34,11 +34,11 @@ const Sidebar = () => {
 
   // Lista dos itens do menu com textos e rotas correspondentes
   const menuItems = [
+    { text: 'Home', route: '/home' },
     { text: 'Lista de Bins', route: '/bins' },
     { text: 'Histórico De Logs', route: '/historico-logs' },
-    { text: 'Dashboard', route: '/dashboard' },
+    { text: 'Dashboard', route: '/kanban' },
     { text: 'Estoque', route: '/estoque' },
-    { text: 'FAQ', route: '/faq' },
   ];
 
   // Função que retorna o conteúdo interno da sidebar

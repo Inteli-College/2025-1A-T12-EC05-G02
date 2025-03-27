@@ -17,7 +17,7 @@ const routes = [
   "historico-de-prescricoes",
   "historico-logs",
   "bins",
-  "usuarios",
+  "usuario",
 ];
 
 export default function SidebarActions() {
