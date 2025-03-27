@@ -19,7 +19,6 @@ def create_prescription():
             paciente_id=data['pacienteId'],
             prioridade=data['prioridade'],
             liberado_por=data['liberadoPor'],
-            
         )
         
         fita = {}
@@ -37,11 +36,13 @@ def create_prescription():
             
         db.session.commit()
         
-        emit("medicine", {"bins": fita, "idFita": pedido.id}, namespace='/', broadcast=True, include_self=True)
-        
         queue_list = get_queue_medicine()
-        emit("queue", {"queue": queue_list}, namespace='/', broadcast=True, include_self=True)
+        
+        # Verifica se algum item na fila está com o status 'Separando'
+        if not any(item["status"] == "Separando" for item in queue_list):
+            emit("medicine", {"bins": fita, "idFita": pedido.id}, namespace='/', broadcast=True, include_self=True)
 
+        emit("queue", {"queue": queue_list}, namespace='/', broadcast=True, include_self=True)
    
     except Exception as e:
         db.session.rollback()

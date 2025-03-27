@@ -31,7 +31,7 @@ def ler_qrcode(port, baudrate):
             )
 
 
-            timelimit = time() + 120
+            timelimit = time() + 60
             while time() < timelimit:
 
                 if ser.in_waiting > 0:
