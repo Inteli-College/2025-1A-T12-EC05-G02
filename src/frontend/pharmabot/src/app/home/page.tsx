@@ -106,6 +106,11 @@ export default function Home() {
             row.farmaceutico
               .toString()
               .toLowerCase()
+              .includes(searchText.toLowerCase())) ||
+          (String(row.horaPrescricao) &&
+            String(row.farmaceutico)
+              .toString()
+              .toLowerCase()
               .includes(searchText.toLowerCase()))
         );
       });
