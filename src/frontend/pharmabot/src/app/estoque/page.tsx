@@ -15,7 +15,6 @@ const colunas: Column[] = [
     { id: 'localizacao', label: 'Localização', minWidth: 200 },
     { id: 'quantidade', label: 'Quantidade', minWidth: 170 },
     { id: 'ultimaAtualizacao', label: 'Última Atualização', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
-    { id: 'idEd', label: '', minWidth: 170 },
 ]
 
 export default function Estoque() {
@@ -54,7 +53,7 @@ export default function Estoque() {
                     codigoIdentificacao: item.medicamento_id,
                     localizacao: item.bin_localizacao,
                     quantidade: item.quantidade.toString(),
-                    ultimaAtualizacao: new Date(item.ultimaAtualizacao), 
+                    ultimaAtualizacao: new Date(item.ultima_atualizacao).toLocaleDateString("pt-br"), 
                     idEd: item.id
                 }));
 
@@ -85,7 +84,7 @@ export default function Estoque() {
         <Header></Header>
         <FormEditar open={openEditar} handleOpen={setOpenEditar} rota={rota + '/criar' + idEdicao}></FormEditar>
         <FormRegistro open={open} handleOpen={setOpen} />
-        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas} handleEdit={setOpenEditar} handleId={setIdEdicao} editar={true}>
+        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas} handleEdit={setOpenEditar} handleId={setIdEdicao} editar={false}>
             <div className='flex justify-between items-center'>
                 <TextField
                     label="Pesquisar"
