@@ -13,11 +13,12 @@ import Sidebar from './Sidebar';
 interface Props {
     dashboard?: boolean;
     onStopClick?: () => void; // Função para o clique do botão
+    status?: string; // Status do robô
     coordinates?: { x: number; y: number; z: number }; // Coordenadas
     isActive?: boolean; // Estado do robô
 }
 
-const Header: React.FC<Props> = ({ dashboard = false, onStopClick, coordinates = { x: 0, y: 0, z: 0 }, isActive = false }) => {
+const Header: React.FC<Props> = ({ dashboard = false, status, onStopClick, coordinates = { x: 0, y: 0, z: 0 }, isActive = false }) => {
     
     const handleStop = () => {
         if (onStopClick) {
@@ -60,7 +61,7 @@ const Header: React.FC<Props> = ({ dashboard = false, onStopClick, coordinates =
                     </div>
                     
                     <div className='ml-auto items-center'>
-                        <StopButton onClick={handleStop} />
+                        <StopButton status={status} onClick={handleStop} />
                     </div>
 
                 </div>

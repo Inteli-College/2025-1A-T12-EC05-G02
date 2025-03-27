@@ -1,7 +1,15 @@
 from rich.console import Console
 from rich.panel import Panel
+from time import time, sleep
+from time import time, sleep
 import serial
 import json
+
+from time import time, sleep
+from datetime import datetime
+import logging
+from utils.logger import logger
+
 
 console = Console()
 
@@ -21,11 +29,20 @@ def ler_qrcode(port, baudrate):
                     "[bold yellow] ▪️ Aguardando dados do QR Code... [/bold yellow]\n"
                 ) 
             )
-            
-            while True:
+
+
+            timelimit = time() + 120
+            while time() < timelimit:
+
                 if ser.in_waiting > 0:
+                    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    logger(f"QR Code lido com sucesso. Timestamp: {current_time}")
+                    
                     line = ser.readline().decode('utf-8', errors='ignore').strip()
+                    
                     return line  # Retorna os dados lidos
+                # if time() == timelimit - 60 or time() == timelimit - 1:
+                #     tocar_buzzer()
 
     except serial.SerialException as e:
         print(f"Erro ao acessar a porta serial: {e}")
@@ -50,6 +67,8 @@ def processar_qrcode(dados):
         )
         
         # print("\nInformações do Medicamento:")
+        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        logger(f"O QR Code lido foi processado. Dados: {info}  \n Timestamp: {current_time}")
         
         for chave, valor in info.items():
             console.print(
@@ -63,3 +82,12 @@ def processar_qrcode(dados):
     except json.JSONDecodeError:
         print(f"Dado recebido em formato não json: {dados}")
         return
+
+# def tocar_buzzer():
+#     buzz_command = b'\xEF\x01\xFF\xFF\xFF\xFF\x01\x00\x07\x00\x30\x00\x00\x37'
+    
+#     ser = serial.Serial("/dev/ttyS0", baudrate=115200, timeout=1)
+#     ser.write(buzz_command)
+    
+#     sleep(0.1)
+#     ser.close()

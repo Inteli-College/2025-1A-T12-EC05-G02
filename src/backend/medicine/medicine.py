@@ -1,9 +1,9 @@
 from flask import Blueprint, request, current_app, jsonify
-from models.log_sistema import LogSistema
 from models.pedido import Pedido
 from models.pedido_medicamento import PedidoMedicamento
 from extensions import db
 from flask_socketio import emit
+from models.medicamento import Medicamento  # Adicione esta linha
 
 
 medicineFlask = Blueprint('medicine', __name__, url_prefix='/medicine')
@@ -38,6 +38,11 @@ def create_prescription():
         db.session.commit()
         
         emit("medicine", {"bins": fita, "idFita": pedido.id}, namespace='/', broadcast=True, include_self=True)
+        
+        queue_list = get_queue_medicine()
+        emit("queue", {"queue": queue_list}, namespace='/', broadcast=True, include_self=True)
+
+   
     except Exception as e:
         db.session.rollback()
         return {
@@ -76,5 +81,83 @@ def get_prescription_logs():
         current_app.logger.error(f"Erro ao obter logs de prescrição: {e}")
         return jsonify({
             'message': 'Erro ao obter logs de prescrição',
+            'code': 500
+        }), 500
+    
+# get the full medicine queue
+@medicineFlask.route('/queue', methods=['GET'])
+def get_full_queue_medicine():
+    try:
+        queue_list = get_queue_medicine()
+        
+        return {
+            'message': 'Fila completa de medicamentos carregada',
+            'code': 200,
+            'queue': queue_list  # Retorna a lista de fitas
+        }, 200
+    except Exception as e:
+        db.session.rollback()
+        return {
+            'message': f'Erro ao buscar fila completa de medicamentos: {e}',
+            'code': 500
+        }, 500
+        
+def get_queue_medicine():
+    # Use join para buscar pedidos e seus medicamentos em uma única consulta
+        pending_orders = (
+            db.session.query(Pedido, PedidoMedicamento, Medicamento)
+            .join(PedidoMedicamento, Pedido.id == PedidoMedicamento.pedido_id)
+            .join(Medicamento, PedidoMedicamento.medicamento_id == Medicamento.id)
+            .order_by(Pedido.ultima_atualizacao)
+            .all()
+        )
+        
+        # Organize os dados em um dicionário para evitar duplicação de pedidos
+        queue = {}
+        for pedido, pedido_medicamento, medicamento in pending_orders:
+            if pedido.id not in queue:
+                queue[pedido.id] = {
+                    "id": str(pedido.id),
+                    "status": pedido.status,
+                    "priority": pedido.prioridade,
+                    "order": pedido.ultima_atualizacao.isoformat() if pedido.ultima_atualizacao else None,
+                    "nomePaciente": pedido.paciente.nome if pedido.paciente else "Desconhecido",
+                    "leito": pedido.paciente.leito if pedido.paciente and hasattr(pedido.paciente, 'leito') else "Desconhecido",
+                    "medicamentos": []
+                }
+            queue[pedido.id]["medicamentos"].append({
+                "nome": medicamento.nome if medicamento else "Desconhecido",
+                "quantidade": pedido_medicamento.quantidade
+            })
+
+        # Converta o dicionário em uma lista
+        queue_list = list(queue.values())
+        emit("medicineQueue", {"queue": queue_list}, namespace='/', broadcast=True, include_self=True)
+
+        return queue_list
+
+@medicineFlask.route('/statuses', methods=['GET'])
+def get_statuses_count():
+    try:
+        completed = db.session.query(Pedido).filter(Pedido.status == 'Completo').count()
+        in_queue = db.session.query(Pedido).filter(Pedido.status == 'Erro').count()
+
+        print('Completed', completed)
+        print('Awaiting', in_queue)
+
+        statuses = {
+            'completed': completed,
+            'in_queue': in_queue
+        }
+        
+        return jsonify({
+            'message': 'Status retornados!',
+            'data': statuses,
+            'code': 200
+        })
+    except Exception as e:
+        current_app.logger.error(f"Erro ao obter status de prescrição: {e}")
+        return jsonify({
+            'message': 'Erro ao obter status de prescrição',
             'code': 500
         }), 500

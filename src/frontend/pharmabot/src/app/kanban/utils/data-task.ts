@@ -1,5 +1,5 @@
 export type Status = 'fila' | 'em-preparo' | 'separado'
-export type Priority = 'low' | 'medium' | 'high'
+export type Priority = '1' | '2' | '3'
 
 export type Medicamento = {
   nome: string,
@@ -17,4 +17,11 @@ export type Fita = {
 }
 
 export const statuses: Status[] = ['fila', 'em-preparo', 'separado']
-export const priorities: Priority[] = ['low', 'medium', 'high']
+export const priorities: Priority[] = ['1', '2', '3']
+
+export type RobotStatus = {
+  status: string,
+  x: number,
+  y: number,
+  z: number
+}

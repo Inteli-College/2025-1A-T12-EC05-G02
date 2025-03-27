@@ -44,6 +44,10 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(false); // Novo estado para controle de carregamento
   const [searchText, setSearchText] = useState<string>(""); // Estado para o texto de pesquisa
   const [filteredRows, setFilteredRows] = useState<Data[]>([]); // Estado para os dados filtrados
+  const [statuses, setStatuses] = useState<{ completed: number; in_queue: number }>({
+    completed: 0,
+    in_queue: 0,
+  });
 
   //função para atualizar a página com base no botão atualizar
   const reRender = () => {
@@ -102,9 +106,16 @@ export default function Home() {
   };
 
   // Função para atualizar a ação selecionada
-  const handleAcaoChange = (newAcao: string) => {
-    setSelectedAcao(newAcao);
-  };
+  useEffect(() => {
+    fetch("http://127.0.0.1:5555/medicine/statuses")
+      .then((response) => response.json())
+      .then((data) => {
+        setStatuses(data.data); // Atualiza o estado com os valores recebidos
+        console.log(data)
+        
+      })
+      .catch((error) => console.error("Erro ao buscar status:", error));
+  }, []);
 
   return (
     <div className="bg-[#FBFBFB] w-full h-[100vh] pl-8 pr-8">
@@ -121,28 +132,21 @@ export default function Home() {
         </div>
         <div className="flex flex-col w-[75%] justify-center items-center ">
           <div className="flex flex-col w-[100%]items-center bg-white rounded-md shadow-md w-[100%] pl-16 pr-16 pt-4 pb-4">
-            <div className="flex flex-row w-[100%] justify-between">
-              <StatusCard
-                urgency={0}
-                quantity={21}
-                onClick={() => {
-                  navigate("/");
-                }}
-              />
-              <StatusCard
-                urgency={1}
-                quantity={39}
-                onClick={() => {
-                  navigate("/");
-                }}
-              />
-              <StatusCard
-                urgency={2}
-                quantity={10}
-                onClick={() => {
-                  navigate("/");
-                }}
-              />
+            <div className="flex flex-row w-[100%] justify-between gap-x-8">
+            <StatusCard
+              urgency={0}
+              quantity={statuses.completed}
+              onClick={() => {
+                navigate("/kanban");
+              }}
+            />
+            <StatusCard
+              urgency={1}
+              quantity={statuses.in_queue}
+              onClick={() => {
+                navigate("/kanban");
+              }}
+            />
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full h-full">
