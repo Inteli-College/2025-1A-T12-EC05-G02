@@ -5,7 +5,7 @@ from extensions import sio
 from qrcode_function import ler_qrcode, processar_qrcode
 from infra_function import ler_infra
 import lgpio
-import time
+import json
 
 
 console = Console()
@@ -50,8 +50,10 @@ def move_to_bin(device, positions, drug, r, iter):
         
         #Lê o qrcode
         dados_qr = ler_qrcode(port=port, baudrate=baudrate)
-        processar_qrcode(dados_qr)
+        medicamentoVencido = processar_qrcode(dados_qr)
         
+        if medicamentoVencido:
+            break
         
         #Move no sentido positivo de x para melhor posicionar o sugador        
         device.movel_to(
