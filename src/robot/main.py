@@ -72,7 +72,7 @@ def connect():
 def stopRobotCall(data):
     global device, separation_thread
     device = None
-    config.stop_flag = True  # Define o flag para interromper a separação
+    config.stop_flag = not config.stop_flag  # Define o flag para interromper a separação
     print("stopRobot: ", str(data))
     sio.emit('stopRobotResponse', {'data': 'Robo parado e retornou para a home'})
    
@@ -97,15 +97,13 @@ def medicine(data):
     global separation_thread
     print("medicine: ", str(data))
     
-    if config.stop_flag:  # Verifica se o flag foi ativado
-        return
-    
-    result = {
-        'action': 'collect', 'bins': data['bins'], 'idFita': data['idFita']
-    }
-    # Inicia a separação em uma nova thread
-    separation_thread = threading.Thread(target=separateMedicine, args=(result,))
-    separation_thread.start()
+    if not config.stop_flag:  # Verifica se o flag foi ativado
+        result = {
+            'action': 'collect', 'bins': data['bins'], 'idFita': data['idFita']
+        }
+        # Inicia a separação em uma nova thread
+        separation_thread = threading.Thread(target=separateMedicine, args=(result,))
+        separation_thread.start()
     
 def separateMedicine(result):
     global device

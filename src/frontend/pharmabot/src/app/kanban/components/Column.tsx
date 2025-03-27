@@ -40,8 +40,12 @@ const Column: React.FC<ColumnProps> = ({
                 className="flex-1 mt-4 overflow-y-auto max-h-[calc(100vh-200px)] flex-grow"
             >
                 {fitas
-                    .sort((a, b) => new Date(a.order).getTime() - new Date(b.order).getTime())
-                    .sort((a, b) => new Date(a.order).getTime() - new Date(b.order).getTime())
+                    .sort((a, b) => {
+                        if (a.status === "fila" && b.status === "fila") {
+                            return new Date(b.order).getTime() - new Date(a.order).getTime();
+                        }
+                        return new Date(a.order).getTime() - new Date(b.order).getTime();
+                    })
                     .filter(() => true) // Placeholder to maintain chaining
                     .reverse() // Reverse the array
                     .map((fita, index) => (
@@ -71,18 +75,17 @@ const Column: React.FC<ColumnProps> = ({
                                     setHoveredIndex(null);
                                 }
                             }}
-                            className={`transition-all duration-200 ${
-                                hoveredIndex === index &&
-                                draggedTaskId !== fita.id &&
-                                status === "fila"
+                            className={`transition-all duration-200 ${hoveredIndex === index &&
+                                    draggedTaskId !== fita.id &&
+                                    status === "fila"
                                     ? "mt-8"
                                     : ""
-                            }`}
+                                }`}
                         >
                             <FitaCard fita={fita} updateFita={updateFita} />
                         </div>
                     ))
-                    }
+                }
             </div>
         </div>
     );
