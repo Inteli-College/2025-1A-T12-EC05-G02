@@ -12,12 +12,11 @@ import ButtonSidebar from "./button-sidebar";
 import { useRouter } from "next/navigation";
 
 const routes = [
-  "fitas-de-medicamentos",
   "estoque",
-  "historico-de-prescricoes",
+  "historico-prescricoes",
   "historico-logs",
   "bins",
-  "usuarios",
+  "usuario",
 ];
 
 export default function SidebarActions() {
@@ -33,34 +32,29 @@ export default function SidebarActions() {
 
       <div className="flex flex-col space-y-4 justify-center items-center">
         <ButtonSidebar
-          icon={Clipboard}
-          label="FITAS DE MEDICAMENTOS"
-          onClick={() => router.push(routes[0])}
-        />
-        <ButtonSidebar
           icon={PackageOpen}
           label="ESTOQUE"
-          onClick={() => router.push(routes[1])}
+          onClick={() => router.push(routes[0])}
         />
         <ButtonSidebar
           icon={Clock4}
           label="HISTÓRICO DE PRESCRIÇÕES"
-          onClick={() => router.push(routes[2])}
+          onClick={() => router.push(routes[1])}
         />
         <ButtonSidebar
           icon={FileClock}
           label="HISTÓRICO DE LOGS"
-          onClick={() => router.push(routes[3])}
+          onClick={() => router.push(routes[2])}
         />
         <ButtonSidebar
           icon={PillBottle}
           label="BINS"
-          onClick={() => router.push(routes[4])}
+          onClick={() => router.push(routes[3])}
         />
         <ButtonSidebar
           icon={User}
           label="USUÁRIOS"
-          onClick={() => router.push(routes[5])}
+          onClick={() => router.push(routes[4])}
         />
       </div>
     </div>
