@@ -38,7 +38,7 @@ const Header: React.FC<Props> = ({ dashboard = false, status, onStopClick, coord
                     <Sidebar />
                 </div>
 
-                <Link href="./"  >
+                <Link href="./home"  >
                     <img src="/pharmatech-logo.png" alt="Logo do cinetag" className='h-17'/>
                 </Link>
 
@@ -80,7 +80,7 @@ const Header: React.FC<Props> = ({ dashboard = false, status, onStopClick, coord
                 <Sidebar />
             </div>
 
-            <Link href="./"  >
+            <Link href="./home"  >
                 <img src="/pharmatech-logo.png" alt="Logo do cinetag" className='h-17'/>
             </Link>
 
