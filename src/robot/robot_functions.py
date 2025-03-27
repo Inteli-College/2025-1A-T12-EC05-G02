@@ -18,7 +18,7 @@ baudrate=9600
 # Cria função de movimentação às bins especificadas
 def move_to_bin(device, positions, drug, r, iter):
     if drug not in positions['bins']:
-        logger(f"[bold red]{drug} não encontrada![/bold red]")
+        logger(f"{drug} não encontrada!")
         raise ValueError(f"{drug} não encontrada!")
 
     counter = 0
@@ -26,7 +26,7 @@ def move_to_bin(device, positions, drug, r, iter):
     # Loop de iteração sobre a quantidade de coletas na mesma bin
     while counter < int(iter):
         
-        logger(f"[bold cyan]Buscando {drug}...[/bold cyan]")
+        logger(f"Buscando {drug}...")
 
         # Move o sugador para as posições da bin especificada
         device.movej_to(
@@ -37,7 +37,7 @@ def move_to_bin(device, positions, drug, r, iter):
             wait=True
         )
 
-        logger(f"[bold yellow] ▪️ Movimento para {drug}[/bold yellow]\n")
+        logger(f"Movimento para {drug}\n")
         
     
         #Desce para ler qrcode
@@ -74,7 +74,7 @@ def move_to_bin(device, positions, drug, r, iter):
         
     
         # Ativa a sucção do bico sugador
-        logger(f"[bold yellow] ▪️ Ativando bico sugador[/bold yellow]\n")
+        logger(f"Ativando bico sugador\n")
         device.suck(True)
 
         dado_infra = ler_infra()
@@ -88,11 +88,11 @@ def move_to_bin(device, positions, drug, r, iter):
         )
 
         # Retorna o sugador para a posição de referência home
-        logger(f"[bold yellow] ▪️ Retornando para ponto de referência[/bold yellow]\n")
+        logger(f"Retornando para ponto de referência")
         
         return_home(device, positions) # Retorna o robô para a home
         
-        logger(f"[bold yellow] ▪️ Movimento para o dispenser[/bold yellow]\n")
+        logger(f"Movimento para o dispenser")
         
         # Move o braço robótico para as posições do dispenser
         device.movej_to(
@@ -104,7 +104,7 @@ def move_to_bin(device, positions, drug, r, iter):
         )
         
         # Desativa a sucção do bico sugador
-        logger(f"[bold green]✔ {drug} coletado![/bold green]")
+        logger(f"✔ {drug} coletado!")
         device.suck(False)
 
         return_home(device, positions)
