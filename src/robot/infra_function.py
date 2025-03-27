@@ -20,6 +20,7 @@ def ler_infra():
     lgpio.gpio_claim_input(h, GPIO_PIN)
 
     try:
+
         while True:
             estado = lgpio.gpio_read(h, GPIO_PIN) 
             message = 'Medicamento não detectado.' if estado else 'Medicamento detectado.'
@@ -36,6 +37,7 @@ def ler_infra():
             
             time.sleep(0.5)
             return
+
 
     except KeyboardInterrupt:
         print("\nEncerrando...")

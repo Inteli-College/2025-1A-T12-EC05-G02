@@ -8,9 +8,9 @@ const StatusIcon = React.memo(({ src, alt }: { src: string; alt: string }) => (
     <Image src={src} alt={alt} width={24} height={24} />
 ))
 
-const PriorityIndicator = ({ priority }: { priority: 'high' | 'medium' | 'low' }) => {
-    const color = priority === 'high' ? 'red' : priority === 'medium' ? 'orange' : 'green'
-    const label = priority === 'high' ? 'Alta' : priority === 'medium' ? 'Média' : 'Baixa'
+const PriorityIndicator = ({ priority }: { priority: '3' | '2' | '1' }) => {
+    const color = priority === '3' ? 'red' : priority === '2' ? 'orange' : 'green'
+    const label = priority === '3' ? 'Alta' : priority === '2' ? 'Média' : 'Baixa'
 
     return (
         <div className="flex gap-2 items-center py-2">
@@ -33,8 +33,8 @@ const FitaCard = ({
 }) => {
     const statusIcons = {
         fila: <StatusIcon src="/circle0.svg" alt="low" />,
-        'em-preparo': <StatusIcon src="/circle1.svg" alt="medium" />,
-        separado: <StatusIcon src="/circle2.svg" alt="high" />,
+        'em-preparo': <StatusIcon src="/circle1.svg" alt="2" />,
+        separado: <StatusIcon src="/circle2.svg" alt="3" />,
     }
 
     const statusProgress = {
@@ -56,13 +56,13 @@ const FitaCard = ({
             draggable
             onDragStart={(e) => e.dataTransfer.setData('id', fita.id)}
             className={classNames('rounded-lg m-2 ', {
-                'border-4 border-red-500': fita.priority === 'high',
+                'border-4 border-red-500': fita.priority == '3',
             })}
         >
             <div
                 className={classNames('border-2 px-4 py-2', {
-                    'rounded-sm': fita.priority === 'high',
-                    'rounded-lg': fita.priority !== 'high',
+                    'rounded-sm': fita.priority == '3',
+                    'rounded-lg': fita.priority != '3',
                 })}
             >
                 <div className="flex flex-col text-black text-sm">

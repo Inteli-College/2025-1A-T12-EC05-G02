@@ -10,11 +10,20 @@ from rich.panel import Panel
 from robot_functions import move_to_bin, return_home
 from cli.cli_functions import terminal_start, welcome_screen, return_to_menu, test_port
 from extensions import sio
+import time
+import threading 
+import config
+import sys
 
 console = Console()  # Instancia do console.
 
 # Variável global para armazenar a porta do robô
+global robot_port
 robot_port = None
+
+# Variável global para a thread de separação
+global separation_thread
+separation_thread = None
 
 # Define classe InteliDobot, que herda classe pai pydobot.Dobot
 class InteliDobot(pydobot.Dobot):
@@ -32,9 +41,11 @@ class InteliDobot(pydobot.Dobot):
         super().__init__(port=self.port, verbose=verbose)
     
     def movej_to(self, x, y, z, r, wait=True):
+        sio.emit("robotStatus", {"x": x, "y": y, "z": z})
         super()._set_ptp_cmd(x, y, z, r, mode=pydobot.enums.PTPMode.MOVJ_XYZ, wait=wait)
     
     def movel_to(self, x, y, z, r, wait=True):
+        sio.emit("robotStatus", {"x": x, "y": y, "z": z})
         super()._set_ptp_cmd(x, y, z, r, mode=pydobot.enums.PTPMode.MOVL_XYZ, wait=wait)
     
     def SetSpeed(self, speed, acceleration):
@@ -53,7 +64,27 @@ positions = get_pos('positions.json')
 @sio.event
 def connect():
     print('Conectado ao servidor!')
+    (x, y, z, r, j1, j2, j3, j4) = device.pose()
     sio.emit('connectResponse', {'data': 'Robo conectado ao servidor'})
+
+# socket to stop robot 
+@sio.event
+def stopRobotCall(data):
+    global device, separation_thread
+    device = None
+    config.stop_flag = not config.stop_flag  # Define o flag para interromper a separação
+    print("stopRobot: ", str(data))
+    sio.emit('stopRobotResponse', {'data': 'Robo parado e retornou para a home'})
+   
+    
+    if device:  # Verifica se o dispositivo foi inicializado
+        return_home(device, positions)
+    if separation_thread and separation_thread.is_alive():
+        separation_thread.join()  # Aguarda a thread terminar
+    if 'idFita' in data: 
+        sio.emit('stopRobotResponse', {'data': 'Robo parado e retornou para a home', 'idFita': data['idFita']})
+    else:
+        sio.emit('stopRobotResponse', {'data': 'Robo parado e retornou para a home'})
 
 @sio.event
 def disconnect():
@@ -63,30 +94,40 @@ def disconnect():
 # listing to the medicine event
 @sio.event
 def medicine(data):
+    global separation_thread
     print("medicine: ", str(data))
     
-    result = {
-        'action': 'collect', 'bins': data['bins'], 'idFita': data['idFita']
-    }
-    separateMedicine(result)
-
+    if not config.stop_flag:  # Verifica se o flag foi ativado
+        result = {
+            'action': 'collect', 'bins': data['bins'], 'idFita': data['idFita']
+        }
+        # Inicia a separação em uma nova thread
+        separation_thread = threading.Thread(target=separateMedicine, args=(result,))
+        separation_thread.start()
+    
 def separateMedicine(result):
+    global device
     device = InteliDobot(verbose=False)  # Inicializa o robô Dobot com a porta detectada.
     bins = result['bins']
     print(result)
     device.suck(False)  # Desliga a sucção do robô.
     return_home(device, positions)  # Retorna o robô para a home.
-    
+
     sio.emit('log', {'acao': 'Robot Log - Separar', 'detalhes': 'Iniciando separação de fita de medicamentos, ID: ' + str(result['idFita']), 'usuario_id': 1})
     sio.emit('medicineResponse', {'status': 'Separando', "idFita": str(result['idFita'])})
     
     for bin in bins:  # Percorre os bins e executa a movimentação para coleta.
         move_to_bin(device, positions, bin, 0, bins[bin])
+        if config.stop_flag:  # Verifica se o flag foi ativado
+            print("Separação interrompida pelo evento stopRobot.")
+            sio.emit('medicineResponse', {'status': 'Pendente', "idFita": str(result['idFita'])})
+            return  # Sai da função imediatamente
         
     sio.emit('medicineResponse', {'status': 'Completo', "idFita": str(result['idFita'])})
 
 
 sio.emit('connectResponse', {'data': 'Robo conectado ao servidor'})
+sio.emit("robotStatus", {"x": 0, "y": 0, "z": 0})
 
 while True:  # Loop principal, se mantém até o usuário decidir sair.
     welcome_screen()  # Exibe a menu inicial.
