@@ -13,7 +13,7 @@ export default function Kanban() {
     const [currentlyHoveringOver, setCurrentlyHoveringOver] =
         useState<Status | null>(null);
 
-    const baseUrl = process.env.API_URL;
+    const baseUrl = 'https://bf7a-204-199-57-14.ngrok-free.app';
 
     const [robotStatus, setRobotStatus] = useState<RobotStatus>({
         x: 0,
@@ -23,7 +23,7 @@ export default function Kanban() {
     });
 
     useEffect(() => {
-        fetch(`${baseUrl}/medicine/queue`)
+        fetch(`https://bf7a-204-199-57-14.ngrok-free.app/medicine/queue`)
             .then((response) => response.json())
             .then((data) => {
                 console.log("Dados de fitas recebidos", data);

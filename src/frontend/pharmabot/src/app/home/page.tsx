@@ -78,14 +78,14 @@ export default function Home() {
 
   const apiUrl = process.env.API_URL;
 
-  const rota: string = `${apiUrl}/medicine/logs`;
+  const rota: string = `https://bf7a-204-199-57-14.ngrok-free.app/medicine/logs`;
 
   // Segunda requisição para buscar os logs filtrados pela ação selecionada
   useEffect(() => {
     setLoading(true); // Inicia o carregamento
     // Montar a URL com base na ação selecionada
     const url = selectedAcao
-      ? `${apiUrl}/medicine/logs?acao=${selectedAcao}`
+      ? `https://bf7a-204-199-57-14.ngrok-free.app/medicine/logs?acao=${selectedAcao}`
       : rota;
 
     fetch(url)
@@ -140,7 +140,7 @@ export default function Home() {
 
   // Função para atualizar a ação selecionada
   useEffect(() => {
-    fetch(`${apiUrl}/medicine/statuses`)
+    fetch(`https://bf7a-204-199-57-14.ngrok-free.app/medicine/statuses`)
       .then((response) => response.json())
       .then((data) => {
         setStatuses(data.data); // Atualiza o estado com os valores recebidos

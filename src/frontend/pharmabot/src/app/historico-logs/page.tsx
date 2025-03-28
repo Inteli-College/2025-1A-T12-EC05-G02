@@ -35,14 +35,14 @@ export default function HistoricoLogs() {
         setSelectedAcao('')
     };
     const apiUrl = process.env.API_URL;
-    const rota: string = `${apiUrl}/user/logs`;
+    const rota: string = `https://bf7a-204-199-57-14.ngrok-free.app/user/logs`;
 
     // Segunda requisição para buscar os logs filtrados pela ação selecionada
     useEffect(() => {
         setLoading(true); // Inicia o carregamento
         // Montar a URL com base na ação selecionada
         const url = selectedAcao
-            ? `${apiUrl}/user/logs?acao=${selectedAcao}`
+            ? `https://bf7a-204-199-57-14.ngrok-free.app/user/logs?acao=${selectedAcao}`
             : rota;
 
         fetch(url)

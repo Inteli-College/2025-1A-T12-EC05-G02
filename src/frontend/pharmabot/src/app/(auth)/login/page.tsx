@@ -50,7 +50,7 @@ export default function Login() {
       };
       
       // Fazendo a requisição para o backend
-      const response = await fetch(apiUrl + '/user/login', {
+      const response = await fetch('https://bf7a-204-199-57-14.ngrok-free.app' + '/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

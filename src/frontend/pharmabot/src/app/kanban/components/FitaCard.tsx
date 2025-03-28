@@ -9,8 +9,8 @@ const StatusIcon = React.memo(({ src, alt }: { src: string; alt: string }) => (
 ))
 
 const PriorityIndicator = ({ priority }: { priority: '3' | '2' | '1' }) => {
-    const color = priority === '3' ? 'red' : priority === '2' ? 'orange' : 'green'
-    const label = priority === '3' ? 'Alta' : priority === '2' ? 'Média' : 'Baixa'
+    const color = priority == '3' ? 'red' : priority == '2' ? 'orange' : 'green'
+    const label = priority == '3' ? 'Alta' : priority == '2' ? 'Média' : 'Baixa'
 
     return (
         <div className="flex gap-2 items-center py-2">
