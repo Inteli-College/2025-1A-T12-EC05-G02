@@ -82,7 +82,7 @@ def move_to_bin(device, positions, drug, r, iter):
         device.movel_to(
             positions['bins'][drug]['pos_x'] + 19,
             positions['bins'][drug]['pos_y'],
-            8,
+            -14,
             r,
             wait=True
         )
@@ -98,7 +98,7 @@ def move_to_bin(device, positions, drug, r, iter):
         dado_infra = ler_infra()
 
         device.movel_to(
-            positions['bins'][drug]['pos_x'],
+            positions['bins'][drug]['pos_x'] + 19,
             positions['bins'][drug]['pos_y'],
             120,
             r,
