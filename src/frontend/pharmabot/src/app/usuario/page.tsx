@@ -29,11 +29,13 @@ export default function UsuariosCadastrados() {
     setKey(prev => prev + 1);
   };
 
+  const apiUrl = process.env.API_URL;
+
   // Busca os usuários na API
   useEffect(() => {
     setLoading(true);
 
-    fetch("http://10.32.0.8:6001/user/list")
+    fetch(`${apiUrl}/user/list`)
       .then(res => res.json())
       .then(data => {
         const formatted: Data[] = data.Usuários.map((user: any) => ({

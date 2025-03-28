@@ -3,6 +3,7 @@
 import FormModal from "../components/FormModal";
 import { Input } from "../components/FormModal";
 
+const apiUrl = process.env.API_URL;
 
 interface Props {
     open: boolean;
@@ -11,7 +12,6 @@ interface Props {
 
 const FormRegistro: React.FC<Props> = ({ open, handleOpen }) => {
     const date = new Date().toString();
-
     const inputs: Input[] = [
         { label: "Nome do Medicamento", type: "text", name: "nome_medicamento", required: true }, // Novo campo para o nome do medicamento
         { label: "Código de Identificação", type: "number", name: "medicamento_id", required: true }, // Mudança para 'medicamento_id'
@@ -20,7 +20,7 @@ const FormRegistro: React.FC<Props> = ({ open, handleOpen }) => {
     ];
     
     return (
-        <FormModal title='Cadastro de Item' open={open} handleOpen={handleOpen} rota='http://10.32.0.8:6001/estoque/criar' inputs={inputs} />
+        <FormModal title='Cadastro de Item' open={open} handleOpen={handleOpen} rota={`${apiUrl}/estoque/criar`} inputs={inputs} />
     );    
 };
 

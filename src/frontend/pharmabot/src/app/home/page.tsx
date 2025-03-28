@@ -76,14 +76,16 @@ export default function Home() {
     setSelectedAcao("");
   };
 
-  const rota: string = "http://10.32.0.8:6001/medicine/logs";
+  const apiUrl = process.env.API_URL;
+
+  const rota: string = `${apiUrl}/medicine/logs`;
 
   // Segunda requisição para buscar os logs filtrados pela ação selecionada
   useEffect(() => {
     setLoading(true); // Inicia o carregamento
     // Montar a URL com base na ação selecionada
     const url = selectedAcao
-      ? `http://10.32.0.8:6001/medicine/logs?acao=${selectedAcao}`
+      ? `${apiUrl}/medicine/logs?acao=${selectedAcao}`
       : rota;
 
     fetch(url)
@@ -135,9 +137,10 @@ export default function Home() {
     setSearchText(event.target.value);
   };
 
+
   // Função para atualizar a ação selecionada
   useEffect(() => {
-    fetch("http://10.32.0.8:6001/medicine/statuses")
+    fetch(`${apiUrl}/medicine/statuses`)
       .then((response) => response.json())
       .then((data) => {
         setStatuses(data.data); // Atualiza o estado com os valores recebidos

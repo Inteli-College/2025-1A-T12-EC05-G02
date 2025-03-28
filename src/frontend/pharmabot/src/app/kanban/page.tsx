@@ -13,8 +13,7 @@ export default function Kanban() {
     const [currentlyHoveringOver, setCurrentlyHoveringOver] =
         useState<Status | null>(null);
 
-    // Base Url backend
-    const baseUrl = "http://10.32.0.8:6001";
+    const baseUrl = process.env.API_URL;
 
     const [robotStatus, setRobotStatus] = useState<RobotStatus>({
         x: 0,

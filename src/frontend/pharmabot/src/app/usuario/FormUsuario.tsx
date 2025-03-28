@@ -17,12 +17,14 @@ const FormUsuario: React.FC<Props> = ({ open, handleOpen }) => {
     { label: "Função", type: "text", name: "role", required: true } // novo campo para role
   ];
 
+  const apiUrl = process.env.API_URL;
+
   return (
     <FormModal
       title="Cadastro de Usuário"
       open={open}
       handleOpen={handleOpen}
-      rota="http://10.32.0.8:6001/user/signup"
+      rota={`${apiUrl}/user/signup`}
       inputs={inputs}
     />
   );

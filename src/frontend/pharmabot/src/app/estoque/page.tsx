@@ -37,7 +37,9 @@ export default function Estoque() {
         setSearchText(event.target.value);
     };
 
-    const rota = `http://10.32.0.8:6001/estoque/`
+    const apiUrl = process.env.API_URL;
+    const rota = `${apiUrl}/estoque/`
+
 
     useEffect(() => {
         setLoading(true); // Inicia o carregamento
