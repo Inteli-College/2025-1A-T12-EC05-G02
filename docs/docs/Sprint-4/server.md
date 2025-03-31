@@ -6,12 +6,14 @@ description: Documentação do servidor do projeto, na sprint 4.
 
 # Servidor
 
-Abaixo estão as instruções para configurar e executar o servidor, além de informações sobre o uso de ferramentas como PM2, Nginx e Ngrok. Este servidor foi configurado para hospedar um front-end em Next.js na porta 80 e um back-end em Flask na porta 6001.
+&emsp; Abaixo estão as instruções para configurar e executar o servidor, além de informações sobre o uso de ferramentas como PM2, Nginx e Ngrok. Este servidor foi configurado para hospedar um front-end em Next.js na porta 80 e um back-end em Flask na porta 6001.
+
+> **Nota:** Todas as instruções abaixo assumem que o servidor está rodando em um sistema operacional baseado em Linux. Certifique-se de que você tem permissões de administrador (root) para executar os comandos necessários.
 
 ## Configuração do Servidor
 
 ### PM2
-PM2 é usado para gerenciar o processo do servidor Node.js (Next.js). Siga os passos abaixo para configurar:
+&emsp; PM2 é usado para gerenciar o processo do servidor Node.js (Next.js). Siga os passos abaixo para configurar:
 
 1. Instale o PM2 globalmente:
     ```bash
@@ -42,7 +44,7 @@ PM2 é usado para gerenciar o processo do servidor Node.js (Next.js). Siga os pa
     ```
 
 ### Nginx
-Nginx é usado como um proxy reverso para o front-end e o back-end. Configure-o da seguinte forma:
+&emsp; Nginx é usado como um proxy reverso para o front-end e o back-end. Configure-o da seguinte forma:
 
 1. Instale o Nginx:
     ```bash
@@ -89,7 +91,7 @@ Nginx é usado como um proxy reverso para o front-end e o back-end. Configure-o 
     ```
 
 ### Ngrok
-Ngrok é usado para expor o servidor local para a internet. Siga os passos abaixo:
+&emsp; Ngrok é usado para expor o servidor local para a internet. Siga os passos abaixo:
 
 1. Instale o Ngrok:
     - Baixe o binário do site oficial: [ngrok.com](https://ngrok.com/)
@@ -135,7 +137,7 @@ Ngrok é usado para expor o servidor local para a internet. Siga os passos abaix
     ```
 
 ### Reload
-Após realizar alterações no código, é necessário reiniciar o PM2 para aplicar as mudanças. Use os seguintes comandos:
+&emsp; Após realizar alterações no código, é necessário reiniciar o PM2 para aplicar as mudanças. Use os seguintes comandos:
 - Para reiniciar o PM2:
     ```bash
     pm2 restart all
@@ -154,10 +156,13 @@ Após realizar alterações no código, é necessário reiniciar o PM2 para apli
     ```
 
 ### Monitoramento
-- Use `pm2 monit` para monitorar o servidor.
-- Verifique os logs com:
-  ```bash
-  pm2 logs
-  ```
 
-Com essas ferramentas, o servidor está configurado para hospedar o front-end e o back-end, sendo gerenciado, acessível e monitorado de forma eficiente.
+&emsp; O PM2 fornece ferramentas de monitoramento e gerenciamento de processos. Use os seguintes comandos:
+
+- Use `pm2 monit` para monitorar o servidor.  
+- Verifique os logs com:
+    ```bash
+    pm2 logs
+    ```
+
+&emsp; Com essas ferramentas, o servidor está configurado para hospedar o front-end e o back-end, sendo gerenciado, acessível e monitorado de forma eficiente.
