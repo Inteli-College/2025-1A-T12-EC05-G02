@@ -76,7 +76,7 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 
 <sub>Figura XXXXXXXXXXXXXXXXXXXXXXXXXXXx - Frontend página Home</sub>
 
-![Frontend página Home](/docs/static/img/docs/home.png)
+![Frontend página Home](/img/docs/home.png)
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -90,7 +90,7 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 
 <sub>Figura XXXXXXXXXXXXXXXXXXXXXXX - Sidebar de redirecionamento</sub>
 
-![Sidebar de redirecionamento](/docs/static/img/docs/sidebar-redirecionamento.png)
+![Sidebar de redirecionamento](/img/docs/sidebar-redirecionamento.png)
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -100,7 +100,7 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 
 <sub>Figura XXXXXXXXXXXXXXXXXXXXXXX - Botões de verificação da tela Dashboard</sub>
 
-![Botões de verificação da tela Dashboard](/docs/static/img/docs/card-verificar.png)
+![Botões de verificação da tela Dashboard](/img/docs/cards-verificar.png)
 
 <sup>Fonte: Autoria própria </sup>
 
@@ -117,7 +117,7 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 
 <sub>Figura XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx - Protótipo de Alta Fidelidade</sub>
 
-![Botões de verificação da tela Dashboard](/docs/static/img/docs/home-alta-fidelidade.png)
+![Botões de verificação da tela Dashboard](/img/docs/home-alta-fidelidade.png)
 
 <sup>Fonte: Autoria própria </sup>
 
