@@ -30,10 +30,10 @@ const Column: React.FC<ColumnProps> = ({
     updateTask: updateFita,
 }) => {
     return (
-        <div className="flex-1 h-full flex flex-col">
-            <div className="flex text-xl md:text-3xl p-2 font-bold text-white justify-center">
+        <div className={`flex-1 rounded ${status == "em-preparo" || status == "separado" ? 'bg-gray-200 opacity-75 cursor-not-allowed' : '' } h-full flex flex-col`}>
+            <div className={`flex text-xl md:text-xl tracking-wider p-2 font-bold text-white justify-center`}>
                 <h2 className="capitalize bg-[#3F3047] p-3 rounded-xl">
-                    {status}
+                    {status == "em-preparo" ? "Em Preparo" : status }
                 </h2>
             </div>
             <div

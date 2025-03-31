@@ -8,15 +8,15 @@ export default function StopButton({ status, onClick }: StopButtonProps) {
         
     <button
         onClick={onClick}
-        className={`w-19 h-19 font-bold rounded-full text-center cursor-pointer ${
+        className={`w-19 h-19 font-bold rounded-full text-center cursor-pointer text-white ${
             status === "Pausado"
-                ? "bg-yellow-500 text-black"
+                ? "bg-green-600"
                 : status === "Desconectado"
-                ? "bg-gray-500 text-white"
-                : "bg-red-500 text-white"
+                ? "bg-gray-500"
+                : "bg-red-500"
         }`}
     >
-        PARAR
+        {status === "Pausado" ? "INICIAR" : status === "Desconectado" ? "-" : "PARAR"}
     </button>
 
     );
