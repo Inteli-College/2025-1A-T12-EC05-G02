@@ -157,7 +157,7 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 
 <sub>Figura 12 - Protótipo de Alta Fidelidade</sub>
 
-![Botões de verificação da tela Dashboard](/docs/static/img/docs/dashboard-alta-fidelidade.png)
+![Botões de verificação da tela Dashboard](/img/docs/dashboard-alta-fidelidade.png)
 
 <sup>Fonte: Autoria própria </sup>
 
