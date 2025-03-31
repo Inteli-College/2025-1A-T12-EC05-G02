@@ -10,7 +10,7 @@ pm2 restart all
 sleep 2
 
 # Inicia o Ngrok em background
-ngrok http 3000 > /dev/null &
+ngrok http 6001 --config ~/.ngrok2/ngrok-user1.yml > /dev/null &
 
 # Aguarda alguns segundos para garantir que o túnel foi iniciado
 sleep 2
@@ -35,7 +35,7 @@ pm2 restart all
 sleep 2
 
 # Inicia o Ngrok em background
-ngrok http 80 > /dev/null &
+ngrok http 80 --config ~/.ngrok2/ngrok-user2.yml > /dev/null &
 
 # Aguarda alguns segundos para garantir que o túnel foi iniciado
 sleep 2
