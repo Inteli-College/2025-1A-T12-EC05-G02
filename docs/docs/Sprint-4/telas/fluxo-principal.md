@@ -65,3 +65,60 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 <sup>Fonte: Autoria própria </sup>
 
 </div>
+
+## Tela home
+
+&emsp; A tela de login é o ponto de entrada da aplicação, oferecendo acesso restrito e personalizado aos técnicos de farmácia. Esta interface apresenta dois campos principais: email e senha, além de um botão "Entrar" para submissão das credenciais.
+
+&emsp; Seguindo o fluxo de usuário definido nas sprints anteriores, após *login* o usuário é direcionado à tela **home**, que apresenta alguns campos importantes para a navegação na plataforma WEB, como observado na figura XXXXXXXXXXXX. 
+
+<div align="center" width="100%">
+
+<sub>Figura XXXXXXXXXXXXXXXXXXXXXXXXXXXx - Frontend página Home</sub>
+
+![Frontend página Home](/docs/static/img/docs/home.png)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
+&emsp;Na lateral esquerda, observa-se uma *sidebar* de ações, com botões de redirecionamento para as telas de fluxo secundário do sistema. Adicionalmente, encontra-se dois identificadores numéricos indicando a quantidade de fitas médicas a **serem separadas** e **já separadas** pelo *PharmaBot*. Finalmente, a tela **home** apresenta os *logs* de prescrições do sistema, com a possibilidade de filtragem, pesquisa e exportação de arquivo CSV dos *logs* encontrados.
+
+&emsp;Na *sidebar* da tela **home**, os botões de *Dashboard, Estoque, Histórico de Prescrições, Histórico de Logs, Bins, Usuários*, redirecionam o usuário para as telas autointituladas. Além desta funcionalidade, o botão de *"Verificar"*, encontrado abaixo dos indicadores numéricos, redirecionam para a página *Dashboard*, conforme *User Stories*. 
+
+<div align="center" width="100%">
+
+<sub>Figura XXXXXXXXXXXXXXXXXXXXXXX - Sidebar de redirecionamento</sub>
+
+![Sidebar de redirecionamento](/docs/static/img/docs/sidebar-redirecionamento.png)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
+<div align="center" width="100%">
+
+<sub>Figura XXXXXXXXXXXXXXXXXXXXXXX - Botões de verificação da tela Dashboard</sub>
+
+![Botões de verificação da tela Dashboard](/docs/static/img/docs/card-verificar.png)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
+
+### Relação com as User Stories
+
+&emsp; A tela **home** estabelece um ponto fundamental na jornada do usuário durante o uso de nossa plataforma. Portanto, compreende-se sua contribuição indireta para a abrangência das *user stories* definidas anteriormente.
+
+&emsp; A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade, garantindo que a experiência de usuário planejada seja efetivamente entregue no produto final.
+
+<div align="center" width="100%">
+
+<sub>Figura XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx - Protótipo de Alta Fidelidade</sub>
+
+![Botões de verificação da tela Dashboard](/docs/static/img/docs/home-alta-fidelidade.png)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
