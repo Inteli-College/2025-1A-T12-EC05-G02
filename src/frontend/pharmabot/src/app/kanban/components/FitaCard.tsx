@@ -31,11 +31,6 @@ const FitaCard = ({
     fita: Fita
     updateFita: (task: Fita) => void
 }) => {
-    const statusIcons = {
-        fila: <StatusIcon src="/circle0.svg" alt="low" />,
-        'em-preparo': <StatusIcon src="/circle1.svg" alt="2" />,
-        separado: <StatusIcon src="/circle2.svg" alt="3" />,
-    }
 
     const statusProgress = {
         fila: '1/3',
@@ -76,7 +71,6 @@ const FitaCard = ({
 
                         <div className="flex flex-col justify-center items-center py-2">
                             <div className="flex gap-2 items-center text-xl">
-                                {statusIcons[fita.status]}
                                 <div>{statusProgress[fita.status]}</div>
                             </div>
                             <PriorityIndicator priority={fita.priority} />
