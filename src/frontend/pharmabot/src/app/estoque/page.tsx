@@ -46,20 +46,25 @@ export default function Estoque() {
         // Montar a URL com base na ação selecionada
         const url = rota //NECESSARIO INTEGRAR COM O BACK
 
-        fetch(url)
+        fetch(url, {
+            headers: {
+            "ngrok-skip-browser-warning": "true",
+            "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+            }
+        })
             .then((response) => response.json())
             .then((data) => {
-                // Transformar os dados no formato esperado
-                const formattedData: Data[] = data.estoque.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
-                    item: item.nome_medicamento.toString(),
-                    codigoIdentificacao: item.medicamento_id,
-                    localizacao: item.bin_localizacao,
-                    quantidade: item.quantidade.toString(),
-                    ultimaAtualizacao: new Date(item.ultima_atualizacao).toLocaleDateString("pt-br"), 
-                    idEd: item.id
-                }));
+            // Transformar os dados no formato esperado
+            const formattedData: Data[] = data.estoque.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
+                item: item.nome_medicamento.toString(),
+                codigoIdentificacao: item.medicamento_id,
+                localizacao: item.bin_localizacao,
+                quantidade: item.quantidade.toString(),
+                ultimaAtualizacao: new Date(item.ultima_atualizacao).toLocaleDateString("pt-br"), 
+                idEd: item.id
+            }));
 
-                setRows(formattedData);
+            setRows(formattedData);
             })
             .catch((error) => console.error("Erro ao buscar estoque:", error))
             .finally(() => setLoading(false)); // Finaliza o carregamento

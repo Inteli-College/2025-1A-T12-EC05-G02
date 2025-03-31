@@ -63,16 +63,21 @@ export default function HistoricoPrescricoes() {
     useEffect(() => {
         setLoading(true); // Inicia o carregamento
 
-        fetch(rota)
-            .then((response) => response.json())
-            .then((data) => {
-                // Transformar os dados no formato esperado
-                const formattedData: Data[] = data.data.map((item: any) => ({
-                    prescricao: String(item.prescricao),
-                    horaPrescricao: new Date(item.data_pedido), // Converter string para Date
-                    paciente: String(item.paciente),
-                    farmaceutico: String(item.farmaceutico),
-                }));
+    fetch(url, {
+      headers: {
+        "ngrok-skip-browser-warning": "true",
+        "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+      }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Transformar os dados no formato esperado
+        const formattedData: Data[] = data.data.map((item: any) => ({
+          prescricao: String(item.prescricao),
+          horaPrescricao: new Date(item.data_pedido), // Converter string para Date
+          paciente: String(item.paciente),
+          farmaceutico: String(item.farmaceutico),
+        }));
 
                 setRows(formattedData);
             })
