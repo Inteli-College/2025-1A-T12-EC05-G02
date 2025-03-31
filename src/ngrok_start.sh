@@ -1,4 +1,13 @@
-#!/bin/bash
+
+# Verifica se o Ngrok está rodando e o para
+if pgrep -x "ngrok" > /dev/null
+then
+    echo "Parando o Ngrok..."
+    pkill ngrok
+    sleep 2
+else
+    echo "Ngrok não está rodando."
+fi
 
 # Reinicia os pm2
 pm2 restart all
