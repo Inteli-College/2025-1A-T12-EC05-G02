@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Para todos NGROK que estão rodando
-pkill ngrok
-
 # Reinicia os pm2
 pm2 restart all
 
