@@ -44,7 +44,7 @@ description: Fluxo principal do usuário na aplicação
 
 </div>
 
-### Relação com as User Stories
+### Tela de login e User Stories
 
 &emsp; A implementação da tela de login atende integralmente à User Story do técnico de farmácia que necessita de "um acesso pessoal na plataforma para acessar apenas as páginas que lhe competem".
 
@@ -68,7 +68,7 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 
 ## Tela Home
 
-&emsp; Seguindo o fluxo de usuário definido nas sprints anteriores, após *login* o usuário é direcionado à tela **home**, que apresenta alguns campos importantes para a navegação na plataforma WEB, como observado na figura XXXXXXXXXXXX. 
+&emsp; Seguindo o fluxo de usuário definido nas sprints anteriores, após *login* o usuário é direcionado à tela **home**, que apresenta alguns campos importantes para a navegação na plataforma WEB, como observado na figura 5. 
 
 <div align="center" width="100%">
 
@@ -105,7 +105,7 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 </div>
 
 
-### Relação com as User Stories
+### Tela home e User Stories
 
 &emsp; A tela **home** estabelece um ponto fundamental na jornada do usuário durante o uso de nossa plataforma. Portanto, compreende-se sua contribuição indireta para a abrangência das *user stories* definidas anteriormente.
 
@@ -116,6 +116,48 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 <sub>Figura 8 - Protótipo de Alta Fidelidade</sub>
 
 ![Botões de verificação da tela Dashboard](/img/docs/home-alta-fidelidade.png)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
+## Tela Dashboard
+
+&emsp; Através do fluxo de usuário esperado, definido nas Jornadas de Usuário, o *user* terá à sua disposição o estado atual do robô na tela *Dashboard*. A tela concentra as fitas médicas a serem separadas, conforme recebimento de prescrições, em três categorias: **na fila**, **em preparo**, **separado**. Além disso, a tela dispõe informações em seu *header* personalizado, como localização atual do robô e um botão para pausar a atuação do robô e retomar seu funcionamento, caso necessário. Na figura 9, encontra-se o estado atual da página *Dashboard*.
+
+<div align="center" width="100%">
+
+<sub>Figura 9 - Frontend página Dashboard</sub>
+
+![Frontend página Dashboard](/img/docs/dashboard.png)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
+&emsp;Nos *cards* das fitas de montagens, presentes dentro do quadro *kanban*, encontram-se informações relacionadas ao paciente, como nome e leito, e os medicamentos a serem coletados, além de seu estado de urgência (baixo, moderado e crítico). É importante destacar a integração dos *cards* das fitas de separação com o processo de separação do robô, ou seja, os *cards* atualizam seu estado (sai da categoria "*na fila*" para "*em progresso*", por exemplo) enquanto o robô executa a separação. Finalmente, após finalização da coleta da fita, o *card* é movido automaticamente à categoria *separado*. Abaixo, destaca-se o *card* de fita de medicações.
+
+<div align="center" width="100%">
+
+<sub>Figura 10 - Card de fita de medicações</sub>
+
+![Card de fita de medicações](/img/docs/card-kanban.png)
+
+<sup>Fonte: Autoria própria </sup>
+
+</div>
+
+### Dashboard e User Stories
+
+&emsp; A tela de *Dashboard* automaticamente atribui as fitas de medicamentos aos pacientes, mantendo registro de atualização do estado de separação das fitas.
+
+&emsp; A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade, garantindo que a experiência de usuário planejada seja efetivamente entregue no produto final.
+
+<div align="center" width="100%">
+
+<sub>Figura 12 - Protótipo de Alta Fidelidade</sub>
+
+![Botões de verificação da tela Dashboard](/img/docs/dashboard-alta-fidelidade.png)
 
 <sup>Fonte: Autoria própria </sup>
 
