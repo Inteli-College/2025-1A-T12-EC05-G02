@@ -35,17 +35,22 @@ export default function UsuariosCadastrados() {
   useEffect(() => {
     setLoading(true);
 
-    fetch(`${apiUrl}/user/list`)
+    fetch(`${apiUrl}/user/list`, {
+      headers: {
+      "ngrok-skip-browser-warning": "true",
+      "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+      }
+    })
       .then(res => res.json())
       .then(data => {
-        const formatted: Data[] = data.Usuários.map((user: any) => ({
-          id: user.id,
-          usuario: user.nome,
-          email: user.email,
-          role: user.role, // Adicionando o role à tabela
-          data: new Date(user.datacadastro)
-        }));
-        setRows(formatted);
+      const formatted: Data[] = data.Usuários.map((user: any) => ({
+        id: user.id,
+        usuario: user.nome,
+        email: user.email,
+        role: user.role, // Adicionando o role à tabela
+        data: new Date(user.datacadastro)
+      }));
+      setRows(formatted);
       })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));

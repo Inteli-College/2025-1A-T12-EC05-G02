@@ -25,7 +25,12 @@ const FormEdit: React.FC<Props> = ({ rota, open, handleOpen }) => {
   // Função para buscar os dados da API e preencher o estado
   const fetchData = async () => {
     try {
-      const response = await fetch(rota.replace('editar', 'list'));
+      const response = await fetch(rota.replace('editar', 'list'), {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+          "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+        },
+      });
       if (!response.ok) {
         throw new Error("Erro ao buscar dados.");
       }

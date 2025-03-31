@@ -45,19 +45,24 @@ export default function HistoricoLogs() {
             ? `${apiUrl}/user/logs?acao=${selectedAcao}`
             : rota;
 
-        fetch(url)
+        fetch(url, {
+            headers: {
+            "ngrok-skip-browser-warning": "true",
+            "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+            }
+        })
             .then((response) => response.json())
             .then((data) => {
-                // Transformar os dados no formato esperado
-                const formattedData: Data[] = data.Logs.map((item: any) => ({
-                    id: item.id.toString(),
-                    dataHora: new Date(item.data_hora), // Converter string para Date
-                    acao: item.acao,
-                    detalhes: item.detalhes,
-                    responsavel: item.responsavel,
-                }));
+            // Transformar os dados no formato esperado
+            const formattedData: Data[] = data.Logs.map((item: any) => ({
+                id: item.id.toString(),
+                dataHora: new Date(item.data_hora), // Converter string para Date
+                acao: item.acao,
+                detalhes: item.detalhes,
+                responsavel: item.responsavel,
+            }));
 
-                setRows(formattedData);
+            setRows(formattedData);
             })
             .catch((error) => console.error("Erro ao buscar logs:", error))
             .finally(() => setLoading(false)); // Finaliza o carregamento

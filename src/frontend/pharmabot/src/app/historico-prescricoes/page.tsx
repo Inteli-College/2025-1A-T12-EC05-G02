@@ -50,7 +50,12 @@ export default function HistoricoPrescricoes() {
         ? `${apiUrl}/medicine/logs?acao=${selectedAcao}`
         : rota;
 
-    fetch(url)
+    fetch(url, {
+      headers: {
+        "ngrok-skip-browser-warning": "true",
+        "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+      }
+    })
       .then((response) => response.json())
       .then((data) => {
         // Transformar os dados no formato esperado

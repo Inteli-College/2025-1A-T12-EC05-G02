@@ -88,22 +88,27 @@ export default function Home() {
       ? `${apiUrl}/medicine/logs?acao=${selectedAcao}`
       : rota;
 
-    fetch(url)
+    fetch(url, {
+      headers: {
+      "ngrok-skip-browser-warning": "true",
+      "User-Agent": "Custom-User-Agent", // Alternative way to bypass
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
-        // Transformar os dados no formato esperado
-        const formattedData: Data[] = data.data.map((item: any) => ({
-          prescricao: String(item.prescricao),
-          horaPrescricao: new Date(item.data_pedido), // Converter string para Date
-          paciente: String(item.paciente),
-          farmaceutico: String(item.farmaceutico),
-        }));
+      // Transformar os dados no formato esperado
+      const formattedData: Data[] = data.data.map((item: any) => ({
+        prescricao: String(item.prescricao),
+        horaPrescricao: new Date(item.data_pedido), // Converter string para Date
+        paciente: String(item.paciente),
+        farmaceutico: String(item.farmaceutico),
+      }));
 
-        setRows(formattedData);
+      setRows(formattedData);
       })
       .catch((error) => console.error("Erro ao buscar logs:", error))
       .finally(() => setLoading(false)); // Finaliza o carregamento
-  }, [selectedAcao, key]); // O efeito será executado sempre que `selectedAcao` mudar
+    }, [selectedAcao, key]); // O efeito será executado sempre que `selectedAcao` mudar
 
   // Filtra os dados com base no texto de pesquisa
   useEffect(() => {
@@ -140,11 +145,16 @@ export default function Home() {
 
   // Função para atualizar a ação selecionada
   useEffect(() => {
-    fetch(`${apiUrl}/medicine/statuses`)
+    fetch(`${apiUrl}/medicine/statuses`, {
+      headers: {
+      "ngrok-skip-browser-warning": "true",
+      "User-Agent": "Custom-User-Agent", // Alternative way to bypass
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
-        setStatuses(data.data); // Atualiza o estado com os valores recebidos
-        console.log(data);
+      setStatuses(data.data); // Atualiza o estado com os valores recebidos
+      console.log(data);
       })
       .catch((error) => console.error("Erro ao buscar status:", error));
   }, []);
