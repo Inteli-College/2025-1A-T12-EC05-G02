@@ -56,6 +56,7 @@ const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, val
         method: "POST",
         headers: {
           "ngrok-skip-browser-warning": "true",
+          "Content-Type": "application/json",
           "User-Agent": "Custom-User-Agent" // Alternative way to bypass
         },
         body: JSON.stringify(data),
