@@ -3,7 +3,9 @@ from rich.panel import Panel
 from time import time, sleep
 from time import time, sleep
 import serial
+from utils.logger import logger
 import json
+import datetime
 
 from time import time, sleep
 from datetime import datetime
@@ -59,13 +61,20 @@ def processar_qrcode(dados):
     
     try:
         info = json.loads(dados) 
+        data_atual = datetime.now().strftime("%Y-%m-%d")
         
         console.print(
             (
-                "[bold yellow] \nInformações do Medicamento: [/bold yellow]\n"
+                f"[bold yellow] \nInformações do Medicamento: {info} [/bold yellow]\n"
             ) 
         )
         
+        medicamentoVencido = info["validade"] <= data_atual
+        if medicamentoVencido:
+            message = f"Medicamento {info["medicamento"]}  FORA DA VALIDADE | Data de validade: {info["validade"]} | Lote: {info["lote"]}"
+            console.print(message)
+            logger(message)
+
         # print("\nInformações do Medicamento:")
         current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         logger(f"O QR Code lido foi processado. Dados: {info}  \n Timestamp: {current_time}")
@@ -77,7 +86,7 @@ def processar_qrcode(dados):
                     f"[cyan] {chave.capitalize()}: {valor} [/cyan]"
                 )
             )
-        return
+        return medicamentoVencido
     
     except json.JSONDecodeError:
         print(f"Dado recebido em formato não json: {dados}")
