@@ -55,6 +55,7 @@ export default function Login() {
         method: 'POST',
         headers: {
           "ngrok-skip-browser-warning": "true",
+          "Content-Type": "application/json",
           "User-Agent": "Custom-User-Agent" // Alternative way to bypass
         },
         body: JSON.stringify(loginData),
