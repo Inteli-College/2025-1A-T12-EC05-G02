@@ -72,7 +72,7 @@ description: Criação dos componentes básicos da aplicação
 
 <div align="center">
 
-![sidebar](/img/components-front/sidebar.png/)
+![sidebar](/img/components-front/sidebar.png)
 
 </div>
 
