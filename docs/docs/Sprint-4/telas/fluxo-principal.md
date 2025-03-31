@@ -56,8 +56,6 @@ Todos os critérios de aceite foram contemplados na implementação:
 
 A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade, garantindo que a experiência de usuário planejada seja efetivamente entregue no produto final.
 
-</div>
-
 <div align="center" width="100%">
 
 <sub>Figura 4 - Protótipo de Alta Fidelidade</sub>
