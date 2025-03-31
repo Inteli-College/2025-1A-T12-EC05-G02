@@ -4,8 +4,7 @@ slug: /sprint-4/integracao/monitoramento
 description: Funcionamento do Monitoramento Atual
 ---
 
-# Monitoramente e armazenamento de Logs
-
+# Monitoramento e armazenamento de Logs
 Este documento descreve o sistema de logs utilizado no projeto. Cada chamada da função `logger()` tem a função de registrar eventos e informações relevantes sobre a execução do sistema, facilitando o monitoramento, a depuração e a análise de erros.
 
 ## Estrutura do Log
