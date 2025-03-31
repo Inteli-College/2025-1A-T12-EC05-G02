@@ -38,6 +38,6 @@ ngrok http 80 --config ~/.ngrok2/ngrok-user2.yml > /dev/null &
 sleep 2
 
 # Captura a URL pública do Ngrok do frontend
-NGROK_URL_FRONT=$(curl -s http://127.0.0.1:4040/api/tunnels | jq -r '.tunnels[1].public_url')
+NGROK_URL_FRONT=$(curl -s http://127.0.0.1:4040/api/tunnels | jq -r '.tunnels[0].public_url')
 
 echo "Seu domínio do Ngrok do frontend é: $NGROK_URL_FRONT"
