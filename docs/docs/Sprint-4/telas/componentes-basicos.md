@@ -82,7 +82,7 @@ description: Criação dos componentes básicos da aplicação
 
 <div align="center">
 
-![header](/img/components-front/formalModal.png/)
+![header](/img/components-front/formalModal.png)
 
 </div>
 
@@ -93,7 +93,7 @@ description: Criação dos componentes básicos da aplicação
 
 <div align="center">
 
-![header](/img/components-front/tabelapharma.png/)
+![header](/img/components-front/tabelapharma.png)
 
 </div>
 
