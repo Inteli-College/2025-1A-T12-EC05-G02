@@ -20,7 +20,7 @@ const FormRegistro: React.FC<Props> = ({ open, handleOpen }) => {
     ];
     
     return (
-        <FormModal title='Cadastro de Item' open={open} handleOpen={handleOpen} rota={`https://bf7a-204-199-57-14.ngrok-free.app/estoque/criar`} inputs={inputs} />
+        <FormModal title='Cadastro de Item' open={open} handleOpen={handleOpen} rota={`${apiUrl}/estoque/criar`} inputs={inputs} />
     );    
 };
 

@@ -35,7 +35,7 @@ export default function UsuariosCadastrados() {
   useEffect(() => {
     setLoading(true);
 
-    fetch(`https://bf7a-204-199-57-14.ngrok-free.app/user/list`)
+    fetch(`${apiUrl}/user/list`)
       .then(res => res.json())
       .then(data => {
         const formatted: Data[] = data.Usuários.map((user: any) => ({

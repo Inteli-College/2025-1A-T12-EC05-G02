@@ -16,6 +16,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const apiUrl = process.env.API_URL;
+  console.log(apiUrl);
   
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -50,7 +51,7 @@ export default function Login() {
       };
       
       // Fazendo a requisição para o backend
-      const response = await fetch('https://bf7a-204-199-57-14.ngrok-free.app' + '/user/login', {
+      const response = await fetch(apiUrl + '/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

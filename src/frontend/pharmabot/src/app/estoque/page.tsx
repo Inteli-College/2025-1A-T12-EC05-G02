@@ -38,7 +38,7 @@ export default function Estoque() {
     };
 
     const apiUrl = process.env.API_URL;
-    const rota = `https://bf7a-204-199-57-14.ngrok-free.app/estoque/`
+    const rota = `${apiUrl}/estoque/`
 
 
     useEffect(() => {

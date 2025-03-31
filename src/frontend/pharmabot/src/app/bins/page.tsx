@@ -53,7 +53,7 @@ export default function Bins() {
     useEffect(() => {
             setLoading(true); // Inicia o carregamento
             // Montar a URL com base na ação selecionada
-            const rota = `https://bf7a-204-199-57-14.ngrok-free.app/bins` //NECESSARIO INTEGRAR COM O BACK
+            const rota = `${apiUrl}/bins` //NECESSARIO INTEGRAR COM O BACK
     
             fetch(rota)
                 .then((response) => response.json())
@@ -90,7 +90,7 @@ export default function Bins() {
 
         useEffect(() => {
             setLoading(true);
-            const url = `https://bf7a-204-199-57-14.ngrok-free.app/bins/list`;
+            const url = `${apiUrl}/bins/list`;
         
             fetch(url)
                 .then((response) => response.json())
@@ -129,10 +129,10 @@ export default function Bins() {
     return(<>
         <Header></Header>
 
-        <FormEdit open={openEditar} handleOpen={setOpenEditar} rota={'https://bf7a-204-199-57-14.ngrok-free.app' + '/bins' + '/editar/' + idEdicao} >
+        <FormEdit open={openEditar} handleOpen={setOpenEditar} rota={apiUrl + '/bins' + '/editar/' + idEdicao} >
 
         </FormEdit>
-        <FormModal title="Cadastrar bin" inputs={input} rota={`https://bf7a-204-199-57-14.ngrok-free.app/bins/criar`} open={open} handleOpen={setOpen} ></FormModal>
+        <FormModal title="Cadastrar bin" inputs={input} rota={`${apiUrl}/bins/criar`} open={open} handleOpen={setOpen} ></FormModal>
         <TabelaPharma titulo="Lista de bins" subtitulo="Lista de todos os bins cadastrados" render={key} rows={filteredRows} colunas={colunas} loading={loading} editar ={true} handleEdit={setOpenEditar} handleId={setIdEdicao}>
             <div className='flex justify-between items-center'>
                 <TextField

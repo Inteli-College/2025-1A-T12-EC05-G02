@@ -24,7 +24,7 @@ const FormUsuario: React.FC<Props> = ({ open, handleOpen }) => {
       title="Cadastro de Usuário"
       open={open}
       handleOpen={handleOpen}
-      rota={`https://bf7a-204-199-57-14.ngrok-free.app/user/signup`}
+      rota={`${apiUrl}/user/signup`}
       inputs={inputs}
     />
   );
