@@ -22,7 +22,9 @@ Ainda, como ja citado, no front-end da Pharmabot está o React, uma biblioteca d
 
 A escolha do React também foi motivada pela sua capacidade de criar componentes reutilizáveis, isolados e declarativos, que encapsulam lógica e estilo em unidades coesas e reutilizáveis. Isso permitiu a criação de componentes como TabelaPharma, FormModal e StopButton com comportamentos bem definidos e reutilização em múltiplas partes da aplicação, reduzindo redundância e facilitando manutenção.
 
-<p style={{textAlign: 'center'}}>Figura 2 - React.js</p><div align="center">
+<p style={{textAlign: 'center'}}>Figura 2 - React.js</p>
+
+<div align="center">
 
 ![react](/docs/static/img/components-front/react.png)
 
