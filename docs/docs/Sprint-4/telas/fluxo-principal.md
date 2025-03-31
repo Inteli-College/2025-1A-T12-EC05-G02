@@ -66,15 +66,13 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 
 </div>
 
-## Tela home
-
-&emsp; A tela de login é o ponto de entrada da aplicação, oferecendo acesso restrito e personalizado aos técnicos de farmácia. Esta interface apresenta dois campos principais: email e senha, além de um botão "Entrar" para submissão das credenciais.
+## Tela Home
 
 &emsp; Seguindo o fluxo de usuário definido nas sprints anteriores, após *login* o usuário é direcionado à tela **home**, que apresenta alguns campos importantes para a navegação na plataforma WEB, como observado na figura XXXXXXXXXXXX. 
 
 <div align="center" width="100%">
 
-<sub>Figura XXXXXXXXXXXXXXXXXXXXXXXXXXXx - Frontend página Home</sub>
+<sub>Figura 5 - Frontend página Home</sub>
 
 ![Frontend página Home](/img/docs/home.png)
 
@@ -88,7 +86,7 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 
 <div align="center" width="100%">
 
-<sub>Figura XXXXXXXXXXXXXXXXXXXXXXX - Sidebar de redirecionamento</sub>
+<sub>Figura 6 - Sidebar de redirecionamento</sub>
 
 ![Sidebar de redirecionamento](/img/docs/sidebar-redirecionamento.png)
 
@@ -98,7 +96,7 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 
 <div align="center" width="100%">
 
-<sub>Figura XXXXXXXXXXXXXXXXXXXXXXX - Botões de verificação da tela Dashboard</sub>
+<sub>Figura 7 - Botões de verificação da tela Dashboard</sub>
 
 ![Botões de verificação da tela Dashboard](/img/docs/cards-verificar.png)
 
@@ -115,7 +113,7 @@ A interface desenvolvida mantém fidelidade com o Protótipo de Alta Fidelidade,
 
 <div align="center" width="100%">
 
-<sub>Figura XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx - Protótipo de Alta Fidelidade</sub>
+<sub>Figura 8 - Protótipo de Alta Fidelidade</sub>
 
 ![Botões de verificação da tela Dashboard](/img/docs/home-alta-fidelidade.png)
 
