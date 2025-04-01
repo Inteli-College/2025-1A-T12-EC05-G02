@@ -3,14 +3,15 @@
 import { useState, useEffect } from "react";
 import Header from "../components/Header"
 import TabelaPharma from "../components/TabelaPharma"
-import { TextField, Stack, Button } from "@mui/material";
+import { TextField, Stack, Button, Typography } from "@mui/material";
 import { Column } from "../components/table";
 import { Data } from "../components/table";
 import FormModal from "../components/FormModal";
 import { Input } from "../components/FormModal";
 import FormEdit from "./FormEdit";
+import CustomModal from "../components/Modal";
  
-const apiUrl = process.env.API_URL;
+const apiUrl = 'http://127.0.0.1:5555/';
 
 const colunas: Column[] = [
     {id: 'nomeBin', label: 'Número do Bin', align: 'center'},
@@ -39,7 +40,9 @@ export default function Bins() {
     const [key, setKey] = useState(0);
     const [open, setOpen] = useState(false);
     const [openEditar, setOpenEditar] = useState(false);
-    const [idEdicao, setIdEdicao] = useState<any>('')
+    const [idEdicao, setIdEdicao] = useState<any>('');
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalContent, setModalContent] = useState<string>('');
 
 
     const reRender = () => {
@@ -99,16 +102,16 @@ export default function Bins() {
         
                     const formattedData: Data[] = data.Bin.map((item: any) => {
                         let coordenadasFormatadas = "N/A"; // Caso as coordenadas não existam
-        
+                    
                         try {
-                            if (item.coordenadas) {
+                            if (item.coordenadas && typeof item.coordenadas === "string" && item.coordenadas.trim() !== "") {
                                 const coordenadasObj = JSON.parse(item.coordenadas); // Converte a string JSON para objeto
                                 coordenadasFormatadas = `${ coordenadasObj.x } / ${ coordenadasObj.y } / ${ coordenadasObj.z }`;
                             }
                         } catch (error) {
                             console.error("Erro ao converter coordenadas:", error);
                         }
-        
+                    
                         return {
                             idEd: item.id,
                             nomeBin: item.nomeBin,
@@ -130,7 +133,6 @@ export default function Bins() {
         <Header></Header>
 
         <FormEdit open={openEditar} handleOpen={setOpenEditar} rota={apiUrl + '/bins' + '/editar/' + idEdicao} >
-
         </FormEdit>
         <FormModal title="Cadastrar bin" inputs={input} rota={`${apiUrl}/bins/criar`} open={open} handleOpen={setOpen} ></FormModal>
         <TabelaPharma titulo="Lista de bins" subtitulo="Lista de todos os bins cadastrados" render={key} rows={filteredRows} colunas={colunas} loading={loading} editar ={true} handleEdit={setOpenEditar} handleId={setIdEdicao}>
@@ -143,14 +145,37 @@ export default function Bins() {
                     onChange={handleSearchChange}
                 />
                 <Stack id="botoes" spacing={1} direction="row">
+                    <Button
+                        variant="outlined"
+                        onClick={async () => {
+                            try {
+                                const response = await fetch(`http://127.0.0.1:5555/robot/getRobotCoordinates`);
+                                const data = await response.json();
+                                setModalContent(`Coordenadas do robô: \n \n X = ${data.x} \n Y = ${data.y} \n Z = ${data.z} \n \n`);
+                                setModalOpen(true);
+                            } catch (error) {
+                                console.error("Erro ao buscar coordenadas do robô:", error);
+                                setModalContent("Erro ao buscar coordenadas do robô.");
+                                setModalOpen(true);
+                            }
+                        }}
+                    >
+                        Ver Coordenadas do Robô
+                    </Button>
+                    <CustomModal
+                        open={modalOpen}
+                        onClose={() => setModalOpen(false)}
+                        title="Informações do robô"
+                        idForm=""
+                    >
+                        <Typography dangerouslySetInnerHTML={{ __html: modalContent.replace(/\n/g, '<br />') }} />
+                    </CustomModal>
                     <Button variant="outlined" color="black" onClick={reRender}>Atualizar</Button>
                     <Button variant="contained" onClick={() => setOpen(true)}>Cadastrar</Button>
                 </Stack>
             </div>
         </TabelaPharma>
-    </>
-        
+    </>   
     )
-    
 }
 
