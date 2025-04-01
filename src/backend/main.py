@@ -3,11 +3,8 @@ import logging
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
-from flask_socketio import SocketIO
 from dotenv import load_dotenv
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from user.user import usersFlask
-from logs.logs import logsFlask
 from medicine.medicine import medicineFlask
 from robot.robot import robotFlask
 from bins.bins import binsFlask
@@ -38,7 +35,6 @@ ext.socketio.init_app(app, cors_allowed_origins="*")
 jwt = JWTManager(app)
 
 app.register_blueprint(usersFlask)
-app.register_blueprint(logsFlask)
 app.register_blueprint(robotFlask)
 app.register_blueprint(medicineFlask)
 app.register_blueprint(binsFlask)

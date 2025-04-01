@@ -1,15 +1,14 @@
-from flask import Blueprint, request, current_app
-from models.log_sistema import LogSistema
+from flask import Blueprint, request
+from flask_jwt_extended import jwt_required
 from models.config_bins import ConfiguracoesBins
-from models.pedido_medicamento import PedidoMedicamento
 from extensions import db
-from flask_socketio import emit
 import json
 
 binsFlask = Blueprint('bins', __name__, url_prefix='/bins')
 
 # Cria um bin
 @binsFlask.route('/criar', methods=['POST'])
+@jwt_required()
 def create_bin():
     data = request.json
     
@@ -58,6 +57,7 @@ def create_bin():
     
 
 @binsFlask.route('/list', methods=["GET"])
+@jwt_required()
 def list_bins():
     session = db.session
     
@@ -87,6 +87,7 @@ def list_bins():
         session.close()
         
 @binsFlask.route('/list/<int:id>', methods=['GET'])
+@jwt_required()
 def get_bin(id):
     session = db.session
     
@@ -115,6 +116,7 @@ def get_bin(id):
         session.close()
         
 @binsFlask.route('/editar/<int:id>', methods=['GET'])
+@jwt_required()
 def edit_bin(id):
     data = request.json
 

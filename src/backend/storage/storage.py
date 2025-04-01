@@ -1,14 +1,14 @@
 from flask import Blueprint, request
+from flask_jwt_extended import jwt_required
 from extensions import db
 from models.estoque import Estoque
 from models.medicamento import Medicamento
-
-
 
 # Definindo o Blueprint
 estoqueFlask = Blueprint('estoque', __name__, url_prefix='/estoque')
 
 @estoqueFlask.route('/', methods=["GET"])
+@jwt_required()
 def listar_estoque():
     session = db.session
     try:
@@ -41,6 +41,7 @@ def listar_estoque():
     return {"estoque": estoque_list}, 200
 
 @estoqueFlask.route('/criar', methods=["POST"])
+@jwt_required()
 def criar_estoque():
     session = db.session
     try:
