@@ -21,16 +21,21 @@ const SelectButton: React.FC<Props> = ({ atributo, label, onSelect, render, rota
   const [items, setItems] = useState<string[]>([]);
 
   useEffect(() => {
-    fetch(rota)
+    fetch(rota, {
+      headers: {
+      "ngrok-skip-browser-warning": "true",
+      "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+      }
+    })
       .then((response) => response.json())
       .then((data) => {
-        const acaoList = data.Logs
-          .map((item: any) => (typeof item.acao === 'string' ? item.acao : ''))
-          .filter((value: any, index: any, array: any) => array.indexOf(value) === index); // Remover valores duplicados
+      const acaoList = data.Logs
+        .map((item: any) => (typeof item.acao === 'string' ? item.acao : ''))
+        .filter((value: any, index: any, array: any) => array.indexOf(value) === index); // Remover valores duplicados
 
-        setItems(acaoList);
+      setItems(acaoList);
       })
-      .catch((error) => console.error("Erro ao buscar ações:", error))
+      .catch((error) => console.error("Erro ao buscar ações:", error));
   }, []);
 
   useEffect(() => {

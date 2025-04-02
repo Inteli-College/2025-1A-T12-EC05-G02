@@ -31,18 +31,6 @@ const FitaCard = ({
     fita: Fita
     updateFita: (task: Fita) => void
 }) => {
-    const statusIcons = {
-        fila: <StatusIcon src="/circle0.svg" alt="low" />,
-        'em-preparo': <StatusIcon src="/circle1.svg" alt="2" />,
-        separado: <StatusIcon src="/circle2.svg" alt="3" />,
-    }
-
-    const statusProgress = {
-        fila: '1/3',
-        'em-preparo': '2/3',
-        separado: '3/3',
-    }
-
     function classNames(baseClass: string, conditionalClasses: { [key: string]: boolean }): string {
         const conditionalClassNames = Object.entries(conditionalClasses)
             .filter(([_, condition]) => condition)
@@ -51,6 +39,7 @@ const FitaCard = ({
 
         return `${baseClass} ${conditionalClassNames}`.trim()
     }
+    
     return (
         <div
             draggable
@@ -74,11 +63,7 @@ const FitaCard = ({
                             </div>
                         </div>
 
-                        <div className="flex flex-col justify-center items-center py-2">
-                            <div className="flex gap-2 items-center text-xl">
-                                {statusIcons[fita.status]}
-                                <div>{statusProgress[fita.status]}</div>
-                            </div>
+                        <div className="flex justify-center items-center py-2">
                             <PriorityIndicator priority={fita.priority} />
                         </div>
                     </div>

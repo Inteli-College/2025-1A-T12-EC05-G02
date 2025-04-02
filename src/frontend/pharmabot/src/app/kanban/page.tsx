@@ -24,19 +24,24 @@ export default function Kanban() {
     });
 
     useEffect(() => {
-        fetch(`${apiUrl}/medicine/queue`)
+        fetch(`${apiUrl}/medicine/queue`, {
+            headers: {
+            "ngrok-skip-browser-warning": "true",
+            "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+            }
+        })
             .then((response) => response.json())
             .then((data) => {
-                console.log("Dados de fitas recebidos", data);
-                const updatedFitas: Fita[] = data.queue.map((fita: Fita) => ({
-                    ...fita,
-                    status: mapStatus(fita.status), // Mapeie o status para os valores esperados
-                }));
-                console.log("Dados de fitas atualizados ::::", updatedFitas);
-                setTasks(updatedFitas);
+            console.log("Dados de fitas recebidos", data);
+            const updatedFitas: Fita[] = data.queue.map((fita: Fita) => ({
+                ...fita,
+                status: mapStatus(fita.status), // Mapeie o status para os valores esperados
+            }));
+            console.log("Dados de fitas atualizados ::::", updatedFitas);
+            setTasks(updatedFitas);
             })
             .catch((error) => {
-                console.error("Erro ao buscar dados de fitas", error);
+            console.error("Erro ao buscar dados de fitas", error);
             });
     }, []);
 

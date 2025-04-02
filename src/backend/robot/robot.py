@@ -1,10 +1,11 @@
-from flask import Blueprint, request, current_app
-from flask_socketio import emit, send
+from flask import Blueprint, request
+from flask_socketio import emit
 from extensions import socketio, db
 from models.log_sistema import LogSistema
 from models.pedido import Pedido
 from models.pedido_medicamento import PedidoMedicamento
 import time
+
 robotFlask = Blueprint('robot', __name__, url_prefix='/robot')
 
 global robot_sid, front_sid, x, y, z, robot_pause

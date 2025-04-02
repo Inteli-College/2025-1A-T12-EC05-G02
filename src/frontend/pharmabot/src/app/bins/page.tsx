@@ -55,7 +55,12 @@ export default function Bins() {
             // Montar a URL com base na ação selecionada
             const rota = `${apiUrl}/bins` //NECESSARIO INTEGRAR COM O BACK
     
-            fetch(rota)
+            fetch(rota, {
+                headers: {
+                    "ngrok-skip-browser-warning": "true",
+                    "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+                }
+            })
                 .then((response) => response.json())
                 .then((data) => {
                     // Transformar os dados no formato esperado
@@ -92,7 +97,12 @@ export default function Bins() {
             setLoading(true);
             const url = `${apiUrl}/bins/list`;
         
-            fetch(url)
+            fetch(url, {
+                headers: {
+                    "ngrok-skip-browser-warning": "true",
+                    "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+                }
+            })
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Dados recebidos:", data);

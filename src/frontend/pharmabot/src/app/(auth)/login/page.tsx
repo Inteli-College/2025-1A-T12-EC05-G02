@@ -17,7 +17,7 @@ export default function Login() {
 
   const apiUrl = process.env.API_URL;
   console.log(apiUrl);
-  
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -37,28 +37,30 @@ export default function Login() {
       setLoginError('Insira um email válido');
       return;
     }
-    
+
     // Limpa o erro se o email for válido
     setEmailError('');
-    
+
     try {
       setIsLoading(true);
-      
+
       // Dados para enviar ao backend
-      const loginData = { 
+      const loginData = {
         email: email,
         senha: password
       };
-      
+
       // Fazendo a requisição para o backend
       const response = await fetch(apiUrl + '/user/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          "ngrok-skip-browser-warning": "true",
+          "Content-Type": "application/json",
+          "User-Agent": "Custom-User-Agent" // Alternative way to bypass
         },
         body: JSON.stringify(loginData),
       });
-            
+
       if (response.status === 401) {
         // Caso específico para credenciais inválidas
         setLoginError('Email ou senha incorretos');
@@ -69,7 +71,7 @@ export default function Login() {
         // Login bem-sucedido
         router.push('/home');
       }
-      
+
     } catch (error) {
       // Erro de rede ou outro erro não esperado
       setLoginError('Erro ao conectar com o servidor');
@@ -83,23 +85,23 @@ export default function Login() {
       <div className={styles.loginContainer}>
         <div className={styles.formSection}>
           <div className={styles.logoContainer}>
-            <Image 
-              src="/pharmatech-logo.png" 
-              alt="PharmaTech Logo" 
-              width={250} 
-              height={30} 
+            <Image
+              src="/pharmatech-logo.png"
+              alt="PharmaTech Logo"
+              width={250}
+              height={30}
               priority
             />
           </div>
-          
+
           <h1 className={styles.title}>Login</h1>
-          
+
           {loginError && (
             <div className={`${styles.errorAlert || 'p-2 mb-4 bg-red-100 text-red-800 rounded'}`}>
               {loginError}
             </div>
           )}
-          
+
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.inputGroup}>
               <input
@@ -113,7 +115,7 @@ export default function Login() {
               <label htmlFor="email">Email</label>
               {emailError && <p className={styles.errorMessage}>{emailError}</p>}
             </div>
-            
+
             <div className={styles.inputGroup}>
               <input
                 id="password"
@@ -125,9 +127,9 @@ export default function Login() {
               />
               <label htmlFor="password">Senha</label>
             </div>
-            
+
             <div className={styles.forgotPassword}>
-              <Button 
+              <Button
                 style={{
                   textTransform: 'none',
                 }}
@@ -144,7 +146,7 @@ export default function Login() {
                   <Typography id="modal-modal-title" variant="h6">
                     Comunique a administração
                   </Typography>
-                  <Button 
+                  <Button
                     className={styles.fecharModal}
                     variant="contained"
                     onClick={handleClose}
@@ -156,8 +158,8 @@ export default function Login() {
             </div>
 
             <div className={styles.buttonContainer}>
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className={styles.loginButton}
                 disabled={isLoading}
               >
@@ -166,7 +168,7 @@ export default function Login() {
             </div>
           </form>
         </div>
-        
+
         <div className={styles.imageSection}>
           <div className={styles.messageBox}>
             <h2 className={styles.message}>
@@ -175,10 +177,10 @@ export default function Login() {
               separar<br />
               remédios!
             </h2>
-            
+
             <div className={styles.robotImageContainer}>
               <Image
-                src="/robot.png" 
+                src="/robot.png"
                 alt="Robô farmacêutico"
                 width={400}
                 height={400}
@@ -187,7 +189,7 @@ export default function Login() {
             </div>
             <div className={styles.RaioContainer}>
               <Image
-                src="/raio.png" 
+                src="/raio.png"
                 alt="Robô farmacêutico"
                 width={75}
                 height={75}
