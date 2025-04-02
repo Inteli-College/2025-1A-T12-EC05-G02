@@ -7,6 +7,16 @@ from models.pedido_medicamento import PedidoMedicamento
 import time
 robotFlask = Blueprint('robot', __name__, url_prefix='/robot')
 
+global robot_sid, front_sid, x, y, z, robot_pause
+
+# Initialize global variables
+robot_sid = None
+front_sid = None
+robot_pause = False
+x = 0
+y = 0
+z = 0
+
 @socketio.on('connect')
 def handle_connect():
     print(request.sid)
@@ -16,15 +26,32 @@ def handle_connect():
 
 @socketio.on('disconnect')
 def handle_disconnect():
+    global robot_sid, front_sid  # Ensure global variables are used
     print("client has disconnected")
+    if robot_sid == request.sid:
+        robot_sid = None
+        x = 0
+        y = 0
+        z = 0
+        emit("robotStatusFront", {"status": "Desconectado", "x": x, "y": y, "z": z}, broadcast=True, include_self=True)
+    if front_sid == request.sid:
+        front_sid = None
     emit("disconnectResponse", {"data": f"id: {request.sid} is disconnected"}, broadcast=True, include_self=True)
     
 @socketio.on('connectResponse')
 def handle_connect_response(data):
     print("connectResponse: ", str(data))
+    global robot_sid, front_sid  # Ensure global variables are used
     if data['data'] == 'Robo conectado ao servidor':
+        robot_sid = request.sid  # Save the robot's SID
+        print(request.sid)
+        print("Robo conectado ao servidor")
         get_queue_medicine()
-    
+        
+    if data['data'] == 'Front conectado ao servidor':
+        front_sid = request.sid
+        checkStatusRobot()
+        
 @socketio.on('disconnectResponse')
 def handle_disconnect_response(data):
     print("disconnectResponse: ", str(data)) 
@@ -33,9 +60,43 @@ def handle_disconnect_response(data):
 def handle_medicine(data):
     print("medicine: ", str(data))
     
+@socketio.on('stopRobot')
+def handle_stop_robot(data):
+    global robot_sid, x, y, z, robot_pause
+    robot_pause = not robot_pause  # Toggle the pause state
+    emit("stopRobotCall", data, broadcast=True, include_self=True)
+    emit("robotStatusFront", {"status": "Pausado" if robot_pause else "Conectado", "x": x, "y": y, "z": z}, broadcast=True, include_self=True)
+
+    if not robot_pause:
+        print("Robot resumed. Checking medicine queue.")
+        get_queue_medicine()  # Resume processing the medicine queue
+    else:
+        print("Robot paused. Medicine queue processing stopped.")
+    
+@socketio.on('stopRobotResponse')
+def handle_stop_robot(data):
+    print("stopRobot: ", str(data))
+    global robot_sid, x, y, z, robot_pause
+    try:
+        # Check if the robot was processing a medicine
+        pedido = db.session.query(Pedido).filter_by(status='Separando').first()
+        if pedido:
+            # Update the status to 'Pendente'
+            pedido.status = 'Pendente'
+            db.session.commit()
+            print(f"Pedido {pedido.id} status updated to 'Pendente'")
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error updating pedido status: {e}")
+
+    # Emit the robot status
+    checkStatusRobot()
+    
 @socketio.on('medicineResponse')
 def handle_medicine_response(data):
     print("medicineResponse: ", str(data))
+    
+    emit("medicineFrontResponse", data, broadcast=True, include_self=True)
     # atualiza o status do pedido para 'Concluído'
     try:
         pedido = db.session.query(Pedido).filter_by(id=int(data['idFita'])).first()
@@ -64,16 +125,26 @@ def handle_message(data):
         print(f"Error adding log to database: {e}")
     print("log added to database")
     
-@robotFlask.route('/medicine/reload', methods=['POST'])
-def reload_medicine():
-    get_queue_medicine()
-    return {
-        'message': 'Fila de medicamentos recarregada',
-        'code': 200
-    }
+@socketio.on('medicineQueue')
+def handle_medicine_queue(data):
+    print("medicineReload: ", str(data))
+   
     
+@socketio.on('robotStatus')
+def handle_robot_status(data):
+    global robot_sid, x, y, z
+    print("robotStatus: ", str(data))
+    x = data.get('x', 0)
+    y = data.get('y', 0)
+    z = data.get('z', 0)
+    checkStatusRobot()
     
 def get_queue_medicine():
+    global robot_pause  # Use the global variable to check the pause state
+    if robot_pause:
+        print("Robot is paused. Skipping medicine queue processing.")
+        return  # Do not proceed if the robot is paused
+
     # Verifica se tem algum pedido pendente ordenado por data de criação e prioridade crescente
     pedido_pendente = db.session.query(Pedido).filter_by(status='Pendente').order_by(Pedido.data_pedido, Pedido.prioridade).first()
     print(pedido_pendente)
@@ -86,3 +157,17 @@ def get_queue_medicine():
         
         time.sleep(1)
         emit("medicine", {"idFita": pedido_pendente.id, "bins": fita}, namespace='/', broadcast=True, include_self=True)
+
+def checkStatusRobot():
+    global robot_sid, robot_pause
+    if robot_pause:
+        status = 'Pausado'
+        emit("robotStatusFront", {"status": status, "x": x, "y": y, "z": z}, broadcast=True, include_self=True)
+        return
+    
+    if robot_sid:
+        status = 'Conectado'
+    else:
+        status = 'Desconectado'
+    emit("robotStatusFront", {"status": status, "x": x, "y": y, "z": z}, broadcast=True, include_self=True)
+ 

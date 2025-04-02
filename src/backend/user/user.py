@@ -4,6 +4,7 @@ import bcrypt
 from sqlalchemy.exc import IntegrityError
 from models.usuario import Usuario
 from models.log_sistema import LogSistema
+from sqlalchemy.orm import joinedload
 from datetime import datetime
 from extensions import db
 from flask import Blueprint, request, jsonify
@@ -74,7 +75,7 @@ def admin_list():
     session = db.session
     try:
         users = session.query(Usuario).all()
-        users_list = [{"id": user.id, "nome": user.nome, "email": user.email, "role": user.role} for user in users]
+        users_list = [ {"id": user.id, "nome": user.nome, "email": user.email, "role": user.role, "datacadastro": user.data_criacao} for user in users ]
         registrar_log("Listagem de Usuários", "Listagem de todos os usuários realizada com sucesso.")
     finally:
         session.close()
@@ -220,8 +221,14 @@ def login():
             'access_token': access_token
         })
         return message, 200
-    except:
-        return jsonify(serverErrorMessage), 500 # Erro interno do servidor
+    except(Exception, KeyError) as e:
+        print(f"Erro ao fazer login: {e}")
+        response = jsonify({
+            'success': False,
+            'message': 'Erro ao fazer login',
+            'error': 'Internal Server Error'
+        })
+        return response, 500
 
 @usersFlask.route('/logout', methods=['POST'])
 @jwt_required()

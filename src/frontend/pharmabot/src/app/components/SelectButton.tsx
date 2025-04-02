@@ -10,29 +10,48 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 interface Props {
   atributo: string;
   label: string;
-  items: string[];
   onSelect: (value: string) => void;
-  render: number
+  render: number;
+  rota: string;
 }
 
-const SelectButton: React.FC<Props> = ({ atributo, label, items, onSelect, render }) => {
+const SelectButton: React.FC<Props> = ({ atributo, label, onSelect, render, rota }) => {
   const [value, setValue] = useState("");
   const [filteredItems, setFilteredItems] = useState<string[]>([]);
+  const [items, setItems] = useState<string[]>([]);
+
+  useEffect(() => {
+    fetch(rota, {
+      headers: {
+      "ngrok-skip-browser-warning": "true",
+      "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+      }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+      const acaoList = data.Logs
+        .map((item: any) => (typeof item.acao === 'string' ? item.acao : ''))
+        .filter((value: any, index: any, array: any) => array.indexOf(value) === index); // Remover valores duplicados
+
+      setItems(acaoList);
+      })
+      .catch((error) => console.error("Erro ao buscar ações:", error));
+  }, []);
 
   useEffect(() => {
     setFilteredItems(["Sem filtro", ...items]);
-  }, [items]);
+  }, [items]); // este efeito depende de items
 
   useEffect(() => {
-    setValue('')
-  }, [render])
+    setValue('');
+  }, [render]); //reinicializa quando a página atualiza
 
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value as string);
     onSelect(event.target.value as string);
   };
 
-  return (
+  return ( // Renderiza quando `loading === false`
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label" size="small">

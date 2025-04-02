@@ -7,43 +7,39 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import { Button } from '@mui/material';
+import { SquarePen } from 'lucide-react';
 
-interface Column {
-  id: 'id' | 'dataHora' | 'acao' | 'detalhes' | 'responsavel';
+export interface Column {
+  id: string;
   label: string;
   minWidth?: number;
-  align?: 'right';
+  align?: 'right' | 'left' | 'center';
   format?: (value: any) => string;
 }
 
-const colunas: readonly Column[] = [
-  { id: 'id', label: 'ID', minWidth: 100 },
-  { id: 'dataHora', label: 'Data e Hora', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
-  { id: 'acao', label: 'Ação', minWidth: 170 },
-  { id: 'detalhes', label: 'Detalhes', minWidth: 200 },
-  { id: 'responsavel', label: 'Responsável', minWidth: 170},
-];
-
-interface Data {
-  id: string;
-  dataHora: Date;
-  acao: string;
-  detalhes: string;
-  responsavel: string;
+export interface Data {
+  [key: string]: any; // Permite campos adicionais
 }
 
 interface Props {
   rows: Data[];
-  render: number
+  render: number;
+  initialNumItems?: number;
+  itemsPerPage?: number[];
+  colunas: Column[];
+  handleEdit?: (args:any ) => void
+  handleId?: (args:any ) => void
+  editar?: boolean
 }
 
-const Tabela: React.FC<Props> = ({ rows, render }) => {
+const Tabela: React.FC<Props> = ({ rows, render, itemsPerPage = [15, 50, 100], initialNumItems = 15, colunas, handleEdit, handleId, editar }) => {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(initialNumItems);
   const [data, setData] = useState<string>(''); // Inicie com uma string vazia
 
   const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
+      setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,9 +68,26 @@ const Tabela: React.FC<Props> = ({ rows, render }) => {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) // Paginação aplicada aqui
-              .map((row) => (
-                <TableRow className='hover:bg-gray-50 transition' key={row.id}>
+              .map((row, index) => (
+                <TableRow className='hover:bg-gray-50 transition' key={index}>
                   {colunas.map((col) => {
+                    console.log(col.id)
+                    if (col.id == 'idEd') {
+                      return (<TableCell key={col.id} align={col.align || 'left'}> {/* Wrap the button inside a <td> */}
+                        {editar && row.idEd && (
+                          <Button
+                          variant='contained'
+                          onClick={() => {
+                            if (handleEdit) handleEdit(true);
+                            if (handleId) handleId(row.idEd);
+                          }}
+                        >
+                          <SquarePen />
+                        </Button>
+                        
+                        )}
+                      </TableCell>)
+                    }
                     const value = row[col.id];
                     return (
                       <TableCell key={col.id} align={col.align || 'left'}>
@@ -89,7 +102,7 @@ const Tabela: React.FC<Props> = ({ rows, render }) => {
       </TableContainer>
       {/* Componente de Paginação */}
       <TablePagination
-        rowsPerPageOptions={[10, 50, 100]}
+        rowsPerPageOptions={itemsPerPage}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
