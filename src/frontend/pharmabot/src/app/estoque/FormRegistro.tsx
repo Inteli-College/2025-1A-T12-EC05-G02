@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import FormModal from "../components/FormModal";
 import { Input } from "../components/FormModal";
+import SelectButton from "../components/SelectButton";
 
 const apiUrl = process.env.API_URL;
 
@@ -11,16 +13,18 @@ interface Props {
 }
 
 const FormRegistro: React.FC<Props> = ({ open, handleOpen }) => {
+    const [valueRemedio, setValueRemedio] = useState('')
     const date = new Date().toString();
     const inputs: Input[] = [
-        { label: "Nome do Medicamento", type: "text", name: "nome_medicamento", required: true }, // Novo campo para o nome do medicamento
-        { label: "Código de Identificação", type: "number", name: "medicamento_id", required: true }, // Mudança para 'medicamento_id'
         { label: "Localização", type: "text", name: "bin_localizacao", required: true }, // Mudança para 'bin_localizacao'
-        { label: "Quantidade", type: "number", name: "quantidade", required: true }
+        { label: "Quantidade", type: "number", name: "quantidade", required: true },
+        { label: "Remedio", type: "number", name: "remedio", required: true, value: valueRemedio, hidden: true }
     ];
     
     return (
-        <FormModal title='Cadastro de Item' open={open} handleOpen={handleOpen} rota={`${apiUrl}/estoque/criar`} inputs={inputs} />
+        <FormModal title='Cadastro de Item' open={open} handleOpen={handleOpen} rota={`${apiUrl}/estoque/criar`} inputs={inputs}>
+            <SelectButton atributo="remedioE" label="Remédio" render={1} onSelect={setValueRemedio} rota={`${apiUrl}/medicine/medicamentos`}></SelectButton>
+        </FormModal>
     );    
 };
 
