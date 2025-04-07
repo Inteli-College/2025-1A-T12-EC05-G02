@@ -244,6 +244,7 @@ def criar_medicamento():
         session.commit()
 
     except Exception as error:
+        session.rollback()
         return jsonify({
             "success": "false",
             "message": f"Erro ao criar medicamento: {error}"
