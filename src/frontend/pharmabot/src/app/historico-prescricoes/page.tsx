@@ -63,7 +63,7 @@ export default function HistoricoPrescricoes() {
     useEffect(() => {
         setLoading(true); // Inicia o carregamento
 
-    fetch(url, {
+    fetch(rota, {
       headers: {
         "ngrok-skip-browser-warning": "true",
         "User-Agent": "Custom-User-Agent" // Alternative way to bypass
