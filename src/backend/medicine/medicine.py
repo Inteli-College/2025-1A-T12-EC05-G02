@@ -196,3 +196,30 @@ def get_statuses_count():
             'message': 'Erro ao obter status de prescrição',
             'code': 500
         }), 500
+    
+@medicineFlask.route('/medicamentos', methods=['GET'])
+def listar_medicamentos():
+    try:
+        session = db.session
+
+        # Consulta unindo as tabelas Estoque e Medicamento
+        query = session.query(
+            Medicamento.id,
+            Medicamento.nome,
+            Medicamento.descricao,
+            Medicamento.fabricante,
+            Medicamento.dose,
+        )
+
+        # Converte os resultados para uma lista de dicionários
+        medicamento_list = [
+            {
+                "acao": item.nome,
+            }
+            for item in query.all()
+        ]
+        
+    finally:
+        session.close()
+
+    return {"Logs": medicamento_list}, 200
