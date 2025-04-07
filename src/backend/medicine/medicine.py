@@ -3,7 +3,6 @@ from models.pedido import Pedido
 from models.pedido_medicamento import PedidoMedicamento
 from models.medicamento import Medicamento
 from flask_socketio import emit
-from models.medicamento import Medicamento  # Adicione esta linha
 from extensions import socketio, db
 from flask_jwt_extended import jwt_required
 
@@ -226,9 +225,11 @@ def listar_medicamentos():
     return {"Logs": medicamento_list}, 200
 
 @medicineFlask.route('/criar-medicamento', methods=['POST'])
-def criar_medicamento(data):
+def criar_medicamento():
     try:
         session = db.session
+        
+        data = request.get_json()
         
         medicamento = Medicamento(
             nome = data.get("nome"),
