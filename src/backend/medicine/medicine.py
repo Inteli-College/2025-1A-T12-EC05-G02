@@ -1,6 +1,7 @@
 from flask import Blueprint, request, current_app, jsonify
 from models.pedido import Pedido
 from models.pedido_medicamento import PedidoMedicamento
+from models.medicamento import Medicamento
 from flask_socketio import emit
 from models.medicamento import Medicamento  # Adicione esta linha
 from extensions import socketio, db
@@ -223,3 +224,34 @@ def listar_medicamentos():
         session.close()
 
     return {"Logs": medicamento_list}, 200
+
+@medicineFlask.route('/criar-medicamento', methods=['POST'])
+def criar_medicamento(data):
+    try:
+        session = db.session
+        
+        medicamento = Medicamento(
+            nome = data.get("nome"),
+            descricao = data.get("descricao"),
+            fabricante = data.get("fabricante"),
+            validade = data.get("validade"),
+            lote = data.get("lote"),
+            dose = data.get("dose")
+        )
+        
+        session.add(medicamento)
+        session.commit()
+
+    except Exception as error:
+        return jsonify({
+            "success": "false",
+            "message": f"Erro ao criar medicamento: {error}"
+        }), 400
+
+    finally:
+        session.close()
+    
+    return jsonify({
+        "success": "true",
+        "message": "Medicamento criado com sucesso"
+    }), 200
