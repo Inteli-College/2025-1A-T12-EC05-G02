@@ -12,24 +12,18 @@ import { Input } from "../components/FormModal";
 const apiUrl = process.env.API_URL;
 
 const colunas: Column[] = [
-    {id: 'nome', label: 'Nome', align: 'center'},
-    {id: 'nomeMedicamento', label: 'Medicamento', align: 'center'},
-    {id: 'quantidade', label: 'Quantidade', align: 'center'},
-    {id: 'coordenadas', label: 'Coordenadas - X / Y / Z ', align: 'center'},
-    {id: 'idEd', label: ''}
+    {id: 'nome', label: 'Nome do paciente', align: 'center'},
+    {id: 'hc', label: 'Número do prontuário', align: 'center'},
+    {id: 'leito', label: 'Leito', align: 'center'}
 ]
 
 const input: Input[] = [
-    {label: 'Numero do bin', type: 'text', name: 'nomeBin', required: true },
-    {label: 'Nome do Medicamento', type: 'text', name: 'nomeMedicamento', required: true },
-    {label: 'quantidade', type: 'number', name: 'quantidade', required: true },
-    {label: 'Coordenadas - x', type: 'text', name: 'x', required: true },
-    {label: 'Coordenadas - y', type: 'text', name: 'y', required: true },
-    {label: 'Coordenadas - z', type: 'text', name: 'z', required: true },
-    
+    {label: 'Nome do paciente', type: 'text', name: 'nome', required: true },
+    {label: 'Número do prontuário', type: 'text', name: 'hc', required: true },
+    {label: 'Leito', type: 'text', name: 'leito', required: true }
 ]
 
-export default function Bins() {
+export default function Paciente() {
 
     const [loading, setLoading] = useState<boolean>(false);
     const [rows, setRows] = useState<Data[]>([]);
@@ -50,31 +44,31 @@ export default function Bins() {
     };
 
     useEffect(() => {
-            setLoading(true); // Inicia o carregamento
-            // Montar a URL com base na ação selecionada
-            const rota = `${apiUrl}/bins` //NECESSARIO INTEGRAR COM O BACK
+            setLoading(true); 
+            const rota = `${apiUrl}/paciente/list` 
     
             fetch(rota, {
                 headers: {
                     "ngrok-skip-browser-warning": "true",
-                    "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+                    "User-Agent": "Custom-User-Agent",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NDA1OTM2MCwianRpIjoiMDhmNDcwZjUtZjMzZi00MjY4LTllYzEtM2JmMjBhMjJkMzFjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NiwibmJmIjoxNzQ0MDU5MzYwLCJjc3JmIjoiZjRiZWYxN2UtNjU5Yy00M2M2LThjYTEtODNiMGJhMjQ0OGM3IiwiZXhwIjoxNzQ0MDYwMjYwLCJyb2xlcyI6ImFkbWluIn0.q44AOktdeTwa02xl6tRW7KqlSizQCI16KupO84o2T7A",
+
                 }
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    // Transformar os dados no formato esperado
                     console.log(data)
-                    const formattedData: Data[] = data.bins.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
+                    const formattedData: Data[] = data.Pacientes.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
                         idEd : item.id,
-                        nomeBin: item.nomeBin,
-                        nomeMedicamento: item.nomeMedicamento,
-                        quantidade: item.quantidade,
-                        coordeandas: item.coordenada_json
+                        nome: item.nome,
+                        hc: item.hc,
+                        leito: item.leito
                     }));
     
                     setRows(formattedData);
                 })
-                .catch((error) => console.error("Erro ao buscar bins:", error))
+                .catch((error) => console.error("Erro ao buscar pacientes:", error))
                 .finally(() => setLoading(false)); // Finaliza o carregamento
         }, [key]);
 
@@ -85,7 +79,7 @@ export default function Bins() {
             } else {
                 const filtered = rows.filter((row) => {
                     return (
-                        row.nomeMedicamento.toLowerCase().includes(searchText.toLowerCase())  
+                        row.nome.toLowerCase().includes(searchText.toLowerCase())  
                     );
                 });
                 setFilteredRows(filtered);
@@ -94,55 +88,43 @@ export default function Bins() {
 
         useEffect(() => {
             setLoading(true);
-            const url = `${apiUrl}/bins/list`;
+            const url = `${apiUrl}/paciente/list`;
+
+            console.log(url)
         
             fetch(url, {
                 headers: {
                     "ngrok-skip-browser-warning": "true",
-                    "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+                    "User-Agent": "Custom-User-Agent",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NDA1OTM2MCwianRpIjoiMDhmNDcwZjUtZjMzZi00MjY4LTllYzEtM2JmMjBhMjJkMzFjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NiwibmJmIjoxNzQ0MDU5MzYwLCJjc3JmIjoiZjRiZWYxN2UtNjU5Yy00M2M2LThjYTEtODNiMGJhMjQ0OGM3IiwiZXhwIjoxNzQ0MDYwMjYwLCJyb2xlcyI6ImFkbWluIn0.q44AOktdeTwa02xl6tRW7KqlSizQCI16KupO84o2T7A"
                 }
             })
                 .then((response) => response.json())
                 .then((data) => {
                     console.log("Dados recebidos:", data);
         
-                    const formattedData: Data[] = data.Bin.map((item: any) => {
-                        let coordenadasFormatadas = "N/A"; // Caso as coordenadas não existam
-        
-                        try {
-                            if (item.coordenadas) {
-                                const coordenadasObj = JSON.parse(item.coordenadas); // Converte a string JSON para objeto
-                                coordenadasFormatadas = `${ coordenadasObj.x } / ${ coordenadasObj.y } / ${ coordenadasObj.z }`;
-                            }
-                        } catch (error) {
-                            console.error("Erro ao converter coordenadas:", error);
-                        }
-        
+                    const formattedData: Data[] = data.Pacientes.map((item: any) => {
                         return {
                             idEd: item.id,
-                            nomeBin: item.nomeBin,
-                            nomeMedicamento: item.nomeMedicamento || "N/A", // Caso não venha do backend
-                            quantidade: item.quantidade || 0, // Caso não venha do backend
-                            coordenadas: coordenadasFormatadas,
+                            nome: item.nome,
+                            hc: item.hc, 
+                            leito: item.leito
                         };
                     });
         
                     console.log("Dados formatados:", formattedData);
                     setRows(formattedData);
                 })
-                .catch((error) => console.error("Erro ao buscar bins:", error))
+                .catch((error) => console.error("Erro ao buscar :", error))
                 .finally(() => setLoading(false));
         }, [key]);        
         
         
     return(<>
         <Header></Header>
-
-        <FormEdit open={openEditar} handleOpen={setOpenEditar} rota={apiUrl + '/bins' + '/editar/' + idEdicao} >
-
-        </FormEdit>
-        <FormModal title="Cadastrar bin" inputs={input} rota={`${apiUrl}/bins/criar`} open={open} handleOpen={setOpen} ></FormModal>
-        <TabelaPharma titulo="Lista de bins" subtitulo="Lista de todos os bins cadastrados" render={key} rows={filteredRows} colunas={colunas} loading={loading} editar ={true} handleEdit={setOpenEditar} handleId={setIdEdicao}>
+        <FormModal title="Cadastrar paciente" inputs={input} rota={`${apiUrl}/paciente/criar`} open={open} handleOpen={setOpen} ></FormModal>
+        <TabelaPharma titulo="Lista de pacientes" subtitulo="Lista de todos os pacientes cadastrados" render={key} rows={filteredRows} colunas={colunas} loading={loading} editar ={true} handleEdit={setOpenEditar} handleId={setIdEdicao}>
             <div className='flex justify-between items-center'>
                 <TextField
                     label="Pesquisar"
