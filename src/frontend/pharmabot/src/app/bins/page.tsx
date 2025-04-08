@@ -58,7 +58,8 @@ export default function Bins() {
             fetch(rota, {
                 headers: {
                     "ngrok-skip-browser-warning": "true",
-                    "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+                    "User-Agent": "Custom-User-Agent", // Alternative way to bypass
+                    "Authorization": `Bearer ${document.cookie.split('token=')[1]}` // Add JWT token
                 }
             })
                 .then((response) => response.json())
@@ -100,7 +101,8 @@ export default function Bins() {
             fetch(url, {
                 headers: {
                     "ngrok-skip-browser-warning": "true",
-                    "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+                    "User-Agent": "Custom-User-Agent", // Alternative way to bypass
+                    "Authorization": `Bearer ${document.cookie.split('token=')[1]}` // Add JWT token
                 }
             })
                 .then((response) => response.json())

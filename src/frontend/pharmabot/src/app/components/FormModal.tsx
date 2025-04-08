@@ -58,6 +58,7 @@ const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, val
         headers: {
           "ngrok-skip-browser-warning": "true",
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${document.cookie.split('token=')[1]}`, // Add JWT token
           "User-Agent": "Custom-User-Agent" // Alternative way to bypass
         },
         body: JSON.stringify(data),
