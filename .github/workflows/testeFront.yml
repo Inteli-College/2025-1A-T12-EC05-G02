@@ -1,0 +1,33 @@
+name: Test Front Build
+
+on:
+  pull_request:
+    branches: [ "develop" ]
+    
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+            path: src/frontend/pharmabot/node_modules
+            key: ${{ runner.os }}-node-modules-${{ hashFiles('src/frontend/pharmabot/package-lock.json') }}
+            restore-keys: ${{ runner.os }}-node-modules-
+
+      - name: Install Dependencies
+        working-directory: src/frontend/pharmabot
+        run: npm i
+
+      - name: Build Front
+        working-directory: src/frontend/pharmabot
+        run: npm run build
+

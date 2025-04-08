@@ -4,13 +4,13 @@ import bcrypt
 from sqlalchemy.exc import IntegrityError
 from models.usuario import Usuario
 from models.log_sistema import LogSistema
-from sqlalchemy.orm import joinedload
 from datetime import datetime
 from extensions import db
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, unset_jwt_cookies
 from decorators.route_auth import role_required
 from sqlalchemy import desc
+from datetime import timedelta
 
 
 # Definindo o Blueprint
@@ -36,6 +36,8 @@ def registrar_log(acao, detalhes):
 
 # Rota para cadastrar um novo usuário
 @usersFlask.route('/signup', methods=["POST"])
+@jwt_required()
+@role_required('admin')
 def admin_sign():
     user_data = request.get_json()
     name = user_data.get("nome")
@@ -71,6 +73,8 @@ def admin_sign():
 
 # Rota para listar todos os usuários cadastrados
 @usersFlask.route('/list', methods=["GET"])
+@jwt_required()
+@role_required('admin')
 def admin_list():
     session = db.session
     try:
@@ -84,6 +88,8 @@ def admin_list():
 
 # Rota para atualizar informações do usuário
 @usersFlask.route('/update', methods=["PUT"])
+@jwt_required()
+@role_required('admin')
 def admin_update():
     user_data = request.get_json()
     email = user_data.get("email")
@@ -118,6 +124,8 @@ def admin_update():
 
 # Rota para deletar um usuário
 @usersFlask.route('/delete', methods=["DELETE"])
+@jwt_required()
+@role_required('admin')
 def admin_delete():
     user_data = request.get_json()
     email = user_data.get("email")
@@ -139,7 +147,9 @@ def admin_delete():
 
     return {"Mensagem": "Usuário deletado com sucesso!"}, 200
 
-@usersFlask.route('/logs', methods=["GET"]) 
+@usersFlask.route('/logs', methods=["GET"], endpoint='user_logs')
+@jwt_required()
+@role_required('admin')
 def admin_logs():
     session = db.session
     try:
@@ -212,7 +222,11 @@ def login():
             return response, 401
         
         additional_claims = {"roles": user.role}
-        access_token = create_access_token(identity=user.id, additional_claims=additional_claims)
+        access_token = create_access_token(
+            identity=user.id,
+            expires_delta=timedelta(hours=24),
+            additional_claims=additional_claims
+        )
         
         message = jsonify({
             'success': True,

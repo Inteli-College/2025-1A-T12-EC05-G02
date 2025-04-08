@@ -4,3 +4,4 @@ __pycache__
 src/backend/.env
 node_modules
 __pycache__
+.DS_Store
