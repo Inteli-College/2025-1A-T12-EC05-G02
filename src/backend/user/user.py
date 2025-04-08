@@ -10,6 +10,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, unset_jwt_cookies
 from decorators.route_auth import role_required
 from sqlalchemy import desc
+from datetime import timedelta
 
 
 # Definindo o Blueprint
@@ -221,7 +222,11 @@ def login():
             return response, 401
         
         additional_claims = {"roles": user.role}
-        access_token = create_access_token(identity=user.id, additional_claims=additional_claims)
+        access_token = create_access_token(
+            identity=user.id,
+            expires_delta=timedelta(hours=24),
+            additional_claims=additional_claims
+        )
         
         message = jsonify({
             'success': True,
