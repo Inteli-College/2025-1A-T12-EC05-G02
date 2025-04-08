@@ -69,7 +69,9 @@ export default function Login() {
         setLoginError('Erro ao fazer login. Tente novamente.');
       } else {
         // Login bem-sucedido
-        router.push('/home');
+        const data = await response.json();
+        document.cookie = `token=${data.access_token}; path=/;`; // Store token in cookies
+        router.replace('/home'); // Use replace instead of push
       }
 
     } catch (error) {

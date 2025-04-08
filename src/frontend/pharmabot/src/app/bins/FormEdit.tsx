@@ -28,7 +28,8 @@ const FormEdit: React.FC<Props> = ({ rota, open, handleOpen }) => {
       const response = await fetch(rota.replace('editar', 'list'), {
         headers: {
           "ngrok-skip-browser-warning": "true",
-          "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+          "User-Agent": "Custom-User-Agent", // Alternative way to bypass
+          "Authorization": `Bearer ${document.cookie.split('token=')[1]}`
         },
       });
       if (!response.ok) {

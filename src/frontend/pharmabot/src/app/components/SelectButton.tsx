@@ -24,6 +24,7 @@ const SelectButton: React.FC<Props> = ({ atributo, label, onSelect, render, rota
     fetch(rota, {
       headers: {
       "ngrok-skip-browser-warning": "true",
+      "Authorization": `Bearer ${document.cookie.split('token=')[1]}`,
       "User-Agent": "Custom-User-Agent" // Alternative way to bypass
       }
     })

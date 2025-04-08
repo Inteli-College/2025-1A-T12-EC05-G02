@@ -90,9 +90,10 @@ export default function Home() {
 
     fetch(url, {
       headers: {
-      "ngrok-skip-browser-warning": "true",
-      "User-Agent": "Custom-User-Agent", // Alternative way to bypass
-      },
+        "ngrok-skip-browser-warning": "true",
+        "User-Agent": "Custom-User-Agent", // Alternative way to bypass
+        "Authorization": `Bearer ${document.cookie.split('token=')[1]}` // Add JWT token
+      }
     })
       .then((response) => response.json())
       .then((data) => {
@@ -149,6 +150,7 @@ export default function Home() {
       headers: {
       "ngrok-skip-browser-warning": "true",
       "User-Agent": "Custom-User-Agent", // Alternative way to bypass
+      "Authorization": `Bearer ${document.cookie.split('token=')[1]}`
       },
     })
       .then((response) => response.json())
