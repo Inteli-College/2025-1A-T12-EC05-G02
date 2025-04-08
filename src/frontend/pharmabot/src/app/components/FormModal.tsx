@@ -55,6 +55,8 @@ const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, val
       const response = await fetch(rota, {
         method: "POST",
         headers: {
+          
+          "Content-Type": "application/json",
           "ngrok-skip-browser-warning": "true",
           "User-Agent": "Custom-User-Agent" // Alternative way to bypass
         },
