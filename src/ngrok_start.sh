@@ -32,6 +32,7 @@ echo "API_URL='$NGROK_URL'" > /home/ec05-g2/2025-1A-T12-EC05-G02/src/robot/.env
 
 # Builda o frontend
 cd /home/ec05-g2/2025-1A-T12-EC05-G02/src/frontend/pharmabot
+rm -rf .next
 npm run build
 sleep 2
 
