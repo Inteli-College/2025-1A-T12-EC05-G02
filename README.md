@@ -1,5 +1,40 @@
 # 2025-1A-T12-EC05-G02
 
+## Inicialização da documentação no docsaurus
+Docusaurus é um gerador de sites estáticos criado pelo Facebook para documentação técnica. Permite publicar conteúdo facilmente, com navegação clara e responsiva.Sendo assim, para inicializa-lo e ter acesso a documentação *Pharmatech*.
+
+Siga os passos abaixo para inicializar o servidor local da documentação do projeto utilizando Docusaurus:
+
+# Pré-requisitos
+* Node.js (versão recomendada: 18.x ou superior)
+* npm ou Yarn (gerenciador de pacotes)
+
+Verifique se estão instalados corretamente executando:
+```python
+node -v
+npm -v # ou yarn -v
+
+```
+# Instalação das Dependências
+No terminal, navegue até a pasta raiz da documentação e instale as dependências com o comando abaixo:
+
+```python
+npm install
+
+```
+
+# Executando a Documentação Localmente
+Para executar o servidor local da documentação, utilize o comando:
+
+```
+npm run start
+```
+
+# cessando a Documentação
+Após inicializado, acesse a documentação abrindo seu navegador em:
+```
+http://localhost:3000
+``
 ## Guia da inicialização da CLI
 
 &emsp; A sigla em inglês *Command-Line Interface (CLI)*, significa Interfase De Linha De Comando. Nesse sentido, ela representa um programa funcionando através de linhas de comando, que aceita entrada de texto para executar funçãoes da aplicação, neste caso, os comandos para o funcionando do braço robótico.
