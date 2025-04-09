@@ -7,7 +7,7 @@ export function middleware(req: NextRequest) {
   // Verifica se o token existe
   if (!token) {
     const url = req.nextUrl.clone();
-    url.pathname = "/"; // Redireciona para a página de login
+    url.pathname = "/login"; // Redireciona para a página de login
     return NextResponse.redirect(url);
   }
 
@@ -19,3 +19,13 @@ export function middleware(req: NextRequest) {
 export const config = {
     matcher: ["/((?!login).*)"], // Protege todas as rotas, exceto a rota de login
 };
+
+// Handle ChunkLoadError globally
+if (typeof window !== "undefined") {
+  window.addEventListener("error", (event) => {
+    if (event.message && event.message.includes("ChunkLoadError")) {
+      console.error("ChunkLoadError detected:", event.message);
+      window.location.reload(); // Reload the page to attempt recovery
+    }
+  });
+}
