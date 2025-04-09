@@ -8,7 +8,7 @@ description: Análise Financeira do Protótipo
 
 ## Protótipo
 
-Essa seção do documento apresenta a análise financeira detalhada referente ao desenvolvimento do **protótipo** de um sistema automatizado com braço robótico, baseado no **Dobot**, que realiza a **organização e separação de medicamentos**. O objetivo do projeto é automatizar processos logísticos em ambientes como farmácias ou hospitais, mais especificamente no Hospital de Clínica da Unicamp, utilizando tecnologias acessíveis e eficientes.
+&emsp;Essa seção do documento apresenta a análise financeira detalhada referente ao desenvolvimento do **protótipo** de um sistema automatizado com braço robótico, baseado no **Dobot**, que realiza a **organização e separação de medicamentos**. O objetivo do projeto é automatizar processos logísticos em ambientes como farmácias ou hospitais, mais especificamente no Hospital de Clínica da Unicamp, utilizando tecnologias acessíveis e eficientes.
 
 * * *
 
@@ -24,6 +24,7 @@ Essa seção do documento apresenta a análise financeira detalhada referente ao
       8 funcionários × R$7.500 × 2,5 meses = R$150.000
 
 ### 2. **Equipamentos e Componentes**
+<p align="center"><strong>Tabela 1 - Custos dos Equipamentos e Componentes</strong></p>
 
 | Item | Descrição | Custo |
 | --- | --- | --- |
@@ -31,6 +32,8 @@ Essa seção do documento apresenta a análise financeira detalhada referente ao
 | **Raspberry Pi 5** | Unidade de controle do sistema, 16GB RAM | R$1.600 |
 | **Sensores** | Inclui câmera para leitura de QR Code e sensores de identificação de remédios | R$200 |
 | **Outros gastos** | Impressão 3d de bins, etiquetas e testes diversos | R$50 |
+
+<p align="center">Fonte: Autoria Própria (2025)</p>
 
 #### Comentários sobre os valores
 
@@ -41,15 +44,47 @@ Essa seção do documento apresenta a análise financeira detalhada referente ao
 * * *
 
 ##  Resumo dos Custos
+<p align="center"><strong>Tabela 2 - Resumo dos Custos </strong></p>
 
-| Categoria | Valor |
-| --- | --- |
-| **Mão de Obra** | R$150.000 |
-| **Equipamentos** | R$12.000 |
-| **Raspberry Pi 5** | R$1.600 |
-| **Sensores** | R$200 |
-| **Outros Gastos** | R$50 |
-| **Total Investido** | **R$163.850** |
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Categoria</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Mão de Obra</strong></td>
+        <td>R$150.000</td>
+      </tr>
+      <tr>
+        <td><strong>Equipamentos</strong></td>
+        <td>R$12.000</td>
+      </tr>
+      <tr>
+        <td><strong>Raspberry Pi 5</strong></td>
+        <td>R$1.600</td>
+      </tr>
+      <tr>
+        <td><strong>Sensores</strong></td>
+        <td>R$200</td>
+      </tr>
+      <tr>
+        <td><strong>Outros Gastos</strong></td>
+        <td>R$50</td>
+      </tr>
+      <tr>
+        <td><strong>Total Investido</strong></td>
+        <td><strong>R$163.850</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<p align="center">Fonte: Autoria Própria (2025)</p>
 
 > 
 >  **Observação:** O valor foi arredondado para R$163.800 na estimativa global, considerando pequenas variações e arredondamentos para viabilidade de apresentação.
@@ -69,5 +104,5 @@ O protótipo final desenvolvido possui as seguintes características:
 
 ## Conclusão
 
-O investimento de aproximadamente **R$163.800** permitiria o desenvolvimento de um protótipo funcional e escalável para automação da logística farmacêutica. Com base nesses custos, é possível projetar uma estimativa de produção em escala, buscando redução de custos por unidade e incremento de funcionalidades para o produto final.
+&emsp;O investimento de aproximadamente **R$163.800** permitiria o desenvolvimento de um protótipo funcional e escalável para automação da logística farmacêutica. Com base nesses custos, é possível projetar uma estimativa de produção em escala, buscando redução de custos por unidade e incremento de funcionalidades para o produto final.
 * * *
