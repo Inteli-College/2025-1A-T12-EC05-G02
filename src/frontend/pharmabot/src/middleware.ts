@@ -7,7 +7,7 @@ export function middleware(req: NextRequest) {
   // Verifica se o token existe
   if (!token) {
     const url = req.nextUrl.clone();
-    url.pathname = "/login"; // Redireciona para a página de login
+    url.pathname = "/"; // Redireciona para a página de login
     return NextResponse.redirect(url);
   }
 
