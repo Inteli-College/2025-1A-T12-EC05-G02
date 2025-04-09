@@ -38,7 +38,7 @@ Para executar o servidor local da documentação, utilize o comando:
 npm run start
 ```
 
-# cessando a Documentação
+# Acessando a Documentação
 Após inicializado, acesse a documentação abrindo seu navegador em:
 ```
 http://localhost:3000
