@@ -8,9 +8,6 @@
 
 ##  PHARMATECH
 
-
-## 🔧 Como executar o código
-
 ## Inicialização da documentação no docsaurus
 Docusaurus é um gerador de sites estáticos criado pelo Facebook para documentação técnica. Permite publicar conteúdo facilmente, com navegação clara e responsiva.Sendo assim, para inicializa-lo e ter acesso a documentação *Pharmatech*.
 
