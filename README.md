@@ -42,7 +42,8 @@ npm run start
 Após inicializado, acesse a documentação abrindo seu navegador em:
 ```
 http://localhost:3000
-``
+```
+
 ## Guia da inicialização da CLI
 
 &emsp; A sigla em inglês *Command-Line Interface (CLI)*, significa Interfase De Linha De Comando. Nesse sentido, ela representa um programa funcionando através de linhas de comando, que aceita entrada de texto para executar funçãoes da aplicação, neste caso, os comandos para o funcionando do braço robótico.
