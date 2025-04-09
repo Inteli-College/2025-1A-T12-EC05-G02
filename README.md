@@ -1,5 +1,16 @@
 # 2025-1A-T12-EC05-G02
 
+# Inteli - Instituto de Tecnologia e Liderança
+
+<p align="center">
+<a href= "https://www.inteli.edu.br/"><img src="assets/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0" width=40% height=40%></a>
+</p>
+
+##  PHARMATECH
+
+
+## 🔧 Como executar o código
+
 ## Inicialização da documentação no docsaurus
 Docusaurus é um gerador de sites estáticos criado pelo Facebook para documentação técnica. Permite publicar conteúdo facilmente, com navegação clara e responsiva.Sendo assim, para inicializa-lo e ter acesso a documentação *Pharmatech*.
 
