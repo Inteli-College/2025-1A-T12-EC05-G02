@@ -1,7 +1,6 @@
 import os
 import logging
 from flask import Flask
-from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
 from user.user import usersFlask
@@ -27,7 +26,6 @@ app.config['JWT_VERIFY_SUB'] = False
 app.config['DEBUG'] = True
 app.config['LOGGING'] = 'DEBUG'
 
-CORS(app)  # Permite todas as origens (para desenvolvimento)
 import extensions as ext
 ext.db.init_app(app)
 ext.socketio.init_app(app, cors_allowed_origins="*")
