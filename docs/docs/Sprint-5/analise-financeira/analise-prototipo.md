@@ -17,11 +17,11 @@ Essa seção do documento apresenta a análise financeira detalhada referente ao
 ### 1. **Mão de Obra**
 
 - **Quantidade de funcionários:** 8
-- **Custo mensal por funcionário:** R$6.000
+- **Custo mensal por funcionário:** R$7.500
 - **Duração do projeto:** 2,5 meses
 - **Custo total:**
 
-      8 funcionários × R$6.000 × 2,5 meses = R$120.000
+      8 funcionários × R$7.500 × 2,5 meses = R$150.000
 
 ### 2. **Equipamentos e Componentes**
 
@@ -44,15 +44,15 @@ Essa seção do documento apresenta a análise financeira detalhada referente ao
 
 | Categoria | Valor |
 | --- | --- |
-| **Mão de Obra** | R$120.000 |
+| **Mão de Obra** | R$150.000 |
 | **Equipamentos** | R$12.000 |
 | **Raspberry Pi 5** | R$1.600 |
 | **Sensores** | R$200 |
 | **Outros Gastos** | R$50 |
-| **🔹 Total Investido** | **R$133.850** |
+| **Total Investido** | **R$163.850** |
 
 > 
->  **Observação:** O valor foi arredondado para R$133.800 na estimativa global, considerando pequenas variações e arredondamentos para viabilidade de apresentação.
+>  **Observação:** O valor foi arredondado para R$163.800 na estimativa global, considerando pequenas variações e arredondamentos para viabilidade de apresentação.
 
 * * *
 
@@ -69,5 +69,5 @@ O protótipo final desenvolvido possui as seguintes características:
 
 ## Conclusão
 
-O investimento de aproximadamente **R$133.800** permitiria o desenvolvimento de um protótipo funcional e escalável para automação da logística farmacêutica. Com base nesses custos, é possível projetar uma estimativa de produção em escala, buscando redução de custos por unidade e incremento de funcionalidades para o produto final.
+O investimento de aproximadamente **R$163.800** permitiria o desenvolvimento de um protótipo funcional e escalável para automação da logística farmacêutica. Com base nesses custos, é possível projetar uma estimativa de produção em escala, buscando redução de custos por unidade e incremento de funcionalidades para o produto final.
 * * *
