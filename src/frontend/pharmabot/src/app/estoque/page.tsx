@@ -45,11 +45,7 @@ export default function Estoque() {
         setSearchText(event.target.value);
     };
 
-    // Buscar o token do cookie com js-cookie
-    useEffect(() => {
-        const cookieToken = Cookies.get('token');
-        setToken(cookieToken ?? null);
-    }, []);
+   
 
     // Buscar os dados do estoque
     useEffect(() => {
@@ -60,7 +56,7 @@ export default function Estoque() {
             headers: {
                 "ngrok-skip-browser-warning": "true",
                 "User-Agent": "Custom-User-Agent",
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${document.cookie.split('token=')[1]}`
             }
         })
             .then((response) => response.json())
