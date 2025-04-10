@@ -8,37 +8,35 @@ import { TextField, Stack, Button } from "@mui/material";
 import { Column } from "../components/table";
 import FormRegistro from "./FormRegistro";
 import FormEditar from "./FormEditar";
+import Cookies from "js-cookie";
 
 const colunas: Column[] = [
     { id: 'item', label: 'Item', minWidth: 150 },
     { id: 'codigoIdentificacao', label: 'Código de Identificação', align: 'center', minWidth: 170 },
     { id: 'localizacao', label: 'Localização', minWidth: 200 },
     { id: 'quantidade', label: 'Quantidade', minWidth: 170 },
-    { id: 'ultimaAtualizacao', label: 'Última Atualização', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
-]
-
-function getCookie(name: string): string | null {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop()!.split(';').shift()!;
-    return null;
-  }
+    {
+        id: 'ultimaAtualizacao',
+        label: 'Última Atualização',
+        minWidth: 150,
+        format: (value: Date) => value.toLocaleString('pt-BR')
+    },
+];
 
 export default function Estoque() {
-    const [loading, setLoading] = useState<boolean>(false); // Novo estado para controle de carregamento
+    const [loading, setLoading] = useState<boolean>(false);
     const [rows, setRows] = useState<Data[]>([]);
-    const [searchText, setSearchText] = useState<string>(''); // Estado para o texto de pesquisa
-    const [filteredRows, setFilteredRows] = useState<Data[]>([]); // Estado para os dados filtrados
+    const [searchText, setSearchText] = useState<string>('');
+    const [filteredRows, setFilteredRows] = useState<Data[]>([]);
     const [key, setKey] = useState(0);
     const [open, setOpen] = useState(false);
     const [openEditar, setOpenEditar] = useState(false);
-    const [idEdicao, setIdEdicao] = useState<any>('')
+    const [idEdicao, setIdEdicao] = useState<any>('');
+    const [token, setToken] = useState<string | null>(null);
 
-    const token = getCookie("token");
+    const apiUrl = process.env.API_URL;
+    const rota = `${apiUrl}/estoque/`;
 
-
-
-    //função para atualizar a página com base no botão atualizar
     const reRender = () => {
         setKey(prevKey => prevKey + 1);
     };
@@ -47,76 +45,89 @@ export default function Estoque() {
         setSearchText(event.target.value);
     };
 
-    const apiUrl = process.env.API_URL;
-    const rota = `${apiUrl}/estoque/`
-
-
+    // Buscar o token do cookie com js-cookie
     useEffect(() => {
-        setLoading(true); // Inicia o carregamento
-        // Montar a URL com base na ação selecionada
-        const url = rota //NECESSARIO INTEGRAR COM O BACK
+        const cookieToken = Cookies.get('token');
+        setToken(cookieToken ?? null);
+    }, []);
 
-        fetch(url, {
+    // Buscar os dados do estoque
+    useEffect(() => {
+        if (!token) return;
+
+        setLoading(true);
+        fetch(rota, {
             headers: {
-              "ngrok-skip-browser-warning": "true",
-              "User-Agent": "Custom-User-Agent", // Alternative way to bypass
-              "Authorization": `Bearer ${token}` // Add JWT token
+                "ngrok-skip-browser-warning": "true",
+                "User-Agent": "Custom-User-Agent",
+                "Authorization": `Bearer ${token}`
             }
         })
             .then((response) => response.json())
             .then((data) => {
-            // Transformar os dados no formato esperado
-            const formattedData: Data[] = data.estoque.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
-                item: item.nome_medicamento.toString(),
-                codigoIdentificacao: item.medicamento_id,
-                localizacao: item.bin_localizacao,
-                quantidade: item.quantidade.toString(),
-                ultimaAtualizacao: new Date(item.ultima_atualizacao).toLocaleDateString("pt-br"), 
-                idEd: item.id
-            }));
+                const formattedData: Data[] = data.estoque.map((item: any) => ({
+                    item: item.nome_medicamento.toString(),
+                    codigoIdentificacao: item.medicamento_id,
+                    localizacao: item.bin_localizacao,
+                    quantidade: item.quantidade.toString(),
+                    ultimaAtualizacao: new Date(item.ultima_atualizacao).toLocaleDateString("pt-br"),
+                    idEd: item.id
+                }));
 
-            setRows(formattedData);
+                setRows(formattedData);
             })
             .catch((error) => console.error("Erro ao buscar estoque:", error))
-            .finally(() => setLoading(false)); // Finaliza o carregamento
-    }, [key]);  // O efeito será executado sempre que `selectedAcao` mudar
+            .finally(() => setLoading(false));
+    }, [key, token]);
 
-    // Filtra os dados com base no texto de pesquisa
+    // Filtro da pesquisa
     useEffect(() => {
         if (searchText === '') {
-            setFilteredRows(rows); // Se não houver pesquisa, exibe todos os dados
+            setFilteredRows(rows);
         } else {
-            const filtered = rows.filter((row) => {
-                return (
-                    row.item.toLowerCase().includes(searchText.toLowerCase()) ||
-                    String(row.codigoIdentificacao).toLowerCase().includes(searchText.toLowerCase()) ||
-                    row.localizacao.toLowerCase().includes(searchText.toLowerCase())
-                );
-            });
+            const filtered = rows.filter((row) =>
+                row.item.toLowerCase().includes(searchText.toLowerCase()) ||
+                String(row.codigoIdentificacao).toLowerCase().includes(searchText.toLowerCase()) ||
+                row.localizacao.toLowerCase().includes(searchText.toLowerCase())
+            );
             setFilteredRows(filtered);
         }
-    }, [searchText, rows]); // Atualiza sempre que `searchText` ou `rows` mudar
+    }, [searchText, rows]);
 
-
-    return (<>
-        <Header></Header>
-        <FormEditar open={openEditar} handleOpen={setOpenEditar} rota={rota + '/criar' + idEdicao}></FormEditar>
-        <FormRegistro open={open} handleOpen={setOpen} />
-        <TabelaPharma loading={loading} titulo="Estoque" subtitulo="Produtos da farmácia e suas respectivas quantidades" render={key} rows={filteredRows} colunas={colunas} handleEdit={setOpenEditar} handleId={setIdEdicao} editar={false}>
-            <div className='flex justify-between items-center'>
-                <TextField
-                    label="Pesquisar"
-                    size='small'
-                    type="search"
-                    value={searchText}
-                    onChange={handleSearchChange}
-                />
-                <Stack id="botoes" spacing={1} direction="row">
-                    <Button variant="outlined" color="black" onClick={reRender}>Atualizar</Button>
-                    <Button variant="contained" onClick={() => setOpen(true)}>Criar Item</Button>
-                </Stack>
-            </div>
-        </TabelaPharma>
-
-    </>)
+    return (
+        <>
+            <Header />
+            <FormEditar
+                open={openEditar}
+                handleOpen={setOpenEditar}
+                rota={rota + '/criar' + idEdicao}
+            />
+            <FormRegistro open={open} handleOpen={setOpen} />
+            <TabelaPharma
+                loading={loading}
+                titulo="Estoque"
+                subtitulo="Produtos da farmácia e suas respectivas quantidades"
+                render={key}
+                rows={filteredRows}
+                colunas={colunas}
+                handleEdit={setOpenEditar}
+                handleId={setIdEdicao}
+                editar={false}
+            >
+                <div className='flex justify-between items-center'>
+                    <TextField
+                        label="Pesquisar"
+                        size='small'
+                        type="search"
+                        value={searchText}
+                        onChange={handleSearchChange}
+                    />
+                    <Stack id="botoes" spacing={1} direction="row">
+                        <Button variant="outlined" color="black" onClick={reRender}>Atualizar</Button>
+                        <Button variant="contained" onClick={() => setOpen(true)}>Criar Item</Button>
+                    </Stack>
+                </div>
+            </TabelaPharma>
+        </>
+    );
 }
