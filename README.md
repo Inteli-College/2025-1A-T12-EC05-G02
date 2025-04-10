@@ -13,56 +13,56 @@
 <tr>
 <td align="center">
 <a href="https://www.linkedin.com/in/julia-lika-ishikawa/">
-<img src="xxxx" style="border-radius: 10%; width: 200px;" alt="Júlia Lika Ishikawa"/><br>
+<img src="docs\static\img\integrantes\Júlia Lika Ishikawa.jpg" style="border-radius: 10%; width: 200px;" alt="Júlia Lika Ishikawa"/><br>
 <sub><b>Júlia Lika Ishikawa</b></sub>
 </a>
 </td>
 
 <td align="center">
 <a href="https://www.linkedin.com/in/laura-rodrigues31/">
-<img src="xxx" style="border-radius: 10%; width: 200px;" alt="Laura Rodrigues"/><br>
+<img src="docs\static\img\integrantes\Laura de Araujo Rodrigues (4).jpg" style="border-radius: 10%; width: 200px;" alt="Laura Rodrigues"/><br>
 <sub><b>Laura Rodrigues</b></sub>
 </a>
 </td>
 
 <td align="center">
 <a href="https://www.linkedin.com/in/iisabelledantas/">
-<img src="xxxx" style="border-radius: 10%; width: 200px;" alt="Isabelle Dantas"/><br>
+<img src="docs\static\img\integrantes\Isabelle_Messias_Dantas_Pereira.jpg" style="border-radius: 10%; width: 200px;" alt="Isabelle Dantas"/><br>
 <sub><b>Isabelle Dantas</b></sub>
 </a>
 </td>
 
 <td align="center">
 <a href="https://www.linkedin.com/in/heitorfariacandido/">
-<img src="xxxxx" style="border-radius: 10%; width: 200px;" alt="Heitor Candido"/><br>
+<img src="docs\static\img\integrantes\Heitor_de_Faria_Candido.jpg" style="border-radius: 10%; width: 200px;" alt="Heitor Candido"/><br>
 <sub><b>Heitor Candido</b></sub>
 </a>
 </td>
 
 <td align="center">
 <a href="https://www.linkedin.com/in/gustavo-dacosta/">
-<img src="xxxxxxxxx" style="border-radius: 10%; width: 200px;" alt="Gustavo Gonçalves da Costa"/><br>
+<img src="docs\static\img\integrantes\Gustavo Gonçalves da Costa.jpg" style="border-radius: 10%; width: 200px;" alt="Gustavo Gonçalves da Costa"/><br>
 <sub><b>Gustavo Gonçalves da Costa</b></sub>
 </a>
 </td>
 
 <td align="center">
 <a href="https://www.linkedin.com/in/felipefmsimao/">
-<img src="xxxxxxx" style="border-radius: 10%; width: 200px;" alt="Felipe Simão"/><br>
+<img src="docs\static\img\integrantes\Felipe_Freire_Machado_Simão.jpg" style="border-radius: 10%; width: 200px;" alt="Felipe Simão"/><br>
 <sub><b>Felipe Simão</b></sub>
 </a>
 </td>
 
 <td align="center">
 <a href="https://www.linkedin.com/in/matheusjorgerosa/">
-<img src="media/NDCers/PabloNDC.png" style="border-radius: 10%; width: 200px;" alt="Matheus Jorge"/><br>
+<img src="docs\static\img\integrantes\Matheus Jorge Rosa.jpg" style="border-radius: 10%; width: 200px;" alt="Matheus Jorge"/><br>
 <sub><b>Matheus Jorge</b></sub>
 </a>
 </td>
 
 <td align="center">
 <a href="https://www.linkedin.com/in/lucas-nepomuceno-ismart/">
-<img src="xxxx" style="border-radius: 10%; width: 200px;" alt="Lucas Santos"/><br>
+<img src="docs\static\img\integrantes\Lucas Nepomuceno dos Santos.jpg" style="border-radius: 10%; width: 200px;" alt="Lucas Santos"/><br>
 <sub><b>Lucas Santos</b></sub>
 </a>
 </td>
