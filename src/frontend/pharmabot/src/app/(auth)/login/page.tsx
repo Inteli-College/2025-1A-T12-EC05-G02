@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from '../login.module.css';
 import { Modal, Box, Typography, Button, CircularProgress } from "@mui/material";
@@ -15,8 +15,14 @@ export default function Login() {
   const [loginError, setLoginError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const apiUrl = process.env.API_URL;
+  const apiUrl = process.env.API_URL; // Ensure fallback for apiUrl
   console.log(apiUrl);
+
+  useEffect(() => {
+    if (!apiUrl) {
+      console.error('API URL is not defined. Please check your environment variables.');
+    }
+  }, [apiUrl]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -51,7 +57,7 @@ export default function Login() {
       };
 
       // Fazendo a requisição para o backend
-      const response = await fetch(apiUrl + '/user/login', {
+      const response = await fetch(`${apiUrl}/user/login`, {
         method: 'POST',
         headers: {
           "ngrok-skip-browser-warning": "true",
@@ -75,7 +81,7 @@ export default function Login() {
       }
 
     } catch (error) {
-      // Erro de rede ou outro erro não esperado
+      console.error('Error during login:', error); // Log error for debugging
       setLoginError('Erro ao conectar com o servidor');
     } finally {
       setIsLoading(false);
