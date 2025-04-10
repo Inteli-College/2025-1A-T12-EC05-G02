@@ -71,7 +71,7 @@ def processar_qrcode(dados):
         
         medicamentoVencido = info["validade"] <= data_atual
         if medicamentoVencido:
-            message = f"Medicamento {info["medicamento"]}  FORA DA VALIDADE | Data de validade: {info["validade"]} | Lote: {info["lote"]}"
+            message = f"Medicamento {info['medicamento']}  FORA DA VALIDADE | Data de validade: {info['validade']} | Lote: {info['lote']}"
             console.print(message)
             logger(message)
 
