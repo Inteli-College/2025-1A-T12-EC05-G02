@@ -5,6 +5,7 @@ from models.log_sistema import LogSistema
 from models.pedido import Pedido
 from models.pedido_medicamento import PedidoMedicamento
 import time
+from flask_jwt_extended import jwt_required
 
 robotFlask = Blueprint('robot', __name__, url_prefix='/robot')
 
@@ -174,6 +175,7 @@ def checkStatusRobot():
  
 # Rota para puxar as coordenadas do robô para a página de compartimentos
 @robotFlask.route('/getRobotCoordinates', methods=["GET"])
+@jwt_required()
 def get_robot_coordinates():
 	global x, y, z  # Usar variáveis globais
 	return {"x": x, "y": y, "z": z}  # Retorna as coordenadas do robô

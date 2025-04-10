@@ -54,35 +54,34 @@ export default function Bins() {
 	};
 
 	useEffect(() => {
-        	setLoading(true); // Inicia o carregamento
-        	// Montar a URL com base na ação selecionada
-        	const rota = `${apiUrl}/bins`
-			fetch(`${apiUrl}/getRobotCoordinates`, {
-				headers: {
-				  "ngrok-skip-browser-warning": "true",
-				  "User-Agent": "Custom-User-Agent", // Alternative way to bypass
-				  "Authorization": `Bearer ${document.cookie.split('token=')[1]}` // Add JWT token
-				}
-			  })
-            fetch(rota)
-                .then((response) => response.json())
-                .then((data) => {
-                    // Transformar os dados no formato esperado
-                    console.log(data)
-                    const formattedData: Data[] = data.bins.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
-                        idEd : item.id,
-                        nomeBin: item.nomeBin,
-                        nomeMedicamento: item.nomeMedicamento,
-                        quantidade: item.quantidade,
-                        coordeandas: item.coordenada_json
-                    }));
-    
-                	setRows(formattedData);
-            	})
-            	.catch((error) => console.error("Erro ao buscar bins:", error))
-            	.finally(() => setLoading(false)); // Finaliza o carregamento
-    	}, [key]);
+		setLoading(true); // Inicia o carregamento
+		// Montar a URL com base na ação selecionada
+		const rota = `${apiUrl}/bins` //NECESSARIO INTEGRAR COM O BACK
 
+		fetch(rota, {
+			headers: {
+				"ngrok-skip-browser-warning": "true",
+				"User-Agent": "Custom-User-Agent", // Alternative way to bypass
+				"Authorization": `Bearer ${document.cookie.split('token=')[1]}` // Add JWT token
+			}
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				// Transformar os dados no formato esperado
+				console.log(data)
+				const formattedData: Data[] = data.bins.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
+					idEd : item.id,
+					nomeBin: item.nomeBin,
+					nomeMedicamento: item.nomeMedicamento,
+					quantidade: item.quantidade,
+					coordeandas: item.coordenada_json
+				}));
+
+				setRows(formattedData);
+			})
+			.catch((error) => console.error("Erro ao buscar bins:", error))
+			.finally(() => setLoading(false)); // Finaliza o carregamento
+	}, [key]);
 
     	useEffect(() => {
         	if (searchText === '') {
@@ -155,7 +154,13 @@ export default function Bins() {
                     	variant="outlined"
                     	onClick={async () => {
                         	try {
-                            	const response = await fetch(`http://127.0.0.1:5555/robot/getRobotCoordinates`);
+                            	const response = await fetch(`${apiUrl}/getRobotCoordinates`, {
+									headers: {
+										"ngrok-skip-browser-warning": "true",
+										"User-Agent": "Custom-User-Agent", // Alternative way to bypass
+										"Authorization": `Bearer ${document.cookie.split('token=')[1]}` // Add JWT token
+									}})
+									
                             	const data = await response.json();
                             	setModalContent(`Coordenadas do robô: \n \n X = ${data.x} \n Y = ${data.y} \n Z = ${data.z} \n \n`);
                             	setModalOpen(true);
