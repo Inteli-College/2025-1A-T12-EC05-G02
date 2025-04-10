@@ -15,7 +15,7 @@ export default function Login() {
   const [loginError, setLoginError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'; // Ensure fallback for apiUrl
+  const apiUrl = process.env.API_URL; // Ensure fallback for apiUrl
   console.log(apiUrl);
 
   useEffect(() => {
