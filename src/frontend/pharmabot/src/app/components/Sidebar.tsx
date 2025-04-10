@@ -36,10 +36,10 @@ const Sidebar = () => {
   const menuItems = [
     { text: 'Home', route: '/home' },
     { text: 'Lista de Bins', route: '/bins' },
-    { text: 'Histórico De Logs', route: '/historico-logs' },
+    { text: 'Histórico de Logs', route: '/historico-logs' },
     { text: 'Dashboard', route: '/kanban' },
     { text: 'Estoque', route: '/estoque' },
-    { text: 'Histórico de prescrições', route: '/historico-prescricoes'},
+    { text: 'Histórico de Prescrições', route: '/historico-prescricoes'},
     { text: 'Usuarios', route: '/usuario' },
   ];
 

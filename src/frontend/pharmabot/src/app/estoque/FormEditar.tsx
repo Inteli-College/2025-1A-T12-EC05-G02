@@ -29,6 +29,7 @@ const FormEditar: React.FC<Props> = ({ rota, open, handleOpen }) => {
       const response = await fetch(rota, {
         headers: {
           "ngrok-skip-browser-warning": "true",
+          "Authorization": `Bearer ${document.cookie.split('token=')[1]}`, // Add JWT token
           "User-Agent": "Custom-User-Agent", // Alternative way to bypass
         },
       });

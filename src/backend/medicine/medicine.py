@@ -1,14 +1,16 @@
 from flask import Blueprint, request, current_app, jsonify
 from models.pedido import Pedido
 from models.pedido_medicamento import PedidoMedicamento
+from models.medicamento import Medicamento
 from flask_socketio import emit
-from models.medicamento import Medicamento  # Adicione esta linha
 from extensions import socketio, db
+from flask_jwt_extended import jwt_required
 
 medicineFlask = Blueprint('medicine', __name__, url_prefix='/medicine')
 
 # Cria uma prescrição médica
 @medicineFlask.route('/prescription', methods=['POST'])
+@jwt_required()
 def create_prescription():
     data = request.json
     
@@ -55,7 +57,8 @@ def create_prescription():
         'code': 200
     }
 
-@medicineFlask.route('/logs', methods=['GET'])
+@medicineFlask.route('/logs', methods=['GET'], endpoint='medicine_logs')
+@jwt_required()
 def get_prescription_logs():
     try:
         orders = db.session.query(Pedido).order_by(Pedido.data_pedido.desc()).all()
@@ -86,6 +89,7 @@ def get_prescription_logs():
     
 # get the full medicine queue
 @medicineFlask.route('/queue', methods=['GET'])
+@jwt_required()
 def get_full_queue_medicine():
     try:
         queue_list = get_queue_medicine()
@@ -167,6 +171,7 @@ def handle_update_queue(data):
 
 
 @medicineFlask.route('/statuses', methods=['GET'])
+@jwt_required()
 def get_statuses_count():
     try:
         completed = db.session.query(Pedido).filter(Pedido.status == 'Completo').count()
@@ -191,3 +196,64 @@ def get_statuses_count():
             'message': 'Erro ao obter status de prescrição',
             'code': 500
         }), 500
+    
+@medicineFlask.route('/medicamentos', methods=['GET'])
+def listar_medicamentos():
+    try:
+        session = db.session
+
+        # Consulta unindo as tabelas Estoque e Medicamento
+        query = session.query(
+            Medicamento.id,
+            Medicamento.nome,
+            Medicamento.descricao,
+            Medicamento.fabricante,
+            Medicamento.dose,
+        )
+
+        # Converte os resultados para uma lista de dicionários
+        medicamento_list = [
+            {
+                "acao": item.nome,
+            }
+            for item in query.all()
+        ]
+        
+    finally:
+        session.close()
+
+    return {"Logs": medicamento_list}, 200
+
+@medicineFlask.route('/criar-medicamento', methods=['POST'])
+def criar_medicamento():
+    try:
+        session = db.session
+        
+        data = request.get_json()
+        
+        medicamento = Medicamento(
+            nome = data.get("nome"),
+            descricao = data.get("descricao"),
+            fabricante = data.get("fabricante"),
+            validade = data.get("validade"),
+            lote = data.get("lote"),
+            dose = data.get("dose")
+        )
+        
+        session.add(medicamento)
+        session.commit()
+
+    except Exception as error:
+        session.rollback()
+        return jsonify({
+            "success": "false",
+            "message": f"Erro ao criar medicamento: {error}"
+        }), 400
+
+    finally:
+        session.close()
+    
+    return jsonify({
+        "success": "true",
+        "message": "Medicamento criado com sucesso"
+    }), 200

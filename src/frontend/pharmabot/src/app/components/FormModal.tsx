@@ -22,6 +22,7 @@ interface Props {
   rota: string;
   values?: { [key: string]: string }; // Objeto que contém os valores dos inputs
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void; // Função para atualizar os valores
+  children?: React.ReactNode;
 }
 
 const CustomTextField = styled(TextField)({
@@ -30,7 +31,7 @@ const CustomTextField = styled(TextField)({
   },
 });
 
-const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, values = {}, onChange }) => {
+const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, values = {}, onChange, children }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [alerta, setAlerta] = useState<boolean>(false);
   const [erro, setErro] = useState<string>("");
@@ -57,6 +58,7 @@ const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, val
         headers: {
           "ngrok-skip-browser-warning": "true",
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${document.cookie.split('token=')[1]}`, // Add JWT token
           "User-Agent": "Custom-User-Agent" // Alternative way to bypass
         },
         body: JSON.stringify(data),
@@ -98,6 +100,7 @@ const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, val
       )}
 
       <form onSubmit={handleSubmit} id={idForm}>
+        {children}
         {inputs.map((input, index) => (
           <CustomTextField
             key={index}

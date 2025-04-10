@@ -58,23 +58,18 @@ export default function Bins() {
         	// Montar a URL com base na ação selecionada
         	const rota = `${apiUrl}/bins` //NECESSARIO INTEGRAR COM O BACK
     
-        	fetch(rota, {
-            	headers: {
-                	"ngrok-skip-browser-warning": "true",
-                	"User-Agent": "Custom-User-Agent" // Alternative way to bypass
-            	}
-        	})
-            	.then((response) => response.json())
-            	.then((data) => {
-                	// Transformar os dados no formato esperado
-                	console.log(data)
-                	const formattedData: Data[] = data.bins.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
-                    	idEd : item.id,
-                    	nomeBin: item.nomeBin,
-                    	nomeMedicamento: item.nomeMedicamento,
-                    	quantidade: item.quantidade,
-                    	coordeandas: item.coordenada_json
-                	}));
+            fetch(rota)
+                .then((response) => response.json())
+                .then((data) => {
+                    // Transformar os dados no formato esperado
+                    console.log(data)
+                    const formattedData: Data[] = data.bins.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
+                        idEd : item.id,
+                        nomeBin: item.nomeBin,
+                        nomeMedicamento: item.nomeMedicamento,
+                        quantidade: item.quantidade,
+                        coordeandas: item.coordenada_json
+                    }));
     
                 	setRows(formattedData);
             	})
@@ -96,51 +91,46 @@ export default function Bins() {
         	}
     	}, [searchText, rows]);
 
-    	useEffect(() => {
-        	setLoading(true);
-        	const url = `${apiUrl}/bins/list`;
-   	 
-        	fetch(url, {
-            	headers: {
-                	"ngrok-skip-browser-warning": "true",
-                	"User-Agent": "Custom-User-Agent" // Alternative way to bypass
-            	}
-        	})
-            	.then((response) => response.json())
-            	.then((data) => {
-                	console.log("Dados recebidos:", data);
-   	 
-                	const formattedData: Data[] = data.Bin.map((item: any) => {
-                    	let coordenadasFormatadas = "N/A"; // Caso as coordenadas não existam
-               	 
-                    	try {
-                        	if (item.coordenadas && typeof item.coordenadas === "string" && item.coordenadas.trim() !== "") {
-                            	const coordenadasObj = JSON.parse(item.coordenadas); // Converte a string JSON para objeto
-                            	coordenadasFormatadas = `${ coordenadasObj.x } / ${ coordenadasObj.y } / ${ coordenadasObj.z }`;
-                        	}
-                    	} catch (error) {
-                        	console.error("Erro ao converter coordenadas:", error);
-                    	}
-               	 
-                    	return {
-                        	idEd: item.id,
-                        	nomeBin: item.nomeBin,
-                        	nomeMedicamento: item.nomeMedicamento || "N/A", // Caso não venha do backend
-                        	quantidade: item.quantidade || 0, // Caso não venha do backend
-                        	coordenadas: coordenadasFormatadas,
-                    	};
-                	});
-   	 
-                	console.log("Dados formatados:", formattedData);
-                	setRows(formattedData);
-            	})
-            	.catch((error) => console.error("Erro ao buscar bins:", error))
-            	.finally(() => setLoading(false));
-    	}, [key]);   	 
-   	 
-   	 
-	return(<>
-    	<Header></Header>
+        useEffect(() => {
+            setLoading(true);
+            const url = `${apiUrl}/bins/list`;
+        
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Dados recebidos:", data);
+        
+                    const formattedData: Data[] = data.Bin.map((item: any) => {
+                        let coordenadasFormatadas = "N/A"; // Caso as coordenadas não existam
+        
+                        try {
+                            if (item.coordenadas) {
+                                const coordenadasObj = JSON.parse(item.coordenadas); // Converte a string JSON para objeto
+                                coordenadasFormatadas = `${ coordenadasObj.x } / ${ coordenadasObj.y } / ${ coordenadasObj.z }`;
+                            }
+                        } catch (error) {
+                            console.error("Erro ao converter coordenadas:", error);
+                        }
+        
+                        return {
+                            idEd: item.id,
+                            nomeBin: item.nomeBin,
+                            nomeMedicamento: item.nomeMedicamento || "N/A", // Caso não venha do backend
+                            quantidade: item.quantidade || 0, // Caso não venha do backend
+                            coordenadas: coordenadasFormatadas,
+                        };
+                    });
+        
+                    console.log("Dados formatados:", formattedData);
+                    setRows(formattedData);
+                })
+                .catch((error) => console.error("Erro ao buscar bins:", error))
+                .finally(() => setLoading(false));
+        }, [key]);        
+        
+        
+    return(<>
+        <Header></Header>
 
     	<FormEdit open={openEditar} handleOpen={setOpenEditar} rota={apiUrl + '/bins' + '/editar/' + idEdicao} >
     	</FormEdit>

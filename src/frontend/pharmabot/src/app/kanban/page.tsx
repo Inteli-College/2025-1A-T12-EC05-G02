@@ -27,7 +27,8 @@ export default function Kanban() {
         fetch(`${apiUrl}/medicine/queue`, {
             headers: {
             "ngrok-skip-browser-warning": "true",
-            "User-Agent": "Custom-User-Agent" // Alternative way to bypass
+            "User-Agent": "Custom-User-Agent", // Alternative way to bypass
+            "Authorization": `Bearer ${document.cookie.split('token=')[1]}` // Add JWT token
             }
         })
             .then((response) => response.json())
