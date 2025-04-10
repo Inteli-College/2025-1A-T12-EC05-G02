@@ -6,6 +6,8 @@ description: Análise Financeira do Projeto Futuro
 
 # Análise Futura
 
+## Implementação do Projeto
+
 &emsp; Até o momento, a PharmaTech desenvolveu um protótipo do projeto a ser implementado no Hospital de Clínicas da Unicamp (HC). Contudo, ao se considerar a efetiva implantação do PharmaBot nas enfermarias do hospital, novos custos devem ser levados em conta, relacionados ao espaço físico, à disposição dos medicamentos, à necessidade de etiquetagem individual e à adaptação do sistema às especificidades do ambiente hospitalar.
 
 &emsp; Considerando o tamanho do espaço e, consequentemente, a quantidade de medicamentos armazenados, estima-se ser necessária a instalação de dois sistemas de esteiras posicionadas diante das prateleiras: uma destinada ao robô e outra às caixas de separação. Tal configuração já havia sido prevista na elaboração das [jornadas do usuário do PharmaBot](../../Sprint-1/UX/jornada-do-usuario.md), porém não foi incluída no orçamento do protótipo em razão de limitações de recursos.
@@ -25,10 +27,9 @@ description: Análise Financeira do Projeto Futuro
 ### 1. Mão de Obra
 
 - Quantidade de funcionários: 8  
-- Custo médio por funcionário: R$ 7.500,00  
+- Custo médio por funcionário: R$ 7.500  
 - Duração do projeto: 12 meses  
-- **Custo total:**  
-  8 funcionários × R$ 7.500,00 × 12 meses = **R$ 720.000,00**
+- **Custo total:** 8 funcionários × R$ 7.500,00 × 12 meses = **R$ 720.000**
 
 ### 2. Equipamentos e Componentes
 
@@ -36,9 +37,9 @@ description: Análise Financeira do Projeto Futuro
 
 | Item              | Descrição                                                      | Custo Estimado         |
 |-------------------|----------------------------------------------------------------|-------------------------|
-| Robô              | Braço robótico industrial com movimentos verticais             | R$ 80.000 – R$ 150.000  |
+| Robô              | Braço robótico industrial com 4 DOF           | R$ 80.000 – R$ 150.000  |
 | Microcontrolador  | Microcontrolador compatível com o robô                         | R$ 1.600                |
-| Esteiras          | Sistema de duas esteiras para o robô e as caixas               | R$ 40.000 – R$ 100.000  |
+| Esteiras          | Sistema de uma esteira para o robô e as caixas               | R$ 20.000 – R$50.000  |
 | Periféricos       | Sensor de infravermelho e leitor de QR Code                    | R$ 200                  |
 | Etiquetas         | Material de etiquetagem de cada dose unitarizada              | R$ 75.000               |
 
@@ -52,24 +53,53 @@ description: Análise Financeira do Projeto Futuro
 - **Periféricos:** baseado nos dispositivos utilizados no protótipo.
 - **Etiquetas:** considerando 1,5 milhão de etiquetas ao custo de R$ 0,05 cada.
 
+---
 
-### 3. Resumo dos Custos
+## Resumo dos Custos
 
 <p style={{textAlign: 'center'}}>Tabela 2 - Resumo dos Custos</p>
 
-| Categoria                   | Valor Estimado               |
-|-----------------------------|------------------------------|
-| Mão de Obra                 | R$ 720.000                   |
-| Equipamentos e Componentes  | R$ 196.800 – R$ 326.800      |
-| Outros Gastos               | R$ 2.000                     |
-| **Total Estimado**          | **R$ 902.800 – R$ 1.048.800** |
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+
+<table>
+    <tr>
+      <th>Categoria</th>
+      <th>Valor Estimado</th>
+    </tr>
+    <tr>
+      <td>Mão de Obra</td>
+      <td>R$ 720.000</td>
+    </tr>
+    <tr>
+      <td>Equipamentos e Componentes</td>
+      <td>R$ 176.800 – R$ 276.800</td>
+    </tr>
+    <tr>
+      <td>Outros Gastos</td>
+      <td>R$ 2.000</td>
+    </tr>
+    <tr>
+      <td><strong>Total Estimado</strong></td>
+      <td><strong>R$ 898.800 – R$ 998.800</strong></td>
+    </tr>
+  </table>
+
+</div>
 
 <p style={{textAlign: 'center'}}>Fonte: Autoria própria (2025)</p>
 
-OBS: Deve-se considerar um preço de manutenção, supervisão e treinamento do equipamento por até um ano de R$100.000.
+:::warning[Manutenção]
+Deve-se considerar um preço de manutenção, supervisão e treinamento do equipamento por até um ano de R$100.000.
+:::
 
----
+## Resultado do Projeto
 
-&emsp; Portanto, percebe-se que a implementação plena do PharmaBot no Hospital de Clínicas da Unicamp demanda investimentos significativos, sobretudo em infraestrutura, automação e adaptação às especificidades do ambiente hospitalar. A estimativa de custos apresentada evidencia a complexidade técnica e logística do projeto, reforçando a necessidade de planejamento detalhado e investimento estratégico.
+&emsp; Percebe-se que a implementação plena do PharmaBot no Hospital de Clínicas da Unicamp demanda investimentos significativos, sobretudo em infraestrutura, automação e adaptação às especificidades do ambiente hospitalar.
 
-&emsp; No entanto, os benefícios potenciais — como a redução de erros na dispensação de medicamentos, a otimização de tempo da equipe de farmácia e o aumento da rastreabilidade dos fármacos — justificam o investimento proposto. A análise financeira aqui exposta serve como base para decisões futuras, permitindo o amadurecimento da proposta e a avaliação de sua viabilidade econômica em larga escala.
+&emsp; O projeto completo possuiria as seguintes características:
+- Robô com 4 DOF, capaz de segurar o remédio e colocá-lo em uma bandeja
+- Componentes de segurança integrados de forma modular e de baixo custo, mantendo a eficiência operacional.
+- 1 esteira para a movimentação do robô ao longo da farmácia
+- Integração com a plataforma utilizada pelo hospital para triagem
+
+&emsp; A estimativa de custos apresentada evidencia a complexidade técnica e logística do projeto, reforçando a necessidade de planejamento detalhado e investimento estratégico. No entanto, percebe-se que os benefícios potenciais — como a redução de erros na dispensação de medicamentos, a otimização de tempo da equipe de farmácia e o aumento da rastreabilidade dos fármacos — justificam o investimento proposto.
