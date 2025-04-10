@@ -243,3 +243,48 @@ npm install
 npm run dev
 ```
 &emsp;Após a execução, o terminal exibirá o link onde a aplicação estará rodando, geralmente http://localhost:3000/. Basta abrir o navegador e acessar o link para visualizar a aplicação em funcionamento.
+
+## Guia de Inicialização do backend local
+
+### 1° Passo: Entrar no diretório do backend
+
+Abra um terminal e navegue até o diretório do backend com o seguinte comando:
+
+```bash
+cd src/backend
+```
+2° Passo: Criar e ativar o ambiente virtual
+
+Para Windows:
+```bash
+python -m venv venv
+.\venv\Scripts\activate
+```
+Para Linux/macOS:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+3° Passo: Instalar as dependências
+Com o ambiente virtual ativado, instale as bibliotecas necessárias com:
+
+Para Windows:
+```bash
+pip install -r requirements.txt
+```
+Para Linux/macOS:
+```bash
+pip3 install -r requirements.txt
+```
+4° Passo: Executar o backend
+Após instalar as dependências, inicie a aplicação com:
+
+Para Windows:
+```bash
+python main.py
+```
+Para Linux/macOS:
+```bash
+python3 main.py
+```
+O backend estará rodando localmente e pronto para se comunicar com o frontend.
