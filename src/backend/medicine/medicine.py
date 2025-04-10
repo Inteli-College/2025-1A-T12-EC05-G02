@@ -215,6 +215,7 @@ def listar_medicamentos():
         medicamento_list = [
             {
                 "acao": item.nome,
+                "id": item.id
             }
             for item in query.all()
         ]

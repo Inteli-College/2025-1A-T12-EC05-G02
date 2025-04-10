@@ -13,12 +13,14 @@ interface Props {
   onSelect: (value: string) => void;
   render: number;
   rota: string;
+  id?: boolean
 }
 
-const SelectButton: React.FC<Props> = ({ atributo, label, onSelect, render, rota }) => {
+const SelectButton: React.FC<Props> = ({ atributo, label, onSelect, render, rota, id }) => {
   const [value, setValue] = useState("");
   const [filteredItems, setFilteredItems] = useState<string[]>([]);
   const [items, setItems] = useState<string[]>([]);
+  const [ids, setIds] = useState<Record<string, any>>({});
 
   useEffect(() => {
     fetch(rota, {
@@ -30,11 +32,23 @@ const SelectButton: React.FC<Props> = ({ atributo, label, onSelect, render, rota
     })
       .then((response) => response.json())
       .then((data) => {
+      if (!id) {
       const acaoList = data.Logs
         .map((item: any) => (typeof item.acao === 'string' ? item.acao : ''))
         .filter((value: any, index: any, array: any) => array.indexOf(value) === index); // Remover valores duplicados
 
       setItems(acaoList);
+      } else {
+        const acaoList = data.Logs.map((item: any) => item.acao);
+        const idList = data.Logs.reduce((acc: Record<string, any>, item: any) => {
+          acc[item.acao] = item.id;
+          return acc;
+        }, {});
+
+
+        setItems(acaoList);
+        setIds(idList)
+      }
       })
       .catch((error) => console.error("Erro ao buscar ações:", error));
   }, []);
@@ -49,7 +63,12 @@ const SelectButton: React.FC<Props> = ({ atributo, label, onSelect, render, rota
 
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value as string);
-    onSelect(event.target.value as string);
+    if (!id) {
+      onSelect(event.target.value as string);
+    }
+    else {
+      onSelect(ids[event.target.value as string])
+    }
   };
 
   return ( // Renderiza quando `loading === false`

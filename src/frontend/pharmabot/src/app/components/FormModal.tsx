@@ -31,10 +31,12 @@ const CustomTextField = styled(TextField)({
   },
 });
 
+
 const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, values = {}, onChange, children }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [alerta, setAlerta] = useState<boolean>(false);
   const [erro, setErro] = useState<string>("");
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
