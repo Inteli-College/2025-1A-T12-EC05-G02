@@ -7,11 +7,13 @@ from user.user import usersFlask
 from medicine.medicine import medicineFlask
 from robot.robot import robotFlask
 from bins.bins import binsFlask
+from flask_cors import CORS
 from storage.storage import estoqueFlask
 
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
 
 SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
 SECRET_KEY = os.getenv('SECRET_KEY')
