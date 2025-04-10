@@ -49,10 +49,7 @@ export default function Paciente() {
     
             fetch(rota, {
                 headers: {
-                    "ngrok-skip-browser-warning": "true",
-                    "User-Agent": "Custom-User-Agent",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NDA1OTM2MCwianRpIjoiMDhmNDcwZjUtZjMzZi00MjY4LTllYzEtM2JmMjBhMjJkMzFjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NiwibmJmIjoxNzQ0MDU5MzYwLCJjc3JmIjoiZjRiZWYxN2UtNjU5Yy00M2M2LThjYTEtODNiMGJhMjQ0OGM3IiwiZXhwIjoxNzQ0MDYwMjYwLCJyb2xlcyI6ImFkbWluIn0.q44AOktdeTwa02xl6tRW7KqlSizQCI16KupO84o2T7A",
+                    "Authorization": `Bearer ${document.cookie.split('token=')[1]}`
 
                 }
             })
@@ -94,10 +91,7 @@ export default function Paciente() {
         
             fetch(url, {
                 headers: {
-                    "ngrok-skip-browser-warning": "true",
-                    "User-Agent": "Custom-User-Agent",
-                    "Access-Control-Allow-Origin": "*",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NDA1OTM2MCwianRpIjoiMDhmNDcwZjUtZjMzZi00MjY4LTllYzEtM2JmMjBhMjJkMzFjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NiwibmJmIjoxNzQ0MDU5MzYwLCJjc3JmIjoiZjRiZWYxN2UtNjU5Yy00M2M2LThjYTEtODNiMGJhMjQ0OGM3IiwiZXhwIjoxNzQ0MDYwMjYwLCJyb2xlcyI6ImFkbWluIn0.q44AOktdeTwa02xl6tRW7KqlSizQCI16KupO84o2T7A"
+                    "Authorization": `Bearer ${document.cookie.split('token=')[1]}`
                 }
             })
                 .then((response) => response.json())
