@@ -31,19 +31,11 @@ const CustomTextField = styled(TextField)({
   },
 });
 
-function getCookie(name: string): string | null {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()!.split(';').shift()!;
-  return null;
-}
 
 const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, values = {}, onChange, children }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [alerta, setAlerta] = useState<boolean>(false);
   const [erro, setErro] = useState<string>("");
-
-  const token = getCookie("token");
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
