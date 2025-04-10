@@ -171,3 +171,8 @@ def checkStatusRobot():
         status = 'Desconectado'
     emit("robotStatusFront", {"status": status, "x": x, "y": y, "z": z}, broadcast=True, include_self=True)
  
+# Rota para puxar as coordenadas do robô para a página de compartimentos
+@robotFlask.route('/getRobotCoordinates', methods=["GET"])
+def get_robot_coordinates():
+	global x, y, z  # Usar variáveis globais
+	return {"x": x, "y": y, "z": z}  # Retorna as coordenadas do robô
