@@ -57,7 +57,7 @@ export default function Bins() {
         	setLoading(true); // Inicia o carregamento
         	// Montar a URL com base na ação selecionada
         	const rota = `${apiUrl}/bins`
-			fetch(`${apiUrl}/user/list`, {
+			fetch(`${apiUrl}/getRobotCoordinates`, {
 				headers: {
 				  "ngrok-skip-browser-warning": "true",
 				  "User-Agent": "Custom-User-Agent", // Alternative way to bypass
