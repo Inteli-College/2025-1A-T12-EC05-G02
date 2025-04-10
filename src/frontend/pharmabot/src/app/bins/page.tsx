@@ -54,36 +54,6 @@ export default function Bins() {
 	};
 
 	useEffect(() => {
-		setLoading(true); // Inicia o carregamento
-		// Montar a URL com base na ação selecionada
-		const rota = `${apiUrl}/bins` //NECESSARIO INTEGRAR COM O BACK
-
-		fetch(rota, {
-			headers: {
-				"ngrok-skip-browser-warning": "true",
-				"User-Agent": "Custom-User-Agent", // Alternative way to bypass
-				"Authorization": `Bearer ${document.cookie.split('token=')[1]}` // Add JWT token
-			}
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				// Transformar os dados no formato esperado
-				console.log(data)
-				const formattedData: Data[] = data.bins.map((item: any) => ({ //NECESSÁRIO INTEGRAR COM O BACK
-					idEd: item.id,
-					nomeBin: item.nomeBin,
-					nomeMedicamento: item.nomeMedicamento,
-					quantidade: item.quantidade,
-					coordeandas: item.coordenada_json
-				}));
-
-				setRows(formattedData);
-			})
-			.catch((error) => console.error("Erro ao buscar bins:", error))
-			.finally(() => setLoading(false)); // Finaliza o carregamento
-	}, [key]);
-
-	useEffect(() => {
 		if (searchText === '') {
 			setFilteredRows(rows); // Se não houver pesquisa, exibe todos os dados
 		} else {
