@@ -53,7 +53,6 @@ const FormModal: React.FC<Props> = ({ title, inputs, rota, open, handleOpen, val
       data[input.name] = input.type === "date" ? Number(value) : value;
 
     });
-    console.log(document.cookie)
 
     try {
       const response = await fetch(rota, {
