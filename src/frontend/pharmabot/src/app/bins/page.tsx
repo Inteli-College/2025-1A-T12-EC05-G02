@@ -11,7 +11,7 @@ import { Input } from "../components/FormModal";
 import FormEdit from "./FormEdit";
 import CustomModal from "../components/Modal";
  
-const apiUrl = 'http://127.0.0.1:5555/';
+const apiUrl = process.env.API_URL;
 
 const colunas: Column[] = [
 	{id: 'nomeBin', label: 'Número do Bin', align: 'center'},
@@ -56,8 +56,14 @@ export default function Bins() {
 	useEffect(() => {
         	setLoading(true); // Inicia o carregamento
         	// Montar a URL com base na ação selecionada
-        	const rota = `${apiUrl}/bins` //NECESSARIO INTEGRAR COM O BACK
-    
+        	const rota = `${apiUrl}/bins`
+			fetch(`${apiUrl}/user/list`, {
+				headers: {
+				  "ngrok-skip-browser-warning": "true",
+				  "User-Agent": "Custom-User-Agent", // Alternative way to bypass
+				  "Authorization": `Bearer ${document.cookie.split('token=')[1]}` // Add JWT token
+				}
+			  })
             fetch(rota)
                 .then((response) => response.json())
                 .then((data) => {
