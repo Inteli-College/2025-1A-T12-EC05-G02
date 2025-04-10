@@ -9,6 +9,7 @@ from robot.robot import robotFlask
 from bins.bins import binsFlask
 from flask_cors import CORS
 from storage.storage import estoqueFlask
+from paciente.paciente import pacienteFlask
 
 
 load_dotenv()
@@ -39,6 +40,7 @@ app.register_blueprint(robotFlask)
 app.register_blueprint(medicineFlask)
 app.register_blueprint(binsFlask)
 app.register_blueprint(estoqueFlask)
+app.register_blueprint(pacienteFlask)
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
