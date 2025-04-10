@@ -17,6 +17,13 @@ const colunas: Column[] = [
     { id: 'ultimaAtualizacao', label: 'Última Atualização', minWidth: 150, format: (value: Date) => value.toLocaleString('pt-BR') },
 ]
 
+function getCookie(name: string): string | null {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()!.split(';').shift()!;
+    return null;
+  }
+
 export default function Estoque() {
     const [loading, setLoading] = useState<boolean>(false); // Novo estado para controle de carregamento
     const [rows, setRows] = useState<Data[]>([]);
@@ -26,6 +33,9 @@ export default function Estoque() {
     const [open, setOpen] = useState(false);
     const [openEditar, setOpenEditar] = useState(false);
     const [idEdicao, setIdEdicao] = useState<any>('')
+
+    const token = getCookie("token");
+
 
 
     //função para atualizar a página com base no botão atualizar
@@ -50,7 +60,7 @@ export default function Estoque() {
             headers: {
               "ngrok-skip-browser-warning": "true",
               "User-Agent": "Custom-User-Agent", // Alternative way to bypass
-              "Authorization": `Bearer ${document.cookie.split('token=')[1]}` // Add JWT token
+              "Authorization": `Bearer ${token}` // Add JWT token
             }
         })
             .then((response) => response.json())
@@ -78,8 +88,8 @@ export default function Estoque() {
         } else {
             const filtered = rows.filter((row) => {
                 return (
-                    row.item.includes(searchText) ||
-                    row.codigoIdentificacao.toLowerCase().includes(searchText.toLowerCase()) ||
+                    row.item.toLowerCase().includes(searchText.toLowerCase()) ||
+                    String(row.codigoIdentificacao).toLowerCase().includes(searchText.toLowerCase()) ||
                     row.localizacao.toLowerCase().includes(searchText.toLowerCase())
                 );
             });
