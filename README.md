@@ -6,8 +6,7 @@
 ##  PHARMATECH
 
 
-## 👥 Grupo 2
-## 👨‍🎓 Integrantes:
+## 👥 Grupo 2 - Integrantes:
 
 <div align="center">
 <table>
@@ -87,66 +86,25 @@
 
 ## 📜 Descrição
 
-A solução proposta é o desenvolvimento de um sistema automatizado utilizando um braço mecânico e sensores para otimizar a separação e montagem das “Fitas de medicamentos” no Hospital de Clínicas da Unicamp. O sistema realizará a seleção precisa de medicamentos com base em prescrições eletrônicas, validando cada item por meio de leitura de código de barras, peso e volume, além de integrar-se ao estoque hospitalar para atualizações em tempo real. A proposta visa garantir maior segurança aos pacientes, reduzir erros humanos e aumentar a eficiência operacional, substituindo processos manuais por automação e proporcionando controle desde a dispensação até a entrega dos kits medicamentosos.
+O projeto em desenvolvimento visa aprimorar o processo de separação e montagem de medicamentos em farmácias do Hopital de Clínicas da Unicamp. Atualmente, a separação e montagem de medicamentos no Hospital de Clínicas da Unicamp é realizada manualmente, o que gera diversos desafios operacionais e riscos que afetam diretamente a qualidade do atendimento ao paciente. Alguns dos principais problemas enfrentados incluem:
 
+Erros na separação de medicamentos: O processo manual está sujeito a falhas humanas, como a seleção errada de medicamentos, doses incorretas ou até mesmo a duplicação de itens. Esses erros podem comprometer a segurança do paciente e levar a complicações no tratamento.
 
-Veja um pouco mais sobre a nossa solução:
-(COLOCAR VÍDEO)
+Alto consumo de tempo e recursos humanos: A montagem da chamada “Fita de medicamentos” exige um esforço significativo da equipe de farmácia, aumentando a carga de trabalho dos profissionais e limitando a capacidade de atendimento do hospital. Além disso, esse processo demanda um grande número de colaboradores, elevando os custos operacionais.
 
+Dificuldade de rastreabilidade e controle de estoque: O controle manual dos medicamentos separados e montados dificulta a rastreabilidade dos itens, tornando mais complexa a identificação de medicamentos vencidos ou em falta. Essa falta de controle pode levar a desperdícios, perdas financeiras e problemas de gestão de estoque.
 
-## 📁 Estrutura de Pastas
-
-Na raiz do projeto, você vai encontrar pastas e arquivos que são como os "organizadores de bagunça" do desenvolvimento. Eis o que cada um faz:
-
-📦 *Projeto NDC System* (2025-1A-T12-EC05-G03)
-
-├── 📂 docs <br/>
-│ ├── *docs* <br/>
-│ │ ├── *Sprint 1* — Documentação da Sprint 1 para o Docusaurus <br/>
-│ │ ├── *Sprint 2* — Documentação da Sprint 2 para o Docusaurus <br/>
-│ │ ├── *Sprint 3* — Documentação da Sprint 3 para o Docusaurus <br/>
-│ │ ├── *Sprint 4* — Documentação da Sprint 4 para o Docusaurus <br/>
-│ │ └── *Sprint 5* — Documentação da Sprint 5 para o Docusaurus <br/>
-│ │ <br/>
-│ ├── *src* <br/>
-│ │ ├── *components/HomepageFeatures* — Componentes da página inicial do Docusaurus <br/>
-│ │ ├── *css* — Estilização personalizada do Docusaurus <br/>
-│ │ └── *pages* — Páginas e conteúdos estruturados para o Docusaurus <br/>
-│ │ <br/>
-│ └── *static/img* — Imagens estáticas usadas no Docusaurus <br/>
-│ <br/>
-├── 📂 media <br/>
-│ ├── *Logos_GuiaDeEstilos* — Logos e guia de estilos do projeto <br/>
-│ ├── *NDCers* — Fotos dos integrantes do grupo para o README <br/>
-│ ├── *codigo* — Imagens de exemplos de código <br/>
-│ ├── *componentes* — Imagens dos componentes utilizados no projeto <br/>
-│ ├── *fisico* — Esquemáticos e diagramas do projeto físico <br/>
-│ ├── *personas* — Representações visuais das personas do projeto <br/>
-│ └── *wireflow* — Fluxogramas de telas e interações do projeto <br/>
-│ <br/>
-├── 📂 src <br/>
-│ ├── *api* <br/>
-│ │ ├── *models* — Modelos de dados da API <br/>
-│ │ └── *routes* — Rotas e endpoints da API <br/>
-│ │ <br/>
-│ ├── *firmware* <br/>
-│ │ ├── *NDCbot* — Arquivos e componentes do NDCBot <br/>
-│ │ │ ├── *Modules* — Módulos de funcionalidades do NDCBot <br/>
-│ │ │ └── *Positions* — Gerenciamento de posições do NDCBot <br/>
-│ │ │ <br/>
-│ │ └── *codigos_apoio* — Códigos auxiliares de suporte <br/>
-│ │ <br/>
-│ └── *front-end* <br/>
-│ ├── *CSS* — Estilos visuais da interface do projeto <br/>
-│ └── *JS* — Scripts de interatividade da interface <br/>
-
+ Para solucionar esses desafios, o projeto PharmaBot propõe a implementação de um sistema de automação para a separação e montagem de medicamentos, utilizando um robô separador e um sistema de controle integrado. O robô separador será responsável por identificar, selecionar e separar os medicamentos de acordo com as prescrições médicas, enquanto o sistema de controle gerenciará o fluxo de trabalho, a comunicação com o sistema de gestão hospitalar e a geração de relatórios de desempenho.
+ 
 <br/>
-## Inicialização da documentação no Docusaurus
+
+
+# Inicialização da documentação no Docusaurus
 Docusaurus é um gerador de sites estáticos criado pelo Facebook para documentação técnica. Permite publicar conteúdo facilmente, com navegação clara e responsiva. Sendo assim, para inicializar e ter acesso a documentação *Pharmatech*.
 
 Siga os passos abaixo para inicializar o servidor local da documentação do projeto utilizando Docusaurus:
 
-# Pré-requisitos
+## Pré-requisitos
 * Node.js (versão recomendada: 18.x ou superior)
 * npm 
 
@@ -155,7 +113,7 @@ Verifique se estão instalados corretamente executando:
 node -v
 npm -v 
 ```
-# Instalação das Dependências
+## Instalação das Dependências
 No terminal, navegue até a pasta raiz da documentação e instale as dependências com o comando abaixo:
 
 ```python
@@ -170,7 +128,7 @@ Para executar o servidor local da documentação, utilize o comando:
 npm run start
 ```
 
-# Acessando a Documentação
+## Acessando a Documentação
 Após inicializado, acesse a documentação abrindo seu navegador em:
 ```
 http://localhost:3000
