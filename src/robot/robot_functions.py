@@ -85,7 +85,7 @@ def move_to_bin(device, positions, drug, r, iter):
         device.movel_to(
             positions['bins'][drug]['pos_x'] + 19,
             positions['bins'][drug]['pos_y'],
-            -14,
+            -0,
             r,
             wait=True
         )
