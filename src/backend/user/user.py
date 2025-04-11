@@ -1,4 +1,3 @@
-
 # Importando as bibliotecas necessárias
 import bcrypt
 from sqlalchemy.exc import IntegrityError
@@ -17,7 +16,7 @@ from datetime import timedelta
 usersFlask = Blueprint('user', __name__, url_prefix='/user')
 
 # Função auxiliar para registrar logs
-def registrar_log(acao, detalhes):
+def registrar_log(acao, detalhes, usuario_id=None):
     session = db.session
     try:
         # Obtendo o último ID registrado e incrementando para o próximo log
@@ -25,7 +24,7 @@ def registrar_log(acao, detalhes):
         # Se não houver logs, o próximo ID será 1
         proximo_id = (ultimo_log.id + 1) if ultimo_log else 1
         # Criando o log
-        log = LogSistema(id=proximo_id, acao=acao, detalhes=detalhes, data_hora=datetime.now())
+        log = LogSistema(id=proximo_id, acao=acao, detalhes=detalhes, data_hora=datetime.now(), usuario_id=usuario_id)
         session.add(log)
         session.commit()
     except Exception as e:
@@ -62,7 +61,7 @@ def admin_sign():
         new_user = Usuario(nome=name, email=email, senha=hashed_password, role=role)
         session.add(new_user)
         session.commit()
-        registrar_log("Cadastro de Usuário", f"Usuário {name} cadastrado com sucesso.")
+        registrar_log("Cadastro de Usuário", f"Usuário {name} cadastrado com sucesso.", get_jwt_identity())
     except IntegrityError:
         session.rollback()
         return {"ERRO": "Erro ao cadastrar usuário!"}, 500
@@ -80,7 +79,7 @@ def admin_list():
     try:
         users = session.query(Usuario).all()
         users_list = [ {"id": user.id, "nome": user.nome, "email": user.email, "role": user.role, "datacadastro": user.data_criacao} for user in users ]
-        registrar_log("Listagem de Usuários", "Listagem de todos os usuários realizada com sucesso.")
+        registrar_log("Listagem de Usuários", "Listagem de todos os usuários realizada com sucesso.", get_jwt_identity())
     finally:
         session.close()
 
@@ -111,7 +110,7 @@ def admin_update():
             if new_role:
                 user.role = new_role
             session.commit()
-            registrar_log("Atualização de Usuário", f"Usuário com e-mail {email} atualizado com sucesso.")
+            registrar_log("Atualização de Usuário", f"Usuário com e-mail {email} atualizado com sucesso.", get_jwt_identity())
         else:
             return {"ERRO": "Usuário não encontrado!"}, 404
     except Exception as e:
@@ -139,7 +138,7 @@ def admin_delete():
         if user:
             session.delete(user)
             session.commit()
-            registrar_log("Deleção de Usuário", f"Usuário com e-mail {email} deletado com sucesso.")
+            registrar_log("Deleção de Usuário", f"Usuário com e-mail {email} deletado com sucesso.", get_jwt_identity())
         else:
             return {"ERRO": "Usuário não encontrado!"}, 404
     finally:
@@ -167,7 +166,7 @@ def admin_logs():
 
         # Converte os logs para o formato desejado
         logs_list = [{"id": log.id, "acao": log.acao, "data_hora": log.data_hora, "detalhes": log.detalhes, "responsavel":log.usuario_id} for log in logs]
-        
+        registrar_log("Consulta de Logs", "Consulta de logs realizada com sucesso.", get_jwt_identity())
     finally:
         session.close()
 
