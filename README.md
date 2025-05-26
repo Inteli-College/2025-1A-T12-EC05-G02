@@ -288,3 +288,24 @@ Para Linux/macOS:
 python3 main.py
 ```
 O backend estará rodando localmente e pronto para se comunicar com o frontend.
+
+## 📋 Licença
+
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"> <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
+  <a property="dct:title" rel="cc:attributionURL" href="https://github.com/Inteli-College/2025-1A-T12-EC05-G02">PHARMATECH</a> 
+  by 
+  <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.inteli.edu.br/">Inteli</a>, 
+  <a href="https://www.linkedin.com/in/julia-lika-ishikawa/">Júlia Lika Ishikawa</a>, 
+  <a href="https://www.linkedin.com/in/laura-rodrigues31/">Laura Rodrigues</a>, 
+  <a href="https://www.linkedin.com/in/iisabelledantas/">Isabelle Dantas</a>, 
+  <a href="https://www.linkedin.com/in/heitorfariacandido/">Heitor Candido</a>, 
+  <a href="https://www.linkedin.com/in/gustavo-dacosta/">Gustavo Gonçalves da Costa</a>, 
+  <a href="https://www.linkedin.com/in/felipefmsimao/">Felipe Simão</a>, 
+  <a href="https://www.linkedin.com/in/matheusjorgerosa/">Matheus Jorge</a>, 
+  <a href="https://www.linkedin.com/in/lucas-nepomuceno-ismart/">Lucas Santos</a>,  
+  is licensed under 
+  <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">
+    Attribution 4.0 International
+  </a>
+</p>
